@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ffe313676a3bd745b4c4f3d23751e53, type: 3}
-  m_Name: New Momentum Airbourne State
+  m_Script: {fileID: 11500000, guid: 80097a7041be71a41993175c30114956, type: 3}
+  m_Name: MomentumState
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: f629c6e43dba4bf38cb74d8860150664, type: 2}
+  material: {fileID: 2100000, guid: d75b8f41e959450c84ac6e967084d3e1, type: 2}
   physComp: {fileID: 0}
   rayCaster: {fileID: 0}
   batteryTimer: 0

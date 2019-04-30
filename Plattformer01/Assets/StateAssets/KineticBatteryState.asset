@@ -9,15 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0f174546c51eb647a4b75f9aa7f82f7, type: 3}
-  m_Name: New Precision State
+  m_Script: {fileID: 11500000, guid: 11a1ffd1d3c3c5f42a41efcd287ee52a, type: 3}
+  m_Name: KineticBatteryState
   m_EditorClassIdentifier: 
-  material: {fileID: 2100008, guid: cfaffd8a42ba021478db4c5e1db4d6bc, type: 3}
+  material: {fileID: 0}
   physComp: {fileID: 0}
   rayCaster: {fileID: 0}
   batteryTimer: 0
-  acceleration: 1
-  gravitationalForce: 1
-  jumpMagnitude: 30
-  staticFrictionCo: 0.8
-  airResistance: 0.5

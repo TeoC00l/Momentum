@@ -26,7 +26,6 @@ public class MomentumState : PlayerBaseState
 
     public override void HandleUpdate()
     {
-        Debug.Log(batteryTimer);
         //Adjusting timer
         if (batteryTimer > 0)
         {
