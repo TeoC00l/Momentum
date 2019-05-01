@@ -4,28 +4,35 @@ using UnityEngine;
 
 public class Repuslor : MonoBehaviour
 {
+    //Attributes
     public RayCasterCapsule rayCaster;
-    PhysicsComponent physComp;
     public CapsuleCollider capsuleCollider;
+    public GameObject character;
+    public PhysicsComponent playerPhysComp;
+    public Vector3 playerVector;
 
-    // Start is called before the first frame update
+    public float repulsorMagnitude;
+    public float baseRepulsorMagnitude;
+    
+    //Methods
     void Awake()
     {
         rayCaster = GetComponent<RayCasterCapsule>();
-        capsuleCollider = GetComponent<CapsuleCollider>();
-
+        character = GameObject.Find("Character");
+        playerPhysComp = character.GetComponent<PhysicsComponent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 poop = capsuleCollider.transform.position;
-        RaycastHit hit = rayCaster.GetCollisionData(poop, 1);
+        playerVector = (character.transform.position - transform.position);
+        RaycastHit hit = rayCaster.GetCollisionData((playerVector.normalized * repulsorMagnitude), 0);
+
         if (hit.collider != null)
         {
-            physComp = hit.collider.GetComponent<PhysicsComponent>();
-            physComp.velocity = (-physComp.velocity.normalized * 4);
-            Debug.Log("poop");
+            character.transform.position += (repulsorMagnitude - hit.distance) * -hit.normal;
+            playerPhysComp.velocity = ((-playerPhysComp.velocity /2) + (playerVector.normalized * baseRepulsorMagnitude * Time.deltaTime));
+
         }
     }
 }
