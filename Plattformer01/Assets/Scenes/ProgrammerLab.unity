@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -288,7 +288,6 @@ GameObject:
   - component: {fileID: 1893388531}
   - component: {fileID: 1893388530}
   - component: {fileID: 1893388536}
-  - component: {fileID: 1893388537}
   m_Layer: 10
   m_Name: Character
   m_TagString: Untagged
@@ -428,29 +427,14 @@ MonoBehaviour:
   Renderer: {fileID: 0}
   physComp: {fileID: 0}
   rayCaster: {fileID: 0}
+  mouseSensitivity: 3
   lastDash: {x: 0, y: 0, z: 0}
   dashDuration: 0
   dashCooldown: 0
   dashDurationTimer: 0
   dashCooldownTimer: 0
   dashDistance: 0
-  mouseSensitivity: 3
---- !u!54 &1893388537
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1893388529}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  doubleClickTimer: 0
 --- !u!1001 &1979530566
 PrefabInstance:
   m_ObjectHideFlags: 0
