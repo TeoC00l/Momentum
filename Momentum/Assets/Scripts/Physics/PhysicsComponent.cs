@@ -79,6 +79,11 @@ public class PhysicsComponent : MonoBehaviour
         } 
     }
 
+    public void SetDirection(Vector3 direction)
+    {
+        this.direction = direction;
+    }
+
     public bool GroundCheck()
     {
         RaycastHit hit = rayCaster.GetCollisionData(Vector3.down, skinWidth*2);
@@ -99,51 +104,19 @@ public class PhysicsComponent : MonoBehaviour
         }
     }
 
+    //public void SnapToCollision(Vector3 collisionVelocity)
+    //{
+    //    //This method might not be needed, more test to be conducted later
+    //    RaycastHit hit1 = rayCaster.GetCollisionData(collisionVelocity, 0);
+    //    RaycastHit hit2 = rayCaster.GetCollisionData(hit1.distance * hit1.normal, 0);
 
-
-
-    //GETTERS AND SETTERS
-
-
-    //velocity
-    public Vector3 GetVelocity()
-    {
-        return this.velocity;
-    }
-
-    public void SetVelocity(Vector3 velocity)
-    {
-        this.velocity = velocity;
-    }
-
-    public void SetVelocityMagnitude(float magnitude)
-    {
-        velocity = velocity.normalized * magnitude;
-    }
-
-
-    //direction
-    public void SetDirection(Vector3 direction)
-    {
-        this.direction = direction;
-    }
-
-    public Vector3 GetDirection(Vector3 direction)
-    {
-       return direction;
-    }
-
-
-    //gravitationalForce
-    public float GetGravitationalForce(float gravitationalForce)
-    {
-        return this.gravitationalForce;
-    }
-
-    public void SetGravitationalForce(float gravitationalForce)
-    {
-        this.gravitationalForce = gravitationalForce;
-    }
+    //    if (hit2.collider != null)
+    //    {
+    //        Vector3 spacedvelocity = ((hit2.distance - skinWidth) * (-hit2.normal));
+    //        transform.position += (Vector3)spacedvelocity;
+    //        velocity -= spacedvelocity;
+    //    }
+    //}
 }
 
 
