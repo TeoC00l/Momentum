@@ -12,11 +12,13 @@ public class MomentumState : PlayerBaseState
     public float staticFrictionCo = 0.7f;
     public float airResistance = 0.7f;
 
+    public float batteryCooldown = 1f;
+
     //Methods
     public override void Enter()
     {
         base.Enter();
-        batteryTimer = 1f;
+        batteryTimer = batteryCooldown;
         physComp.acceleration = this.acceleration;
         physComp.gravitationalForce = this.gravitationalForce;
         physComp.JumpMagnitude = this.jumpMagnitude;

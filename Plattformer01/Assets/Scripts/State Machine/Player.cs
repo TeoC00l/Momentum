@@ -9,14 +9,20 @@ public class Player : StateMachine
     [HideInInspector] public PhysicsComponent physComp;
     [HideInInspector] public RayCasterCapsule rayCaster;
 
+    [SerializeField] protected float mouseSensitivity = 3.0f;
+
+    //Dash related attributes
     [SerializeField] protected Vector3 lastDash;
+
     [SerializeField] protected float dashDuration;
     [SerializeField] protected float dashCooldown;
     [SerializeField] protected float dashDurationTimer;
     [SerializeField] protected float dashCooldownTimer;
     [SerializeField] protected float dashDistance;
 
-    public float mouseSensitivity = 3.0f;
+    [SerializeField] protected float doubleClickTimer;
+    [HideInInspector] protected float doubleClickTime;
+    [HideInInspector] protected bool doubleClick;
 
     // Methods
     protected override void Awake()
@@ -25,9 +31,14 @@ public class Player : StateMachine
         rayCaster = GetComponent<RayCasterCapsule>();
         physComp = GetComponent<PhysicsComponent>();
 
-        dashCooldown = 1f;
+        dashCooldown = 0.5f;
         dashDuration = 0.1f;
         dashDistance = 70f;
+        doubleClickTime = 0.5f;
+        doubleClickTimer = 0f;
+
+        mouseSensitivity = 3.0f;
+
         lastDash = Vector3.zero;
 
         base.Awake();
@@ -78,7 +89,25 @@ public class Player : StateMachine
 
         //Adjusting timers
 
-        if (dashCooldownTimer >= 0)
+        if(doubleClickTimer > 0 )
+        {
+            doubleClickTimer -= Time.deltaTime;
+        }
+
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+        {
+            if (doubleClickTimer > 0)
+            {
+                doubleClick = true;
+            }
+            else
+            {
+                doubleClickTimer = doubleClickTime;
+                doubleClick = false;
+            }
+        }
+
+        if (dashCooldownTimer > 0)
         {
             dashCooldownTimer -= Time.deltaTime;
         }
@@ -95,13 +124,15 @@ public class Player : StateMachine
         }
 
         //Executing dash
-        if (dashCooldownTimer <= 0 && dash != Vector3.zero)
+        if (dashCooldownTimer <= 0 && doubleClick)
         {
+            Debug.Log("Scoop");
             physComp.velocity += dash;
             dashCooldownTimer += dashCooldown;
             dashDurationTimer += dashDuration;
+            doubleClickTimer = 0;
+            doubleClick = false;
             lastDash = dash;
         }
     }
-
 }
