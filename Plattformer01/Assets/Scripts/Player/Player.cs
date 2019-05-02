@@ -9,6 +9,7 @@ public class Player : StateMachine
     [HideInInspector] public PhysicsComponent physComp;
     [HideInInspector] public RayCasterCapsule rayCaster;
 
+    [SerializeField] public bool kineticBatteryActive;
     [SerializeField] protected float mouseSensitivity = 3.0f;
 
     //Dash related attributes
@@ -31,6 +32,7 @@ public class Player : StateMachine
         rayCaster = GetComponent<RayCasterCapsule>();
         physComp = GetComponent<PhysicsComponent>();
 
+        //Setting dash timers
         dashCooldown = 0.5f;
         dashDuration = 0.1f;
         dashDistance = 70f;
@@ -134,5 +136,10 @@ public class Player : StateMachine
             doubleClick = false;
             lastDash = dash;
         }
+    }
+
+    public bool GetKineticBatteryActive()
+    {
+        return kineticBatteryActive;
     }
 }

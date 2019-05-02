@@ -8,17 +8,17 @@ public class KineticBatteryState : PlayerBaseState
     //Attributes
     Vector3 oldVelocity;
 
-    //Methods
+    //Methodss
     public override void Enter()
     {
         base.Enter();
+        owner.kineticBatteryActive = true;
         oldVelocity = physComp.velocity;
         physComp.velocity = Vector3.zero;
     }
 
     public override void HandleUpdate()
     {
-
         //Adjusting direction
         RaycastHit hit = rayCaster.GetCollisionData(Vector3.down, 0.5f);
         float skinWidth = physComp.skinWidth;
@@ -41,4 +41,10 @@ public class KineticBatteryState : PlayerBaseState
             owner.Transition<MomentumState>();
         }
     }
+
+    public override void Exit()
+    {
+        owner.kineticBatteryActive = false;
+    }
+
 }
