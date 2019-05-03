@@ -22,6 +22,7 @@ public class DestructibleObject : MonoBehaviour
 
         if (collidingPhysComp.GetVelocity().magnitude >= destructionVelocity*Time.deltaTime)
         {
+
             Object.Destroy(destructibleObject);
         }
         else

@@ -36,7 +36,7 @@ public abstract class StateMachine : MonoBehaviour
         currentState.Enter();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         currentState.HandleUpdate();
     }

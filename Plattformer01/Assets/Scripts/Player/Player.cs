@@ -10,20 +10,17 @@ public class Player : StateMachine
     [HideInInspector] public RayCasterCapsule rayCaster;
 
     [SerializeField] public bool kineticBatteryActive;
-    [SerializeField] protected float mouseSensitivity = 3.0f;
+    [SerializeField] protected float mouseSensitivity;
 
     //Dash related attributes
     [SerializeField] protected Vector3 lastDash;
 
-    [SerializeField] protected float dashDuration;
-    [SerializeField] protected float dashCooldown;
-    [SerializeField] protected float dashDurationTimer;
-    [SerializeField] protected float dashCooldownTimer;
-    [SerializeField] protected float dashDistance;
+    [SerializeField] public Timer dashCooldownTimer;
+    [SerializeField] public Timer dashDurationTimer;
+    [SerializeField] public Timer doubleTapTimer;
 
-    [SerializeField] protected float doubleClickTimer;
-    [HideInInspector] protected float doubleClickTime;
-    [HideInInspector] protected bool doubleClick;
+    [SerializeField] protected float dashDistance;
+    [HideInInspector] private bool doubleClick;
 
     // Methods
     protected override void Awake()
@@ -32,18 +29,18 @@ public class Player : StateMachine
         rayCaster = GetComponent<RayCasterCapsule>();
         physComp = GetComponent<PhysicsComponent>();
 
-        //Setting dash timers
-        dashCooldown = 0.5f;
-        dashDuration = 0.1f;
-        dashDistance = 70f;
-        doubleClickTime = 0.5f;
-        doubleClickTimer = 0f;
-
-        mouseSensitivity = 3.0f;
-
         lastDash = Vector3.zero;
 
         base.Awake();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        dashCooldownTimer.SubtractTime();
+        dashDurationTimer.SubtractTime();
+        doubleTapTimer.SubtractTime();
     }
 
     public Vector3 ProcessVerticalInput()
@@ -83,56 +80,38 @@ public class Player : StateMachine
     {
         //Calculating dash
         Vector3 dash = ProcessHorizontalInput() * dashDistance * Time.deltaTime;
-        RaycastHit hit = rayCaster.GetCollisionData(dash * 6, 0);
+        Vector3 dashRecoil = Vector3.zero;
+        RaycastHit hit = rayCaster.GetCollisionData(dash , physComp.skinWidth);
 
         if (hit.collider != null){
-            dash = Vector3.zero;
-        }
-
-        //Adjusting timers
-
-        if(doubleClickTimer > 0 )
-        {
-            doubleClickTimer -= Time.deltaTime;
+            dashRecoil = Calculations2.CalculateNormalForce(dash, hit);
+            physComp.velocity -= dashRecoil;
         }
 
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
         {
-            if (doubleClickTimer > 0)
+            if (doubleTapTimer.IsCountingDown())
             {
                 doubleClick = true;
             }
             else
             {
-                doubleClickTimer = doubleClickTime;
-                doubleClick = false;
+                doubleTapTimer.SetTimer();
             }
         }
 
-        if (dashCooldownTimer > 0)
+        if (dashDurationTimer.CheckLastFrame())
         {
-            dashCooldownTimer -= Time.deltaTime;
-        }
-
-        if (dashDurationTimer > 0)
-        {
-            dashDurationTimer -= Time.deltaTime;
-
-            //Resetting velocity at last frame of dash
-            if (dashDurationTimer <= 0)
-            {
-                physComp.velocity -= lastDash;
-            }
+            physComp.velocity -= lastDash;
         }
 
         //Executing dash
-        if (dashCooldownTimer <= 0 && doubleClick)
+        if (dashCooldownTimer.IsReady() && doubleClick)
         {
-            Debug.Log("Scoop");
             physComp.velocity += dash;
-            dashCooldownTimer += dashCooldown;
-            dashDurationTimer += dashDuration;
-            doubleClickTimer = 0;
+            dashCooldownTimer.SetTimer();
+            dashDurationTimer.SetTimer();
+            doubleTapTimer.RestartTimer();
             doubleClick = false;
             lastDash = dash;
         }
