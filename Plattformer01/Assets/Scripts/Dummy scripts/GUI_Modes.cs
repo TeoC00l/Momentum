@@ -11,7 +11,6 @@ public class GUI_Modes : MonoBehaviour
     public GameObject player;
 
     private bool shiftToggled = false;
-    private bool mouseToggled = true;
 
     //Location for the cursor
     public Texture2D cursorTexture;
@@ -37,25 +36,16 @@ public class GUI_Modes : MonoBehaviour
 
     void Update()
     {
-        //keycode below checks keyhits. to see if momentum or precision mode. the use is pretty simple and does not need to rely on player.
+        //since it's pretty much known you can hit shift and it'll switch between each mode nontstop. this method below always works.
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             shiftToggled = !shiftToggled;
             if (shiftToggled) { UIPrecision.SetActive(false); UIMomentum.SetActive(true); Debug.Log("click s = 1"); }
-            else { UIPrecision.SetActive(true); UIMomentum.SetActive(false); UIKinetic.SetActive(false); }
-
+            else { UIPrecision.SetActive(true); UIMomentum.SetActive(false); UIKinetic.SetActive(false); } //possibly remove UIKineticsetactive.
         }
 
-        //if(player.GetComponent<Player>().getState(String));
-
-
-        if (Input.GetMouseButton(0))
-        {
-            //if you have activated momentum mode before.
-            mouseToggled = !mouseToggled;
-            if (shiftToggled && mouseToggled) { UIKinetic.SetActive(true); }
-            else if (shiftToggled && !mouseToggled) { UIKinetic.SetActive(false); }
-            else { UIKinetic.SetActive(false); }
-        }
+        //check if kinetic battery is on or off.
+        if (player.GetComponent<Player>().GetKineticBatteryActive()) { UIKinetic.SetActive(true); }
+        else { UIKinetic.SetActive(false); }
     }
 }
