@@ -16,6 +16,7 @@ public class CameraScript2 : MonoBehaviour
     //Methods
     void Start()
     {
+        Cursor.visible = false;
         cameraOffset = transform.position - player.transform.position;
     }
 
