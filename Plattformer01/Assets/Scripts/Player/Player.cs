@@ -11,6 +11,8 @@ public class Player : StateMachine
 
     [SerializeField] public bool kineticBatteryActive;
     [SerializeField] protected float mouseSensitivity;
+    [SerializeField] protected float strafeCoefficient;
+
 
     //Dash related attributes
     [SerializeField] protected Vector3 lastDash;
@@ -20,7 +22,8 @@ public class Player : StateMachine
     [SerializeField] public Timer doubleTapTimer;
 
     [SerializeField] protected float dashDistance;
-    [HideInInspector] private bool doubleClick;
+    [HideInInspector] protected bool isDashing;
+    [HideInInspector] private bool doubleTap;
 
     // Methods
     protected override void Awake()
@@ -72,27 +75,37 @@ public class Player : StateMachine
 
     public void AddPhysics()
     {
-        physComp.SetDirection(ProcessVerticalInput());
+        physComp.SetDirection(ProcessVerticalInput() + (ProcessHorizontalInput() *strafeCoefficient));
         physComp.AddForces();
     }
 
     public void Dash()
     {
-        //Calculating dash
-        Vector3 dash = ProcessHorizontalInput() * dashDistance * Time.deltaTime;
-        Vector3 dashRecoil = Vector3.zero;
-        RaycastHit hit = rayCaster.GetCollisionData(dash , physComp.skinWidth);
+        //Checking for collision to cancel dash
+        if (isDashing == true)
+        {
+            RaycastHit hit = rayCaster.GetCollisionData(lastDash, physComp.skinWidth);
 
-        if (hit.collider != null){
-            dashRecoil = Calculations2.CalculateNormalForce(dash, hit);
-            physComp.velocity -= dashRecoil;
+            if (hit.collider != null)
+            {
+                physComp.velocity -= lastDash;
+                isDashing = false;
+            }
         }
 
+        //Checking for last frame of dash to cancel dash
+        if (dashDurationTimer.CheckLastFrame() && isDashing == true)
+        {
+            physComp.velocity -= lastDash;
+            isDashing = false;
+        }
+
+        //Checking for double tap
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
         {
             if (doubleTapTimer.IsCountingDown())
             {
-                doubleClick = true;
+                doubleTap = true;
             }
             else
             {
@@ -100,19 +113,27 @@ public class Player : StateMachine
             }
         }
 
-        if (dashDurationTimer.CheckLastFrame())
-        {
-            physComp.velocity -= lastDash;
-        }
-
         //Executing dash
-        if (dashCooldownTimer.IsReady() && doubleClick)
+        if (dashCooldownTimer.IsReady() && doubleTap)
         {
+            //Calculating dash
+            Vector3 dash = ProcessHorizontalInput() * dashDistance * Time.deltaTime;
+            RaycastHit hit = rayCaster.GetCollisionData(dash, physComp.skinWidth);
+
+            //Checking for collision to cancel dash
+            if (hit.collider != null)
+            {
+                dash = Vector3.zero;
+            }
+
             physComp.velocity += dash;
             dashCooldownTimer.SetTimer();
             dashDurationTimer.SetTimer();
             doubleTapTimer.RestartTimer();
-            doubleClick = false;
+
+            isDashing = true;
+            doubleTap = false;
+
             lastDash = dash;
         }
     }

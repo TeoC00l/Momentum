@@ -21,13 +21,6 @@ public class PhysicsComponent : MonoBehaviour
     void Awake()
     {
         rayCaster = GetComponent<RayCasterCapsule>();
-
-        //skinWidth = 0.5f;
-        //acceleration = 1f;
-        //gravitationalForce = 1.0f;
-        //staticFrictionCo = 0.7f;
-        //JumpMagnitude = 20.0f;
-        //airResistance = 0.7f;
     }
 
     public void AddForces()
