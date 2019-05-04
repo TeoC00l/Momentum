@@ -13,13 +13,14 @@ public class Player : StateMachine
     [SerializeField] protected float mouseSensitivity;
     [SerializeField] protected float strafeCoefficient;
 
-
     //Dash related attributes
     [SerializeField] protected Vector3 lastDash;
 
     [SerializeField] public Timer dashCooldownTimer;
     [SerializeField] public Timer dashDurationTimer;
     [SerializeField] public Timer doubleTapTimer;
+    [SerializeField] public Timer kineticBatteryCooldownTimer;
+
 
     [SerializeField] protected float dashDistance;
     [HideInInspector] protected bool isDashing;
@@ -44,6 +45,7 @@ public class Player : StateMachine
         dashCooldownTimer.SubtractTime();
         dashDurationTimer.SubtractTime();
         doubleTapTimer.SubtractTime();
+        kineticBatteryCooldownTimer.SubtractTime();
     }
 
     public Vector3 ProcessVerticalInput()

@@ -45,6 +45,7 @@ public class KineticBatteryState : PlayerBaseState
     public override void Exit()
     {
         owner.kineticBatteryActive = false;
+        owner.kineticBatteryCooldownTimer.SetTimer();
     }
 
 }

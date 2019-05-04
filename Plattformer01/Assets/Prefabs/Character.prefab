@@ -157,13 +157,14 @@ MonoBehaviour:
   rayCaster: {fileID: 0}
   kineticBatteryActive: 0
   mouseSensitivity: 3
+  strafeCoefficient: 0.2
   lastDash: {x: 0, y: 0, z: 0}
-  dashDuration: 0
-  dashCooldown: 0
-  dashDurationTimer: 0
-  dashCooldownTimer: 0
-  dashDistance: 0
-  doubleClickTimer: 0
+  dashCooldownTimer: {fileID: 11400000, guid: 98e33c3e28c36c5468189f8bc6520da1, type: 2}
+  dashDurationTimer: {fileID: 11400000, guid: 2695f0a10817c334c838b06b94b9d82a, type: 2}
+  doubleTapTimer: {fileID: 11400000, guid: 61897d5c84c850d49838e8b0b1f5ca00, type: 2}
+  kineticBatteryCooldownTimer: {fileID: 11400000, guid: ba6dd667adf61774e85551f5839895ca,
+    type: 2}
+  dashDistance: 70
 --- !u!54 &5427607302573506137
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -179,7 +180,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 3
+  m_CollisionDetection: 0
 --- !u!1 &5427607302685818576
 GameObject:
   m_ObjectHideFlags: 0

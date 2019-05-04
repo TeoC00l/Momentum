@@ -28,12 +28,6 @@ public class MomentumState : PlayerBaseState
 
     public override void HandleUpdate()
     {
-        //Adjusting timer
-        if (batteryTimer > 0)
-        {
-            batteryTimer -= Time.deltaTime;
-        }
-
         //Checking for conditions to change state
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -45,7 +39,7 @@ public class MomentumState : PlayerBaseState
             owner.Transition<MomentumAirbourneState>();
         }
 
-        if (Input.GetMouseButtonDown(0) && batteryTimer <= 0)
+        if (Input.GetMouseButtonDown(0) && owner.kineticBatteryCooldownTimer.IsReady())
         {
             owner.Transition<KineticBatteryState>();
         }
