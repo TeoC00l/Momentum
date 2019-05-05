@@ -1,18 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Drone2 : MonoBehaviour
+public class Drone2: StateMachine
 {
-    // Start is called before the first frame update
-    void Start()
+    //Attributes
+    [HideInInspector] public MeshRenderer Renderer;
+    [HideInInspector] public NavMeshAgent navMeshAgent;
+    public LayerMask visionMask;
+    public Player player;
+
+    //Methods
+    protected override void Awake()
     {
-        
+        Renderer = GetComponent<MeshRenderer>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+
+        base.Awake();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        
+        navMeshAgent.destination = player.transform.position;
     }
+
+
 }
