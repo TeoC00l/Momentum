@@ -4,33 +4,24 @@ using UnityEngine;
 
 public class Teleporter : MonoBehaviour
 {
-    public Transform player;
+    private GameObject player;
     public Transform locationOut;
-    public GameObject playerObj;
 
+    void Awake()
+    {
+        player = GameObject.Find("Character");
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("something IN");
-        if (other.gameObject.tag == "Player" || other.gameObject.layer == LayerMask.NameToLayer("Default"))
+        if (other.gameObject.tag == "Player" || other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            //playerObj.GetComponent<PhysicsComponent>().setPrecisionMode();
-            Debug.Log("player IN");
-            player.position = locationOut.position;
-            
-        }
-        
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+            player.GetComponent<PhysicsComponent>().SetVelocity(Vector3.zero);
+            player.GetComponent<Transform>().position = locationOut.position;
+            //@Teo
+            //insert script in player to reset player's orientation when they respawn.
+            //otherwise they respawn facing backwards
+            //which is awkward.
+        }   
     }
 }
