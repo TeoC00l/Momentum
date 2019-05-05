@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Drone2: StateMachine
+public class Drone2: MonoBehaviour
 {
     //Attributes
     [HideInInspector] public MeshRenderer Renderer;
@@ -12,15 +12,13 @@ public class Drone2: StateMachine
     public Player player;
 
     //Methods
-    protected override void Awake()
+    void Awake()
     {
         Renderer = GetComponent<MeshRenderer>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-
-        base.Awake();
     }
 
-    protected override void Update()
+    void Update()
     {
         navMeshAgent.destination = player.transform.position;
     }
