@@ -18,6 +18,7 @@ MonoBehaviour:
   batteryTimer: 0
   acceleration: 1.2
   gravitationalForce: 1
-  jumpMagnitude: 30
+  jumpMagnitude: 35
   staticFrictionCo: 0.3
   airResistance: 0.9
+  batteryCooldown: 1

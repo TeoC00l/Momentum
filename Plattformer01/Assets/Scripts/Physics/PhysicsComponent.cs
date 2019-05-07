@@ -6,16 +6,16 @@ public class PhysicsComponent : MonoBehaviour
 
 {
     //Attributes
-    public Vector3 velocity = Vector3.zero;
-    public Vector3 direction = Vector3.zero;
-    public RayCasterCapsule rayCaster;
+    [HideInInspector] public Vector3 velocity = Vector3.zero;
+    [HideInInspector] public Vector3 direction = Vector3.zero;
+    [HideInInspector] public RayCasterCapsule rayCaster;
 
-    public float skinWidth;
-    public float acceleration;
-    public float gravitationalForce;
-    public float JumpMagnitude;
-    public float staticFrictionCo;
-    public float airResistance;
+    [HideInInspector]public float skinWidth;
+    [HideInInspector] public float acceleration;
+    [HideInInspector] public float gravitationalForce;
+    [HideInInspector] public float JumpMagnitude;
+    [HideInInspector] public float staticFrictionCo;
+    [HideInInspector] public float airResistance;
 
     //Methods
     void Awake()
@@ -39,8 +39,8 @@ public class PhysicsComponent : MonoBehaviour
         Vector3 normalForce = Vector3.zero;
         RaycastHit hit = rayCaster.GetCollisionData(velocity, 0);
         normalForce = Calculations2.CalculateNormalForce(velocity, hit);
-
         return normalForce;
+
     }
 
     public void CollisionCalibration()
