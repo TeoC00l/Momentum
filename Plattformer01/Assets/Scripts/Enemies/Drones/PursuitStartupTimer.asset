@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77b2fef9b43d92844b825839d2576944, type: 3}
-  m_Name: Drone Idle State
+  m_Script: {fileID: 11500000, guid: 2ea5fbfabb4686447bd9239b909fcd62, type: 3}
+  m_Name: PursuitStartupTimer
   m_EditorClassIdentifier: 
-  PursuitStartupTimer: {fileID: 11400000, guid: a3adaf465908529429cec4def98f08b7,
-    type: 2}
+  timerSetValue: 1

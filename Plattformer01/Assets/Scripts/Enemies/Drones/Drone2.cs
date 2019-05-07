@@ -24,27 +24,15 @@ public class Drone2: StateMachine
 
     void OnTriggerEnter(Collider other)
     {
+        navMeshAgent.isStopped = true;
+        navMeshAgent.velocity = Vector3.zero;
+        navMeshAgent.ResetPath();
+
         player.transform.position = checkPoint.transform.position;
         player.physComp.velocity = Vector3.zero;
 
         transform.position = spawnPoint.transform.position;
 
         Transition<DroneIdleState>();
-    }
-
-    public bool CheckForPlayer()
-    {
-        RaycastHit hit;
-        Physics.Raycast(transform.position, player.transform.position, out hit, detectionDistance, visionMask);
-
-        if (hit.collider != null)
-            {
-            Debug.Log("poop");
-            return true;
-            }
-            else
-            {
-                return false;
-            }
     }
 }

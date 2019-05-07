@@ -9,13 +9,28 @@ public class DroneIdleState : DroneBaseState
     public Timer PursuitStartupTimer;
 
     //Methods
+
+    public override void Enter()
+    {
+        Debug.Log("Scoop");
+        base.Enter();
+    }
+
     public override void HandleUpdate()
     {
 
-        if (owner.CheckForPlayer())
+        if (CanSeePlayer())
         {
+            PursuitStartupTimer.SetTimer();
+        }
+
+        if (PursuitStartupTimer.CheckLastFrame())
+        {
+            Debug.Log("Poop");
             owner.Transition<DronePursuitState>();
         }
+
+        PursuitStartupTimer.SubtractTime();
     }
 
 }
