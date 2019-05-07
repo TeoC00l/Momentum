@@ -23,6 +23,6 @@ public class DroneBaseState : State
     {
         Vector3 direction = owner.player.transform.position - owner.transform.position;
 
-        return Physics.Raycast(owner.transform.position, direction.normalized, owner.detectionDistance, owner.visionMask, QueryTriggerInteraction.UseGlobal);
+        return !Physics.Raycast(owner.transform.position, direction.normalized, owner.detectionDistance, owner.visionMask, QueryTriggerInteraction.UseGlobal);
     }
 }
