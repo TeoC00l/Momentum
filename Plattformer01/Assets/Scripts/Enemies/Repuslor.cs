@@ -30,8 +30,9 @@ public class Repuslor : MonoBehaviour
 
         if (hit.collider != null)
         {
-            //character.transform.position += (repulsorMagnitude - hit.distance) * Vector3.ProjectOnPlane-hit.normal;
+            character.transform.position += (repulsorMagnitude - hit.distance) * -hit.normal;
             playerPhysComp.velocity = ((-playerPhysComp.velocity /2) + (playerVector.normalized * baseRepulsorMagnitude * Time.deltaTime));
+
         }
     }
 }
