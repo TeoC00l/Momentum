@@ -68,7 +68,7 @@ public class PhysicsComponent : MonoBehaviour
 
         if (hit.collider == null)
         {
-            transform.position += velocity;
+            transform.position += velocity * Time.deltaTime;
         } 
     }
 

@@ -19,7 +19,7 @@ public class RayCasterCapsule : MonoBehaviour
     {
         Vector3 point1 = (capsuleCollider.center + Vector3.up) * (capsuleCollider.height / 2 - capsuleCollider.radius);
         Vector3 point2 = (capsuleCollider.center + Vector3.down) * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        Physics.CapsuleCast(capsuleCollider.transform.position + point1, capsuleCollider.transform.position + point2, capsuleCollider.radius, collisionVelocity.normalized, out hit, collisionVelocity.magnitude + skinWidth, layerMask);
+        Physics.CapsuleCast(capsuleCollider.transform.position + point1, capsuleCollider.transform.position + point2, capsuleCollider.radius, collisionVelocity.normalized, out hit, collisionVelocity.magnitude * Time.deltaTime + skinWidth, layerMask);
 
         return hit;
     }

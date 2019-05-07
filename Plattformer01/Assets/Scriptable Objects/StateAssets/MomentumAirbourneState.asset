@@ -16,9 +16,9 @@ MonoBehaviour:
   physComp: {fileID: 0}
   rayCaster: {fileID: 0}
   batteryTimer: 0
-  acceleration: 1.2
-  gravitationalForce: 1
-  jumpMagnitude: 35
+  acceleration: 75
+  gravitationalForce: 60
+  jumpMagnitude: 2000
   staticFrictionCo: 0.3
   airResistance: 0.9
   batteryCooldown: 1
