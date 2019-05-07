@@ -164,7 +164,7 @@ MonoBehaviour:
   doubleTapTimer: {fileID: 11400000, guid: 61897d5c84c850d49838e8b0b1f5ca00, type: 2}
   kineticBatteryCooldownTimer: {fileID: 11400000, guid: ba6dd667adf61774e85551f5839895ca,
     type: 2}
-  dashDistance: 70
+  dashDistance: 4200
 --- !u!54 &5427607302573506137
 Rigidbody:
   m_ObjectHideFlags: 0
