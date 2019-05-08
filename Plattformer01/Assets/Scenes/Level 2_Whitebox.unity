@@ -41812,6 +41812,11 @@ PrefabInstance:
       propertyPath: m_UiScaleMode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7872984401836806532, guid: 0e73e066fe1de2c4d84be101faf645b1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e73e066fe1de2c4d84be101faf645b1, type: 3}
 --- !u!4 &7897805063719680587
