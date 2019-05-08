@@ -12,7 +12,6 @@ public class DronePursuitState : DroneBaseState
 
     public override void HandleUpdate()
     {
-
         owner.navMeshAgent.SetDestination(owner.player.transform.position);
     }
 }
