@@ -16,7 +16,6 @@ public class DroneParent : MonoBehaviour
 
         foreach (Drone2 drone in targetList)
         {
-            Debug.Log("Parent call");
             drone.ResetDronePosition();
         }
     }

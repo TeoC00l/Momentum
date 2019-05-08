@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 932f8a4673a55d44aab78617d4a89343, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -117,6 +117,7 @@ MonoBehaviour:
   player: {fileID: 0}
   checkPoint: {fileID: 0}
   spawnPoint: {fileID: 0}
+  droneParent: {fileID: 0}
   detectionDistance: 30
 --- !u!195 &4929650151860492417
 NavMeshAgent:
