@@ -9,12 +9,6 @@ public class DroneIdleState : DroneBaseState
     public Timer PursuitStartupTimer;
 
     //Methods
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
     public override void HandleUpdate()
     {
 
