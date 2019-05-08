@@ -12,7 +12,6 @@ public class DroneIdleState : DroneBaseState
 
     public override void Enter()
     {
-        Debug.Log("Scoop");
         base.Enter();
     }
 
@@ -21,12 +20,14 @@ public class DroneIdleState : DroneBaseState
 
         if (CanSeePlayer())
         {
-            PursuitStartupTimer.SetTimer();
+            if (!PursuitStartupTimer.IsCountingDown())
+            {
+                PursuitStartupTimer.SetTimer();
+            }
         }
 
         if (PursuitStartupTimer.CheckLastFrame())
         {
-            Debug.Log("Poop");
             owner.Transition<DronePursuitState>();
         }
 
