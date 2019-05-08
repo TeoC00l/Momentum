@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 2381133173742795627}
   - component: {fileID: 2381133173742795626}
   - component: {fileID: 2381133173742795625}
-  - component: {fileID: 2381133173742795624}
-  - component: {fileID: 2381133173742795631}
+  - component: {fileID: 1317369229426953179}
   m_Layer: 0
   m_Name: Repuslor
   m_TagString: Untagged
@@ -94,7 +93,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2381133173742795624
+--- !u!114 &1317369229426953179
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,29 +102,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2381133173742795630}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64a63dfc3cee3ce43bb59b31e70c15d2, type: 3}
+  m_Script: {fileID: 11500000, guid: ff6253e9116ad3049935a5cb08b2808d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayCaster: {fileID: 0}
-  capsuleCollider: {fileID: 0}
+  states:
+  - {fileID: 11400000, guid: 6e4581f5aec4efc47b1a10ca5975fb4d, type: 2}
+  - {fileID: 11400000, guid: b907061acf5df5048b4ee33cf723d6dc, type: 2}
+  Renderer: {fileID: 0}
+  blastCollider: {fileID: 0}
   character: {fileID: 0}
   playerPhysComp: {fileID: 0}
-  playerVector: {x: 0, y: 0, z: 0}
-  repulsorMagnitude: 4
-  baseRepulsorMagnitude: 20
---- !u!114 &2381133173742795631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2381133173742795630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1fa7a045e681814cbc95d539ab79b0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  capsuleCollider: {fileID: 0}
+  repulsorCooldownTimer: {fileID: 11400000, guid: 326c6ca56064dd44a9ea60f044473473,
+    type: 2}
