@@ -7,9 +7,8 @@ public class DronePursuitState : DroneBaseState
 {
     public override void Enter()
     {
-        base.Enter();
+        owner.navMeshAgent.isStopped = false;
     }
-
     public override void HandleUpdate()
     {
         owner.navMeshAgent.SetDestination(owner.player.transform.position);
