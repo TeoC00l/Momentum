@@ -24,8 +24,6 @@ public class Player : StateMachine
     [SerializeField] protected float dashDistance;
     [HideInInspector] protected bool isDashing;
     [HideInInspector] private bool doubleTap;
-    [HideInInspector] Vector3 lastInput;
-
 
     // Methods
     protected override void Awake()
@@ -41,16 +39,12 @@ public class Player : StateMachine
 
     protected override void Update()
     {
+        base.Update();
 
-        physComp.SetDirection(ProcessVerticalInput() + (ProcessHorizontalInput() * strafeCoefficient));
         dashCooldownTimer.SubtractTime();
         dashDurationTimer.SubtractTime();
         doubleTapTimer.SubtractTime();
         kineticBatteryCooldownTimer.SubtractTime();
-
-        base.Update();
-
-
     }
 
     public Vector3 ProcessVerticalInput()
@@ -82,6 +76,7 @@ public class Player : StateMachine
 
     public void AddPhysics()
     {
+        physComp.SetDirection(ProcessVerticalInput() + (ProcessHorizontalInput() *strafeCoefficient));
         physComp.AddForces();
     }
 

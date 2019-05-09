@@ -114,6 +114,7 @@ public class PhysicsComponent : MonoBehaviour
         velocity = velocity.normalized * magnitude;
     }
 
+
     //direction
     public void SetDirection(Vector3 direction)
     {
