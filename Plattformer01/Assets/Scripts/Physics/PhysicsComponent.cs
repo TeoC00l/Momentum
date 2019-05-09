@@ -74,7 +74,7 @@ public class PhysicsComponent : MonoBehaviour
 
     public bool GroundCheck()
     {
-        RaycastHit hit = rayCaster.GetCollisionData(Vector3.down, skinWidth*2);
+        RaycastHit hit = rayCaster.GetCollisionData(Vector3.down * 3, 0);
         if (hit.collider != null)
         {
             return true;

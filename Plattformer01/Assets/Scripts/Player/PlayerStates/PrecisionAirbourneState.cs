@@ -13,6 +13,8 @@ public class PrecisionAirbourneState : PrecisionState
 
     public override void HandleUpdate()
     {
+
+
         //Checking for conditions to change state
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -21,11 +23,22 @@ public class PrecisionAirbourneState : PrecisionState
 
         if (owner.physComp.GroundCheck())
         {
+            owner.grounded = true;
+        }
+    }
+
+    public override void HandleFixedUpdate()
+    {
+
+        if (owner.grounded)
+        {
             owner.Transition<PrecisionState>();
+
         }
 
-        //Making adjustments to physics
-        owner.AddPhysics();
+        physComp.AddForces();
+
         owner.physComp.CollisionCalibration();
     }
+
 }

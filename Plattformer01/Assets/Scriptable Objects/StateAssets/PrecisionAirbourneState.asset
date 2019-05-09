@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b9911643cc4c3448975257114b800bc, type: 3}
   m_Name: PrecisionAirbourneState
   m_EditorClassIdentifier: 
-  material: {fileID: 2100006, guid: cfaffd8a42ba021478db4c5e1db4d6bc, type: 3}
+  material: {fileID: 2100000, guid: 9b5dd901eac88ed428af22390ebc2608, type: 2}
   physComp: {fileID: 0}
   rayCaster: {fileID: 0}
   batteryTimer: 0
@@ -21,3 +21,4 @@ MonoBehaviour:
   jumpMagnitude: 2000
   staticFrictionCo: 0.8
   airResistance: 0.5
+  jump: 0

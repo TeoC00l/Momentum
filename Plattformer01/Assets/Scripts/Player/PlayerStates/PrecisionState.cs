@@ -6,11 +6,11 @@ using UnityEngine;
 public class PrecisionState : PlayerBaseState
 {
     //Attributes
-    public float acceleration = 1f;
-    public float gravitationalForce = 1f;
-    public float jumpMagnitude = 20.0f;
-    public float staticFrictionCo = 0.7f;
-    public float airResistance = 0.7f;
+    public float acceleration;
+    public float gravitationalForce;
+    public float jumpMagnitude;
+    public float staticFrictionCo;
+    public float airResistance;
     public bool jump;
 
     //Methods
@@ -28,18 +28,14 @@ public class PrecisionState : PlayerBaseState
     public override void HandleUpdate()
     {
         //Checking for conditions to change state
+
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             owner.Transition<MomentumState>();
         }
 
         owner.Dash();
-
-
-        if (!owner.physComp.GroundCheck())
-        {
-            owner.Transition<PrecisionAirbourneState>();
-        }
 
         if (Input.GetKeyDown("space"))
         {
@@ -49,10 +45,20 @@ public class PrecisionState : PlayerBaseState
 
     public override void HandleFixedUpdate()
     {
+        if (!owner.physComp.GroundCheck())
+        {
+            owner.Transition<PrecisionAirbourneState>();
+        }
+
         if (jump)
         {
             owner.physComp.Jump();
             jump = false;
+        }
+
+        if (owner.grounded)
+        {
+            owner.Transition<PrecisionAirbourneState>();
         }
 
         //Making adjustments to physics
