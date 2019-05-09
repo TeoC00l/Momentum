@@ -40,4 +40,9 @@ public abstract class StateMachine : MonoBehaviour
     {
         currentState.HandleUpdate();
     }
+
+    protected virtual void FixedUpdate()
+    {
+        currentState.HandleFixedUpdate();
+    }
 }

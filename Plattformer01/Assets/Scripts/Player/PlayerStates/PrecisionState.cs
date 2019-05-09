@@ -11,6 +11,7 @@ public class PrecisionState : PlayerBaseState
     public float jumpMagnitude = 20.0f;
     public float staticFrictionCo = 0.7f;
     public float airResistance = 0.7f;
+    public bool jump;
 
     //Methods
     public override void Enter()
@@ -32,20 +33,30 @@ public class PrecisionState : PlayerBaseState
             owner.Transition<MomentumState>();
         }
 
+        owner.Dash();
+
+
         if (!owner.physComp.GroundCheck())
         {
             owner.Transition<PrecisionAirbourneState>();
         }
 
-        //Making adjustments to physics
-        owner.AddPhysics();
-
-        owner.Dash();
-
         if (Input.GetKeyDown("space"))
         {
-            owner.physComp.Jump();
+            jump = true;
         }
+    }
+
+    public override void HandleFixedUpdate()
+    {
+        if (jump)
+        {
+            owner.physComp.Jump();
+            jump = false;
+        }
+
+        //Making adjustments to physics
+        physComp.AddForces();
 
         owner.physComp.CollisionCalibration();
     }

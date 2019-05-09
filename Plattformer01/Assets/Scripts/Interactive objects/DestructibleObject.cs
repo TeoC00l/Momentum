@@ -41,7 +41,6 @@ public class DestructibleObject : MonoBehaviour
             //spawnDebris();
             Object.Destroy(destructibleObject);
             //destructibleObject.GetComponent<Renderer>().enabled = false;
-
         }
         else
         {
@@ -51,18 +50,18 @@ public class DestructibleObject : MonoBehaviour
 
 
 
-    //depreciate this
-    void spawnDebris()
-    {
-        //location of object.
-        Transform spawnPos = destructibleObject.GetComponent<Transform>();
+    ////depreciate this
+    //void spawnDebris()
+    //{
+    //    //location of object.
+    //    Transform spawnPos = destructibleObject.GetComponent<Transform>();
 
-        //iterate through debris spawnlist
-        for (int i = 0; i < debris.Count; i++)
-        {
-            var obj = Instantiate(debris[i], destructibleObject.GetComponent<Transform>().position, Quaternion.identity);
-            obj.AddComponent<Debris>(); //attach script to debris after it spawns.
-            //whats happening now is that you should identity it to.
-        }
-    }
+    //    //iterate through debris spawnlist
+    //    for (int i = 0; i < debris.Count; i++)
+    //    {
+    //        var obj = Instantiate(debris[i], destructibleObject.GetComponent<Transform>().position, Quaternion.identity);
+    //        obj.AddComponent<Debris>(); //attach script to debris after it spawns.
+    //        //whats happening now is that you should identity it to.
+    //    }
+    //}
 }
