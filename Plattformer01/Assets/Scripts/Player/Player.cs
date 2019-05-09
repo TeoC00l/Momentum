@@ -24,7 +24,6 @@ public class Player : StateMachine
     [SerializeField] protected float dashDistance;
     [HideInInspector] protected bool isDashing;
     [HideInInspector] private bool doubleTap;
-    [HideInInspector] public bool grounded;
     [HideInInspector] Vector3 lastInput;
 
 
