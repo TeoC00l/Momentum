@@ -20,7 +20,7 @@ public class Player : StateMachine
     [SerializeField] public Timer dashDurationTimer;
     [SerializeField] public Timer doubleTapTimer;
     [SerializeField] public Timer kineticBatteryCooldownTimer;
-    [SerializeField] private float kineticBatterySlidePower;
+    [SerializeField] private float kineticBatterySlidePower0Max1Min;
 
 
     [SerializeField] protected float dashDistance;
@@ -149,7 +149,7 @@ public class Player : StateMachine
         {
             Debug.Log("BEFORE" + "Player Class" + " this is the Velocity " + physComp.velocity + "this is the magnitude" + physComp.velocity.magnitude + "this is the Direction" +physComp.direction +"this is the timer"+ (kineticTimer - 1));
             physComp.direction = Vector3.zero;
-            physComp.velocity -= oldVelocity / oldVelocity.magnitude * kineticBatterySlidePower;
+            physComp.velocity -= oldVelocity / oldVelocity.magnitude * kineticBatterySlidePower0Max1Min;
             kineticTimer -= 1;
  
             if (Mathf.Sign(physComp.velocity.z) != Mathf.Sign(oldVelocity.z)|| Mathf.Sign(physComp.velocity.x) != Mathf.Sign(oldVelocity.x)|| kineticTimer == 0)
