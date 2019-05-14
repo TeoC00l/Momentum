@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef0f60a739b654e49b56206f423e7a4c, type: 3}
   m_Name: Repulsor Active State
   m_EditorClassIdentifier: 
+  waitBeforeIncreasing: 2
+  increaseSizeOfForceFieldSpeed: 0.05

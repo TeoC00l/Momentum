@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e88d6b9a30effbd459907596424ae964, type: 3}
   m_Name: Repulsor Idle State
   m_EditorClassIdentifier: 
+  waitBeforeDescreasing: 2
+  decreaseSizeOfForceFieldSpeed: 0.05

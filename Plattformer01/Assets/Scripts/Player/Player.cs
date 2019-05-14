@@ -20,10 +20,15 @@ public class Player : StateMachine
     [SerializeField] public Timer dashDurationTimer;
     [SerializeField] public Timer doubleTapTimer;
     [SerializeField] public Timer kineticBatteryCooldownTimer;
+    [SerializeField] private float kineticBatterySlidePower0Max1Min;
+
 
     [SerializeField] protected float dashDistance;
     [HideInInspector] protected bool isDashing;
     [HideInInspector] private bool doubleTap;
+    [HideInInspector] public Vector3 oldVelocity;
+    [HideInInspector] public int kineticTimer;
+    [HideInInspector] public int divideValue;
 
     // Methods
     protected override void Awake()
@@ -33,7 +38,7 @@ public class Player : StateMachine
         physComp = GetComponent<PhysicsComponent>();
 
         lastDash = Vector3.zero;
-
+        
         base.Awake();
     }
 
@@ -138,6 +143,25 @@ public class Player : StateMachine
             lastDash = dash;
         }
     }
+    public void DecreaseVelocity()
+    {
+        if (kineticTimer > 0)
+        {
+            Debug.Log("BEFORE" + "Player Class" + " this is the Velocity " + physComp.velocity + "this is the magnitude" + physComp.velocity.magnitude + "this is the Direction" +physComp.direction +"this is the timer"+ (kineticTimer - 1));
+            physComp.direction = Vector3.zero;
+            physComp.velocity -= oldVelocity / oldVelocity.magnitude * kineticBatterySlidePower0Max1Min;
+            kineticTimer -= 1;
+ 
+            if (Mathf.Sign(physComp.velocity.z) != Mathf.Sign(oldVelocity.z)|| Mathf.Sign(physComp.velocity.x) != Mathf.Sign(oldVelocity.x)|| kineticTimer == 0)
+            {
+                Debug.Log("Set Too zero" + kineticTimer);
+                physComp.velocity = Vector3.zero;
+            }
+               
+             Debug.Log("Player Class" + " this is the Velocity " + physComp.velocity + "this is the magnitude" + physComp.velocity.magnitude);
+        }
+    }
+
 
     public bool GetKineticBatteryActive()
     {
