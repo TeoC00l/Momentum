@@ -10,6 +10,7 @@ public abstract class StateMachine : MonoBehaviour
 
     private Dictionary<Type, State> stateDictionary = new Dictionary<Type, State>();
     private State currentState;
+    private State lastState;
 
     //Methods
     protected virtual void Awake()
@@ -31,9 +32,26 @@ public abstract class StateMachine : MonoBehaviour
 
     public void Transition<T>() where T : State
     {
+        lastState = currentState;
         currentState.Exit();
         currentState = stateDictionary[typeof(T)];
         currentState.Enter();
+    }
+
+    public void TransitionBack()
+    { 
+        State __lastState = currentState;
+
+        currentState.Exit();
+        currentState = lastState;
+        currentState.Enter();
+
+        lastState = __lastState;
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        currentState.HandleFixedUpdate();
     }
 
     protected virtual void Update()
@@ -41,8 +59,9 @@ public abstract class StateMachine : MonoBehaviour
         currentState.HandleUpdate();
     }
 
-    protected virtual void FixedUpdate()
+    //Getters and Setters
+    public State GetLastState()
     {
-        currentState.HandleFixedUpdate();
+        return lastState;
     }
 }

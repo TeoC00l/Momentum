@@ -11,7 +11,7 @@ public class PrecisionState : PlayerBaseState
     public float jumpMagnitude;
     public float staticFrictionCo;
     public float airResistance;
-    public bool jump;
+    public bool isJumping;
 
     //Methods
     public override void Enter()
@@ -25,45 +25,29 @@ public class PrecisionState : PlayerBaseState
         physComp.airResistance = this.airResistance;
     }
 
+    public override void HandleFixedUpdate()
+    {
+        //Making adjustments to physics
+        physComp.AddForces();
+        owner.physComp.CollisionCalibration();
+    }
+
     public override void HandleUpdate()
     {
         //Checking for conditions to change state
-
+        if (owner.physComp.GroundCheck() == false)
+        {
+            owner.Transition<PrecisionAirbourneState>();
+        }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             owner.Transition<MomentumState>();
         }
 
-        owner.Dash();
-
         if (Input.GetKeyDown("space"))
         {
-            jump = true;
+            owner.Transition<JumpState>();
         }
-    }
-
-    public override void HandleFixedUpdate()
-    {
-        if (!owner.physComp.GroundCheck())
-        {
-            owner.Transition<PrecisionAirbourneState>();
-        }
-
-        if (jump)
-        {
-            owner.physComp.Jump();
-            jump = false;
-        }
-
-        if (owner.grounded)
-        {
-            owner.Transition<PrecisionAirbourneState>();
-        }
-
-        //Making adjustments to physics
-        physComp.AddForces();
-
-        owner.physComp.CollisionCalibration();
     }
 }

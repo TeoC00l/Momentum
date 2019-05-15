@@ -11,34 +11,27 @@ public class PrecisionAirbourneState : PrecisionState
         base.Enter();
     }
 
+    public override void HandleFixedUpdate()
+    {
+        //Making adjustments to physics
+        physComp.AddForces();
+        owner.physComp.CollisionCalibration();
+    }
+
     public override void HandleUpdate()
     {
-
-
         //Checking for conditions to change state
+        if (owner.physComp.GroundCheck() == true)
+        {
+            owner.Transition<PrecisionState>();
+        }
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             owner.Transition<MomentumAirbourneState>();
         }
 
-        if (owner.physComp.GroundCheck())
-        {
-            owner.grounded = true;
-        }
-    }
 
-    public override void HandleFixedUpdate()
-    {
-
-        if (owner.grounded)
-        {
-            owner.Transition<PrecisionState>();
-
-        }
-
-        physComp.AddForces();
-
-        owner.physComp.CollisionCalibration();
     }
 
 }
