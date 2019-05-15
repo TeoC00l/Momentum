@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class RepulsorField : MonoBehaviour
 {
+
     //Attributes
     [HideInInspector] public GameObject character;
     [HideInInspector] public PhysicsComponent playerPhysComp;
     private MeshRenderer forceFieldMesh;
 
-    public void Start()
+    public void Awake()
     {
-        character = GameObject.Find("Character");
+        character = GameObject.FindWithTag("Player");
         playerPhysComp = character.GetComponent<PhysicsComponent>();
         forceFieldMesh = GetComponent<MeshRenderer>();
     }
