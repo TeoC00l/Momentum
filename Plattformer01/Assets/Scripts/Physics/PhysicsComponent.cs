@@ -62,7 +62,7 @@ public class PhysicsComponent : MonoBehaviour
             //Look for new collisions
             hit = rayCaster.GetCollisionData(velocity, 0);
         }
-        while (hit.collider != null && noOfCycles < 1000);
+        while (hit.collider != null && noOfCycles < 1001);
 
         velocity = Calculations2.CalculateFriction(velocity, totalNormalForce, staticFrictionCo);
 

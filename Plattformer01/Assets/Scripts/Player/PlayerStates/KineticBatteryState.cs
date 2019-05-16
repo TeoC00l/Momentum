@@ -39,18 +39,6 @@ public class KineticBatteryState : PlayerBaseState
             StopOnce = true;
             owner.CancelInvoke("DecreaseVelocity");
         }
-
-        //Adjusting direction
-        //RaycastHit hit = rayCaster.GetCollisionData(Vector3.down, 0.5f);
-        //float skinWidth = physComp.skinWidth;
-        //float verticalInput = Input.GetAxisRaw("Vertical");
-
-        //input = Camera.main.transform.rotation * input.normalized;
-
-        //input = Vector3.ProjectOnPlane(input, hit.normal);
-        //input = input.normalized;
-
-        //Debug.DrawRay(owner.transform.position, input, Color.red, 1f);
         if (owner.physComp.GroundCheck() == false)
         {
             ProperlyExitState();

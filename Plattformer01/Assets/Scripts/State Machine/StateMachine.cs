@@ -64,4 +64,12 @@ public abstract class StateMachine : MonoBehaviour
     {
         return lastState;
     }
+    public State GetCurrentState()
+    {
+        return currentState;
+    }
+    public State[] getSpecificState()
+    {
+        return states;
+    }
 }
