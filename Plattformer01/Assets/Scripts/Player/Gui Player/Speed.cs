@@ -29,7 +29,7 @@ public class Speed : MonoBehaviour
             GUI.DrawTexture(new Rect(dialPos.position.x, dialPos.position.y, dialTex.width, dialTex.height), dialTex);
             Vector2 centre = new Vector2(dialPos.position.x + dialTex.width / 2, dialPos.position.y + dialTex.height / 2);
             Matrix4x4 savedMatrix = GUI.matrix;
-            float speedFraction = physcomp.velocity.magnitude / topSpeed;
+            float speedFraction = physcomp.GetVelocity().magnitude / topSpeed;
             float needleAngle = Mathf.Lerp(stopAngle, topSpeedAngle, speedFraction);
             GUIUtility.RotateAroundPivot(needleAngle, centre);
             GUI.DrawTexture(new Rect(centre.x, centre.y - needleTex.height / 2, needleTex.width, needleTex.height), needleTex);
