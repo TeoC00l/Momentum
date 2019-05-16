@@ -6,14 +6,16 @@ public class AttractorField : MonoBehaviour
 {
     [SerializeField] public float gravityPullForce = .78f;
     [SerializeField] public float gravityPullForceVersion2 = 40f;
-    private float m_GravityRadius = 1f;
     [HideInInspector] public GameObject character;
     [HideInInspector] public PhysicsComponent playerPhysComp;
-    private bool continueGravity = true;
+ 
     [SerializeField] private bool version1 = true;
-    Vector3 oldVelocity;
-    public float RotationMargin = -1f;
-    public float TurnSpeed = 25;
+    private float m_GravityRadius = 1f;
+
+    private bool continueGravity = true;
+    private Vector3 oldVelocity;
+    private float rotationMargin = -1f;
+    private float turnSpeed = 25;
 
 
     void Awake()
@@ -90,7 +92,7 @@ public class AttractorField : MonoBehaviour
     private void RotateAwayFrom(Vector3 position)
     {
         Vector3 facing = character.transform.position - position;
-        if (facing.magnitude < RotationMargin) { return; }
+        if (facing.magnitude < rotationMargin) { return; }
 
         // Rotate the rotation AWAY from the player...
         Quaternion awayRotation = Quaternion.LookRotation(facing);
@@ -99,7 +101,7 @@ public class AttractorField : MonoBehaviour
         awayRotation = Quaternion.Euler(euler);
 
         // Rotate the game object.
-        character.transform.rotation = Quaternion.Slerp(character.transform.rotation, awayRotation, TurnSpeed * Time.deltaTime);
+        character.transform.rotation = Quaternion.Slerp(character.transform.rotation, awayRotation, turnSpeed * Time.deltaTime);
         character.transform.eulerAngles = new Vector3(0, character.transform.eulerAngles.y, 0);
     }
 }

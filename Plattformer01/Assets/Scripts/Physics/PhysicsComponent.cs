@@ -11,6 +11,8 @@ public class PhysicsComponent : MonoBehaviour
     private RayCasterCapsule rayCaster;
 
     [SerializeField] private float skinWidth;
+    [SerializeField] private float groundCheckDistance;
+
     private float acceleration;
     private float gravitationalForce;
     private float jumpMagnitude;
@@ -68,7 +70,7 @@ public class PhysicsComponent : MonoBehaviour
 
     public bool GroundCheck()
     {
-        RaycastHit hit = rayCaster.GetCollisionData(Vector3.down, skinWidth);
+        RaycastHit hit = rayCaster.GetCollisionData(Vector3.down * groundCheckDistance, skinWidth);
         if (hit.collider != null)
         {
             return true;
