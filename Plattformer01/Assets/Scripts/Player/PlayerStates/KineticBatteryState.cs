@@ -18,8 +18,8 @@ public class KineticBatteryState : PlayerBaseState
     {
         base.Enter();
         owner.kineticBatteryActive = true;
-        owner.oldVelocity = physComp.velocity;
-        returnVelocity = physComp.velocity;
+        owner.oldVelocity = physComp.GetVelocity();
+        returnVelocity = physComp.GetVelocity();
         StopOnce = false;
         owner.kineticTimer = 10000;
         owner.divideValue = owner.kineticTimer;
@@ -34,7 +34,7 @@ public class KineticBatteryState : PlayerBaseState
             owner.physComp.CollisionCalibration();
         }
 
-        if (physComp.velocity == Vector3.zero && StopOnce == false)
+        if (physComp.GetVelocity() == Vector3.zero && StopOnce == false)
         {
             StopOnce = true;
             owner.CancelInvoke("DecreaseVelocity");
@@ -60,7 +60,7 @@ public class KineticBatteryState : PlayerBaseState
         {
             getOutofState = false;
             physComp.SetDirection(owner.ProcessVerticalInput() + (owner.ProcessHorizontalInput()));
-            physComp.velocity = physComp.direction * returnVelocity.magnitude;
+            physComp.SetVelocity(physComp.GetDirection() * returnVelocity.magnitude);
             ProperlyExitState();
             owner.Transition<MomentumState>();
         }

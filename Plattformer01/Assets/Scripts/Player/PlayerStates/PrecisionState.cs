@@ -11,18 +11,16 @@ public class PrecisionState : PlayerBaseState
     public float jumpMagnitude;
     public float staticFrictionCo;
     public float airResistance;
-    public bool isJumping;
 
     //Methods
     public override void Enter()
     {
         base.Enter();
-
-        physComp.acceleration = this.acceleration;
-        physComp.gravitationalForce = this.gravitationalForce;
-        physComp.JumpMagnitude = this.jumpMagnitude;
-        physComp.staticFrictionCo = this.staticFrictionCo;
-        physComp.airResistance = this.airResistance;
+        physComp.SetAcceleration(acceleration);
+        physComp.SetGravitationalForce(gravitationalForce);
+        physComp.SetJumpMagnitude(jumpMagnitude);
+        physComp.SetStaticFrictionCo(staticFrictionCo);
+        physComp.SetAirResistance(airResistance);
     }
 
     public override void HandleFixedUpdate()
