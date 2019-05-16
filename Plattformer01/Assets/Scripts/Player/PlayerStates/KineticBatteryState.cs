@@ -7,9 +7,10 @@ public class KineticBatteryState : PlayerBaseState
 {
     //Attributes
     Vector3 returnVelocity;
-    Vector3 input;
+    Vector3 input = new Vector3(1,0,1);
 
     bool StopOnce;
+    bool getOutofState;
     [SerializeField]private float slideDecreaseMovementRate;
     [SerializeField]private float waitBeforeSliding;
     //Methods
@@ -40,35 +41,37 @@ public class KineticBatteryState : PlayerBaseState
         }
 
         //Adjusting direction
-        RaycastHit hit = rayCaster.GetCollisionData(Vector3.down, 0.5f);
-        float skinWidth = physComp.skinWidth;
-        float verticalInput = Input.GetAxisRaw("Vertical");
+        //RaycastHit hit = rayCaster.GetCollisionData(Vector3.down, 0.5f);
+        //float skinWidth = physComp.skinWidth;
+        //float verticalInput = Input.GetAxisRaw("Vertical");
 
-        input = Camera.main.transform.rotation * input.normalized;
+        //input = Camera.main.transform.rotation * input.normalized;
 
-        input = Vector3.ProjectOnPlane(input, hit.normal);
-        input = input.normalized;
+        //input = Vector3.ProjectOnPlane(input, hit.normal);
+        //input = input.normalized;
 
-        Debug.DrawRay(owner.transform.position, input, Color.red, 1f);
+        //Debug.DrawRay(owner.transform.position, input, Color.red, 1f);
         if (owner.physComp.GroundCheck() == false)
         {
             ProperlyExitState();
             owner.Transition<MomentumAirbourneState>();
         }
+        if (getOutofState == true)
+        {
+            getOutofState = false;
+            physComp.SetDirection(owner.ProcessVerticalInput() + (owner.ProcessHorizontalInput()));
+            physComp.velocity = physComp.direction * returnVelocity.magnitude;
+            ProperlyExitState();
+            owner.Transition<MomentumState>();
+        }
     }
 
     public override void HandleUpdate()
     {
-
-
         //Redirecting velocity
+        getOutofState = Input.GetMouseButtonDown(0);
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            physComp.velocity = input * returnVelocity.magnitude;
-            ProperlyExitState();           
-            owner.Transition<MomentumState>();
-        }
+        
     }
 
     public override void Exit()
