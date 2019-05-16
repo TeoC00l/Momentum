@@ -39,15 +39,15 @@ public class RepulsorField : MonoBehaviour
             if (playerPhysComp.GetVelocity().magnitude == 0)
             {
                 playerPhysComp.SetVelocity(transform.forward);
-                playerPhysComp.SetVelocity(-playerPhysComp.velocity * 1 - transform.forward * bounceKnockback);
+                playerPhysComp.SetVelocity(-playerPhysComp.GetVelocity() * 1 - transform.forward * bounceKnockback);
             }
             if (playerPhysComp.GetVelocity().magnitude < 30)
             {
-                playerPhysComp.SetVelocity(-playerPhysComp.velocity * 3 - transform.forward * bounceKnockback);
+                playerPhysComp.SetVelocity(-playerPhysComp.GetVelocity() * 3 - transform.forward * bounceKnockback);
             }
             else
             {
-                playerPhysComp.SetVelocity(-playerPhysComp.velocity - transform.forward * bounceKnockback);
+                playerPhysComp.SetVelocity(-playerPhysComp.GetVelocity() - transform.forward * bounceKnockback);
 
             }
             InvokeRepeating("BouncyRepulors", 0f, 0.1f);

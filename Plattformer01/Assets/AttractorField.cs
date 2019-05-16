@@ -28,10 +28,10 @@ public class AttractorField : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            oldVelocity = playerPhysComp.velocity;
-            playerPhysComp.velocity = playerPhysComp.velocity / 10;
+            oldVelocity = playerPhysComp.GetVelocity();
+            playerPhysComp.SetVelocity(playerPhysComp.GetVelocity() / 10);
 
-            playerPhysComp.direction = Vector3.zero;
+            playerPhysComp.SetDirection(Vector3.zero);
          //   InvokeRepeating("Attract", 0, 0.1f);
 
 
@@ -47,7 +47,8 @@ public class AttractorField : MonoBehaviour
     {
         if (other.tag == "Player" && continueGravity == true)
         {
-            playerPhysComp.SetVelocity(playerPhysComp.velocity * 0.8f);
+
+            playerPhysComp.SetVelocity(playerPhysComp.GetVelocity() * 0.8f);
             Attract();
         }
     }
@@ -55,7 +56,8 @@ public class AttractorField : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            playerPhysComp.velocity = playerPhysComp.direction * playerPhysComp.GetVelocity().magnitude;
+            Vector3 dir = playerPhysComp.GetDirection();
+            playerPhysComp.SetVelocity(dir * playerPhysComp.GetVelocity().magnitude);
             playerPhysComp.SetVelocity(oldVelocity);
             CancelInvoke("Attract");
             continueGravity = true;
@@ -68,11 +70,11 @@ public class AttractorField : MonoBehaviour
         // playerPhysComp.velocity = Vector3.zero;
         if (version1 == true)
         {
-         //   RotateAwayFrom(transform.parent.position);
-         //   character.transform.rotation = Quaternion.Euler(transform.parent.position.x - character.transform.position.x, transform.parent.position.y - character.transform.position.y, transform.parent.position.z - character.transform.position.z);
+            //   RotateAwayFrom(transform.parent.position);
+            //   character.transform.rotation = Quaternion.Euler(transform.parent.position.x - character.transform.position.x, transform.parent.position.y - character.transform.position.y, transform.parent.position.z - character.transform.position.z);
 
-             playerPhysComp.velocity += (transform.parent.position - character.transform.position)  *  Time.smoothDeltaTime;
-             playerPhysComp.direction += (transform.parent.position - character.transform.position) ;
+            playerPhysComp.AddToVelocity((transform.parent.position - character.transform.position) * Time.smoothDeltaTime);
+             playerPhysComp.AddToDirection((transform.parent.position - character.transform.position));
             character.transform.RotateAround(transform.parent.position, transform.parent.up, 300*Time.smoothDeltaTime);
 
         }
