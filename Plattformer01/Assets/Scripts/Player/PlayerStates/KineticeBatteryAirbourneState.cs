@@ -1,34 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-[CreateAssetMenu(menuName = "Player/KineticBatteryState")]
-public class KineticBatteryState : PlayerBaseState
+[CreateAssetMenu(menuName = "Player/KineticBatteryAirbourneState")]
+public class KineticeBatteryAirbourneState : PlayerBaseState
 {
-    //Attributes
     Vector3 returnVelocity;
-    Vector3 input = new Vector3(1,0,1);
+    Vector3 input = new Vector3(1, 0, 1);
 
     bool StopOnce;
     bool getOutofState;
-    [SerializeField]private float slideDecreaseMovementRate;
-    [SerializeField]private float waitBeforeSliding;
-    //Methods
+    [SerializeField] private float slideDecreaseMovementRate;
+    [SerializeField] private float waitBeforeSliding;
+    void Awake()
+    {
+        
+    }
     public override void Enter()
     {
         base.Enter();
         owner.kineticBatteryActive = true;
-        if (owner.GetOldVelocity() == Vector3.zero)
+        if(owner.GetOldVelocity() == Vector3.zero)
         {
             owner.SetOldVelocity(physComp.GetVelocity());
-
         }
-       
+
         if (owner.GetKineticActive() == false)
         {
             StopOnce = false;
             Debug.Log("startSlide");
-
             owner.kineticTimer = 1000;
             owner.divideValue = owner.kineticTimer;
             owner.InvokeRepeating("DecreaseVelocity", waitBeforeSliding, slideDecreaseMovementRate);
@@ -49,30 +48,26 @@ public class KineticBatteryState : PlayerBaseState
             StopOnce = true;
             owner.CancelInvoke("DecreaseVelocity");
         }
-        if (owner.physComp.GroundCheck() == false)
+        if (owner.physComp.GroundCheck() == true)
         {
-            owner.Transition<KineticeBatteryAirbourneState>();
+            owner.Transition<KineticBatteryState>();
         }
         if (getOutofState == true)
         {
             getOutofState = false;
-            
             input = owner.transform.forward;
-            physComp.SetVelocity(input * owner.GetOldVelocity().magnitude);
+            physComp.SetVelocity(input * returnVelocity.magnitude);
             ProperlyExitState();
             owner.SetKineticActive(false);
-            owner.Transition<MomentumState>();
+            owner.Transition<MomentumAirbourneState>();
         }
     }
-
     public override void HandleUpdate()
     {
-        //Redirecting velocity
         getOutofState = Input.GetMouseButtonDown(0);
 
-        
-    }
 
+    }
     public override void Exit()
     {
         owner.SetOldVelocity(Vector3.zero);
@@ -86,6 +81,5 @@ public class KineticBatteryState : PlayerBaseState
         owner.AddPhysics();
         owner.physComp.CollisionCalibration();
     }
-   
-
 }
+

@@ -26,7 +26,8 @@ public class Player : StateMachine
     [SerializeField] protected float dashDistance;
     [HideInInspector] protected bool isDashing;
     [HideInInspector] private bool doubleTap;
-    [HideInInspector] public Vector3 oldVelocity;
+    [HideInInspector] private bool kineticActive = false;
+    [HideInInspector] private Vector3 oldVelocity = Vector3.zero;
     [HideInInspector] public int kineticTimer;
     [HideInInspector] public int divideValue;
 
@@ -89,7 +90,7 @@ public class Player : StateMachine
     {
         if (kineticTimer > 0)
         {
-            Debug.Log("BEFORE" + "Player Class" + " this is the Velocity " + physComp.GetVelocity() + "this is the magnitude" + physComp.GetVelocity().magnitude + "this is the Direction" +physComp.GetDirection() +"this is the timer"+ (kineticTimer - 1));
+        //    Debug.Log("BEFORE" + "Player Class" + " this is the Velocity " + physComp.GetVelocity() + "this is the magnitude" + physComp.GetVelocity().magnitude + "this is the Direction" +physComp.GetDirection() +"this is the timer"+ (kineticTimer - 1));
             physComp.SetDirection(Vector3.zero);
             Vector3 NewVelocity = physComp.GetVelocity() - oldVelocity / oldVelocity.magnitude * kineticBatterySlidePower0Max1Min;
             physComp.SetVelocity(NewVelocity);
@@ -97,17 +98,34 @@ public class Player : StateMachine
  
             if (Mathf.Sign(physComp.GetVelocity().z) != Mathf.Sign(oldVelocity.z)|| Mathf.Sign(physComp.GetVelocity().x) != Mathf.Sign(oldVelocity.x)|| kineticTimer == 0)
             {
-                Debug.Log("Set Too zero" + kineticTimer);
+                kineticTimer = 0;
+                //          Debug.Log("Set Too zero" + kineticTimer);
                 physComp.SetVelocity(Vector3.zero);
             }
                
-             Debug.Log("Player Class" + " this is the Velocity " + physComp.GetVelocity() + "this is the magnitude" + physComp.GetVelocity().magnitude);
+       //      Debug.Log("Player Class" + " this is the Velocity " + physComp.GetVelocity() + "this is the magnitude" + physComp.GetVelocity().magnitude);
         }
     }
 
     public bool GetKineticBatteryActive()
     {
         return kineticBatteryActive;
+    }
+    public Vector3 GetOldVelocity()
+    {
+        return oldVelocity;
+    }
+    public void SetOldVelocity(Vector3 set)
+    {
+        oldVelocity = set;
+    }
+    public bool GetKineticActive()
+    {
+        return kineticActive;
+    }
+    public void SetKineticActive(bool set)
+    {
+        kineticActive = set;
     }
 
 

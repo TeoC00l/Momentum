@@ -106,6 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 0}
   playerPhysComp: {fileID: 0}
+  bounceKnockback: 3
 --- !u!1 &2381133173742795630
 GameObject:
   m_ObjectHideFlags: 0

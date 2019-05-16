@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dddd1d96b6e78764298846e9b1f88dbd, type: 2}
+  - {fileID: 2100000, guid: 3772ef3975751134fb2165b6b3ddef10, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -104,9 +104,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6e527b35e86664088848e43d209157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GRAVITY_PULL: 10
+  gravityPullForce: 20
+  gravityPullForceVersion2: 10
   character: {fileID: 0}
   playerPhysComp: {fileID: 0}
+  version1: 1
 --- !u!1 &7362059900393107007
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,5 +226,5 @@ MonoBehaviour:
   repulsorCooldownTimer: {fileID: 11400000, guid: 326c6ca56064dd44a9ea60f044473473,
     type: 2}
   IncreaseSizeOfForceFieldEachSecond: {x: 0.1, y: 0.1, z: 0.1}
-  MaxSizeOfForceField: {x: 20, y: 20, z: 20}
+  MaxSizeOfForceField: {x: 6, y: 6, z: 6}
   MinSizeOfForceField: {x: 0.5, y: 0.5, z: 0.5}
