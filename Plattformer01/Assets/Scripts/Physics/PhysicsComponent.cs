@@ -10,7 +10,7 @@ public class PhysicsComponent : MonoBehaviour
     [HideInInspector] public Vector3 direction = Vector3.zero;
     [HideInInspector] public RayCasterCapsule rayCaster;
 
-    [HideInInspector]public float skinWidth;
+    [HideInInspector] public float skinWidth;
     [HideInInspector] public float acceleration;
     [HideInInspector] public float gravitationalForce;
     [HideInInspector] public float JumpMagnitude;
@@ -69,20 +69,20 @@ public class PhysicsComponent : MonoBehaviour
         if (hit.collider == null)
         {
             transform.position += velocity * Time.deltaTime;
-        } 
+        }
     }
 
     public bool GroundCheck()
     {
-        RaycastHit hit = rayCaster.GetCollisionData(Vector3.down, skinWidth*2);
+        RaycastHit hit = rayCaster.GetCollisionData(Vector3.down * 10, 0);
         if (hit.collider != null)
         {
             return true;
         }
-            else
+        else
         {
             return false;
-        }           
+        }
     }
 
     public void Jump()
@@ -114,7 +114,6 @@ public class PhysicsComponent : MonoBehaviour
         velocity = velocity.normalized * magnitude;
     }
 
-
     //direction
     public void SetDirection(Vector3 direction)
     {
@@ -123,7 +122,7 @@ public class PhysicsComponent : MonoBehaviour
 
     public Vector3 GetDirection(Vector3 direction)
     {
-       return direction;
+        return direction;
     }
 
 

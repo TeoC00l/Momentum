@@ -7,6 +7,8 @@ public class KineticBatteryState : PlayerBaseState
 {
     //Attributes
     Vector3 returnVelocity;
+    Vector3 input;
+
     bool StopOnce;
     [SerializeField]private float slideDecreaseMovementRate;
     [SerializeField]private float waitBeforeSliding;
@@ -23,24 +25,25 @@ public class KineticBatteryState : PlayerBaseState
         owner.InvokeRepeating("DecreaseVelocity", waitBeforeSliding, slideDecreaseMovementRate);
     }
 
-    public override void HandleUpdate()
+    public override void HandleFixedUpdate()
     {
-        if (physComp.velocity == Vector3.zero && StopOnce == false)
-        {
-            StopOnce = true;
-            owner.CancelInvoke("DecreaseVelocity");
-        }
         if (StopOnce == false)
         {
             owner.physComp.AddForces();
             owner.physComp.CollisionCalibration();
         }
+
+        if (physComp.velocity == Vector3.zero && StopOnce == false)
+        {
+            StopOnce = true;
+            owner.CancelInvoke("DecreaseVelocity");
+        }
+
         //Adjusting direction
         RaycastHit hit = rayCaster.GetCollisionData(Vector3.down, 0.5f);
         float skinWidth = physComp.skinWidth;
         float verticalInput = Input.GetAxisRaw("Vertical");
 
-        Vector3 input = new Vector3(0, 0, 1);
         input = Camera.main.transform.rotation * input.normalized;
 
         input = Vector3.ProjectOnPlane(input, hit.normal);
@@ -51,7 +54,13 @@ public class KineticBatteryState : PlayerBaseState
         {
             ProperlyExitState();
             owner.Transition<MomentumAirbourneState>();
-        }          
+        }
+    }
+
+    public override void HandleUpdate()
+    {
+
+
         //Redirecting velocity
 
         if (Input.GetMouseButtonDown(0))

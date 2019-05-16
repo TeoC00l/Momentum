@@ -11,6 +11,20 @@ public class MomentumAirbourneState : MomentumState
         base.Enter();
     }
 
+    public override void HandleFixedUpdate()
+    {
+        //Checking for conditions to change state
+        if (owner.physComp.GroundCheck() == true)
+        {
+            owner.Transition<MomentumState>();
+        }
+
+        //Making adjustments to physics
+        owner.AddPhysics();
+        owner.physComp.CollisionCalibration();
+    }
+
+
     public override void HandleUpdate()
     {
         //Checking for conditions to change state
@@ -19,13 +33,5 @@ public class MomentumAirbourneState : MomentumState
             owner.Transition<PrecisionAirbourneState>();
         }
 
-        if (owner.physComp.GroundCheck())
-        {
-            owner.Transition<MomentumState>();
-        }
-
-        //Making adjustments to physics
-        owner.AddPhysics();
-        owner.physComp.CollisionCalibration();
     }
 }

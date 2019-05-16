@@ -18,7 +18,7 @@ public class PlayerBaseState : State
         physComp = owner.physComp;
         owner.Renderer.material = material;
         rayCaster = owner.rayCaster;
-        
+
     }
 
     public override void Initialize(StateMachine owner)
@@ -28,8 +28,10 @@ public class PlayerBaseState : State
 
     public override void HandleUpdate()
     {
-        owner.AddPhysics();
-        owner.physComp.CollisionCalibration();
+    }
+
+    public override void HandleFixedUpdate()
+    {
     }
 
 }

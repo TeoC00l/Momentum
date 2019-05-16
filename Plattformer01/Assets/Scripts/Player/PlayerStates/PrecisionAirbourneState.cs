@@ -11,15 +11,10 @@ public class PrecisionAirbourneState : PrecisionState
         base.Enter();
     }
 
-    public override void HandleUpdate()
+    public override void HandleFixedUpdate()
     {
         //Checking for conditions to change state
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            owner.Transition<MomentumAirbourneState>();
-        }
-
-        if (owner.physComp.GroundCheck())
+        if (owner.physComp.GroundCheck() == true)
         {
             owner.Transition<PrecisionState>();
         }
@@ -28,4 +23,16 @@ public class PrecisionAirbourneState : PrecisionState
         owner.AddPhysics();
         owner.physComp.CollisionCalibration();
     }
+
+    public override void HandleUpdate()
+    {
+        //Checking for conditions to change state
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            owner.Transition<MomentumAirbourneState>();
+        }
+
+
+    }
+
 }
