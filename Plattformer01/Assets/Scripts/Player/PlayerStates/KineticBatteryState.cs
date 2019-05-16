@@ -18,8 +18,8 @@ public class KineticBatteryState : PlayerBaseState
     {
         base.Enter();
         owner.kineticBatteryActive = true;
-        owner.oldVelocity = physComp.velocity;
-        returnVelocity = physComp.velocity;
+        owner.oldVelocity = physComp.GetVelocity();
+        returnVelocity = physComp.GetVelocity();
         StopOnce = false;
         owner.kineticTimer = 10000;
         owner.divideValue = owner.kineticTimer;
@@ -34,23 +34,11 @@ public class KineticBatteryState : PlayerBaseState
             owner.physComp.CollisionCalibration();
         }
 
-        if (physComp.velocity == Vector3.zero && StopOnce == false)
+        if (physComp.GetVelocity() == Vector3.zero && StopOnce == false)
         {
             StopOnce = true;
             owner.CancelInvoke("DecreaseVelocity");
         }
-
-        //Adjusting direction
-        //RaycastHit hit = rayCaster.GetCollisionData(Vector3.down, 0.5f);
-        //float skinWidth = physComp.skinWidth;
-        //float verticalInput = Input.GetAxisRaw("Vertical");
-
-        //input = Camera.main.transform.rotation * input.normalized;
-
-        //input = Vector3.ProjectOnPlane(input, hit.normal);
-        //input = input.normalized;
-
-        //Debug.DrawRay(owner.transform.position, input, Color.red, 1f);
         if (owner.physComp.GroundCheck() == false)
         {
             ProperlyExitState();
@@ -60,7 +48,7 @@ public class KineticBatteryState : PlayerBaseState
         {
             getOutofState = false;
             physComp.SetDirection(owner.ProcessVerticalInput() + (owner.ProcessHorizontalInput()));
-            physComp.velocity = physComp.direction * returnVelocity.magnitude;
+            physComp.SetVelocity(physComp.GetDirection() * returnVelocity.magnitude);
             ProperlyExitState();
             owner.Transition<MomentumState>();
         }

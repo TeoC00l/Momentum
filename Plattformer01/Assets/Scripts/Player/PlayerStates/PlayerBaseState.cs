@@ -10,7 +10,6 @@ public class PlayerBaseState : State
     [SerializeField] protected PhysicsComponent physComp;
     [SerializeField] protected RayCasterCapsule rayCaster;
     protected Player owner;
-    public float batteryTimer;
 
     //Methods
     public override void Enter()

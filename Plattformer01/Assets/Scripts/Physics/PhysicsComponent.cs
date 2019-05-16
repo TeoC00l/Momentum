@@ -6,16 +6,18 @@ public class PhysicsComponent : MonoBehaviour
 
 {
     //Attributes
-    [HideInInspector] public Vector3 velocity = Vector3.zero;
-    [HideInInspector] public Vector3 direction = Vector3.zero;
-    [HideInInspector] public RayCasterCapsule rayCaster;
+    private Vector3 velocity = Vector3.zero;
+    private Vector3 direction = Vector3.zero;
+    private RayCasterCapsule rayCaster;
 
-    [HideInInspector] public float skinWidth;
-    [HideInInspector] public float acceleration;
-    [HideInInspector] public float gravitationalForce;
-    [HideInInspector] public float JumpMagnitude;
-    [HideInInspector] public float staticFrictionCo;
-    [HideInInspector] public float airResistance;
+    [SerializeField] private float skinWidth;
+    [SerializeField] private float groundCheckDistance;
+
+    private float acceleration;
+    private float gravitationalForce;
+    private float jumpMagnitude;
+    private float staticFrictionCo;
+    private float airResistance;
 
     //Methods
     void Awake()
@@ -25,12 +27,9 @@ public class PhysicsComponent : MonoBehaviour
 
     public void AddForces()
     {
-        //Calculate velocity, add gravity
         Vector3 gravity = Calculations2.CalculateGravity(gravitationalForce);
         velocity = Calculations2.CalculateAcceleration(velocity, direction, acceleration);
         velocity += gravity;
-
-        //Add Air resistance
         velocity = Calculations2.AddAirResistance(velocity, airResistance);
     }
 
@@ -51,18 +50,15 @@ public class PhysicsComponent : MonoBehaviour
 
         do
         {
-            //Add one cycle
             noOfCycles++;
 
-            //Make adjustments to normalforce
             Vector3 normalForce = MeasureNormalForce();
             velocity += normalForce;
             totalNormalForce += normalForce;
 
-            //Look for new collisions
             hit = rayCaster.GetCollisionData(velocity, 0);
         }
-        while (hit.collider != null && noOfCycles < 1000);
+        while (hit.collider != null && noOfCycles < 10000);
 
         velocity = Calculations2.CalculateFriction(velocity, totalNormalForce, staticFrictionCo);
 
@@ -74,7 +70,7 @@ public class PhysicsComponent : MonoBehaviour
 
     public bool GroundCheck()
     {
-        RaycastHit hit = rayCaster.GetCollisionData(Vector3.down * 10, 0);
+        RaycastHit hit = rayCaster.GetCollisionData(Vector3.down * groundCheckDistance, skinWidth);
         if (hit.collider != null)
         {
             return true;
@@ -88,17 +84,28 @@ public class PhysicsComponent : MonoBehaviour
     public void Jump()
     {
         {
-            velocity = Calculations2.CalculateJump(velocity, JumpMagnitude);
+            velocity = Calculations2.CalculateJump(velocity, jumpMagnitude);
         }
     }
 
 
 
 
+
+
+
+
     //GETTERS AND SETTERS
+    public void SetAcceleration(float acceleration)
+    {
+        this.acceleration = acceleration;
+    }
 
+    public float GetAcceleration()
+    {
+        return acceleration;
+    }
 
-    //velocity
     public Vector3 GetVelocity()
     {
         return this.velocity;
@@ -114,19 +121,16 @@ public class PhysicsComponent : MonoBehaviour
         velocity = velocity.normalized * magnitude;
     }
 
-    //direction
     public void SetDirection(Vector3 direction)
     {
         this.direction = direction;
     }
 
-    public Vector3 GetDirection(Vector3 direction)
+    public Vector3 GetDirection()
     {
         return direction;
     }
 
-
-    //gravitationalForce
     public float GetGravitationalForce(float gravitationalForce)
     {
         return this.gravitationalForce;
@@ -136,6 +140,50 @@ public class PhysicsComponent : MonoBehaviour
     {
         this.gravitationalForce = gravitationalForce;
     }
+
+    public void SetJumpMagnitude(float jumpMagnitude)
+    {
+        this.jumpMagnitude = jumpMagnitude;
+    }
+
+    public float GetJumpMagnitude()
+    {
+        return jumpMagnitude;
+    }
+    
+    public void SetStaticFrictionCo(float staticFrictionCo)
+    {
+        this.staticFrictionCo = staticFrictionCo;
+    }
+
+    public float GetStaticFrictionCo()
+    {
+        return staticFrictionCo;
+    }
+
+    public void SetAirResistance(float airResistance)
+    {
+        this.airResistance = airResistance;
+    }
+
+    public float GetAirResistance()
+    {
+        return airResistance;
+    }
+
+    public float GetSkinWidth()
+    {
+        return skinWidth;
+    }
+    public void AddToVelocity(Vector3 add)
+    {
+        velocity += add;
+    }
+    public void AddToDirection(Vector3 add)
+    {
+        direction += add;
+    }
+
 }
 
 

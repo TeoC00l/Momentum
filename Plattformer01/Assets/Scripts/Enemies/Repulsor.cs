@@ -23,6 +23,10 @@ public class Repulsor : StateMachine
     }
     public void ChangeSizeOfForceField()
     {
+        if (GetComponentInChildren<SphereCollider>().enabled == false)
+        {
+            GetComponentInChildren<SphereCollider>().enabled = true;
+        }
         Vector3 parentScale = transform.localScale;
         foreach (MeshRenderer R in Renderer)
         {
