@@ -28,8 +28,10 @@ public class PlayerBaseState : State
 
     public override void HandleUpdate()
     {
-        owner.AddPhysics();
-        owner.physComp.CollisionCalibration();
+    }
+
+    public override void HandleFixedUpdate()
+    {
     }
 
 }

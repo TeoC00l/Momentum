@@ -26,6 +26,14 @@ public class MomentumState : PlayerBaseState
         physComp.airResistance = this.airResistance;
     }
 
+    public override void HandleFixedUpdate()
+    {
+        //Making adjustments to physics
+        physComp.AddForces();
+        owner.physComp.CollisionCalibration();
+    }
+
+
     public override void HandleUpdate()
     {
         //Checking for conditions to change state
@@ -44,16 +52,10 @@ public class MomentumState : PlayerBaseState
             owner.Transition<KineticBatteryState>();
         }
 
-        //Making adjustments to physics
-        owner.AddPhysics();
-
-        owner.Dash();
-
         if (Input.GetKeyDown("space"))
         {
-            owner.physComp.Jump();
-        }
+            owner.Transition<JumpState>();
 
-        owner.physComp.CollisionCalibration();
+        }
     }
 }
