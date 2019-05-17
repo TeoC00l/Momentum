@@ -4,31 +4,31 @@ using UnityEngine;
 
 public class GUI_Modes : MonoBehaviour
 {
-    public GameObject UIPrecision;
-    public GameObject UIMomentum;
-    public GameObject UIKinetic;
+    private GameObject uiPrecision;
+    private GameObject uiMomentum;
+    private GameObject uiKinetic;
 
     public GameObject player;
 
     private bool shiftToggled = false;
 
     //Location for the cursor
-    public Texture2D cursorTexture;
-    public CursorMode cursorMode = CursorMode.Auto;
-    public Vector2 hotspot = Vector2.zero;
+    [SerializeField]private Texture2D cursorTexture;
+    private CursorMode cursorMode = CursorMode.Auto;
+    private Vector2 hotspot = Vector2.zero;
     
 
     void Start()
     {
         //Get UI elements. If not Drag and drop from scene.
-        UIPrecision = GameObject.Find("UIPrecision");
-        UIMomentum = GameObject.Find("UIMomentum");
-        UIKinetic = GameObject.Find("UIKinetic");
-        player = GameObject.Find("Character"); //char names must always be Character
+        uiPrecision = GameObject.Find("UIPrecision");
+        uiMomentum = GameObject.Find("UIMomentum");
+        uiKinetic = GameObject.Find("UIKinetic");
+        player = GameObject.FindWithTag("Player"); //char names must always be Character
 
         //put the GUI's in default orders.
-        UIMomentum.SetActive(false);
-        UIKinetic.SetActive(false);
+        uiMomentum.SetActive(false);
+        uiKinetic.SetActive(false);
 
         //assign mouse
         Cursor.SetCursor(cursorTexture, hotspot, cursorMode);
@@ -40,12 +40,12 @@ public class GUI_Modes : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             shiftToggled = !shiftToggled;
-            if (shiftToggled) { UIPrecision.SetActive(false); UIMomentum.SetActive(true); Debug.Log("click s = 1"); }
-            else { UIPrecision.SetActive(true); UIMomentum.SetActive(false); UIKinetic.SetActive(false); } //possibly remove UIKineticsetactive.
+            if (shiftToggled) { uiPrecision.SetActive(false); uiMomentum.SetActive(true); Debug.Log("click s = 1"); }
+            else { uiPrecision.SetActive(true); uiMomentum.SetActive(false); uiKinetic.SetActive(false); } //possibly remove UIKineticsetactive.
         }
 
         //check if kinetic battery is on or off.
-        if (player.GetComponent<Player>().GetKineticActive()) { UIKinetic.SetActive(true); }
-        else { UIKinetic.SetActive(false); }
+        if (player.GetComponent<Player>().GetKineticActive()) { uiKinetic.SetActive(true); }
+        else { uiKinetic.SetActive(false); }
     }
 }
