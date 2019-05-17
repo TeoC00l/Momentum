@@ -8,28 +8,27 @@ public class KineticBatteryState : PlayerBaseState
     //Attributes
     Vector3 input = new Vector3(1,0,1);
 
-    bool StopOnce;
-    bool getOutofState;
+    private bool stopOnce;
+    private bool getOutofState;
     [SerializeField]private float slideDecreaseMovementRate;
     [SerializeField]private float waitBeforeSliding;
+    
     //Methods
     public override void Enter()
     {
         base.Enter();
-        owner.kineticBatteryActive = true;
         if (owner.GetOldVelocity() == Vector3.zero)
         {
             owner.SetOldVelocity(PhysComp.GetVelocity());
-
         }
        
         if (owner.GetKineticActive() == false)
         {
-            StopOnce = false;
+            stopOnce = false;
             Debug.Log("startSlide");
 
-            owner.kineticTimer = 1000;
-            owner.divideValue = owner.kineticTimer;
+            owner.SetKineticCounter(1000);
+            owner.SetKineticSlideDivideValue(owner.GetKineticCounter());
             owner.InvokeRepeating("DecreaseVelocity", waitBeforeSliding, slideDecreaseMovementRate);
         }
         owner.SetKineticActive(true);
@@ -37,15 +36,15 @@ public class KineticBatteryState : PlayerBaseState
 
     public override void HandleFixedUpdate()
     {
-        if (StopOnce == false)
+        if (stopOnce == false)
         {
             owner.PhysComp.AddForces();
             owner.PhysComp.CollisionCalibration();
         }
 
-        if (PhysComp.GetVelocity() == Vector3.zero && StopOnce == false)
+        if (PhysComp.GetVelocity() == Vector3.zero && stopOnce == false)
         {
-            StopOnce = true;
+            stopOnce = true;
             owner.CancelInvoke("DecreaseVelocity");
         }
         if (owner.PhysComp.GroundCheck() == false)
@@ -70,18 +69,16 @@ public class KineticBatteryState : PlayerBaseState
         //Redirecting velocity
         getOutofState = Input.GetMouseButtonDown(0);
 
-        
     }
 
     public override void Exit()
     {
-        owner.kineticBatteryActive = false;
         owner.kineticBatteryCooldownTimer.SetTimer();
     }
     private void ProperlyExitState()
     {
         owner.CancelInvoke("DecreaseVelocity");
-        owner.kineticTimer = 0;
+        owner.SetKineticCounter(0);
         owner.AddPhysics();
         owner.PhysComp.CollisionCalibration();
     }

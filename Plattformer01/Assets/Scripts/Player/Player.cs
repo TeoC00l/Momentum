@@ -9,7 +9,6 @@ public class Player : StateMachine
     [HideInInspector] public PhysicsComponent PhysComp;
     [HideInInspector] public Rigidbody rigid;
 
-
     [SerializeField] private float mouseSensitivity;
     [SerializeField] private float strafeCoefficient;
     [SerializeField] private float kineticBatterySlidePower0Max1Min;
@@ -26,14 +25,12 @@ public class Player : StateMachine
     [SerializeField] private float dashDistance;
     private bool isDashing;
     private bool doubleTap;
-    private bool kineticActive = false;
     private Vector3 oldVelocity = Vector3.zero;
 
     //Kinetic battery related attributes
-    [SerializeField] public int kineticTimer;
-    [SerializeField] public int divideValue;
-    public bool kineticBatteryActive;
-
+    private int kineticCounter;
+    private int kineticSlideDivideValue;
+    private bool kineticActive = false;
 
     // Methods
     protected override void Awake()
@@ -93,18 +90,18 @@ public class Player : StateMachine
 
     public void DecreaseVelocity()
     {
-        if (kineticTimer > 0)
+        if (kineticCounter > 0)
         {
-        //    Debug.Log("BEFORE" + "Player Class" + " this is the Velocity " + PhysComp.GetVelocity() + "this is the magnitude" + PhysComp.GetVelocity().magnitude + "this is the Direction" +PhysComp.GetDirection() +"this is the timer"+ (kineticTimer - 1));
+        //    Debug.Log("BEFORE" + "Player Class" + " this is the Velocity " + PhysComp.GetVelocity() + "this is the magnitude" + PhysComp.GetVelocity().magnitude + "this is the Direction" +PhysComp.GetDirection() +"this is the timer"+ (kineticCounter - 1));
             PhysComp.SetDirection(Vector3.zero);
             Vector3 NewVelocity = PhysComp.GetVelocity() - oldVelocity / oldVelocity.magnitude * kineticBatterySlidePower0Max1Min;
             PhysComp.SetVelocity(NewVelocity);
-            kineticTimer -= 1;
+            kineticCounter -= 1;
  
-            if (Mathf.Sign(PhysComp.GetVelocity().z) != Mathf.Sign(oldVelocity.z)|| Mathf.Sign(PhysComp.GetVelocity().x) != Mathf.Sign(oldVelocity.x)|| kineticTimer == 0)
+            if (Mathf.Sign(PhysComp.GetVelocity().z) != Mathf.Sign(oldVelocity.z)|| Mathf.Sign(PhysComp.GetVelocity().x) != Mathf.Sign(oldVelocity.x)|| kineticCounter == 0)
             {
-                kineticTimer = 0;
-                //          Debug.Log("Set Too zero" + kineticTimer);
+                kineticCounter = 0;
+                //          Debug.Log("Set Too zero" + kineticCounter);
                 PhysComp.SetVelocity(Vector3.zero);
             }
                
@@ -113,10 +110,6 @@ public class Player : StateMachine
     }
 
     //GETTERS AND SETTERS
-    public bool GetKineticBatteryActive()
-    {
-        return kineticBatteryActive;
-    }
 
     public Vector3 GetOldVelocity()
     {
@@ -137,6 +130,21 @@ public class Player : StateMachine
     {
 
         kineticActive = set;
+    }
+
+    public void SetKineticSlideDivideValue(int kineticSlideDivideValue)
+    {
+        this.kineticSlideDivideValue = kineticSlideDivideValue;
+    }
+
+    public int GetKineticCounter()
+    {
+        return kineticCounter;
+    }
+
+    public void SetKineticCounter(int kineticCounter)
+    {
+        this.kineticCounter = kineticCounter;
     }
 
 

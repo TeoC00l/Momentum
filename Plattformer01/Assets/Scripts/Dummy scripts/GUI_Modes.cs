@@ -45,7 +45,7 @@ public class GUI_Modes : MonoBehaviour
         }
 
         //check if kinetic battery is on or off.
-        if (player.GetComponent<Player>().GetKineticBatteryActive()) { UIKinetic.SetActive(true); }
+        if (player.GetComponent<Player>().GetKineticActive()) { UIKinetic.SetActive(true); }
         else { UIKinetic.SetActive(false); }
     }
 }
