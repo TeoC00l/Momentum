@@ -8,15 +8,14 @@ public class DestructibleObject : MonoBehaviour
     //Attributes
     [HideInInspector] private GameObject destructibleObject;
     [HideInInspector] private PhysicsComponent collidingPhysComp;
-
     [SerializeField] protected float destructionVelocity;
     
 
     //YL attributes
-    public List<GameObject> debris = new List<GameObject>();
+    [SerializeField]private List<GameObject> debris = new List<GameObject>();
     private GameObject player;
     private GameObject itself;
-    public GameObject explosionEffects;
+    [SerializeField] private GameObject explosionEffects;
 
 
     //Methods

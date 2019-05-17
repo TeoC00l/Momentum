@@ -5,8 +5,8 @@ using UnityEngine;
 public class Teleporter : MonoBehaviour
 {
     private GameObject player;
-    public Transform locationOut;
-    public DroneParent droneParent;
+    [SerializeField] private Transform locationOut;
+    [SerializeField] private DroneParent droneParent;
 
     void Awake()
     {
@@ -19,6 +19,7 @@ public class Teleporter : MonoBehaviour
         {
             droneParent.ResetDrones();
             player.GetComponent<PhysicsComponent>().SetVelocity(Vector3.zero);
+            player.GetComponent<Transform>().rotation = locationOut.rotation;
             player.GetComponent<Transform>().position = locationOut.position;
             //@Teo
             //insert script in player to reset player's orientation when they respawn.

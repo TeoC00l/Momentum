@@ -4,34 +4,35 @@ using UnityEngine;
 
 public class Debris : MonoBehaviour
 {
-    public GameObject player;
+    private GameObject player;
     private Vector3 ejectVelocity;
-    public float randomize = 1.5f;
-    public float ejectSpeed = 20;
-    public float despawnTime = 5;
+    [SerializeField] private float randomize = 1.5f;
+    [SerializeField] private float ejectSpeed = 20;
+    [SerializeField] private float despawnTime = 5;
     private bool despawningOn = true;
     private float r1;
     private float r2;
     private float r3;
+    private PhysicsComponent playerPhysComp;
 
     // Start is called before the first frame update
     void Awake()
     {
-        player = GameObject.Find("Character");
+        player = GameObject.FindWithTag("Player");
         r1 = Random.Range(-ejectSpeed / 2, ejectSpeed);
         r2 = Random.Range(0.1f, ejectSpeed);
         r3 = Random.Range(-ejectSpeed / 2, ejectSpeed);
+        playerPhysComp  = player.GetComponent<PhysicsComponent>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        ejectVelocity = player.GetComponent<PhysicsComponent>().GetVelocity() + new Vector3(
-            player.GetComponent<PhysicsComponent>().GetVelocity().x + r1,
-            player.GetComponent<PhysicsComponent>().GetVelocity().y + r2,
-            player.GetComponent<PhysicsComponent>().GetVelocity().z + r3);
-
+        ejectVelocity = playerPhysComp.GetVelocity() + new Vector3(
+        playerPhysComp.GetVelocity().x + r1,
+        playerPhysComp.GetVelocity().y + r2,
+        playerPhysComp.GetVelocity().z + r3);
         transform.Translate(ejectVelocity * Time.deltaTime, Space.World);
     }
 

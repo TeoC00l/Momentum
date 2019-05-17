@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -915,17 +915,32 @@ PrefabInstance:
     - target: {fileID: 1317369229426953179, guid: 458df3f10535bd04eac5a0a3dafc26ab,
         type: 3}
       propertyPath: MinSizeOfForceField.x
-      value: 0.5
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 1317369229426953179, guid: 458df3f10535bd04eac5a0a3dafc26ab,
         type: 3}
       propertyPath: MinSizeOfForceField.y
-      value: 0.5
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 1317369229426953179, guid: 458df3f10535bd04eac5a0a3dafc26ab,
         type: 3}
       propertyPath: MinSizeOfForceField.z
-      value: 0.5
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317369229426953179, guid: 458df3f10535bd04eac5a0a3dafc26ab,
+        type: 3}
+      propertyPath: increaseSizeOfForceFieldEachSecond.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317369229426953179, guid: 458df3f10535bd04eac5a0a3dafc26ab,
+        type: 3}
+      propertyPath: increaseSizeOfForceFieldEachSecond.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317369229426953179, guid: 458df3f10535bd04eac5a0a3dafc26ab,
+        type: 3}
+      propertyPath: increaseSizeOfForceFieldEachSecond.z
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 751625406, guid: 458df3f10535bd04eac5a0a3dafc26ab, type: 3}
       propertyPath: bounceKnockback
@@ -1396,8 +1411,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravityPullForce: 20
   gravityPullForceVersion2: 10
-  character: {fileID: 0}
-  playerPhysComp: {fileID: 0}
   version1: 1
 --- !u!135 &1853067167
 SphereCollider:
@@ -1982,6 +1995,36 @@ PrefabInstance:
       propertyPath: MaxSizeOfForceField.z
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6154180082744450698, guid: e5eb0af2e065b8944a8cba4aa37b30a5,
+        type: 3}
+      propertyPath: increaseSizeOfForceFieldEachSecond.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6154180082744450698, guid: e5eb0af2e065b8944a8cba4aa37b30a5,
+        type: 3}
+      propertyPath: increaseSizeOfForceFieldEachSecond.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6154180082744450698, guid: e5eb0af2e065b8944a8cba4aa37b30a5,
+        type: 3}
+      propertyPath: increaseSizeOfForceFieldEachSecond.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6154180082744450698, guid: e5eb0af2e065b8944a8cba4aa37b30a5,
+        type: 3}
+      propertyPath: MinSizeOfForceField.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6154180082744450698, guid: e5eb0af2e065b8944a8cba4aa37b30a5,
+        type: 3}
+      propertyPath: MinSizeOfForceField.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6154180082744450698, guid: e5eb0af2e065b8944a8cba4aa37b30a5,
+        type: 3}
+      propertyPath: MinSizeOfForceField.z
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5125156266599952785, guid: e5eb0af2e065b8944a8cba4aa37b30a5,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2169,6 +2212,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317369229426953179, guid: 458df3f10535bd04eac5a0a3dafc26ab,
+        type: 3}
+      propertyPath: increaseSizeOfForceFieldEachSecond.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317369229426953179, guid: 458df3f10535bd04eac5a0a3dafc26ab,
+        type: 3}
+      propertyPath: increaseSizeOfForceFieldEachSecond.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317369229426953179, guid: 458df3f10535bd04eac5a0a3dafc26ab,
+        type: 3}
+      propertyPath: increaseSizeOfForceFieldEachSecond.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317369229426953179, guid: 458df3f10535bd04eac5a0a3dafc26ab,
+        type: 3}
+      propertyPath: MinSizeOfForceField.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317369229426953179, guid: 458df3f10535bd04eac5a0a3dafc26ab,
+        type: 3}
+      propertyPath: MinSizeOfForceField.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317369229426953179, guid: 458df3f10535bd04eac5a0a3dafc26ab,
+        type: 3}
+      propertyPath: MinSizeOfForceField.z
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 458df3f10535bd04eac5a0a3dafc26ab, type: 3}
