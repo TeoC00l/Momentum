@@ -25,6 +25,7 @@ public class MomentumState : PlayerBaseState
 
     public override void HandleFixedUpdate()
     {       
+        
         //Checking for conditions to change state
         if (!owner.PhysComp.GroundCheck())
         {
