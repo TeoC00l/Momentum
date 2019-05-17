@@ -14,14 +14,14 @@ public class PrecisionAirbourneState : PrecisionState
     public override void HandleFixedUpdate()
     {
         //Checking for conditions to change state
-        if (owner.physComp.GroundCheck() == true)
+        if (owner.PhysComp.GroundCheck() == true)
         {
             owner.Transition<PrecisionState>();
         }
 
         //Making adjustments to physics
         owner.AddPhysics();
-        owner.physComp.CollisionCalibration();
+        owner.PhysComp.CollisionCalibration();
     }
 
     public override void HandleUpdate()

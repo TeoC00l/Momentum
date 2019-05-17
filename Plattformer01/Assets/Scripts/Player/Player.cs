@@ -6,37 +6,40 @@ public class Player : StateMachine
 {
     //Attributes
     [HideInInspector] public MeshRenderer Renderer;
-    [HideInInspector] public PhysicsComponent physComp;
-    [HideInInspector] public RayCasterCapsule rayCaster;
+    [HideInInspector] public PhysicsComponent PhysComp;
 
-    [SerializeField] public bool kineticBatteryActive;
-    [SerializeField] protected float mouseSensitivity;
-    [SerializeField] protected float strafeCoefficient;
 
-        //Dash related attributes
-    [SerializeField] protected Vector3 lastDash;
-
-    [SerializeField] public Timer dashCooldownTimer;
-    [SerializeField] public Timer dashDurationTimer;
-    [SerializeField] public Timer doubleTapTimer;
-    [SerializeField] public Timer kineticBatteryCooldownTimer;
+    [SerializeField] private float mouseSensitivity;
+    [SerializeField] private float strafeCoefficient;
     [SerializeField] private float kineticBatterySlidePower0Max1Min;
 
+    private RayCasterCapsule rayCaster;
 
-    [SerializeField] protected float dashDistance;
-    [HideInInspector] protected bool isDashing;
-    [HideInInspector] private bool doubleTap;
-    [HideInInspector] private bool kineticActive = false;
-    [HideInInspector] private Vector3 oldVelocity = Vector3.zero;
-    [HideInInspector] public int kineticTimer;
-    [HideInInspector] public int divideValue;
+    //Dash related attributes
+    [SerializeField] private Vector3 lastDash;
+    [SerializeField] private Timer dashCooldownTimer;
+    [SerializeField] private Timer dashDurationTimer;
+    [SerializeField] private Timer doubleTapTimer;
+    public Timer kineticBatteryCooldownTimer;
+
+    [SerializeField] private float dashDistance;
+    private bool isDashing;
+    private bool doubleTap;
+    private bool kineticActive = false;
+    private Vector3 oldVelocity = Vector3.zero;
+
+    //Kinetic battery related attributes
+    [SerializeField] public int kineticTimer;
+    [SerializeField] public int divideValue;
+    public bool kineticBatteryActive;
+
 
     // Methods
     protected override void Awake()
     {
         Renderer = GetComponent<MeshRenderer>();
         rayCaster = GetComponent<RayCasterCapsule>();
-        physComp = GetComponent<PhysicsComponent>();
+        PhysComp = GetComponent<PhysicsComponent>();
 
         lastDash = Vector3.zero;
         
@@ -56,8 +59,8 @@ public class Player : StateMachine
     public Vector3 ProcessVerticalInput()
     {
         RaycastHit hit = rayCaster.GetCollisionData(Vector3.down, 0.5f);
-        Vector3 velocity = physComp.GetVelocity();
-        float skinWidth = physComp.GetSkinWidth();
+        Vector3 velocity = PhysComp.GetVelocity();
+        float skinWidth = PhysComp.GetSkinWidth();
         float verticalInput = Input.GetAxisRaw("Vertical");
 
         Vector3 input = new Vector3(0, 0, verticalInput);
@@ -82,51 +85,68 @@ public class Player : StateMachine
 
     public void AddPhysics()
     {
-        physComp.SetDirection(ProcessVerticalInput() + (ProcessHorizontalInput() *strafeCoefficient));
-        physComp.AddForces();
+        PhysComp.SetDirection(ProcessVerticalInput() + (ProcessHorizontalInput() *strafeCoefficient));
+        PhysComp.AddForces();
     }
 
     public void DecreaseVelocity()
     {
         if (kineticTimer > 0)
         {
-        //    Debug.Log("BEFORE" + "Player Class" + " this is the Velocity " + physComp.GetVelocity() + "this is the magnitude" + physComp.GetVelocity().magnitude + "this is the Direction" +physComp.GetDirection() +"this is the timer"+ (kineticTimer - 1));
-            physComp.SetDirection(Vector3.zero);
-            Vector3 NewVelocity = physComp.GetVelocity() - oldVelocity / oldVelocity.magnitude * kineticBatterySlidePower0Max1Min;
-            physComp.SetVelocity(NewVelocity);
+        //    Debug.Log("BEFORE" + "Player Class" + " this is the Velocity " + PhysComp.GetVelocity() + "this is the magnitude" + PhysComp.GetVelocity().magnitude + "this is the Direction" +PhysComp.GetDirection() +"this is the timer"+ (kineticTimer - 1));
+            PhysComp.SetDirection(Vector3.zero);
+            Vector3 NewVelocity = PhysComp.GetVelocity() - oldVelocity / oldVelocity.magnitude * kineticBatterySlidePower0Max1Min;
+            PhysComp.SetVelocity(NewVelocity);
             kineticTimer -= 1;
  
-            if (Mathf.Sign(physComp.GetVelocity().z) != Mathf.Sign(oldVelocity.z)|| Mathf.Sign(physComp.GetVelocity().x) != Mathf.Sign(oldVelocity.x)|| kineticTimer == 0)
+            if (Mathf.Sign(PhysComp.GetVelocity().z) != Mathf.Sign(oldVelocity.z)|| Mathf.Sign(PhysComp.GetVelocity().x) != Mathf.Sign(oldVelocity.x)|| kineticTimer == 0)
             {
                 kineticTimer = 0;
                 //          Debug.Log("Set Too zero" + kineticTimer);
-                physComp.SetVelocity(Vector3.zero);
+                PhysComp.SetVelocity(Vector3.zero);
             }
                
-       //      Debug.Log("Player Class" + " this is the Velocity " + physComp.GetVelocity() + "this is the magnitude" + physComp.GetVelocity().magnitude);
+       //      Debug.Log("Player Class" + " this is the Velocity " + PhysComp.GetVelocity() + "this is the magnitude" + PhysComp.GetVelocity().magnitude);
         }
     }
 
+    //GETTERS AND SETTERS
     public bool GetKineticBatteryActive()
     {
         return kineticBatteryActive;
     }
+
     public Vector3 GetOldVelocity()
     {
         return oldVelocity;
     }
+
     public void SetOldVelocity(Vector3 set)
     {
         oldVelocity = set;
     }
+
     public bool GetKineticActive()
     {
+
         return kineticActive;
     }
     public void SetKineticActive(bool set)
     {
+
         kineticActive = set;
     }
+
+
+
+
+
+
+
+
+
+
+
 
 
     //public void Dash()
@@ -134,11 +154,11 @@ public class Player : StateMachine
     //    //Checking for collision to cancel dash
     //    if (isDashing == true)
     //    {
-    //        RaycastHit hit = rayCaster.GetCollisionData(lastDash, physComp.GetSkinWidth());
+    //        RaycastHit hit = rayCaster.GetCollisionData(lastDash, PhysComp.GetSkinWidth());
 
     //        if (hit.collider != null)
     //        {
-    //            physComp.SetVelocity -= lastDash;
+    //            PhysComp.SetVelocity -= lastDash;
     //            isDashing = false;
     //        }
     //    }
@@ -146,7 +166,7 @@ public class Player : StateMachine
     //    //Checking for last frame of dash to cancel dash
     //    if (dashDurationTimer.CheckLastFrame() && isDashing == true)
     //    {
-    //        physComp.velocity -= lastDash;
+    //        PhysComp.velocity -= lastDash;
     //        isDashing = false;
     //    }
 
@@ -168,7 +188,7 @@ public class Player : StateMachine
     //    {
     //        //Calculating dash
     //        Vector3 dash = ProcessHorizontalInput() * dashDistance * Time.deltaTime;
-    //        RaycastHit hit = rayCaster.GetCollisionData(dash, physComp.skinWidth);
+    //        RaycastHit hit = rayCaster.GetCollisionData(dash, PhysComp.skinWidth);
 
     //        //Checking for collision to cancel dash
     //        if (hit.collider != null)
@@ -176,7 +196,7 @@ public class Player : StateMachine
     //            dash = Vector3.zero;
     //        }
 
-    //        physComp.velocity += dash;
+    //        PhysComp.velocity += dash;
     //        dashCooldownTimer.SetTimer();
     //        dashDurationTimer.SetTimer();
     //        doubleTapTimer.RestartTimer();

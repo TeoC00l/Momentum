@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Timer")]
 public class Timer : ScriptableObject
 {
-    [SerializeField] protected float timerSetValue;
+    [SerializeField] private float timerSetValue;
     [HideInInspector] private float timerCount;
 
 
@@ -75,5 +75,9 @@ public class Timer : ScriptableObject
         return timerSetValue;
     }
 
+    public float GetTimerCount()
+    {
+        return timerCount;
+    }
 
 }

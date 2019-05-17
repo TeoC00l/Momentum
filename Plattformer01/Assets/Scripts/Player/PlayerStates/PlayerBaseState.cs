@@ -7,16 +7,15 @@ public class PlayerBaseState : State
 {
     //Attributes
     [SerializeField] protected Material material;
-    [SerializeField] protected PhysicsComponent physComp;
+    [SerializeField] protected PhysicsComponent PhysComp;
     [SerializeField] protected RayCasterCapsule rayCaster;
     protected Player owner;
 
     //Methods
     public override void Enter()
     {
-        physComp = owner.physComp;
+        PhysComp = owner.PhysComp;
         owner.Renderer.material = material;
-        rayCaster = owner.rayCaster;
 
     }
 

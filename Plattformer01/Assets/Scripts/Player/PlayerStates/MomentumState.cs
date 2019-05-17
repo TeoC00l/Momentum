@@ -16,24 +16,24 @@ public class MomentumState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        physComp.SetAcceleration(acceleration);
-        physComp.SetGravitationalForce(gravitationalForce);
-        physComp.SetJumpMagnitude(jumpMagnitude);
-        physComp.SetStaticFrictionCo(staticFrictionCo);
-        physComp.SetAirResistance(airResistance);
+        PhysComp.SetAcceleration(acceleration);
+        PhysComp.SetGravitationalForce(gravitationalForce);
+        PhysComp.SetJumpMagnitude(jumpMagnitude);
+        PhysComp.SetStaticFrictionCo(staticFrictionCo);
+        PhysComp.SetAirResistance(airResistance);
     }
 
     public override void HandleFixedUpdate()
     {       
         //Checking for conditions to change state
-        if (!owner.physComp.GroundCheck())
+        if (!owner.PhysComp.GroundCheck())
         {
             owner.Transition<MomentumAirbourneState>();
         }
         //Making adjustments to physics
 
         owner.AddPhysics();
-        owner.physComp.CollisionCalibration();
+        owner.PhysComp.CollisionCalibration();
     }
 
     public override void HandleUpdate()

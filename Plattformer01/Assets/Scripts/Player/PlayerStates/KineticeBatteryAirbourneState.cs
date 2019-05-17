@@ -21,7 +21,7 @@ public class KineticeBatteryAirbourneState : PlayerBaseState
         owner.kineticBatteryActive = true;
         if(owner.GetOldVelocity() == Vector3.zero)
         {
-            owner.SetOldVelocity(physComp.GetVelocity());
+            owner.SetOldVelocity(PhysComp.GetVelocity());
         }
 
         if (owner.GetKineticActive() == false)
@@ -39,16 +39,16 @@ public class KineticeBatteryAirbourneState : PlayerBaseState
     {
         if (StopOnce == false)
         {
-            owner.physComp.AddForces();
-            owner.physComp.CollisionCalibration();
+            owner.PhysComp.AddForces();
+            owner.PhysComp.CollisionCalibration();
         }
 
-        if (physComp.GetVelocity() == Vector3.zero && StopOnce == false)
+        if (PhysComp.GetVelocity() == Vector3.zero && StopOnce == false)
         {
             StopOnce = true;
             owner.CancelInvoke("DecreaseVelocity");
         }
-        if (owner.physComp.GroundCheck() == true)
+        if (owner.PhysComp.GroundCheck() == true)
         {
             owner.Transition<KineticBatteryState>();
         }
@@ -56,7 +56,7 @@ public class KineticeBatteryAirbourneState : PlayerBaseState
         {
             getOutofState = false;
             input = owner.transform.forward;
-            physComp.SetVelocity(input * returnVelocity.magnitude);
+            PhysComp.SetVelocity(input * returnVelocity.magnitude);
             ProperlyExitState();
             owner.SetKineticActive(false);
             owner.Transition<MomentumAirbourneState>();
@@ -79,7 +79,7 @@ public class KineticeBatteryAirbourneState : PlayerBaseState
         owner.CancelInvoke("DecreaseVelocity");
         owner.kineticTimer = 0;
         owner.AddPhysics();
-        owner.physComp.CollisionCalibration();
+        owner.PhysComp.CollisionCalibration();
     }
 }
 
