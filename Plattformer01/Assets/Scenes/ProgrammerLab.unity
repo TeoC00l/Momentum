@@ -1399,8 +1399,6 @@ MonoBehaviour:
   character: {fileID: 0}
   playerPhysComp: {fileID: 0}
   version1: 1
-  RotationMargin: 1
-  TurnSpeed: 15
 --- !u!135 &1853067167
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2092,6 +2090,16 @@ PrefabInstance:
         type: 3}
       propertyPath: kineticBatterySlidePower0Max1Min
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427607302573506130, guid: 3a95e389f6447ac4c88be6674488dc0b,
+        type: 3}
+      propertyPath: skinWidth
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427607302573506130, guid: 3a95e389f6447ac4c88be6674488dc0b,
+        type: 3}
+      propertyPath: groundCheckDistance
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a95e389f6447ac4c88be6674488dc0b, type: 3}
