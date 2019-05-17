@@ -5,8 +5,8 @@ using UnityEngine;
 public class AttractorField : MonoBehaviour
 {
     [SerializeField] private float gravityPullForce = .78f;
-    [SerializeField] private float gravityPullForceVersion2 = 40f;
-    [SerializeField] private bool version1 = true;
+
+
 
     private PhysicsComponent playerPhysComp;
     private GameObject character;

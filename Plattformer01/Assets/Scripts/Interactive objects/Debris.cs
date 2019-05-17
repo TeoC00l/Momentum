@@ -6,10 +6,7 @@ public class Debris : MonoBehaviour
 {
     private GameObject player;
     private Vector3 ejectVelocity;
-    [SerializeField] private float randomize = 1.5f;
     [SerializeField] private float ejectSpeed = 20;
-    [SerializeField] private float despawnTime = 5;
-    private bool despawningOn = true;
     private float r1;
     private float r2;
     private float r3;
