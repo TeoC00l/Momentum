@@ -6,7 +6,6 @@ using UnityEngine;
 public class KineticBatteryState : PlayerBaseState
 {
     //Attributes
-    Vector3 returnVelocity;
     Vector3 input = new Vector3(1,0,1);
 
     bool StopOnce;
@@ -61,6 +60,7 @@ public class KineticBatteryState : PlayerBaseState
             PhysComp.SetVelocity(input * owner.GetOldVelocity().magnitude);
             ProperlyExitState();
             owner.SetKineticActive(false);
+            owner.SetOldVelocity(Vector3.zero);
             owner.Transition<MomentumState>();
         }
     }
@@ -75,7 +75,6 @@ public class KineticBatteryState : PlayerBaseState
 
     public override void Exit()
     {
-        owner.SetOldVelocity(Vector3.zero);
         owner.kineticBatteryActive = false;
         owner.kineticBatteryCooldownTimer.SetTimer();
     }

@@ -4,7 +4,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Player/KineticBatteryAirbourneState")]
 public class KineticeBatteryAirbourneState : PlayerBaseState
 {
-    Vector3 returnVelocity;
     Vector3 input = new Vector3(1, 0, 1);
 
     bool StopOnce;
@@ -56,9 +55,10 @@ public class KineticeBatteryAirbourneState : PlayerBaseState
         {
             getOutofState = false;
             input = owner.transform.forward;
-            PhysComp.SetVelocity(input * returnVelocity.magnitude);
+            PhysComp.SetVelocity(input * owner.GetOldVelocity().magnitude);
             ProperlyExitState();
             owner.SetKineticActive(false);
+            owner.SetOldVelocity(Vector3.zero);
             owner.Transition<MomentumAirbourneState>();
         }
     }
@@ -70,7 +70,6 @@ public class KineticeBatteryAirbourneState : PlayerBaseState
     }
     public override void Exit()
     {
-        owner.SetOldVelocity(Vector3.zero);
         owner.kineticBatteryActive = false;
         owner.kineticBatteryCooldownTimer.SetTimer();
     }

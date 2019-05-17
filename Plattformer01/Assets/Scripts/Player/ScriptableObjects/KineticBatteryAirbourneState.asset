@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14e36496559857344b516b9a2be7b325, type: 3}
   m_Name: KineticBatteryAirbourneState
   m_EditorClassIdentifier: 
-  material: {fileID: 0}
-  physComp: {fileID: 0}
+  material: {fileID: 2100000, guid: 3772ef3975751134fb2165b6b3ddef10, type: 2}
+  PhysComp: {fileID: 0}
   rayCaster: {fileID: 0}
   slideDecreaseMovementRate: 0
   waitBeforeSliding: 0
