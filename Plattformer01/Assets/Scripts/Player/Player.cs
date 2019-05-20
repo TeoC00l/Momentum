@@ -139,6 +139,18 @@ public class Player : StateMachine
         kineticActive = set;
     }
 
+    public bool GetMomentumActive()
+    {
+        if (GetCurrentStateType() == typeof(MomentumState) || GetCurrentStateType() == typeof(MomentumAirbourneState))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 
 
 

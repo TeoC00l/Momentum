@@ -72,4 +72,8 @@ public abstract class StateMachine : MonoBehaviour
     {
         return states;
     }
+    public Type GetCurrentStateType()
+    {
+        return currentState.GetType();
+    }
 }
