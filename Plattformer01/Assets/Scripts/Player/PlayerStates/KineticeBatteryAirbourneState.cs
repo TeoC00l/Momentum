@@ -51,6 +51,11 @@ public class KineticeBatteryAirbourneState : PlayerBaseState
         {
             owner.Transition<KineticBatteryState>();
         }
+       
+    }
+    public override void HandleUpdate()
+    {
+        getOutofState = Input.GetMouseButtonDown(0);
         if (getOutofState == true)
         {
             getOutofState = false;
@@ -61,11 +66,6 @@ public class KineticeBatteryAirbourneState : PlayerBaseState
             owner.SetOldVelocity(Vector3.zero);
             owner.Transition<MomentumAirbourneState>();
         }
-    }
-    public override void HandleUpdate()
-    {
-        getOutofState = Input.GetMouseButtonDown(0);
-
 
     }
     public override void Exit()

@@ -104,8 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6900fdca07c437e4fbdbecdda2776eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
-  playerPhysComp: {fileID: 0}
   bounceKnockback: 3
 --- !u!1 &2381133173742795630
 GameObject:
@@ -216,13 +214,8 @@ MonoBehaviour:
   states:
   - {fileID: 11400000, guid: 6e4581f5aec4efc47b1a10ca5975fb4d, type: 2}
   - {fileID: 11400000, guid: b907061acf5df5048b4ee33cf723d6dc, type: 2}
-  Renderer:
-  - {fileID: 0}
-  blastCollider: {fileID: 0}
-  character: {fileID: 0}
-  playerPhysComp: {fileID: 0}
   repulsorCooldownTimer: {fileID: 11400000, guid: 326c6ca56064dd44a9ea60f044473473,
     type: 2}
-  IncreaseSizeOfForceFieldEachSecond: {x: 0.1, y: 0.1, z: 0.1}
+  increaseSizeOfForceFieldEachSecond: {x: 0.1, y: 0.1, z: 0.1}
   MaxSizeOfForceField: {x: 6, y: 6, z: 6}
-  MinSizeOfForceField: {x: 0.5, y: 0.5, z: 0.5}
+  MinSizeOfForceField: {x: 0.4, y: 0.4, z: 0.4}
