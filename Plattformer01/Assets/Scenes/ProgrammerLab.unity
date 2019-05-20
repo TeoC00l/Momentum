@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 14863467}
   m_Layer: 8
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 448616889}
   m_Layer: 8
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
@@ -1120,7 +1120,7 @@ GameObject:
   - component: {fileID: 1197740004}
   m_Layer: 8
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -1410,8 +1410,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravityPullForce: 20
-  gravityPullForceVersion2: 10
-  version1: 1
 --- !u!135 &1853067167
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2121,6 +2119,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5427607302573506136, guid: 3a95e389f6447ac4c88be6674488dc0b,
         type: 3}
+      propertyPath: states.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427607302573506136, guid: 3a95e389f6447ac4c88be6674488dc0b,
+        type: 3}
       propertyPath: kineticBatterySlidePower
       value: 0
       objectReference: {fileID: 0}
@@ -2134,6 +2137,12 @@ PrefabInstance:
       propertyPath: kineticBatterySlidePower0Max1Min
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 5427607302573506136, guid: 3a95e389f6447ac4c88be6674488dc0b,
+        type: 3}
+      propertyPath: states.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5474828dc9c2d094f88b802bca624509,
+        type: 2}
     - target: {fileID: 5427607302573506130, guid: 3a95e389f6447ac4c88be6674488dc0b,
         type: 3}
       propertyPath: skinWidth
@@ -2143,6 +2152,26 @@ PrefabInstance:
         type: 3}
       propertyPath: groundCheckDistance
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427607302685818580, guid: 3a95e389f6447ac4c88be6674488dc0b,
+        type: 3}
+      propertyPath: shakeAmount
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427607302685818580, guid: 3a95e389f6447ac4c88be6674488dc0b,
+        type: 3}
+      propertyPath: shakeRate
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427607302685818580, guid: 3a95e389f6447ac4c88be6674488dc0b,
+        type: 3}
+      propertyPath: shakeLength
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427607302685818580, guid: 3a95e389f6447ac4c88be6674488dc0b,
+        type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a95e389f6447ac4c88be6674488dc0b, type: 3}

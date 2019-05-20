@@ -7,6 +7,7 @@ public class Player : StateMachine
     //Attributes
     [HideInInspector] public MeshRenderer Renderer;
     [HideInInspector] public PhysicsComponent PhysComp;
+    [HideInInspector] public Rigidbody rigid;
 
 
     [SerializeField] private float mouseSensitivity;
@@ -40,6 +41,7 @@ public class Player : StateMachine
         Renderer = GetComponent<MeshRenderer>();
         rayCaster = GetComponent<RayCasterCapsule>();
         PhysComp = GetComponent<PhysicsComponent>();
+        rigid = GetComponent<Rigidbody>();
 
         lastDash = Vector3.zero;
         
