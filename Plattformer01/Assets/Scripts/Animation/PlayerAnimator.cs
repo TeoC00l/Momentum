@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
 {
+    public GameObject player;
     public Animator anim; //dont change this please.
     public Animator animPrecis;
     public Animator animMoment;
@@ -14,12 +15,15 @@ public class PlayerAnimator : MonoBehaviour
     public bool momentumToggle = false;
     public bool canKinetic = false; //maybe not so nice.
     public string currentMode = "precision";
-    // "precision" "momentum"
+    // "precision" "momentum
+
+    public bool kineticOn = false;
 
     
 
     void Start()
     {
+        //you need to set player in the console.
         anim = GetComponent<Animator>();
         animPrecis = GetComponent<Animator>();
         animMoment = GetComponent<Animator>();
@@ -28,21 +32,31 @@ public class PlayerAnimator : MonoBehaviour
 
     void Update()
     {
-        direction = -Input.GetAxis("Horizontal");
-        speed = Input.GetAxis("Vertical");
-        anim.SetFloat("Speed", speed); //setzero eventually to speed direction etc.
-        anim.SetFloat("Direction", direction);
 
-        if (Input.GetButtonDown("Fire1"))
+        if (player.GetComponent<Player>().GetKineticBatteryActive()){ kineticOn = true; }
+        if (!player.GetComponent<Player>().GetKineticBatteryActive()) { kineticOn = false; }
+
+
+        if (!kineticOn)
         {
-            anim.SetTrigger("Taunt"); //click button
-            //precisionMode(); precision mode shift toggle.
-            momentumToggle = !momentumToggle;
+            direction = -Input.GetAxis("Horizontal");
+            speed = Input.GetAxis("Vertical");
+            anim.SetFloat("Speed", speed); //setzero eventually to speed direction etc.
+            anim.SetFloat("Direction", direction);
 
-            //playSoundClick to show that a mode is changed.
+            modeCentral();
         }
 
-        modeCentral();
+        if (kineticOn)
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                //anim.SetTrigger("Taunt");
+                kineticOn = false;
+                anim.Play("kineticActivate");
+                
+            }
+        }
     }
 
     void modeCentral()

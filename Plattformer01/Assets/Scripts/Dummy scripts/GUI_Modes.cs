@@ -8,6 +8,7 @@ public class GUI_Modes : MonoBehaviour
     public GameObject UIMomentum;
     public GameObject UIKinetic;
 
+
     public GameObject player;
 
     private bool shiftToggled = false;
@@ -45,7 +46,8 @@ public class GUI_Modes : MonoBehaviour
         }
 
         //check if kinetic battery is on or off.
-        if (player.GetComponent<Player>().GetKineticBatteryActive()) { UIKinetic.SetActive(true); }
+        if (player.GetComponent<Player>().GetKineticBatteryActive()) { //if not work. make it public item. and bool which triggers timer instead.
+            UIKinetic.SetActive(true);}
         else { UIKinetic.SetActive(false); }
     }
 }
