@@ -46,11 +46,9 @@ public class GUI_Modes : MonoBehaviour
             UIPrecision.SetActive(false);
             UIKinetic.SetActive(false);
         }
-
-        if (player.GetKineticBatteryActive() == true)
+        else if (player.GetKineticActive() == true)
         {
-            Debug.Log("Kinetic ACtive");
-            UIMomentum.SetActive(false);
+            UIMomentum.SetActive(true);
             UIPrecision.SetActive(false);
             UIKinetic.SetActive(true);
         }

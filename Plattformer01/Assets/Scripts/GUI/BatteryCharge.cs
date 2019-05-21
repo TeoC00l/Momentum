@@ -30,7 +30,7 @@ public class BatteryCharge : MonoBehaviour
 
     void Update()
     {
-        if (playerScript.GetKineticBatteryActive())
+        if (playerScript.GetKineticActive())
         {
             CancelInvoke("DecreaseBar");
             //countdown

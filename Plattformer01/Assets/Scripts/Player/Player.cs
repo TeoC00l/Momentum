@@ -31,8 +31,6 @@ public class Player : StateMachine
     //Kinetic battery related attributes
     [SerializeField] public int kineticTimer;
     [SerializeField] public int divideValue;
-    public bool kineticBatteryActive;
-
 
     // Methods
     protected override void Awake()
@@ -111,11 +109,6 @@ public class Player : StateMachine
     }
 
     //GETTERS AND SETTERS
-    public bool GetKineticBatteryActive()
-    {
-        return kineticBatteryActive;
-    }
-
     public Vector3 GetOldVelocity()
     {
         return oldVelocity;
@@ -130,6 +123,8 @@ public class Player : StateMachine
     { 
         if (GetCurrentStateType() == typeof(KineticBatteryState) || GetCurrentStateType() == typeof(KineticBatteryAirbourneState))
         {
+            Debug.Log("KineticActive");
+
             return true;
         }
         else
