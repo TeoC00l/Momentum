@@ -1413,10 +1413,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8598521227837564997, guid: 39c5a735a2cbbdc4da3e9acf5dfbf1e5,
+        type: 3}
+      propertyPath: states.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8598521227837564997, guid: 39c5a735a2cbbdc4da3e9acf5dfbf1e5,
+        type: 3}
+      propertyPath: states.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: d80cad2596e18294ab53196a6272b68b,
+        type: 2}
     - target: {fileID: 2125694878669176131, guid: 39c5a735a2cbbdc4da3e9acf5dfbf1e5,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39c5a735a2cbbdc4da3e9acf5dfbf1e5, type: 3}

@@ -8,7 +8,7 @@ public class DashGui : MonoBehaviour
     private GameObject dashBar; //the chargebar
     private float FullChargeSize = 0.81f; //where the battery tops off
     private float minChargeSize = 0; //where the battery stops
-    private float growFactor = 0.2f;
+    private float growFactor;
     private Transform GuiDashtransform;
     private Player playerScript;
     private bool stopCharge;
@@ -27,6 +27,7 @@ public class DashGui : MonoBehaviour
         //set to 0 at start 
         GuiDashtransform.localScale = new Vector2(0f, 0f); // width and height
         dashTimerSetValue = dashTimer.GetTimerSetValue();
+        DecreaseThisManyTimes = 10;
     }
 
     // Update is called once per frame
@@ -34,11 +35,13 @@ public class DashGui : MonoBehaviour
     {
         if (dashTimer.IsReady() == false)
         {
+            Debug.Log("ReadyFalse");
             //countdown
             if(fullOnce == true)
             {
                 growFactor = startScale / DecreaseThisManyTimes;
-                GuiDashtransform.localScale = new Vector3(GuiDashtransform.localScale.x, startScale, GuiDashtransform.localScale.z);
+                GuiDashtransform.localScale = new Vector3(0.67f, startScale, 0.78767f);
+                Debug.Log("OriginalScale"+ GuiDashtransform.localScale+ "vs" + new Vector3(GuiDashtransform.localScale.x, startScale, GuiDashtransform.localScale.z) + "growfactor" + growFactor + "dashTimerSetVAlue" + dashTimerSetValue);
               //  guiTimer = 0;
                 fullOnce = false;
 
