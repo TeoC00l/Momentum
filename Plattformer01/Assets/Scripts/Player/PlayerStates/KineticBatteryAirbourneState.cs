@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu(menuName = "Player/KineticBatteryAirbourneState")]
-public class KineticeBatteryAirbourneState : PlayerBaseState
+public class KineticBatteryAirbourneState : PlayerBaseState
 {
     Vector3 input = new Vector3(1, 0, 1);
 
@@ -31,7 +31,6 @@ public class KineticeBatteryAirbourneState : PlayerBaseState
             owner.divideValue = owner.kineticTimer;
             owner.InvokeRepeating("DecreaseVelocity", waitBeforeSliding, slideDecreaseMovementRate);
         }
-        owner.SetKineticActive(true);
     }
 
     public override void HandleFixedUpdate()
@@ -62,7 +61,6 @@ public class KineticeBatteryAirbourneState : PlayerBaseState
             input = owner.transform.forward;
             PhysComp.SetVelocity(input * owner.GetOldVelocity().magnitude);
             ProperlyExitState();
-            owner.SetKineticActive(false);
             owner.SetOldVelocity(Vector3.zero);
             owner.Transition<MomentumAirbourneState>();
         }
