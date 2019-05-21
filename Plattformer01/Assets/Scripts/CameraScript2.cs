@@ -16,12 +16,16 @@ public class CameraScript2 : MonoBehaviour
     [SerializeField] private float shakeAmount;
     [SerializeField] private LayerMask layerMask;
     private RaycastHit hit;
+    private RaycastHit hit2;
     [SerializeField] private float shakeLength;
     private float shakeCounter = 0;
     private bool ray = false;
     private GameObject hitGameObject = null;
     private float hitAgain = 0;
     private PhysicsComponent physComp;
+    private List<MeshRenderer> meshArray = new List<MeshRenderer>();
+    private List<MeshRenderer> newMeshArray = new List<MeshRenderer>();
+    private MeshRenderer specifikMeshRender;
 
     //Methods
     void Start()
@@ -83,6 +87,36 @@ public class CameraScript2 : MonoBehaviour
         transform.position = player.transform.position + cameraPosition;
         player.transform.rotation = transform.rotation;
         player.transform.rotation = Quaternion.Euler(0, player.transform.eulerAngles.y, 0);
+
+        //bool PlayerToCam = Physics.Linecast(player.transform.position, this.gameObject.transform.position,out hit2, layerMask, 0);
+        //Debug.DrawLine(player.transform.position, this.gameObject.transform.position, Color.red, 1);
+        //if (PlayerToCam)
+        //{
+            
+        //    specifikMeshRender = hit2.collider.gameObject.GetComponent<MeshRenderer>();
+            
+        //    if (specifikMeshRender != null)
+        //    {
+        //        Debug.Log(specifikMeshRender);
+        //        meshArray.Add(specifikMeshRender);
+        //        specifikMeshRender.enabled = false;
+        //    }
+        //}
+        //foreach (MeshRenderer R in meshArray)
+        //{
+        //    if(specifikMeshRender == R)
+        //    {
+        //        newMeshArray.Add(R);
+
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("ReENABLED NOOOOW");
+        //        R.enabled = true;
+              
+        //    }
+        //}
+        //meshArray = newMeshArray;
         //ray = Physics.Linecast(player.transform.position, Camera.main.transform.position, layerMask,0);
         //if(ray == true)
         //{
