@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class GUI_Modes : MonoBehaviour
 {
-    public GameObject UIPrecision;
-    public GameObject UIMomentum;
-    public GameObject UIKinetic;
+    private GameObject UIPrecision;
+    private GameObject UIMomentum;
+    private GameObject UIKinetic;
 
-
-    public GameObject player;
-
-    private bool shiftToggled = false;
+    private Player player;
 
     //Location for the cursor
     public Texture2D cursorTexture;
@@ -25,7 +22,7 @@ public class GUI_Modes : MonoBehaviour
         UIPrecision = GameObject.Find("UIPrecision");
         UIMomentum = GameObject.Find("UIMomentum");
         UIKinetic = GameObject.Find("UIKinetic");
-        player = GameObject.Find("Character"); //char names must always be Character
+        player = GameObject.Find("Character").GetComponent<Player>();
 
         //put the GUI's in default orders.
         UIMomentum.SetActive(false);
@@ -37,17 +34,26 @@ public class GUI_Modes : MonoBehaviour
 
     void Update()
     {
-        //since it's pretty much known you can hit shift and it'll switch between each mode nontstop. this method below always works.
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (player.GetPrecisionActive() == true)
         {
-            shiftToggled = !shiftToggled;
-            if (shiftToggled) { UIPrecision.SetActive(false); UIMomentum.SetActive(true); Debug.Log("click s = 1"); }
-            else { UIPrecision.SetActive(true); UIMomentum.SetActive(false); UIKinetic.SetActive(false); } //possibly remove UIKineticsetactive.
+            UIMomentum.SetActive(false);
+            UIPrecision.SetActive(true);
+            UIKinetic.SetActive(false);
+        }
+        else if (player.GetMomentumActive() == true)
+        {
+            UIMomentum.SetActive(true);
+            UIPrecision.SetActive(false);
+            UIKinetic.SetActive(false);
         }
 
-        //check if kinetic battery is on or off.
-        if (player.GetComponent<Player>().GetKineticBatteryActive()) { //if not work. make it public item. and bool which triggers timer instead.
-            UIKinetic.SetActive(true);}
-        else { UIKinetic.SetActive(false); }
+        if (player.GetKineticBatteryActive() == true)
+        {
+            Debug.Log("Kinetic ACtive");
+            UIMomentum.SetActive(false);
+            UIPrecision.SetActive(false);
+            UIKinetic.SetActive(true);
+        }
+
     }
 }

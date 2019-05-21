@@ -16,23 +16,18 @@ public class KineticBatteryState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        owner.kineticBatteryActive = true;
         if (owner.GetOldVelocity() == Vector3.zero)
         {
             owner.SetOldVelocity(PhysComp.GetVelocity());
 
         }
-       
-        if (owner.GetKineticActive() == false)
-        {
-            StopOnce = false;
-            Debug.Log("startSlide");
 
-            owner.kineticTimer = 1000;
-            owner.divideValue = owner.kineticTimer;
-            owner.InvokeRepeating("DecreaseVelocity", waitBeforeSliding, slideDecreaseMovementRate);
-        }
-        owner.SetKineticActive(true);
+        StopOnce = false;
+        Debug.Log("startSlide");
+
+        owner.kineticTimer = 1000;
+        owner.divideValue = owner.kineticTimer;
+        owner.InvokeRepeating("DecreaseVelocity", waitBeforeSliding, slideDecreaseMovementRate);
     }
 
     public override void HandleFixedUpdate()
@@ -50,7 +45,7 @@ public class KineticBatteryState : PlayerBaseState
         }
         if (owner.PhysComp.GroundCheck() == false)
         {
-            owner.Transition<KineticeBatteryAirbourneState>();
+            owner.Transition<KineticBatteryAirbourneState>();
         }
        
     }
@@ -66,7 +61,6 @@ public class KineticBatteryState : PlayerBaseState
             input = owner.transform.forward;
             PhysComp.SetVelocity(input * owner.GetOldVelocity().magnitude);
             ProperlyExitState();
-            owner.SetKineticActive(false);
             owner.SetOldVelocity(Vector3.zero);
             owner.Transition<MomentumState>();
         }
@@ -75,7 +69,6 @@ public class KineticBatteryState : PlayerBaseState
 
     public override void Exit()
     {
-        owner.kineticBatteryActive = false;
         owner.kineticBatteryCooldownTimer.SetTimer();
     }
     private void ProperlyExitState()

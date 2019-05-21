@@ -26,7 +26,6 @@ public class Player : StateMachine
     [SerializeField] private float dashDistance;
     private bool isDashing;
     private bool doubleTap;
-    private bool kineticActive = false;
     private Vector3 oldVelocity = Vector3.zero;
 
     //Kinetic battery related attributes
@@ -44,14 +43,13 @@ public class Player : StateMachine
         rigid = GetComponent<Rigidbody>();
 
         lastDash = Vector3.zero;
-        
+
         base.Awake();
     }
 
     protected override void Update()
     {
         base.Update();
-
         dashCooldownTimer.SubtractTime();
         dashDurationTimer.SubtractTime();
         doubleTapTimer.SubtractTime();
@@ -74,7 +72,7 @@ public class Player : StateMachine
         return input;
     }
 
-    public Vector3  ProcessHorizontalInput()
+    public Vector3 ProcessHorizontalInput()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         Vector3 input = new Vector3(horizontalInput, 0, 0);
@@ -87,7 +85,7 @@ public class Player : StateMachine
 
     public void AddPhysics()
     {
-        PhysComp.SetDirection(ProcessVerticalInput() + (ProcessHorizontalInput() *strafeCoefficient));
+        PhysComp.SetDirection(ProcessVerticalInput() + (ProcessHorizontalInput() * strafeCoefficient));
         PhysComp.AddForces();
     }
 
@@ -95,20 +93,20 @@ public class Player : StateMachine
     {
         if (kineticTimer > 0)
         {
-        //    Debug.Log("BEFORE" + "Player Class" + " this is the Velocity " + PhysComp.GetVelocity() + "this is the magnitude" + PhysComp.GetVelocity().magnitude + "this is the Direction" +PhysComp.GetDirection() +"this is the timer"+ (kineticTimer - 1));
+            //    Debug.Log("BEFORE" + "Player Class" + " this is the Velocity " + PhysComp.GetVelocity() + "this is the magnitude" + PhysComp.GetVelocity().magnitude + "this is the Direction" +PhysComp.GetDirection() +"this is the timer"+ (kineticTimer - 1));
             PhysComp.SetDirection(Vector3.zero);
             Vector3 NewVelocity = PhysComp.GetVelocity() - oldVelocity / oldVelocity.magnitude * kineticBatterySlidePower0Max1Min;
             PhysComp.SetVelocity(NewVelocity);
             kineticTimer -= 1;
- 
-            if (Mathf.Sign(PhysComp.GetVelocity().z) != Mathf.Sign(oldVelocity.z)|| Mathf.Sign(PhysComp.GetVelocity().x) != Mathf.Sign(oldVelocity.x)|| kineticTimer == 0)
+
+            if (Mathf.Sign(PhysComp.GetVelocity().z) != Mathf.Sign(oldVelocity.z) || Mathf.Sign(PhysComp.GetVelocity().x) != Mathf.Sign(oldVelocity.x) || kineticTimer == 0)
             {
                 kineticTimer = 0;
                 //          Debug.Log("Set Too zero" + kineticTimer);
                 PhysComp.SetVelocity(Vector3.zero);
             }
-               
-       //      Debug.Log("Player Class" + " this is the Velocity " + PhysComp.GetVelocity() + "this is the magnitude" + PhysComp.GetVelocity().magnitude);
+
+            //      Debug.Log("Player Class" + " this is the Velocity " + PhysComp.GetVelocity() + "this is the magnitude" + PhysComp.GetVelocity().magnitude);
         }
     }
 
@@ -129,14 +127,15 @@ public class Player : StateMachine
     }
 
     public bool GetKineticActive()
-    {
-
-        return kineticActive;
-    }
-    public void SetKineticActive(bool set)
-    {
-
-        kineticActive = set;
+    { 
+        if (GetCurrentStateType() == typeof(KineticBatteryState) || GetCurrentStateType() == typeof(KineticBatteryAirbourneState))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public bool GetMomentumActive()
@@ -150,6 +149,19 @@ public class Player : StateMachine
             return false;
         }
     }
+
+    public bool GetPrecisionActive()
+    {
+        if (GetCurrentStateType() == typeof(PrecisionState) || GetCurrentStateType() == typeof(PrecisionAirbourneState))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 
 
 
