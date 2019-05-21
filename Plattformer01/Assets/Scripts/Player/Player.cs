@@ -40,8 +40,6 @@ public class Player : StateMachine
         PhysComp = GetComponent<PhysicsComponent>();
         rigid = GetComponent<Rigidbody>();
 
-        lastDash = Vector3.zero;
-
         base.Awake();
     }
 
@@ -202,5 +200,9 @@ public class Player : StateMachine
         }
     }
 
+    public void SetStrafeCoefficient(float strafeCoefficient)
+    {
+        this.strafeCoefficient = strafeCoefficient;
+    }
    
 }
