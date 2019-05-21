@@ -47,7 +47,7 @@ public class CameraScript2 : MonoBehaviour
         }
         if (ray == true)
         {
-            if (hit.collider.gameObject.tag == "Wall" && hit.collider.gameObject != hitGameObject )
+            if (hit.collider.gameObject.tag == "Floor" && hit.collider.gameObject != hitGameObject )
             {
                 hitGameObject = hit.collider.gameObject;
                 shakeStart = true;
