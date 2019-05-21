@@ -54,14 +54,14 @@ public class Player : StateMachine
         kineticBatteryCooldownTimer.SubtractTime();
     }
 
-    public Vector3 ProcessVerticalInput()
+    public Vector3 ProcessInput()
     {
-        RaycastHit hit = rayCaster.GetCollisionData(Vector3.down, 0.5f);
-        Vector3 velocity = PhysComp.GetVelocity();
         float skinWidth = PhysComp.GetSkinWidth();
+        RaycastHit hit = rayCaster.GetCollisionData(Vector3.down, skinWidth * 2);
         float verticalInput = Input.GetAxisRaw("Vertical");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        Vector3 input = new Vector3(0, 0, verticalInput);
+        Vector3 input = new Vector3(horizontalInput * strafeCoefficient, 0, verticalInput);
         input = Camera.main.transform.rotation * input.normalized;
 
         input = Vector3.ProjectOnPlane(input, hit.normal);
@@ -70,20 +70,10 @@ public class Player : StateMachine
         return input;
     }
 
-    public Vector3 ProcessHorizontalInput()
-    {
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        Vector3 input = new Vector3(horizontalInput, 0, 0);
-        input = Camera.main.transform.rotation * input.normalized;
-
-        input = input.normalized;
-
-        return input;
-    }
 
     public void AddPhysics()
     {
-        PhysComp.SetDirection(ProcessVerticalInput() + (ProcessHorizontalInput() * strafeCoefficient));
+        PhysComp.SetDirection(ProcessInput());
         PhysComp.AddForces();
     }
 
