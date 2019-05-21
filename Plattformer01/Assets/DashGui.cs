@@ -11,7 +11,7 @@ public class DashGui : MonoBehaviour
     private float growFactor;
     private Transform GuiDashtransform;
     private Player playerScript;
-    private bool stopCharge;
+    private bool stopCharge = true;
     private bool fullOnce = true;
     [SerializeField]private Timer dashTimer;
     private float dashTimerSetValue;
@@ -47,7 +47,7 @@ public class DashGui : MonoBehaviour
 
             }
             // GuiDashtransform.localScale = new Vector2(0f, 0f);
-            if (minChargeSize < GuiDashtransform.localScale.x && stopCharge == true)
+            if (minChargeSize < GuiDashtransform.localScale.y && stopCharge == true)
             {
                 stopCharge = true;
                 InvokeRepeating("DecreaseBar", 0f, dashTimerSetValue / DecreaseThisManyTimes);
@@ -77,6 +77,7 @@ public class DashGui : MonoBehaviour
 
         //  GuiDashtransform.localScale = new Vector3(rectTransform.localScale.x, 0.62f, 0);
         GuiDashtransform.localScale -= new Vector3(0f, growFactor, 0);
+        Debug.Log(GuiDashtransform.localScale);
 
     }
 }
