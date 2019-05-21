@@ -10,13 +10,14 @@ public class Teleporter : MonoBehaviour
 
     void Awake()
     {
-        player = GameObject.Find("Character");
+        player = GameObject.FindWithTag("Player");
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player" || other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            Debug.Log("PlayerTeleported dawg");
             droneParent.ResetDrones();
             player.GetComponent<PhysicsComponent>().SetVelocity(Vector3.zero);
             player.GetComponent<Transform>().rotation = locationOut.rotation;

@@ -27,10 +27,15 @@ public class Drone2: StateMachine
 
     public void OnTriggerEnter(Collider other)
     {
-        navMeshAgent.ResetPath();
+        if(other.tag == "Player")
+        {
+            Debug.Log("kill player");
+            navMeshAgent.ResetPath();
 
-        ResetPlayerPosition();
-        droneParent.ResetDrones();
+            ResetPlayerPosition();
+            droneParent.ResetDrones();
+        }
+        
 
     }
 
