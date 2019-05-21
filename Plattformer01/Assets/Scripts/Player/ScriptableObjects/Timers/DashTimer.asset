@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea5fbfabb4686447bd9239b909fcd62, type: 3}
   m_Name: DashTimer
   m_EditorClassIdentifier: 
-  timerSetValue: 2
+  timerSetValue: 0.4
