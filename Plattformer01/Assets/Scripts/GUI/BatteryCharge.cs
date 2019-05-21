@@ -71,7 +71,6 @@ public class BatteryCharge : MonoBehaviour
     private void IncreaseBar()
     {
         
-            Debug.Log("KineticActive2");
         rectTransform.localScale = new Vector3(rectTransform.localScale.x, 0.62f, 0);
         rectTransform.localScale += new Vector3(growFactor, 0f, 0);
         
@@ -79,7 +78,7 @@ public class BatteryCharge : MonoBehaviour
     private void DecreaseBar()
     {
 
-        Debug.Log("KineticActive2");
+
         rectTransform.localScale = new Vector3(rectTransform.localScale.x, 0.62f, 0);
         rectTransform.localScale -= new Vector3(growFactor, 0f, 0);
 
