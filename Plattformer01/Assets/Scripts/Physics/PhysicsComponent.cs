@@ -116,6 +116,16 @@ public class PhysicsComponent : MonoBehaviour
         this.velocity = velocity;
     }
 
+    public void AddVelocity(Vector3 addVelocity)
+    {
+        velocity += addVelocity;
+    }
+
+    public void SubtractVelocity(Vector3 subtractVelocity)
+    {
+        velocity -= subtractVelocity;
+    }
+
     public void SetVelocityMagnitude(float magnitude)
     {
         velocity = velocity.normalized * magnitude;

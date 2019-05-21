@@ -33,8 +33,8 @@ public class PlayerAnimator : MonoBehaviour
     void Update()
     {
 
-        if (player.GetComponent<Player>().GetKineticBatteryActive()){ kineticOn = true; }
-        if (!player.GetComponent<Player>().GetKineticBatteryActive()) { kineticOn = false; }
+        if (player.GetComponent<Player>().GetKineticActive()){ kineticOn = true; }
+        if (!player.GetComponent<Player>().GetKineticActive()) { kineticOn = false; }
 
 
         if (!kineticOn)

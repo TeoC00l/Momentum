@@ -14,11 +14,11 @@ public class Player : StateMachine
     [SerializeField] private float strafeCoefficient;
     [SerializeField] private float kineticBatterySlidePower0Max1Min;
 
-    private RayCasterCapsule rayCaster;
+    public RayCasterCapsule RayCaster;
 
     //Dash related attributes
     [SerializeField] private Vector3 lastDash;
-    [SerializeField] private Timer dashCooldownTimer;
+    public Timer dashCooldownTimer;
     [SerializeField] private Timer dashDurationTimer;
     [SerializeField] private Timer doubleTapTimer;
     public Timer kineticBatteryCooldownTimer;
@@ -31,18 +31,14 @@ public class Player : StateMachine
     //Kinetic battery related attributes
     [SerializeField] public int kineticTimer;
     [SerializeField] public int divideValue;
-    public bool kineticBatteryActive;
-
 
     // Methods
     protected override void Awake()
     {
         Renderer = GetComponent<MeshRenderer>();
-        rayCaster = GetComponent<RayCasterCapsule>();
+        RayCaster = GetComponent<RayCasterCapsule>();
         PhysComp = GetComponent<PhysicsComponent>();
         rigid = GetComponent<Rigidbody>();
-
-        lastDash = Vector3.zero;
 
         base.Awake();
     }
@@ -56,14 +52,14 @@ public class Player : StateMachine
         kineticBatteryCooldownTimer.SubtractTime();
     }
 
-    public Vector3 ProcessVerticalInput()
+    public Vector3 ProcessInput()
     {
-        RaycastHit hit = rayCaster.GetCollisionData(Vector3.down, 0.5f);
-        Vector3 velocity = PhysComp.GetVelocity();
         float skinWidth = PhysComp.GetSkinWidth();
+        RaycastHit hit = RayCaster.GetCollisionData(Vector3.down, skinWidth * 2);
         float verticalInput = Input.GetAxisRaw("Vertical");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        Vector3 input = new Vector3(0, 0, verticalInput);
+        Vector3 input = new Vector3(horizontalInput * strafeCoefficient, 0, verticalInput);
         input = Camera.main.transform.rotation * input.normalized;
 
         input = Vector3.ProjectOnPlane(input, hit.normal);
@@ -72,20 +68,10 @@ public class Player : StateMachine
         return input;
     }
 
-    public Vector3 ProcessHorizontalInput()
-    {
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        Vector3 input = new Vector3(horizontalInput, 0, 0);
-        input = Camera.main.transform.rotation * input.normalized;
-
-        input = input.normalized;
-
-        return input;
-    }
 
     public void AddPhysics()
     {
-        PhysComp.SetDirection(ProcessVerticalInput() + (ProcessHorizontalInput() * strafeCoefficient));
+        PhysComp.SetDirection(ProcessInput());
         PhysComp.AddForces();
     }
 
@@ -110,12 +96,62 @@ public class Player : StateMachine
         }
     }
 
-    //GETTERS AND SETTERS
-    public bool GetKineticBatteryActive()
-    {
-        return kineticBatteryActive;
-    }
+    //public void dash()
+    //{
+    //    //checking for collision to cancel dash
+    //    if (isDashing == true)
+    //    {
+    //        RaycastHit hit = rayCaster.GetCollisionData(lastDash, PhysComp.GetSkinWidth());
 
+    //        if (hit.collider != null)
+    //        {
+    //            PhysComp.SubtractVelocity(lastDash);
+    //            isDashing = false;
+    //        }
+    //    }
+
+    //    //checking for last frame of dash to cancel dash
+    //    if (dashDurationTimer.CheckLastFrame() && isDashing == true)
+    //    {
+    //        PhysComp.SubtractVelocity(lastDash);
+    //        isDashing = false;
+    //    }
+
+    //    //executing dash
+    //    if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
+    //    {
+    //        Vector3 dash = Vector3.zero;
+
+    //        //calculating dash
+    //        if (Input.GetKeyDown(KeyCode.Q))
+    //        {
+    //            dash = Vector3.left * dashDistance * Time.deltaTime;
+    //        }
+
+    //        if (Input.GetKeyDown(KeyCode.E))
+    //        {
+    //            dash = Vector3.right * dashDistance * Time.deltaTime;
+    //        }
+
+    //        RaycastHit hit = rayCaster.GetCollisionData(dash, PhysComp.GetSkinWidth());
+
+    //        //checking for collision to cancel dash
+    //        if (hit.collider != null)
+    //        {
+    //            dash = Vector3.zero;
+    //        }
+
+    //        PhysComp.AddVelocity(dash);
+    //        dashCooldownTimer.SetTimer();
+    //        dashDurationTimer.SetTimer();
+
+    //        isDashing = true;
+
+    //        lastDash = dash;
+    //    }
+    //}
+
+    //GETTERS AND SETTERS
     public Vector3 GetOldVelocity()
     {
         return oldVelocity;
@@ -130,6 +166,8 @@ public class Player : StateMachine
     { 
         if (GetCurrentStateType() == typeof(KineticBatteryState) || GetCurrentStateType() == typeof(KineticBatteryAirbourneState))
         {
+            Debug.Log("KineticActive");
+
             return true;
         }
         else
@@ -162,76 +200,9 @@ public class Player : StateMachine
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //public void Dash()
-    //{
-    //    //Checking for collision to cancel dash
-    //    if (isDashing == true)
-    //    {
-    //        RaycastHit hit = rayCaster.GetCollisionData(lastDash, PhysComp.GetSkinWidth());
-
-    //        if (hit.collider != null)
-    //        {
-    //            PhysComp.SetVelocity -= lastDash;
-    //            isDashing = false;
-    //        }
-    //    }
-
-    //    //Checking for last frame of dash to cancel dash
-    //    if (dashDurationTimer.CheckLastFrame() && isDashing == true)
-    //    {
-    //        PhysComp.velocity -= lastDash;
-    //        isDashing = false;
-    //    }
-
-    //    //Checking for double tap
-    //    if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
-    //    {
-    //        if (doubleTapTimer.IsCountingDown())
-    //        {
-    //            doubleTap = true;
-    //        }
-    //        else
-    //        {
-    //            doubleTapTimer.SetTimer();
-    //        }
-    //    }
-
-    //    //Executing dash
-    //    if (dashCooldownTimer.IsReady() && doubleTap)
-    //    {
-    //        //Calculating dash
-    //        Vector3 dash = ProcessHorizontalInput() * dashDistance * Time.deltaTime;
-    //        RaycastHit hit = rayCaster.GetCollisionData(dash, PhysComp.skinWidth);
-
-    //        //Checking for collision to cancel dash
-    //        if (hit.collider != null)
-    //        {
-    //            dash = Vector3.zero;
-    //        }
-
-    //        PhysComp.velocity += dash;
-    //        dashCooldownTimer.SetTimer();
-    //        dashDurationTimer.SetTimer();
-    //        doubleTapTimer.RestartTimer();
-
-    //        isDashing = true;
-    //        doubleTap = false;
-
-    //        lastDash = dash;
-    //    }
-    //}
-
+    public void SetStrafeCoefficient(float strafeCoefficient)
+    {
+        this.strafeCoefficient = strafeCoefficient;
+    }
+   
 }

@@ -11,6 +11,8 @@ public class MomentumState : PlayerBaseState
     public float jumpMagnitude = 20.0f;
     public float staticFrictionCo = 0.7f;
     public float airResistance = 0.7f;
+    public float strafeCoefficient;
+
 
     //Methods
     public override void Enter()
@@ -21,6 +23,8 @@ public class MomentumState : PlayerBaseState
         PhysComp.SetJumpMagnitude(jumpMagnitude);
         PhysComp.SetStaticFrictionCo(staticFrictionCo);
         PhysComp.SetAirResistance(airResistance);
+        owner.SetStrafeCoefficient(strafeCoefficient);
+
     }
 
     public override void HandleFixedUpdate()
@@ -52,6 +56,11 @@ public class MomentumState : PlayerBaseState
         if (Input.GetKeyDown("space"))
         {
             owner.Transition<JumpState>();
+        }
+
+        if (owner.dashCooldownTimer.IsReady() && (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)))
+        {
+            owner.Transition<DashState>();
         }
     }
 }

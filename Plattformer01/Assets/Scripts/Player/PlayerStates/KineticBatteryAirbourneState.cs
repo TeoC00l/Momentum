@@ -17,7 +17,6 @@ public class KineticBatteryAirbourneState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        owner.kineticBatteryActive = true;
         if(owner.GetOldVelocity() == Vector3.zero)
         {
             owner.SetOldVelocity(PhysComp.GetVelocity());
@@ -68,7 +67,6 @@ public class KineticBatteryAirbourneState : PlayerBaseState
     }
     public override void Exit()
     {
-        owner.kineticBatteryActive = false;
         owner.kineticBatteryCooldownTimer.SetTimer();
     }
     private void ProperlyExitState()

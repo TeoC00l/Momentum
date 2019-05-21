@@ -11,6 +11,7 @@ public class PrecisionState : PlayerBaseState
     public float jumpMagnitude;
     public float staticFrictionCo;
     public float airResistance;
+    public float strafeCoefficient;
 
     //Methods
     public override void Enter()
@@ -21,6 +22,7 @@ public class PrecisionState : PlayerBaseState
         PhysComp.SetJumpMagnitude(jumpMagnitude);
         PhysComp.SetStaticFrictionCo(staticFrictionCo);
         PhysComp.SetAirResistance(airResistance);
+        owner.SetStrafeCoefficient(strafeCoefficient);
     }
 
     public override void HandleFixedUpdate()
@@ -47,6 +49,11 @@ public class PrecisionState : PlayerBaseState
         if (Input.GetKeyDown("space"))
         {
             owner.Transition<JumpState>();
+        }
+
+        if (owner.dashCooldownTimer.IsReady() && (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)))
+        {
+            owner.Transition<DashState>();
         }
     }
 }
