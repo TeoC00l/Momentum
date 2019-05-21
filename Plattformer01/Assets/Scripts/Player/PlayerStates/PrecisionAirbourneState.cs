@@ -27,12 +27,10 @@ public class PrecisionAirbourneState : PrecisionState
     public override void HandleUpdate()
     {
         //Checking for conditions to change state
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             owner.Transition<MomentumAirbourneState>();
         }
-
-
     }
 
 }

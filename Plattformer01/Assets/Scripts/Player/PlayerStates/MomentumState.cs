@@ -53,5 +53,10 @@ public class MomentumState : PlayerBaseState
         {
             owner.Transition<JumpState>();
         }
+
+        if (owner.dashCooldownTimer.IsReady() && (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)))
+        {
+            owner.Transition<DashState>();
+        }
     }
 }
