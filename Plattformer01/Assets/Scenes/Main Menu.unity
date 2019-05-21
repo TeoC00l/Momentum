@@ -1160,16 +1160,13 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "MOMENTUM GAMETEST: CONTROLS\n\n\nW: Accelerate Forwards\nS: Brake/Accelerate
-    Backwards\nA or D: Double tap for a sideways strafe dash\n\nLeft Shift: Toggle
-    Precision/Momentum modes.\n\nPrecision Mode enables better fine control, at the
-    expense of max speed.\n\nMomentum Mode has a higher max speed, which means you
-    can jump off ramps like crazy, but changing direction becomes more difficult.\n\nUse
-    a combination of both to get through the levels, and don't get caught by the killer
-    drones.\n\n\nLeft Mouse Button (Momentum Mode Only): Kinetic Battery\nKinetic
+    Backwards\nA or D While Accelerating: Tilt acceleration left/right\n\nLeft Shift:
+    Hold for precision mode\n\n(Only supposed to work in level 2, unlocking not yet
+    implemented.)\nLeft Mouse Button (Momentum Mode Only): Kinetic Battery\n\nKinetic
     Battery can be enabled after building up speed in momentum mode.\nOn the first
     click, you activate the battery and freeze in place, instantly standing still.\nOn
     the second click, you instantly regain all your speed, redirected towards wherever
-    you're facing. Use this to keep your momentum mode speed in sharp turns! \n\nKinetic
+    you're facing. \n\nUse this to keep your momentum mode speed in sharp turns! \n\nKinetic
     battery only works on the ground. It has a cooldown of about 1 second."
 --- !u!222 &2125025384
 CanvasRenderer:
