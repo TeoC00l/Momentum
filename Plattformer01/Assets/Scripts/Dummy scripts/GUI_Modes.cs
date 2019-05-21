@@ -22,7 +22,7 @@ public class GUI_Modes : MonoBehaviour
         UIPrecision = GameObject.Find("UIPrecision");
         UIMomentum = GameObject.Find("UIMomentum");
         UIKinetic = GameObject.Find("UIKinetic");
-        player = GameObject.Find("Character").GetComponent<Player>();
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
 
         //put the GUI's in default orders.
         UIMomentum.SetActive(false);
