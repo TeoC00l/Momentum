@@ -934,11 +934,11 @@ MonoBehaviour:
   mouseSensitivity: 3
   cameraOffset: {x: 0, y: 0, z: 0}
   player: {fileID: 8598521227837565004}
-  shakeAmount: 0.05
+  shakeAmount: 0.005
   layerMask:
     serializedVersion: 2
     m_Bits: 256
-  shakeLength: 0.2
+  shakeLength: 0.1
 --- !u!114 &118448751092166392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1008,7 +1008,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100008, guid: 3743a3612c965384f91cdb64d93fc26a, type: 3}
       propertyPath: m_Name
-      value: AnimatableChar
+      value: AnimationChar
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 3743a3612c965384f91cdb64d93fc26a, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 3743a3612c965384f91cdb64d93fc26a, type: 3}
       propertyPath: m_LocalPosition.x
