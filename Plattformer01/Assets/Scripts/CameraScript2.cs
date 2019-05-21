@@ -83,6 +83,13 @@ public class CameraScript2 : MonoBehaviour
         transform.position = player.transform.position + cameraPosition;
         player.transform.rotation = transform.rotation;
         player.transform.rotation = Quaternion.Euler(0, player.transform.eulerAngles.y, 0);
+        //ray = Physics.Linecast(player.transform.position, Camera.main.transform.position, layerMask,0);
+        //if(ray == true)
+        //{
+        //    Debug.Log("hitcamera");
+        //    Camera.main.transform.position = hit.point;
+        //}
+
     }
     public void ShakeCamera()
     {

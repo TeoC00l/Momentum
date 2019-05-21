@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: KineticBatteryState
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 59c2ba900df577648b535cbe99fbd2a6, type: 2}
-  physComp: {fileID: 0}
+  PhysComp: {fileID: 0}
   rayCaster: {fileID: 0}
-  batteryTimer: 0
   slideDecreaseMovementRate: 0.005
-  waitBeforeSliding: 0.1
+  waitBeforeSliding: 0
