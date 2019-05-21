@@ -366,8 +366,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 78a2a135021d65044ac2453ec373976b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.078
-  m_Pitch: 1
+  m_Volume: 0.019
+  m_Pitch: 1.01
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -1202,6 +1202,26 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 8f3d6d9258e01914b903977d3e73f30b, type: 2}
+    - target: {fileID: 13700000, guid: 3743a3612c965384f91cdb64d93fc26a, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8a824181723c75a4bb23a9f7f0f27502, type: 2}
+    - target: {fileID: 13700000, guid: 3743a3612c965384f91cdb64d93fc26a, type: 3}
+      propertyPath: m_Materials.Array.data[7]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8a824181723c75a4bb23a9f7f0f27502, type: 2}
+    - target: {fileID: 13700000, guid: 3743a3612c965384f91cdb64d93fc26a, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8a824181723c75a4bb23a9f7f0f27502, type: 2}
+    - target: {fileID: 13700000, guid: 3743a3612c965384f91cdb64d93fc26a, type: 3}
+      propertyPath: m_Materials.Array.data[8]
+      value: 
+      objectReference: {fileID: 2100000, guid: f9bc87ecc8e302d4089748fbe9636d71, type: 2}
+    - target: {fileID: 13700000, guid: 3743a3612c965384f91cdb64d93fc26a, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 71ca473af40891c4c8bb8a4e38d65c7b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3743a3612c965384f91cdb64d93fc26a, type: 3}
 --- !u!4 &118448750137546525 stripped
