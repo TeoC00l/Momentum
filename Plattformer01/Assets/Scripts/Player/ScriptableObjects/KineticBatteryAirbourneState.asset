@@ -15,5 +15,5 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 3772ef3975751134fb2165b6b3ddef10, type: 2}
   PhysComp: {fileID: 0}
   rayCaster: {fileID: 0}
-  slideDecreaseMovementRate: 0
+  slideDecreaseMovementRate: 0.005
   waitBeforeSliding: 0
