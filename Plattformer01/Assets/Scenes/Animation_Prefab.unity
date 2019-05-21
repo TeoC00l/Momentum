@@ -1191,5 +1191,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: d008cf7ed1026dd409c7739589f4450a,
         type: 2}
+    - target: {fileID: 7650464876027170936, guid: de4b9cf1b0ebb4a40ac7864f9420fe30,
+        type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 7650464876027170936, guid: de4b9cf1b0ebb4a40ac7864f9420fe30,
+        type: 3}
+      propertyPath: shakeAmount
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7650464876027170936, guid: de4b9cf1b0ebb4a40ac7864f9420fe30,
+        type: 3}
+      propertyPath: shakeLength
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de4b9cf1b0ebb4a40ac7864f9420fe30, type: 3}
