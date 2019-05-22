@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 9d68c5cd3790310408c6d1b9d8b59722
+=======
+guid: 4fc1d79a2a2b39648bbe99291ea5090f
+>>>>>>> parent of 8c40c33... Revert "WIP ya bish"
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
