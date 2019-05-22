@@ -21,7 +21,7 @@ public class GUIKineticArrow : MonoBehaviour
     {
         if(playerScript.GetKineticActive() == true)
         {
-            Debug.Log("true");
+
             this.gameObject.SetActive(true);
         }
         else
