@@ -17,6 +17,36 @@ MonoBehaviour:
   - {fileID: 114882102055354182}
   - {fileID: 114500116318334992}
   - {fileID: 114352322378156396}
+  - {fileID: 114751172895901156}
+  - {fileID: 114046774869896854}
+--- !u!114 &114046774869896854
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65e486e4de6e5448a8fbb43dc8756a0, type: 3}
+  m_Name: Grain
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  colored:
+    overrideState: 1
+    value: 1
+  intensity:
+    overrideState: 1
+    value: 0.1
+  size:
+    overrideState: 0
+    value: 1
+  lumContrib:
+    overrideState: 0
+    value: 0.8
 --- !u!114 &114352322378156396
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -39,7 +69,7 @@ MonoBehaviour:
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.139
+    value: 0.2
   fastMode:
     overrideState: 1
     value: 1
@@ -66,8 +96,8 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   color:
-    overrideState: 0
-    value: {r: 0, g: 0, b: 0, a: 1}
+    overrideState: 1
+    value: {r: 0.13459663, g: 0, b: 0.2924528, a: 1}
   ambientOnly:
     overrideState: 0
     value: 1
@@ -92,6 +122,43 @@ MonoBehaviour:
   quality:
     overrideState: 0
     value: 2
+--- !u!114 &114751172895901156
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3f6f3f7c722b4544b97e3c75840aa33, type: 3}
+  m_Name: AutoExposure
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  filtering:
+    overrideState: 0
+    value: {x: 50, y: 95}
+  minLuminance:
+    overrideState: 0
+    value: 0
+  maxLuminance:
+    overrideState: 0
+    value: 0
+  keyValue:
+    overrideState: 0
+    value: 1
+  eyeAdaptation:
+    overrideState: 0
+    value: 0
+  speedUp:
+    overrideState: 0
+    value: 2
+  speedDown:
+    overrideState: 0
+    value: 1
 --- !u!114 &114870239908847146
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -110,10 +177,10 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 10
+    value: 3
   threshold:
     overrideState: 1
-    value: 1
+    value: 1.1
   softKnee:
     overrideState: 1
     value: 0.5
@@ -122,13 +189,13 @@ MonoBehaviour:
     value: 65472
   diffusion:
     overrideState: 1
-    value: 2.42
+    value: 4
   anamorphicRatio:
     overrideState: 1
-    value: 0
+    value: -1
   color:
-    overrideState: 0
-    value: {r: 1, g: 1, b: 1, a: 1}
+    overrideState: 1
+    value: {r: 0.7487254, g: 0.3726415, b: 1, a: 1}
   fastMode:
     overrideState: 0
     value: 0
@@ -166,7 +233,7 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0
+    value: 0.2
   smoothness:
     overrideState: 1
     value: 0.2
@@ -175,7 +242,7 @@ MonoBehaviour:
     value: 1
   rounded:
     overrideState: 1
-    value: 0
+    value: 1
   mask:
     overrideState: 0
     value: {fileID: 0}
