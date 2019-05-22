@@ -166,8 +166,6 @@ public class Player : StateMachine
     { 
         if (GetCurrentStateType() == typeof(KineticBatteryState) || GetCurrentStateType() == typeof(KineticBatteryAirbourneState))
         {
-            Debug.Log("KineticActive");
-
             return true;
         }
         else
