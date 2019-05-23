@@ -543,6 +543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashTimer: {fileID: 11400000, guid: 98e33c3e28c36c5468189f8bc6520da1, type: 2}
+  dashDurationTimer: {fileID: 11400000, guid: 2695f0a10817c334c838b06b94b9d82a, type: 2}
 --- !u!1 &4325330765066384165
 GameObject:
   m_ObjectHideFlags: 0
