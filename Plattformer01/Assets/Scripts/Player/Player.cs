@@ -27,11 +27,15 @@ public class Player : StateMachine
     private bool isDashing;
     private bool doubleTap;
     private bool neutralizeInput = false;
-    private Vector3 oldVelocity = Vector3.zero;
 
     //Kinetic battery related attributes
     [SerializeField] public int kineticTimer;
     [SerializeField] public int divideValue;
+    private bool stopKineticSlide = false;
+    private bool currentlySliding = false;
+    private Vector3 oldVelocity = Vector3.zero;
+
+
 
     //Rotation To surface (TEST)
     private Vector3 forwardRelativeToSurfaceNormal;
@@ -93,10 +97,15 @@ public class Player : StateMachine
             PhysComp.SetVelocity(NewVelocity);
             kineticTimer -= 1;
 
-            if (PhysComp.GetVelocity().magnitude < 2f || kineticTimer == 0)
+            if (PhysComp.GetVelocity().magnitude < 2f && GetStopKineticSlide() == false || kineticTimer == 0 && GetStopKineticSlide() == false)
             {
+                Debug.Log("SET ZERO");
+                SetStopKineticSlide(true);
+                SetCurrentlySliding(true);
                 kineticTimer = 0;
-                PhysComp.SetVelocity(Vector3.zero);
+             //   PhysComp.SetVelocity(Vector3.zero);
+                CancelInvoke("DecreaseVelocity");
+
             }
         }
     }
@@ -211,5 +220,22 @@ public class Player : StateMachine
     {
         this.neutralizeInput = set;
     }
-   
+    public bool GetStopKineticSlide()
+    {
+        return stopKineticSlide;
+    }
+    public void SetStopKineticSlide(bool set)
+    {
+        this.stopKineticSlide = set;
+    }
+    public bool GetCurrentlySliding()
+    {
+        return currentlySliding;
+    }
+    public void SetCurrentlySliding(bool set)
+    {
+        this.currentlySliding = set;
+    }
+
+
 }

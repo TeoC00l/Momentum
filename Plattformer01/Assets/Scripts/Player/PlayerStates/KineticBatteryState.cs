@@ -8,7 +8,7 @@ public class KineticBatteryState : PlayerBaseState
     //Attributes
     Vector3 input = new Vector3(1,0,1);
 
-    bool StopOnce;
+    
     bool getOutofState;
     [SerializeField]private float slideDecreaseMovementRate;
     [SerializeField]private float waitBeforeSliding;
@@ -22,29 +22,36 @@ public class KineticBatteryState : PlayerBaseState
 
         }
 
-        StopOnce = false;
-        Debug.Log("startSlide");
-
-        owner.kineticTimer = 1000;
-        owner.divideValue = owner.kineticTimer;
-        owner.InvokeRepeating("DecreaseVelocity", waitBeforeSliding, slideDecreaseMovementRate);
+        if (owner.GetCurrentlySliding() == false)
+        {
+            owner.SetStopKineticSlide(false);
+            Debug.Log("startSlide");
+            owner.kineticTimer = 100;
+            owner.divideValue = owner.kineticTimer;
+            owner.InvokeRepeating("DecreaseVelocity", waitBeforeSliding, slideDecreaseMovementRate);
+        }
     }
 
     public override void HandleFixedUpdate()
     {
-        if (StopOnce == false)
+        if (owner.GetStopKineticSlide() == false)
         {
             owner.PhysComp.AddForces();
             owner.PhysComp.CollisionCalibration();
         }
+        if (PhysComp.GetVelocity() == Vector3.zero){
+            owner.SetStopKineticSlide(true);
 
-        if (PhysComp.GetVelocity() == Vector3.zero && StopOnce == false)
+        }
+
+        if ( owner.GetStopKineticSlide() == true)
         {
-            StopOnce = true;
             owner.CancelInvoke("DecreaseVelocity");
         }
         if (owner.PhysComp.GroundCheck() == false)
         {
+            owner.SetCurrentlySliding(true);
+
             owner.Transition<KineticBatteryAirbourneState>();
         }
        
@@ -56,6 +63,9 @@ public class KineticBatteryState : PlayerBaseState
         getOutofState = Input.GetMouseButtonDown(0);
         if (getOutofState == true)
         {
+            owner.SetCurrentlySliding(false);
+            owner.SetStopKineticSlide(false);
+
             getOutofState = false;
 
             input = owner.transform.forward;

@@ -86,22 +86,7 @@ public class CameraScript2 : MonoBehaviour
 
         //   transform.position = player.transform.position + cameraPosition;
         //   transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 5);
-        if (Physics.Raycast(player.transform.position,Vector3.down, out hit2,2f, layerMask) && hit2.collider.tag == "Ramp")
-        {
-         //   transform.LookAt(player.transform.position);
-
-       //     transform.LookAt = Quaternion.Slerp(transform.rotation, transform.rotation , 50f * Time.deltaTime);
-
-            Debug.Log("notON RAMP");
-        }
-        else
-        {
-           
-            Debug.Log("transform position");
-            //transform.rotation = rotation;
-
-
-        }
+     
       
         transform.rotation = rotation;
 
