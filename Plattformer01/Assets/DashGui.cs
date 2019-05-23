@@ -66,6 +66,7 @@ public class DashGui : MonoBehaviour
         }
         else
         {
+            stopCharge = true;
             fullOnce = true;
             GuiDashtransform.localScale = new Vector3(GuiDashtransform.localScale.x, 0f, GuiDashtransform.localScale.z);
         }

@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8598521227837565002}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &643740428
 SpriteRenderer:
@@ -109,7 +109,7 @@ Transform:
   m_LocalScale: {x: 0.81, y: 0.98, z: 1}
   m_Children: []
   m_Father: {fileID: 8598521227837565002}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 79.998, y: 0, z: 0}
 --- !u!212 &1504633138
 SpriteRenderer:
@@ -352,7 +352,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8598521227837565002}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &3438747015854662224
 AudioSource:
@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 2125694878669176130}
   - component: {fileID: 2079304823248906744}
   m_Layer: 10
-  m_Name: New Sprite
+  m_Name: DashBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -476,11 +476,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2125694878669176128}
   m_LocalRotation: {x: 0.10756746, y: 0.10756746, z: -0.69887716, w: 0.69887716}
-  m_LocalPosition: {x: 0, y: -0.75, z: -0.614}
-  m_LocalScale: {x: 0.67, y: 0, z: 0.78767}
+  m_LocalPosition: {x: 0, y: -0.7500182, z: -0.6140137}
+  m_LocalScale: {x: 0.6700003, y: 0.06, z: 0.78767014}
   m_Children: []
-  m_Father: {fileID: 2125694879464523438}
-  m_RootOrder: 0
+  m_Father: {fileID: 8598521227837565002}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 17.5, y: 0, z: -90}
 --- !u!212 &2125694878669176130
 SpriteRenderer:
@@ -543,37 +543,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashTimer: {fileID: 11400000, guid: 98e33c3e28c36c5468189f8bc6520da1, type: 2}
---- !u!1 &2125694879464523439
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2125694879464523438}
-  m_Layer: 10
-  m_Name: DashBar
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2125694879464523438
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2125694879464523439}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2125694878669176131}
-  m_Father: {fileID: 8598521227837565002}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4325330765066384165
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,10 +780,10 @@ Transform:
   - {fileID: 8598521227926776014}
   - {fileID: 4325330765066384164}
   - {fileID: 4325330766349104660}
-  - {fileID: 2125694879464523438}
   - {fileID: 643740427}
   - {fileID: 1504633136}
   - {fileID: 8431709588644676321}
+  - {fileID: 2125694878669176131}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
