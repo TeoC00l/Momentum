@@ -34,11 +34,10 @@ public class KineticBatteryAirbourneState : PlayerBaseState
 
     public override void HandleFixedUpdate()
     {
-        if (StopOnce == false)
-        {
+        
             owner.PhysComp.AddForces();
             owner.PhysComp.CollisionCalibration();
-        }
+        
 
         if (PhysComp.GetVelocity() == Vector3.zero && StopOnce == false)
         {

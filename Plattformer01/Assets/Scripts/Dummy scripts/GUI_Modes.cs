@@ -19,9 +19,9 @@ public class GUI_Modes : MonoBehaviour
     void Start()
     {
         //Get UI elements. If not Drag and drop from scene.
-        UIPrecision = GameObject.Find("UIPrecision");
-        UIMomentum = GameObject.Find("UIMomentum");
-        UIKinetic = GameObject.Find("UIKinetic");
+        UIPrecision = GameObject.Find("Precision_Mode");
+        UIMomentum = GameObject.Find("Momentum_Mode");
+        UIKinetic = GameObject.Find("KineticText");
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
 
         //put the GUI's in default orders.
