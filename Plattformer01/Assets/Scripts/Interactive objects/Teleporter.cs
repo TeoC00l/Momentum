@@ -6,7 +6,6 @@ public class Teleporter : MonoBehaviour
 {
     private GameObject player;
     [SerializeField] private Transform locationOut;
-    [SerializeField] private DroneParent droneParent;
 
     void Awake()
     {
@@ -18,7 +17,6 @@ public class Teleporter : MonoBehaviour
         if (other.gameObject.tag == "Player" || other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             Debug.Log("PlayerTeleported dawg");
-            droneParent.ResetDrones();
             player.GetComponent<PhysicsComponent>().SetVelocity(Vector3.zero);
             player.GetComponent<Transform>().rotation = locationOut.rotation;
             player.GetComponent<Transform>().position = locationOut.position;

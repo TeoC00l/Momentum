@@ -14,10 +14,8 @@ public class Repulsor : StateMachine
 
     protected override void Awake()
     {
-
         Renderer = GetComponentsInChildren<MeshRenderer>();
         base.Awake();
-
     }
     public void ChangeSizeOfForceField()
     {

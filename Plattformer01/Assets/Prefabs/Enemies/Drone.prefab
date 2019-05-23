@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 7245279164220387268}
   m_Layer: 12
   m_Name: Drone
-  m_TagString: Untagged
+  m_TagString: Drone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,9 +189,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   player: {fileID: 0}
-  checkPoint: {fileID: 0}
   spawnPoint: {fileID: 0}
-  droneParent: {fileID: 0}
   detectionDistance: 30
 --- !u!195 &4929650151860492417
 NavMeshAgent:
@@ -506,6 +504,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4929650151860492416}
     m_Modifications:
+    - target: {fileID: 100000, guid: 82b996532dd77d143845594cb3e6bb1a, type: 3}
+      propertyPath: m_Name
+      value: drone_front
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 82b996532dd77d143845594cb3e6bb1a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -562,10 +564,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1222.8754
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 82b996532dd77d143845594cb3e6bb1a, type: 3}
-      propertyPath: m_Name
-      value: drone_front
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 82b996532dd77d143845594cb3e6bb1a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -585,6 +583,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1162346202976557389}
     m_Modifications:
+    - target: {fileID: 100000, guid: dcd9e87adbc10764eb16af10d695f595, type: 3}
+      propertyPath: m_Name
+      value: drone_backpart
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dcd9e87adbc10764eb16af10d695f595, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -640,10 +642,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: dcd9e87adbc10764eb16af10d695f595, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.0886885
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: dcd9e87adbc10764eb16af10d695f595, type: 3}
-      propertyPath: m_Name
-      value: drone_backpart
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: dcd9e87adbc10764eb16af10d695f595, type: 3}
       propertyPath: m_Materials.Array.data[0]

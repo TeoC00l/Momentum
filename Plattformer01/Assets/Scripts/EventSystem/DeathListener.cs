@@ -5,20 +5,31 @@ using UnityEngine;
 public class DeathListener : MonoBehaviour
 {
     //Attributes
-    [SerializeField] private GameObject player;
-    [SerializeField] private GameObject spawn;
+    Drone2[] drones;
 
     //Methods
     void Start()
     {
-        EventSystem.Current.RegisterListener(EVENT_TYPE.UNIT_DIED, OnUnitDied);
+        drones = FindObjectsOfType(typeof(Drone2)) as Drone2[];
+
+        EventSystem.Current.RegisterListener(EVENT_TYPE.PLAYER_DIED, OnPlayerDied);
+        EventSystem.Current.RegisterListener(EVENT_TYPE.PLAYER_DIED, ResetDrones);
     }
 
-    void OnUnitDied (EventInfo eventInfo)
+    void OnPlayerDied (EventInfo eventInfo)
     {
         DieEvent unitDeathEventInfo = (DieEvent)eventInfo;
         Debug.Log("Alerted about unit death: " + unitDeathEventInfo.UnitGameObject.name);
-        Instantiate(player, spawn.transform);
+        unitDeathEventInfo.UnitGameObject.GetComponent<Health>().Respawn();
     }
+
+    void ResetDrones(EventInfo eventInfo)
+    {
+        foreach (Drone2 drone in drones)
+        {
+            drone.Respawn();
+        }
+    }
+
 }
 

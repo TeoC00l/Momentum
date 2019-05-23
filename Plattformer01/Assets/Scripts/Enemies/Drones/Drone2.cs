@@ -11,17 +11,17 @@ public class Drone2: StateMachine
 
     public LayerMask visionMask;
     public Player player;
-    public GameObject checkPoint;
     public GameObject spawnPoint;
-    public DroneParent droneParent;
     public float detectionDistance;
+
+    private Health playerHealth;
 
     //Methods
     protected override void Awake()
     {
+        player = FindObjectOfType(typeof(Player)) as Player;
         navMeshAgent = GetComponent<NavMeshAgent>();
-        droneParent = GetComponentInParent<DroneParent>();
-
+        playerHealth = player.GetComponent<Health>();
         base.Awake();
     }
 
@@ -29,26 +29,15 @@ public class Drone2: StateMachine
     {
         if(other.tag == "Player")
         {
-            Debug.Log("kill player");
+            Debug.Log("Player was killed by" + gameObject.name);
             navMeshAgent.ResetPath();
-
-            ResetPlayerPosition();
-            droneParent.ResetDrones();
+            playerHealth.Die();
         }
-        
-
     }
 
-    public void ResetDronePosition()
+    public void Respawn()
     {
-        transform.position = spawnPoint.transform.position;
-        navMeshAgent.isStopped = true;
-        navMeshAgent.velocity = Vector3.zero;
-        Transition<DroneIdleState>();
-    }
-
-    public void ResetPlayerPosition()
-    {
-        player.transform.position = checkPoint.transform.position;
+        gameObject.transform.position = spawnPoint.transform.position;
+        TransitionBack();
     }
 }

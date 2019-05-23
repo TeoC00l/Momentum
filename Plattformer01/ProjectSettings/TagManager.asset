@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Floor
   - Canvas
+  - Wall
+  - Drone
   layers:
   - Default
   - TransparentFX

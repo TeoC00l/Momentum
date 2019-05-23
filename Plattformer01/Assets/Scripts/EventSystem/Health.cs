@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    // Update is called once per frame
-    void Update()
+    private GameObject checkPoint;
+
+    public void Start()
     {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            Die();
-        }
+        checkPoint = GameObject.Find("StartPoint");
     }
 
-    void Die()
+    public void Die()
     {
         DieEvent udei = new DieEvent();
         udei.EventDescription = "Unit " + gameObject.name + " has died.";
         udei.UnitGameObject = gameObject;
 
-        EventSystem.Current.FireEvent(EVENT_TYPE.UNIT_DIED, udei);
+        EventSystem.Current.FireEvent(EVENT_TYPE.PLAYER_DIED, udei);
+    }
 
-        Destroy(gameObject);
+    public void Respawn()
+    {
+        gameObject.transform.position = checkPoint.transform.position;
     }
 }
 

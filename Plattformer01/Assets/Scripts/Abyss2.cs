@@ -10,17 +10,12 @@ public class Abyss2 : MonoBehaviour
 
     private void Start()
     {
-        //player = GameObject.FindWithTag("Player");
-        //health = GameObject.FindWithTag("Player");
-
+        player = GameObject.FindWithTag("Player");
+        health = player.GetComponent<Health>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        if (other == player)
-        {
-            //player.Health.Die();
-            //Destroy(player);
-        }
+        health.Die();
     }
 }
