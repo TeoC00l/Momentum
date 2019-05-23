@@ -27,10 +27,17 @@ public class PhysicsComponent : MonoBehaviour
 
     public void AddForces()
     {
-        Vector3 gravity = Calculations2.CalculateGravity(gravitationalForce);
+       
         velocity = Calculations2.CalculateAcceleration(velocity, direction, acceleration);
-        velocity += gravity;
+        AddGravity();
         velocity = Calculations2.AddAirResistance(velocity, airResistance);
+
+    }
+    public void AddGravity()
+    {
+        Vector3 gravity = Calculations2.CalculateGravity(gravitationalForce);
+        velocity += gravity;
+
     }
 
     public Vector3 MeasureNormalForce()

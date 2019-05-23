@@ -6,14 +6,13 @@ public class KineticBatteryAirbourneState : PlayerBaseState
 {
     Vector3 input = new Vector3(1, 0, 1);
 
-    bool StopOnce;
     bool getOutofState;
+    public float gravitationalForce = 10f;
+
+    private Vector3 zeroExceptForGravity;
     [SerializeField] private float slideDecreaseMovementRate;
     [SerializeField] private float waitBeforeSliding;
-    void Awake()
-    {
-        
-    }
+ 
     public override void Enter()
     {
         base.Enter();
@@ -22,39 +21,50 @@ public class KineticBatteryAirbourneState : PlayerBaseState
             owner.SetOldVelocity(PhysComp.GetVelocity());
         }
 
-        if (owner.GetKineticActive() == false)
+        if (owner.GetCurrentlySliding() == false)
         {
-            StopOnce = false;
+            owner.SetStopKineticSlide(false);
             Debug.Log("startSlide");
-            owner.kineticTimer = 1000;
+            owner.kineticTimer = 100;
             owner.divideValue = owner.kineticTimer;
             owner.InvokeRepeating("DecreaseVelocity", waitBeforeSliding, slideDecreaseMovementRate);
         }
+
     }
 
     public override void HandleFixedUpdate()
     {
-        
-            owner.PhysComp.AddForces();
-            owner.PhysComp.CollisionCalibration();
-        
 
-        if (PhysComp.GetVelocity() == Vector3.zero && StopOnce == false)
+        if (owner.GetStopKineticSlide() == false)
         {
-            StopOnce = true;
+            owner.PhysComp.AddForces();
+        }
+
+        if (PhysComp.GetVelocity() == Vector3.zero && owner.GetStopKineticSlide() == false)
+        {
+            owner.SetStopKineticSlide(true);
             owner.CancelInvoke("DecreaseVelocity");
         }
         if (owner.PhysComp.GroundCheck() == true)
         {
+            owner.SetCurrentlySliding(true);
+
             owner.Transition<KineticBatteryState>();
+        }else if(owner.GetStopKineticSlide() == true)
+        {
+            owner.PhysComp.AddGravity();
+
         }
-       
+        owner.PhysComp.CollisionCalibration();
+
     }
     public override void HandleUpdate()
     {
         getOutofState = Input.GetMouseButtonDown(0);
         if (getOutofState == true)
         {
+            owner.SetCurrentlySliding(false);
+
             getOutofState = false;
             input = owner.transform.forward;
             PhysComp.SetVelocity(input * owner.GetOldVelocity().magnitude);
