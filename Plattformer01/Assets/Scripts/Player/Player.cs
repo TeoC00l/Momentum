@@ -26,6 +26,7 @@ public class Player : StateMachine
     [SerializeField] private float dashDistance;
     private bool isDashing;
     private bool doubleTap;
+    private bool neutralizeInput = false;
     private Vector3 oldVelocity = Vector3.zero;
 
     //Kinetic battery related attributes
@@ -71,7 +72,10 @@ public class Player : StateMachine
 
     public void AddPhysics()
     {
-        PhysComp.SetDirection(ProcessInput());
+        if (neutralizeInput == false)
+        {
+            PhysComp.SetDirection(ProcessInput());
+        }
         PhysComp.AddForces();
     }
 
@@ -85,7 +89,7 @@ public class Player : StateMachine
             PhysComp.SetVelocity(NewVelocity);
             kineticTimer -= 1;
 
-            if (Mathf.Sign(PhysComp.GetVelocity().z) != Mathf.Sign(oldVelocity.z) || Mathf.Sign(PhysComp.GetVelocity().x) != Mathf.Sign(oldVelocity.x) || kineticTimer == 0)
+            if (PhysComp.GetVelocity().magnitude < 2f || kineticTimer == 0)
             {
                 kineticTimer = 0;
                 //          Debug.Log("Set Too zero" + kineticTimer);
@@ -159,7 +163,7 @@ public class Player : StateMachine
 
     public void SetOldVelocity(Vector3 set)
     {
-        oldVelocity = set;
+        this.oldVelocity = set;
     }
 
     public bool GetKineticActive()
@@ -201,6 +205,10 @@ public class Player : StateMachine
     public void SetStrafeCoefficient(float strafeCoefficient)
     {
         this.strafeCoefficient = strafeCoefficient;
+    }
+    public void SetNeutralizeInput(bool set)
+    {
+        this.neutralizeInput = set;
     }
    
 }

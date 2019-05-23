@@ -933,7 +933,7 @@ MonoBehaviour:
   rigid: {fileID: 0}
   mouseSensitivity: 3
   strafeCoefficient: 0.2
-  kineticBatterySlidePower0Max1Min: 0.8
+  kineticBatterySlidePower0Max1Min: 0.6
   RayCaster: {fileID: 0}
   lastDash: {x: 0, y: 0, z: 0}
   dashCooldownTimer: {fileID: 11400000, guid: 98e33c3e28c36c5468189f8bc6520da1, type: 2}
@@ -1134,6 +1134,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8598521227837565002}
     m_Modifications:
+    - target: {fileID: 100008, guid: 3743a3612c965384f91cdb64d93fc26a, type: 3}
+      propertyPath: m_Name
+      value: AnimationChar
+      objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 3743a3612c965384f91cdb64d93fc26a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1189,14 +1193,6 @@ PrefabInstance:
     - target: {fileID: 400008, guid: 3743a3612c965384f91cdb64d93fc26a, type: 3}
       propertyPath: m_LocalScale.z
       value: 7.1636195
-      objectReference: {fileID: 0}
-    - target: {fileID: 100008, guid: 3743a3612c965384f91cdb64d93fc26a, type: 3}
-      propertyPath: m_Name
-      value: AnimationChar
-      objectReference: {fileID: 0}
-    - target: {fileID: 100008, guid: 3743a3612c965384f91cdb64d93fc26a, type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 3743a3612c965384f91cdb64d93fc26a, type: 3}
       propertyPath: m_Controller
