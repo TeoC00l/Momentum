@@ -90,7 +90,7 @@ public class CameraScript2 : MonoBehaviour
       
         transform.rotation = rotation;
 
-        transform.position = Vector3.Lerp(transform.position, player.transform.position + cameraPosition, 50f * Time.deltaTime);
+        transform.position = Vector3.Slerp(transform.position, player.transform.position + cameraPosition, 10f * Time.smoothDeltaTime);
         player.transform.rotation = transform.rotation;
         player.transform.rotation = Quaternion.Euler(0, player.transform.eulerAngles.y, 0);
 
