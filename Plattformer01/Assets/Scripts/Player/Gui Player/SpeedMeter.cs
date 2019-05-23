@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Speed : MonoBehaviour
+public class SpeedMeter : MonoBehaviour
 {
     //Apply the dial textures
     public Texture2D dialTex;
