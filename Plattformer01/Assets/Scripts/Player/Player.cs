@@ -33,6 +33,11 @@ public class Player : StateMachine
     [SerializeField] public int kineticTimer;
     [SerializeField] public int divideValue;
 
+    //Rotation To surface (TEST)
+    private Vector3 forwardRelativeToSurfaceNormal;
+    private RaycastHit hit;
+    private Vector3 surfaceNormal;
+
     // Methods
     protected override void Awake()
     {
@@ -83,7 +88,6 @@ public class Player : StateMachine
     {
         if (kineticTimer > 0)
         {
-            //    Debug.Log("BEFORE" + "Player Class" + " this is the Velocity " + PhysComp.GetVelocity() + "this is the magnitude" + PhysComp.GetVelocity().magnitude + "this is the Direction" +PhysComp.GetDirection() +"this is the timer"+ (kineticTimer - 1));
             PhysComp.SetDirection(Vector3.zero);
             Vector3 NewVelocity = PhysComp.GetVelocity() - oldVelocity / oldVelocity.magnitude * kineticBatterySlidePower0Max1Min;
             PhysComp.SetVelocity(NewVelocity);
@@ -92,14 +96,11 @@ public class Player : StateMachine
             if (PhysComp.GetVelocity().magnitude < 2f || kineticTimer == 0)
             {
                 kineticTimer = 0;
-                //          Debug.Log("Set Too zero" + kineticTimer);
                 PhysComp.SetVelocity(Vector3.zero);
             }
-
-            //      Debug.Log("Player Class" + " this is the Velocity " + PhysComp.GetVelocity() + "this is the magnitude" + PhysComp.GetVelocity().magnitude);
         }
     }
-
+   
     //public void dash()
     //{
     //    //checking for collision to cancel dash

@@ -83,18 +83,41 @@ public class CameraScript2 : MonoBehaviour
         rotationX = Mathf.Clamp(rotationX, -90f, 90f);
         Quaternion rotation = Quaternion.Euler(rotationX, rotationY, 0);
         cameraPosition = rotation * cameraOffset;
+
+        //   transform.position = player.transform.position + cameraPosition;
+        //   transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 5);
+        if (Physics.Raycast(player.transform.position,Vector3.down, out hit2,2f, layerMask) && hit2.collider.tag == "Ramp")
+        {
+         //   transform.LookAt(player.transform.position);
+
+       //     transform.LookAt = Quaternion.Slerp(transform.rotation, transform.rotation , 50f * Time.deltaTime);
+
+            Debug.Log("notON RAMP");
+        }
+        else
+        {
+           
+            Debug.Log("transform position");
+            //transform.rotation = rotation;
+
+
+        }
+      
         transform.rotation = rotation;
-        transform.position = player.transform.position + cameraPosition;
+
+        transform.position = Vector3.Slerp(transform.position, player.transform.position + cameraPosition, 10f * Time.smoothDeltaTime);
         player.transform.rotation = transform.rotation;
         player.transform.rotation = Quaternion.Euler(0, player.transform.eulerAngles.y, 0);
+
+
 
         //bool PlayerToCam = Physics.Linecast(player.transform.position, this.gameObject.transform.position,out hit2, layerMask, 0);
         //Debug.DrawLine(player.transform.position, this.gameObject.transform.position, Color.red, 1);
         //if (PlayerToCam)
         //{
-            
+
         //    specifikMeshRender = hit2.collider.gameObject.GetComponent<MeshRenderer>();
-            
+
         //    if (specifikMeshRender != null)
         //    {
         //        Debug.Log(specifikMeshRender);
@@ -113,7 +136,7 @@ public class CameraScript2 : MonoBehaviour
         //    {
         //        Debug.Log("ReENABLED NOOOOW");
         //        R.enabled = true;
-              
+
         //    }
         //}
         //meshArray = newMeshArray;

@@ -32,6 +32,10 @@ public class MomentumAirbourneState : MomentumState
         {
             owner.Transition<PrecisionAirbourneState>();
         }
+        if (Input.GetMouseButtonDown(0) && owner.kineticBatteryCooldownTimer.IsReady())
+        {
+            owner.Transition<KineticBatteryAirbourneState>();
+        }
 
     }
 }
