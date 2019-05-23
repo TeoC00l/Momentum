@@ -67,9 +67,4 @@ public class DashState : PlayerBaseState
         owner.AddPhysics();
         owner.PhysComp.CollisionCalibration();
     }
-
-    public override void HandleUpdate()
-    {
-
-    }
 }

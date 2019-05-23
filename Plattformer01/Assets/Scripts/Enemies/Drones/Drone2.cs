@@ -37,7 +37,9 @@ public class Drone2: StateMachine
 
     public void Respawn()
     {
+        Transition<DroneIdleState>();
+        navMeshAgent.isStopped = true;
+        navMeshAgent.velocity = Vector3.zero;
         gameObject.transform.position = spawnPoint.transform.position;
-        TransitionBack();
     }
 }
