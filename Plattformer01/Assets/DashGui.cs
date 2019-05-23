@@ -14,7 +14,10 @@ public class DashGui : MonoBehaviour
     private bool stopCharge = true;
     private bool fullOnce = true;
     [SerializeField]private Timer dashTimer;
+    [SerializeField] private Timer dashDurationTimer;
     private float dashTimerSetValue;
+    private float dashDurationTimerSetValue;
+
     private float DecreaseThisManyTimes;
     private float guiTimer;
     private float startScale = 0.2f;
@@ -27,6 +30,7 @@ public class DashGui : MonoBehaviour
         //set to 0 at start 
         GuiDashtransform.localScale = new Vector2(0f, 0f); // width and height
         dashTimerSetValue = dashTimer.GetTimerSetValue();
+        dashDurationTimerSetValue = dashDurationTimer.GetTimerSetValue();
         DecreaseThisManyTimes = 10;
     }
 
@@ -50,7 +54,7 @@ public class DashGui : MonoBehaviour
             if (minChargeSize < GuiDashtransform.localScale.y && stopCharge == true)
             {
                 stopCharge = true;
-                InvokeRepeating("DecreaseBar", 0f, dashTimerSetValue / DecreaseThisManyTimes);
+                InvokeRepeating("DecreaseBar", 0f, (dashTimerSetValue + dashDurationTimerSetValue) / DecreaseThisManyTimes);
             }
             else
             {
