@@ -9,25 +9,34 @@ public class DroneIdleState : DroneBaseState
     public Timer PursuitStartupTimer;
 
     //Methods
-    public override void HandleUpdate()
+    public override void Enter()
     {
+        owner.navMeshAgent.isStopped = true;
+        owner.navMeshAgent.ResetPath();
+        owner.navMeshAgent.velocity = Vector3.zero;
+    }
 
+    public override void HandleFixedUpdate()
+    {
         if (CanSeePlayer())
         {
             if (!PursuitStartupTimer.IsCountingDown())
             {
+                Debug.Log("Player detected by " + owner.name);
                 PursuitStartupTimer.SetTimer();
             }
         }
+    }
 
+    public override void HandleUpdate()
+    {
         if (PursuitStartupTimer.CheckLastFrame())
         {
             owner.Transition<DronePursuitState>();
         }
 
         PursuitStartupTimer.SubtractTime();
-    }
-
+    }      
 }
 
 

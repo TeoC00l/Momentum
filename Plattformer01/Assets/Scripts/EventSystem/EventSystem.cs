@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class EventSystem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     static private EventSystem __Current;
     static public EventSystem Current
     {

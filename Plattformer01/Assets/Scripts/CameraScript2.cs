@@ -142,6 +142,9 @@ public class CameraScript2 : MonoBehaviour
             shakeCounter += Time.deltaTime;
             
     }
+
+    //GETTERS AND SETTERS
+
     public void setShakeStart(bool set)
     {
         shakeStart = set;
@@ -149,6 +152,10 @@ public class CameraScript2 : MonoBehaviour
     public bool getShakeStart()
     {
         return shakeStart;
+    }
+    public void SetYAxisRotation(float rotationY)
+    {
+        this.rotationY = rotationY;
     }
 }
 

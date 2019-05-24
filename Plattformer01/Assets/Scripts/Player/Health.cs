@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    private GameObject checkPoint;
+    //Attributes
+    private Checkpoint checkPoint;
 
+    //Methods
     public void Start()
     {
-        checkPoint = GameObject.Find("StartPoint");
+        checkPoint = GameObject.Find("StartPoint").GetComponent<Checkpoint>();
     }
 
     public void Die()
@@ -22,7 +24,17 @@ public class Health : MonoBehaviour
 
     public void Respawn()
     {
-        gameObject.transform.position = checkPoint.transform.position;
+        checkPoint.SetPlayerPositionHere();
+    }
+
+    //GETTERS AND SETTERS
+    public void SetCheckPoint(Checkpoint checkPoint)
+    {
+        this.checkPoint = checkPoint;
+    }
+    public Checkpoint GetCheckPoint()
+    {
+        return checkPoint;
     }
 }
 

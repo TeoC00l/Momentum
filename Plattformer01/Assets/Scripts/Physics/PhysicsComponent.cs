@@ -26,18 +26,16 @@ public class PhysicsComponent : MonoBehaviour
     }
 
     public void AddForces()
-    {
-       
+    {      
         velocity = Calculations2.CalculateAcceleration(velocity, direction, acceleration);
         AddGravity();
         velocity = Calculations2.AddAirResistance(velocity, airResistance);
-
     }
+
     public void AddGravity()
     {
         Vector3 gravity = Calculations2.CalculateGravity(gravitationalForce);
         velocity += gravity;
-
     }
 
     public Vector3 MeasureNormalForce()
@@ -46,7 +44,6 @@ public class PhysicsComponent : MonoBehaviour
         RaycastHit hit = rayCaster.GetCollisionData(velocity, 0);
         normalForce = Calculations2.CalculateNormalForce(velocity, hit);
         return normalForce;
-
     }
 
     public void CollisionCalibration()

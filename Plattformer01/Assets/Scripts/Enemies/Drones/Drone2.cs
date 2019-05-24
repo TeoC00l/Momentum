@@ -30,7 +30,7 @@ public class Drone2: StateMachine
         if(other.tag == "Player")
         {
             Debug.Log("Player was killed by" + gameObject.name);
-            navMeshAgent.ResetPath();
+            
             playerHealth.Die();
         }
     }
@@ -38,8 +38,6 @@ public class Drone2: StateMachine
     public void Respawn()
     {
         Transition<DroneIdleState>();
-        navMeshAgent.isStopped = true;
-        navMeshAgent.velocity = Vector3.zero;
         gameObject.transform.position = spawnPoint.transform.position;
     }
 }

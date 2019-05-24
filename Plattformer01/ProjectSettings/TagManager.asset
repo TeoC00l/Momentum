@@ -8,6 +8,7 @@ TagManager:
   - Canvas
   - Wall
   - Drone
+  - StartPoint
   layers:
   - Default
   - TransparentFX

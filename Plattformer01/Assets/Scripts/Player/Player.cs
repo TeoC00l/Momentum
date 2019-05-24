@@ -13,6 +13,8 @@ public class Player : StateMachine
     [SerializeField] private float strafeCoefficient;
     [SerializeField] private float kineticBatterySlidePower0Max1Min;
 
+    private Checkpoint checkPoint;
+
     public RayCasterCapsule RayCaster;
 
     //Dash related attributes

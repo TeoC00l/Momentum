@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ea5fbfabb4686447bd9239b909fcd62, type: 3}
-  m_Name: PursuitStartupTimer
+  m_Name: RespawnStateExitTimer
   m_EditorClassIdentifier: 
   timerSetValue: 1
