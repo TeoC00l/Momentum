@@ -467,7 +467,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2125694878669176131
 Transform:
   m_ObjectHideFlags: 0
@@ -759,6 +759,7 @@ GameObject:
   - component: {fileID: 8598521227837565007}
   - component: {fileID: 8598521227837564997}
   - component: {fileID: 8598521227837564996}
+  - component: {fileID: 1766256461}
   m_Layer: 10
   m_Name: Character 1
   m_TagString: Player
@@ -898,6 +899,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9a0c3043727542e4092612d6f61bc3b7, type: 2}
   - {fileID: 11400000, guid: d008cf7ed1026dd409c7739589f4450a, type: 2}
   - {fileID: 11400000, guid: d80cad2596e18294ab53196a6272b68b, type: 2}
+  - {fileID: 11400000, guid: 6d3e1480456e99d4596f37028fdc15d9, type: 2}
   Renderer: {fileID: 0}
   PhysComp: {fileID: 0}
   rigid: {fileID: 0}
@@ -908,12 +910,11 @@ MonoBehaviour:
   lastDash: {x: 0, y: 0, z: 0}
   dashCooldownTimer: {fileID: 11400000, guid: 98e33c3e28c36c5468189f8bc6520da1, type: 2}
   dashDurationTimer: {fileID: 11400000, guid: 2695f0a10817c334c838b06b94b9d82a, type: 2}
-  doubleTapTimer: {fileID: 11400000, guid: 61897d5c84c850d49838e8b0b1f5ca00, type: 2}
-  kineticBatteryCooldownTimer: {fileID: 11400000, guid: ba6dd667adf61774e85551f5839895ca,
-    type: 2}
   dashDistance: 4200
   kineticTimer: 0
   divideValue: 0
+  kineticBatteryCooldownTimer: {fileID: 11400000, guid: ba6dd667adf61774e85551f5839895ca,
+    type: 2}
 --- !u!54 &8598521227837564996
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -930,6 +931,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1766256461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8598521227837565004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41abaa6dde51f68418a95b7ee0c7cb7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8598521227926776013
 GameObject:
   m_ObjectHideFlags: 0

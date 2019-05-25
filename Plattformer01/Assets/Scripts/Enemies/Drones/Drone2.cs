@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Drone2: StateMachine
+public class Drone2 : StateMachine
 {
     //Attributes
     [HideInInspector] public MeshRenderer Renderer;
@@ -11,7 +11,6 @@ public class Drone2: StateMachine
 
     public LayerMask visionMask;
     public Player player;
-    public GameObject spawnPoint;
     public float detectionDistance;
 
     private Health playerHealth;
@@ -27,17 +26,11 @@ public class Drone2: StateMachine
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if (other.tag == "Player")
         {
             Debug.Log("Player was killed by" + gameObject.name);
-            
+
             playerHealth.Die();
         }
-    }
-
-    public void Respawn()
-    {
-        Transition<DroneIdleState>();
-        gameObject.transform.position = spawnPoint.transform.position;
     }
 }

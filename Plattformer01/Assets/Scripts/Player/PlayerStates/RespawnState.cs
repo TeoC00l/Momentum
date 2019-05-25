@@ -13,6 +13,7 @@ public class RespawnState : PlayerBaseState
     {
         RespawnStateExitTimer.SetTimer();
         owner.PhysComp.SetVelocity(Vector3.zero);
+        owner.PhysComp.SetDirection(Vector3.zero);
     }
 
     public override void HandleFixedUpdate()

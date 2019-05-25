@@ -5,12 +5,12 @@ using UnityEngine;
 public class DeathListener : MonoBehaviour
 {
     //Attributes
-    private Drone2[] drones;
+    private DroneSpawn[] droneSpawn;
 
     //Methods
     void Start()
     {
-        drones = FindObjectsOfType(typeof(Drone2)) as Drone2[];
+        droneSpawn = FindObjectsOfType(typeof(DroneSpawn)) as DroneSpawn[];
 
         EventSystem.Current.RegisterListener(EVENT_TYPE.PLAYER_DIED, RespawnPlayer);
         EventSystem.Current.RegisterListener(EVENT_TYPE.PLAYER_DIED, ResetDrones);
@@ -29,7 +29,7 @@ public class DeathListener : MonoBehaviour
 
     void ResetDrones(EventInfo eventInfo)
     {
-        foreach (Drone2 drone in drones)
+        foreach (DroneSpawn drone in droneSpawn)
         {
             drone.Respawn();
         }
