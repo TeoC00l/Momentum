@@ -30,7 +30,7 @@ public class RepulsorField : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (bouncing == false)
+        if (bouncing == false && other.tag == "Player")
         {
             oldScale = transform.localScale;
             CancelInvoke("BouncyRepulors");
