@@ -29,23 +29,26 @@ public class DestructibleObject : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         collidingPhysComp = other.GetComponent<PhysicsComponent>();
-
-        if (collidingPhysComp.GetVelocity().magnitude >= destructionVelocity * Time.deltaTime)
+        if (collidingPhysComp != null)
         {
-            //Particlescript start
-            var obj = Instantiate(explosionEffects, destructibleObject.GetComponent<Transform>().position, Quaternion.identity);
-            obj.AddComponent<ParticleSplash>();
-            //Particlescript stop
+            if (collidingPhysComp.GetVelocity().magnitude >= destructionVelocity * Time.deltaTime)
+            {
+                //Particlescript start
+                var obj = Instantiate(explosionEffects, destructibleObject.GetComponent<Transform>().position, Quaternion.identity);
+                obj.AddComponent<ParticleSplash>();
+                //Particlescript stop
 
-            //spawnDebris();
-            Object.Destroy(destructibleObject);
-            //destructibleObject.GetComponent<Renderer>().enabled = false;
+                //spawnDebris();
+                Object.Destroy(destructibleObject);
+                //destructibleObject.GetComponent<Renderer>().enabled = false;
 
+            }
+            else
+            {
+                destructibleObject.layer = LayerMask.NameToLayer("Scoop");
+            }
         }
-        else
-        {
-            destructibleObject.layer = LayerMask.NameToLayer("Scoop");
-        }
+        
     }
 
 

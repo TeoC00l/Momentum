@@ -53,16 +53,8 @@ public class DashGui : MonoBehaviour
             // GuiDashtransform.localScale = new Vector2(0f, 0f);
             if (minChargeSize < GuiDashtransform.localScale.y && stopCharge == true)
             {
-                stopCharge = true;
-                InvokeRepeating("DecreaseBar", 0f, (dashTimerSetValue + dashDurationTimerSetValue) / DecreaseThisManyTimes);
-            }
-            else
-            {
                 stopCharge = false;
-                GuiDashtransform.localScale = new Vector3(GuiDashtransform.localScale.x, 0f, GuiDashtransform.localScale.z);
-
-                CancelInvoke("DecreaseBar");
-
+                InvokeRepeating("DecreaseBar", 0f, (dashTimerSetValue + dashDurationTimerSetValue) / DecreaseThisManyTimes);
             }
 
 
@@ -70,6 +62,8 @@ public class DashGui : MonoBehaviour
         }
         else
         {
+            CancelInvoke("DecreaseBar");
+
             stopCharge = true;
             fullOnce = true;
             GuiDashtransform.localScale = new Vector3(GuiDashtransform.localScale.x, 0f, GuiDashtransform.localScale.z);
