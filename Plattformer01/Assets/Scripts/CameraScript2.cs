@@ -30,13 +30,18 @@ public class CameraScript2 : MonoBehaviour
     //Methods
     void Start()
     {
-        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         cameraOffset = transform.position - player.transform.position;
         physComp = player.GetComponent<PhysicsComponent>();
     }
 
     void FixedUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            changeCursorLockMode();
+        }
+
         AddRotation();
         if (shakeStart == false)
         {
@@ -141,6 +146,18 @@ public class CameraScript2 : MonoBehaviour
             Camera.main.transform.localPosition -= new Vector3(Random.insideUnitSphere.x * tempShakeAmount, Random.insideUnitSphere.y * tempShakeAmount + 1.78f, 0f);
             shakeCounter += Time.deltaTime;
             
+    }
+
+    public void changeCursorLockMode()
+    {
+        if (Cursor.lockState == CursorLockMode.Confined)
+        {
+        Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     //GETTERS AND SETTERS
