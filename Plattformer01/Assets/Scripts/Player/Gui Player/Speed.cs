@@ -28,7 +28,6 @@ public class Speed : MonoBehaviour
         {
             
             speed = new Vector3(physcomp.GetVelocity().x,0f, physcomp.GetVelocity().z).magnitude;
-            Debug.Log(speed);
             GUI.DrawTexture(new Rect(dialPos.position.x, dialPos.position.y, dialTex.width, dialTex.height), dialTex);
             Vector2 centre = new Vector2(dialPos.position.x + dialTex.width / 2, dialPos.position.y + dialTex.height / 2);
             Matrix4x4 savedMatrix = GUI.matrix;
