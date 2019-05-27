@@ -1,8 +1,8 @@
 ﻿ using UnityEngine;
  using System.Collections;
  using System.Collections.Generic;
- 
- 
+using UnityEngine.SceneManagement;
+
  /// <summary>
  /// High score manager.
  /// Local highScore manager for LeaderboardLength number of entries
@@ -14,9 +14,11 @@
 
 public class HighScoreManager : MonoBehaviour
 {
-
+    private Scene m_Scene;
+    private string sceneName;
     private static HighScoreManager m_instance;
     private const int LeaderboardLength = 10;
+    Dictionary<string, List<Scores>> HighScoreDictionary = new Dictionary<string, List<Scores>>();
 
     public static HighScoreManager _instance
     {
@@ -44,14 +46,17 @@ public class HighScoreManager : MonoBehaviour
 
     public void SaveHighScore(string name, float score)
     {
-        List<Scores> HighScores = new List<Scores>();
+        m_Scene = SceneManager.GetActiveScene();
+        sceneName = m_Scene.name;
+        List<Scores> HighScores = GetHighScore(sceneName);
+
 
         int i = 1;
-        while (i <= LeaderboardLength && PlayerPrefs.HasKey("HighScore" + i + "score"))
+        while (i <= LeaderboardLength && PlayerPrefs.HasKey(sceneName + i + "score"))
         {
             Scores temp = new Scores();
-            temp.score = PlayerPrefs.GetFloat("HighScore" + i + "score");
-            temp.name = PlayerPrefs.GetString("HighScore" + i + "name");
+            temp.score = PlayerPrefs.GetFloat(sceneName + i + "score");
+            temp.name = PlayerPrefs.GetString(sceneName + i + "name");
             HighScores.Add(temp);
             i++;
         }
@@ -84,27 +89,29 @@ public class HighScoreManager : MonoBehaviour
                 }
             }
         }
+      //  HighScoreDictionary.Add(sceneName, HighScores);
 
         i = 1;
         while (i <= LeaderboardLength && i <= HighScores.Count)
         {
-            PlayerPrefs.SetString("HighScore" + i + "name", HighScores[i - 1].name);
-            PlayerPrefs.SetFloat("HighScore" + i + "score", HighScores[i - 1].score);
+            PlayerPrefs.SetString(sceneName + i + "name", HighScores[i - 1].name);
+            PlayerPrefs.SetFloat(sceneName + i + "score", HighScores[i - 1].score);
             i++;
         }
 
     }
 
-    public List<Scores> GetHighScore()
+    public List<Scores> GetHighScore(string sceneName)
     {
+       
         List<Scores> HighScores = new List<Scores>();
 
         int i = 1;
-        while (i <= LeaderboardLength && PlayerPrefs.HasKey("HighScore" + i + "score"))
+        while (i <= LeaderboardLength && PlayerPrefs.HasKey(sceneName + i + "score"))
         {
             Scores temp = new Scores();
-            temp.score = PlayerPrefs.GetFloat("HighScore" + i + "score");
-            temp.name = PlayerPrefs.GetString("HighScore" + i + "name");
+            temp.score = PlayerPrefs.GetFloat(sceneName + i + "score");
+            temp.name = PlayerPrefs.GetString(sceneName + i + "name");
             HighScores.Add(temp);
             i++;
         }
@@ -112,15 +119,15 @@ public class HighScoreManager : MonoBehaviour
         return HighScores;
     }
 
-    public void ClearLeaderBoard()
+    public void ClearLeaderBoard(string sceneName)
     {
         //for(int i=0;i<HighScores.
-        List<Scores> HighScores = GetHighScore();
+        List<Scores> HighScores = GetHighScore(sceneName);
 
         for (int i = 1; i <= HighScores.Count; i++)
         {
-            PlayerPrefs.DeleteKey("HighScore" + i + "name");
-            PlayerPrefs.DeleteKey("HighScore" + i + "score");
+            PlayerPrefs.DeleteKey(sceneName + i + "name");
+            PlayerPrefs.DeleteKey(sceneName + i + "score");
         }
     }
 
