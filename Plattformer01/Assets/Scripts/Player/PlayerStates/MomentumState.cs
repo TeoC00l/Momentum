@@ -31,6 +31,7 @@ public class MomentumState : PlayerBaseState
     {
 
         //Checking for conditions to change state
+
         if (!owner.PhysComp.GroundCheck())
         {
             owner.Transition<MomentumAirbourneState>();

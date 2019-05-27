@@ -84,18 +84,17 @@ public class CameraScript2 : MonoBehaviour
     public void AddRotation()
     {
         rotationY += Input.GetAxisRaw("Mouse X") * mouseSensitivity;
-        rotationX -= Input.GetAxisRaw("Mouse Y") *mouseSensitivity;
+        rotationX -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
         rotationX = Mathf.Clamp(rotationX, -90f, 90f);
         Quaternion rotation = Quaternion.Euler(rotationX, rotationY, 0);
         cameraPosition = rotation * cameraOffset;
 
         //   transform.position = player.transform.position + cameraPosition;
         //   transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 5);
-     
-      
+
         transform.rotation = rotation;
 
-        transform.position = Vector3.Slerp(transform.position, player.transform.position + cameraPosition, 50f * Time.smoothDeltaTime);
+        transform.position =  player.transform.position + cameraPosition;
         player.transform.rotation = transform.rotation;
         player.transform.rotation = Quaternion.Euler(0, player.transform.eulerAngles.y, 0);
 
