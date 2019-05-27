@@ -34,8 +34,12 @@ public class CameraScript2 : MonoBehaviour
         cameraOffset = transform.position - player.transform.position;
         physComp = player.GetComponent<PhysicsComponent>();
     }
-
     void FixedUpdate()
+    {
+        player.transform.rotation = transform.rotation;
+        player.transform.rotation = Quaternion.Euler(0, player.transform.eulerAngles.y, 0);
+    }
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -95,8 +99,8 @@ public class CameraScript2 : MonoBehaviour
         transform.rotation = rotation;
 
         transform.position =  player.transform.position + cameraPosition;
-        player.transform.rotation = transform.rotation;
-        player.transform.rotation = Quaternion.Euler(0, player.transform.eulerAngles.y, 0);
+     //   player.transform.rotation = transform.rotation;
+     //   player.transform.rotation = Quaternion.Euler(0, player.transform.eulerAngles.y, 0);
 
 
 

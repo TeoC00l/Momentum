@@ -77,7 +77,7 @@ public class PhysicsComponent : MonoBehaviour
         RaycastHit hit = rayCaster.GetCollisionData(Vector3.down * groundCheckDistance, skinWidth);
         if (hit.collider != null)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.Cross(transform.right, hit.normal), hit.normal), Time.smoothDeltaTime * 50f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.Cross(transform.right, hit.normal), hit.normal), Time.deltaTime * 50f);
             return true;
         }
         else
