@@ -24,7 +24,6 @@ public class DroneSpawn : MonoBehaviour
 
     void Spawn()
     {
-        Debug.Log("Drone Spawned!");
         activeDrone = Instantiate(dronePrefab, transform.position, transform.rotation);
     }
 }

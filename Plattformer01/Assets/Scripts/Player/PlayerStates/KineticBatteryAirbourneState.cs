@@ -42,6 +42,7 @@ public class KineticBatteryAirbourneState : PlayerBaseState
 
         if (PhysComp.GetVelocity() == Vector3.zero && owner.GetStopKineticSlide() == false)
         {
+            PhysComp.SetVelocity(Vector3.zero);
             owner.SetStopKineticSlide(true);
             owner.CancelInvoke("DecreaseVelocity");
         }

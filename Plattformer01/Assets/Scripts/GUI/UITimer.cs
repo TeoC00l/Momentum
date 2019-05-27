@@ -2,26 +2,39 @@
 using UnityEngine.UI;
 
 public class UITimer : MonoBehaviour
-{	
- public Text TimerText; 
- public bool playing;
- private float Timer;
+{
+    [SerializeField] private Text TimerText; 
+    [SerializeField]private bool playing;
+    private float Timer;
+    private float minutes;
+    private float seconds;
+    private float milliseconds;
 
- void Update () {
+    void Update () {
 
  	if(playing == true){
   
 	  Timer += Time.deltaTime;
-	  int minutes = Mathf.FloorToInt(Timer / 60F);
-	  int seconds = Mathf.FloorToInt(Timer % 60F);
-	  int milliseconds = Mathf.FloorToInt((Timer * 100F) % 100F);
+	  minutes = Mathf.Floor(Timer / 60F);
+	  seconds = Mathf.Floor(Timer % 60F);
+	  milliseconds = Mathf.Floor((Timer * 100F) % 100F);
 	  TimerText.text = minutes.ToString ("00") + ":" + seconds.ToString ("00") + ":" + milliseconds.ToString("00");
-	}
+      Debug.Log(GetTimeAsFloat());
+
+    }
 
   }
     public void SetPlayable(bool set)
     {
         this.playing = set;
+    }
+    public float GetTimeAsFloat()
+    {
+        return ((minutes + (seconds / 100)) + (milliseconds / 10000));
+    }
+    public string goodLookingTimer()
+    {
+        return minutes.ToString("00") + ":" + seconds.ToString("00") + ":" + milliseconds.ToString("00");
     }
 
 }
