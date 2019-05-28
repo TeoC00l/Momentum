@@ -5369,7 +5369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialTex: {fileID: 2800000, guid: 42a754694eec7f6468017eaeab0d9e40, type: 3}
-  needleTex: {fileID: 2800000, guid: 31b57efb56c28d241bb5415f46d0918d, type: 3}
+  needleTex: {fileID: 2800000, guid: 9076e3d9858ae1a44a1f76c8387b793a, type: 3}
   dialPos: {fileID: 1472023265}
   stopAngle: 150
   topSpeedAngle: 390
@@ -5764,7 +5764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kineticGraphics: {fileID: 300569116}
-  kineticArrow: {fileID: 0}
+  kineticArrow: {fileID: 824127278}
 --- !u!1 &1781201388
 GameObject:
   m_ObjectHideFlags: 0
