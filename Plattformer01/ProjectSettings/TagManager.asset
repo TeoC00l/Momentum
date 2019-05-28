@@ -11,6 +11,7 @@ TagManager:
   - StartPoint
   - Ramp
   - NameParent
+  - TextCanvas
   layers:
   - Default
   - TransparentFX
