@@ -34,7 +34,7 @@ public class Speed : MonoBehaviour
             float speedFraction = (speed / topSpeed);
             float needleAngle = Mathf.Lerp(stopAngle, topSpeedAngle, speedFraction);
             GUIUtility.RotateAroundPivot(needleAngle, centre);
-            GUI.DrawTexture(new Rect(centre.x, centre.y - needleTex.height / 2, needleTex.width, needleTex.height), needleTex);
+            GUI.DrawTexture(new Rect(centre.x, centre.y - needleTex.height / 2f, needleTex.width / 1.5f, needleTex.height), needleTex);
             GUI.matrix = savedMatrix;
         }
     }
