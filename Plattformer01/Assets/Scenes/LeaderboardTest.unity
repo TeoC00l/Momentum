@@ -427,6 +427,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f8187a5966b3046be23d600da1eb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Scene2:
+    m_Handle: 1
+  m_Scene3:
+    m_Handle: 2
   buttonImageAddScore: {fileID: 2800000, guid: b2eab1893e7e4de46939652907115d5b, type: 3}
   sciFiFont: {fileID: 12800000, guid: 625f2a18a16faa1449a5aa1172403fda, type: 3}
   ButtonsWidth: 220

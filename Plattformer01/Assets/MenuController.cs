@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    [SerializeField] private Scene m_Scene;
+     private Scene m_Scene;
     [SerializeField] private Scene m_Scene2;
     [SerializeField] private Scene m_Scene3;
 
@@ -32,8 +32,12 @@ public class MenuController : MonoBehaviour
     [SerializeField] private float ButtonsHeight;
     [SerializeField] private float ButtonsXposition;
 
+
     string[] toolbarStrings;
-    int toolbarInt = 0;
+    List<string> toolbarListString;
+    int selGridInt = 0;
+    int sceneCount;
+
 
 
 
@@ -48,12 +52,30 @@ public class MenuController : MonoBehaviour
         sceneName = m_Scene.name;
         highscore = HighScoreManager._instance.GetHighScore(sceneName);
         style.normal.textColor = Color.cyan;
+        sceneCount = UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings;
+        string[] tempToolbarStrings = new string[sceneCount];
+        Debug.Log("this is scene"+sceneCount);
+        int index = 0;
+        for (int i = 0; i < sceneCount; i++)
+        {
+            string nameOfScene = System.IO.Path.GetFileNameWithoutExtension(UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(i));
+            string firstFive = nameOfScene.Substring(0, 5);
+            Debug.Log(firstFive);
 
-        toolbarStrings[0] = m_Scene.name;
-        toolbarStrings[1] = m_Scene2.name;
-        toolbarStrings[2] = m_Scene3.name;
+            if (firstFive == "Level")
+            {
+                tempToolbarStrings[index] = System.IO.Path.GetFileNameWithoutExtension(UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(i));
+                index++;
+            }
+        }
+        toolbarStrings = new string[index];
+        index = 0;
 
-
+        foreach (string s in tempToolbarStrings)
+        {
+            toolbarStrings[index] = s;
+            index++;
+        }
 
 
 
@@ -73,8 +95,14 @@ public class MenuController : MonoBehaviour
 
     void OnGUI()
     {
+        GUILayout.BeginVertical();
+        //  toolbarInt = GUILayout.Toolbar(toolbarInt, toolbarStrings);
+        selGridInt = GUILayout.SelectionGrid(selGridInt, toolbarStrings, 1);
+        GUILayout.EndVertical();
 
-        toolbarInt = GUILayout.Toolbar(toolbarInt, toolbarStrings);
+        sceneName = toolbarStrings[selGridInt];
+        Debug.Log(sceneName + selGridInt);
+        highscore = HighScoreManager._instance.GetHighScore(sceneName);
 
         GUI.skin.button.normal.background = (Texture2D)buttonImageAddScore;
 
@@ -89,7 +117,7 @@ public class MenuController : MonoBehaviour
         score = GUILayout.TextField(score);
         GUILayout.EndHorizontal();
         //  GUI.skin.button = buttonImageAddScore;
-        sceneName = toolbarStrings[toolbarInt];
+      //  sceneName = toolbarStrings[toolbarInt];
         if (GUI.Button(new Rect(ButtonsXposition, 170, ButtonsWidth, ButtonsHeight), content))
         {
             float tempScore = float.Parse(score, CultureInfo.InvariantCulture.NumberFormat);
@@ -130,13 +158,17 @@ public class MenuController : MonoBehaviour
            
             float miliseconds = Mathf.Round((((_score.score - minutes )  * 100)- seconds) * 100);
             // float miliseconds = tempmiliseconds * 10000;
-            Debug.Log(miliseconds);
 
             GUILayout.Label("" + minutes.ToString("00") + ":" + seconds.ToString("00") + ":" + miliseconds.ToString("00"), style, GUILayout.Width(Screen.width / 2));
 
 
             GUILayout.EndHorizontal();
         }
+    }
+    private string[] MakeArray(List<string> list)
+    {
+        string[] tool = list.ToArray();
+        return tool;
     }
    
 
