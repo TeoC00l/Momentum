@@ -27,7 +27,7 @@ public class TransitionToLevelChange : MonoBehaviour
     void Awake()
     {
         player = GameObject.FindWithTag("Player");
-        timer = GameObject.FindWithTag("Canvas").GetComponent<UITimer>();
+        timer = GameObject.FindWithTag("TextCanvas").GetComponent<UITimer>();
         nameParent = GameObject.FindWithTag("NameParent");
         gratsText = GameObject.Find("CongratsText").GetComponent<Text>();
         NameText = nameParent.GetComponentsInChildren<Text>();

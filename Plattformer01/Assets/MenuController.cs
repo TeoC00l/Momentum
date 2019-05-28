@@ -81,12 +81,6 @@ public class MenuController : MonoBehaviour
 
     }
 
-
-    void ButtonClicked(GameObject _obj)
-    {
-        print("Clicked button:" + _obj.name);
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -96,7 +90,6 @@ public class MenuController : MonoBehaviour
     void OnGUI()
     {
         GUILayout.BeginVertical();
-        //  toolbarInt = GUILayout.Toolbar(toolbarInt, toolbarStrings);
         selGridInt = GUILayout.SelectionGrid(selGridInt, toolbarStrings, 1);
         GUILayout.EndVertical();
 
@@ -164,11 +157,6 @@ public class MenuController : MonoBehaviour
 
             GUILayout.EndHorizontal();
         }
-    }
-    private string[] MakeArray(List<string> list)
-    {
-        string[] tool = list.ToArray();
-        return tool;
     }
    
 
