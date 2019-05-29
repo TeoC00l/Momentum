@@ -10,8 +10,8 @@ public class CameraScript2 : MonoBehaviour
     public float rotationY = 0.0f;
     public float mouseSensitivity = 3f;
     Vector3 cameraPosition = Vector3.zero;
-    public Vector3 cameraOffset = Vector3.zero;
-    public GameObject player;
+    Vector3 cameraOffset = Vector3.zero;
+    [SerializeField] private GameObject player;
     private bool shakeStart = false;
     [SerializeField] private float shakeAmount;
     [SerializeField] private LayerMask layerMask;

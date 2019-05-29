@@ -92,7 +92,7 @@ public class Player : StateMachine
             PhysComp.SetVelocity(NewVelocity);
             kineticTimer -= 1;
 
-            if (PhysComp.GetVelocity().magnitude < 0.2f && GetStopKineticSlide() == false || kineticTimer == -1000 && GetStopKineticSlide() == false)
+            if (PhysComp.GetVelocity().magnitude < 0.2f && GetStopKineticSlide() == false || kineticTimer == -1000 && GetStopKineticSlide() == false || Mathf.Sign(PhysComp.GetVelocity().x) != Mathf.Sign(oldVelocity.x) && Mathf.Sign(PhysComp.GetVelocity().z) != Mathf.Sign(oldVelocity.z))
             {
                 Debug.Log("SET ZERO");
                 SetStopKineticSlide(true);
