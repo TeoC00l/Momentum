@@ -18,7 +18,8 @@ public class FixAnimationMove : MonoBehaviour
     void Update()
     {
         transform.position = player.transform.position;
+        transform.rotation = player.transform.rotation;
+        //transform.rotation = Quaternion.Euler(player.transform.rotation.x, player.transform.rotation.y + 90f, player.transform.rotation.z);
 
-        
     }
 }
