@@ -63,7 +63,7 @@ public class UI2_1 : MonoBehaviour
             shiftNormal();
             if(boardThruster.GetComponent<Transform>().transform.eulerAngles.z < 90)
             {
-                boardThruster.GetComponent<Transform>().transform.Rotate(0,0,90* rotationSpeed);
+                boardThruster.GetComponent<Transform>().transform.Rotate(0,0,90* rotationSpeed, Space.Self);
             }
             particle1.SetActive(false);
             particle2.SetActive(true);
