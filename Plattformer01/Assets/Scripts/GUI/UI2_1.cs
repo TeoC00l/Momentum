@@ -30,6 +30,25 @@ public class UI2_1 : MonoBehaviour
     public float rotationSpeed = 2f;
 
 
+
+    /// <summary>
+    /// Audio
+    /// </summary>
+    public AudioSource[] sources;
+    public AudioSource audioLow;
+    public AudioSource audioSecondary;
+    public AudioSource audioPrecision;
+    public AudioSource playerBoardSound;
+    public AudioClip kineticBat;
+    public AudioClip kineticCharge;
+    public AudioClip precisionSound;
+
+    public GameObject playerBoard;
+    
+
+
+    public bool precisionOn = false;
+    
     void Start()
     {
         //Get UI elements. If not Drag and drop from scene.
@@ -50,26 +69,52 @@ public class UI2_1 : MonoBehaviour
 
         particle1 = GameObject.Find("BoardParticleBoost_off");
         particle2 = GameObject.Find("BoardParticleBoost_on");
+
+
+        //audio
+        sources = GetComponents<AudioSource>();
+        audioLow = sources[0];
+        audioSecondary = sources[1];
+        audioPrecision = sources[2];
+
+        playerBoard = GameObject.Find("Hoverboard Sound Effects");
+        playerBoardSound = playerBoard.GetComponent<AudioSource>();
+
     }
 
     void Update()
     {
         if (player.GetPrecisionActive() == true)
         {
+            precisionOn = true;
+            //plays the precision sound 
+            if (!player.GetKineticActive() && precisionOn && !audioPrecision.isPlaying)
+            {
+                audioPrecision.clip = precisionSound;
+                audioPrecision.Play();
+            }
+
+            audioLow.clip = precisionSound;
+            audioLow.Play();
             UIMomentum.SetActive(false);
             UIPrecision.SetActive(true);
             UIKinetic.SetActive(false);
             turnOnBooster();
-            shiftNormal();
             if(boardThruster.GetComponent<Transform>().transform.eulerAngles.z < 90)
             {
                 boardThruster.GetComponent<Transform>().transform.Rotate(0,0,90* rotationSpeed, Space.Self);
             }
             particle1.SetActive(false);
             particle2.SetActive(true);
+
         }
         else if (player.GetMomentumActive() == true)
         {
+
+            //activate below script if you want the sound to stop play as soon as momentum is on
+            //if (audioPrecision.isPlaying) { audioPrecision.Stop(); }
+
+            precisionOn = false;
             UIMomentum.SetActive(true);
             UIPrecision.SetActive(false);
             UIKinetic.SetActive(false);
@@ -89,6 +134,8 @@ public class UI2_1 : MonoBehaviour
         }
         else if (player.GetKineticActive() == true)
         {
+            playerBoardSound.volume = 0;
+            precisionOn = false;
             UIMomentum.SetActive(true);
             UIPrecision.SetActive(false);
             UIKinetic.SetActive(true);
@@ -96,21 +143,20 @@ public class UI2_1 : MonoBehaviour
             boardThruster.GetComponent<Transform>().transform.Rotate(0, 0, 180*Time.deltaTime*3.5f);
             particle1.SetActive(false);
             particle2.SetActive(false);
+
+            audioSecondary.clip = kineticCharge;
+            audioSecondary.Play();
+        }
+
+        //for the audio. this causes a bug which plays it at the beginning of each level. rip.
+        //make startup sequence code?
+        if(player.GetKineticActive() == false)
+        {
+            playerBoardSound.volume = 0.116f;
+            audioLow.clip = kineticBat;
+            audioLow.Play();
         }
     }
-
-
-
-    ////engine Functions
-    void shiftNinety()
-    {
-        //boardThruster.GetComponent<Transform>().Rotate(0, 0, 90, Space.Self);
-    }
-    void shiftNormal()
-    {
-        boardThruster.GetComponent<Transform>().Rotate(0, 0, 0, Space.Self);
-    }
-
 
 
 
