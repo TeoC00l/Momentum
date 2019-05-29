@@ -19,7 +19,7 @@ public class UITimer : MonoBehaviour
 	  seconds = Mathf.Floor(Timer % 60F);
 	  milliseconds = Mathf.Floor((Timer * 100F) % 100F);
 	  TimerText.text = minutes.ToString ("00") + ":" + seconds.ToString ("00") + ":" + milliseconds.ToString("00");
-      Debug.Log(GetTimeAsFloat());
+
 
     }
 

@@ -18,7 +18,6 @@ public class HighScoreManager : MonoBehaviour
     private string sceneName;
     private static HighScoreManager m_instance;
     private const int LeaderboardLength = 10;
-    Dictionary<string, List<Scores>> HighScoreDictionary = new Dictionary<string, List<Scores>>();
 
     public static HighScoreManager _instance
     {
@@ -89,7 +88,6 @@ public class HighScoreManager : MonoBehaviour
                 }
             }
         }
-      //  HighScoreDictionary.Add(sceneName, HighScores);
 
         i = 1;
         while (i <= LeaderboardLength && i <= HighScores.Count)
@@ -141,5 +139,11 @@ public class Scores
 {
     public float score;
     public string name;
-
+    public string GetTimer()
+    {
+        float minutes = Mathf.Floor(this.score);
+        float seconds = Mathf.Floor((this.score - minutes) * 100);
+        float miliseconds = Mathf.Round((((this.score - minutes) * 100) - seconds) * 100);
+        return "" + minutes.ToString("00") + ":" + seconds.ToString("00") + ":" + miliseconds.ToString("00");
+    }
 }

@@ -20,23 +20,34 @@ public class TransitionToLevelChange : MonoBehaviour
     private Text gratsText;
     private int activeText = 0;
     private GameObject nameParent;
+    private GameObject leaderboard;
     private float horizontalTimer;
     private float verticalTimer;
     string st = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ";
+    private List<Scores> highScores;
+    private Text[] allChildren;
+    private GameObject canvas;
+    private GameObject hide;
 
     void Awake()
     {
         player = GameObject.FindWithTag("Player");
-        timer = GameObject.FindWithTag("TextCanvas").GetComponent<UITimer>();
+        canvas = GameObject.FindWithTag("TextCanvas");
+        playerScript = player.GetComponent<Player>();
+        physComp = player.GetComponent<PhysicsComponent>();
+        timer = canvas.GetComponent<UITimer>();
         nameParent = GameObject.FindWithTag("NameParent");
+        leaderboard = GameObject.FindWithTag("Leaderboard");
+        hide = GameObject.FindWithTag("Hide");
         gratsText = GameObject.Find("CongratsText").GetComponent<Text>();
         NameText = nameParent.GetComponentsInChildren<Text>();
-        nameParent.SetActive(false);
+
+        hide.SetActive(false);
         gratsText.enabled = false;
 
 
-        playerScript = player.GetComponent<Player>();
-        physComp = player.GetComponent<PhysicsComponent>();
+       
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -45,11 +56,17 @@ public class TransitionToLevelChange : MonoBehaviour
             hitTrigger = true;
             timer.SetPlayable(false);
             finalTime = timer.GetTimeAsFloat();
-            nameParent.SetActive(true);
+            hide.SetActive(true);
             gratsText.enabled = true;
             gratsText.text = "Your Time " + timer.goodLookingTimer();
+            Scene m_Scene = SceneManager.GetActiveScene();
+            highScores = HighScoreManager._instance.GetHighScore(m_Scene.name);
             //  player.transform.LookAt(targetLocation);
             playerScript.SetNeutralizeInput(true);
+            allChildren = leaderboard.GetComponentsInChildren<Text>();
+
+            deployLeaderboard();
+
 
         }
     }
@@ -57,6 +74,7 @@ public class TransitionToLevelChange : MonoBehaviour
     {
         if (hitTrigger)
         {
+
             
             float input = Input.GetAxisRaw("Horizontal");
             if(horizontalTimer > 0)
@@ -170,5 +188,26 @@ public class TransitionToLevelChange : MonoBehaviour
         {
             return 0;
         }
+    }
+    private void deployLeaderboard()
+    {
+        int index = 1;
+        allChildren[index - 1].text = "Current Leaderboard";
+
+        foreach (Scores _score in highScores)
+        {
+            if (index == 1 && timer.GetTimeAsFloat() == _score.score)
+            {
+                allChildren[index].text = (index) + ": " + _score.name + " " + _score.GetTimer() + " New HighScore";
+
+            }
+            else
+            {
+                allChildren[index].text = (index) + ": " + _score.name + " " + _score.GetTimer();
+
+            }
+            index++;
+        }
+
     }
 }

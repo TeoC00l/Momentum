@@ -12,6 +12,8 @@ TagManager:
   - Ramp
   - NameParent
   - TextCanvas
+  - Leaderboard
+  - Hide
   layers:
   - Default
   - TransparentFX

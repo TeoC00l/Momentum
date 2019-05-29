@@ -8,8 +8,6 @@ using UnityEngine.SceneManagement;
 public class MenuController : MonoBehaviour
 {
      private Scene m_Scene;
-    [SerializeField] private Scene m_Scene2;
-    [SerializeField] private Scene m_Scene3;
 
     private string sceneName;
     string name = "";
@@ -76,15 +74,7 @@ public class MenuController : MonoBehaviour
             toolbarStrings[index] = s;
             index++;
         }
-
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        
     }
 
     void OnGUI()
@@ -94,7 +84,6 @@ public class MenuController : MonoBehaviour
         GUILayout.EndVertical();
 
         sceneName = toolbarStrings[selGridInt];
-        Debug.Log(sceneName + selGridInt);
         highscore = HighScoreManager._instance.GetHighScore(sceneName);
 
         GUI.skin.button.normal.background = (Texture2D)buttonImageAddScore;
@@ -109,8 +98,7 @@ public class MenuController : MonoBehaviour
         GUILayout.Label("Time :", style);
         score = GUILayout.TextField(score);
         GUILayout.EndHorizontal();
-        //  GUI.skin.button = buttonImageAddScore;
-      //  sceneName = toolbarStrings[toolbarInt];
+
         if (GUI.Button(new Rect(ButtonsXposition, 170, ButtonsWidth, ButtonsHeight), content))
         {
             float tempScore = float.Parse(score, CultureInfo.InvariantCulture.NumberFormat);
@@ -144,17 +132,9 @@ public class MenuController : MonoBehaviour
             GUILayout.BeginHorizontal();
             GUILayout.Label(_score.name, style, GUILayout.Width(Screen.width / 2));
             
-            float minutes = Mathf.Floor(_score.score);
-            
-            float seconds = Mathf.Floor((_score.score - minutes) * 100);
-         
-           
-            float miliseconds = Mathf.Round((((_score.score - minutes )  * 100)- seconds) * 100);
-            // float miliseconds = tempmiliseconds * 10000;
+          
 
-            GUILayout.Label("" + minutes.ToString("00") + ":" + seconds.ToString("00") + ":" + miliseconds.ToString("00"), style, GUILayout.Width(Screen.width / 2));
-
-
+            GUILayout.Label(_score.GetTimer(), style, GUILayout.Width(Screen.width / 2));
             GUILayout.EndHorizontal();
         }
     }
