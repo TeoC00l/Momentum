@@ -12,8 +12,8 @@ public class DeathListener : MonoBehaviour
     {
         droneSpawn = FindObjectsOfType(typeof(DroneSpawn)) as DroneSpawn[];
 
-        EventSystem.Current.RegisterListener(EVENT_TYPE.PLAYER_DIED, RespawnPlayer);
         EventSystem.Current.RegisterListener(EVENT_TYPE.PLAYER_DIED, ResetDrones);
+        EventSystem.Current.RegisterListener(EVENT_TYPE.PLAYER_DIED, RespawnPlayer);
     }
 
     void RespawnPlayer (EventInfo eventInfo)

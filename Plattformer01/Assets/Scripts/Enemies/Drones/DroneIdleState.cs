@@ -18,7 +18,7 @@ public class DroneIdleState : DroneBaseState
 
     public override void HandleFixedUpdate()
     {
-        if (CanSeePlayer())
+        if (CanSeePlayer() == true)
         {
             if (!PursuitStartupTimer.IsCountingDown())
             {

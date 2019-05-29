@@ -21,6 +21,7 @@ public class DroneBaseState : State
     protected bool CanSeePlayer()
     {
         Vector3 direction = owner.player.gameObject.transform.position - owner.gameObject.transform.position;
-        return Physics.Raycast(owner.transform.position, direction.normalized, owner.detectionDistance, owner.visionMask, QueryTriggerInteraction.UseGlobal);
+        return Physics.Raycast(owner.transform.position, direction.normalized, owner.detectionDistance, owner.visionMask);
+        
     }
 }

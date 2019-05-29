@@ -15,6 +15,6 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 3772ef3975751134fb2165b6b3ddef10, type: 2}
   PhysComp: {fileID: 0}
   rayCaster: {fileID: 0}
-  gravitationalForce: 10
+  gravitationalForce: 60
   slideDecreaseMovementRate: 0.008
   waitBeforeSliding: 0
