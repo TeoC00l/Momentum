@@ -85,6 +85,19 @@ public class GUI_Modes : MonoBehaviour
             UIKinetic.SetActive(true);
             //turnOffBooster();
         }
+        if (Input.GetKeyDown(KeyCode.Escape) == true)
+        {
+            if(Time.timeScale == 1)
+            {
+                Time.timeScale = 0;
+
+            }
+            else
+            {
+                Time.timeScale = 1;
+
+            }
+        }
     }
 
 

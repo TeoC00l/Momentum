@@ -31,40 +31,43 @@ public class DashState : PlayerBaseState
 
     public override void HandleFixedUpdate()
     {
-        RaycastHit hit = owner.RayCaster.GetCollisionData(dash, owner.PhysComp.GetSkinWidth());
-
-        //executing dash
-        if (executeDash == true)
+        if (Time.timeScale == 1)
         {
-            executeDash = false;
-            dash *= dashDistance * Time.deltaTime;
+            RaycastHit hit = owner.RayCaster.GetCollisionData(dash, owner.PhysComp.GetSkinWidth());
 
-            if (hit.collider != null)
+            //executing dash
+            if (executeDash == true)
             {
-                dash = Vector3.zero;
+                executeDash = false;
+                dash *= dashDistance * Time.deltaTime;
+
+                if (hit.collider != null)
+                {
+                    dash = Vector3.zero;
+                    owner.TransitionBack();
+                }
+
+                owner.PhysComp.AddVelocity(dash);
+                owner.dashCooldownTimer.SetTimer();
+                dashDurationTimer.SetTimer();
+            }
+
+            //checking for last frame of dash to cancel dash
+            if (dashDurationTimer.CheckLastFrame() == true)
+            {
+                owner.PhysComp.SubtractVelocity(dash);
                 owner.TransitionBack();
             }
 
-            owner.PhysComp.AddVelocity(dash);
-            owner.dashCooldownTimer.SetTimer();
-            dashDurationTimer.SetTimer();
-        }
+            //checking for collision to cancel dash
+            if (hit.collider != null)
+            {
+                owner.PhysComp.SubtractVelocity(dash);
+                owner.TransitionBack();
+            }
 
-        //checking for last frame of dash to cancel dash
-        if (dashDurationTimer.CheckLastFrame() == true)
-        {
-            owner.PhysComp.SubtractVelocity(dash);
-            owner.TransitionBack();
+            owner.AddPhysics();
+            owner.PhysComp.CollisionCalibration();
         }
-
-        //checking for collision to cancel dash
-        if (hit.collider != null)
-        {
-            owner.PhysComp.SubtractVelocity(dash);
-            owner.TransitionBack();
-        }
-
-        owner.AddPhysics();
-        owner.PhysComp.CollisionCalibration();
     }
 }

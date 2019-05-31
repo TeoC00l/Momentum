@@ -40,20 +40,23 @@ public class PrecisionState : PlayerBaseState
 
     public override void HandleUpdate()
     {
-        //Checking for conditions to change state
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Time.timeScale == 1)
         {
-            owner.Transition<MomentumState>();
-        }
+            //Checking for conditions to change state
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                owner.Transition<MomentumState>();
+            }
 
-        if (Input.GetKeyDown("space"))
-        {
-            owner.Transition<JumpState>();
-        }
+            if (Input.GetKeyDown("space"))
+            {
+                owner.Transition<JumpState>();
+            }
 
-        if (owner.dashCooldownTimer.IsReady() && (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)))
-        {
-            owner.Transition<DashState>();
+            if (owner.dashCooldownTimer.IsReady() && (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)))
+            {
+                owner.Transition<DashState>();
+            }
         }
     }
 }

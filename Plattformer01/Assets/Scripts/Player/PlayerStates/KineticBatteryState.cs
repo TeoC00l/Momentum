@@ -61,20 +61,23 @@ public class KineticBatteryState : PlayerBaseState
 
     public override void HandleUpdate()
     {
-        //Redirecting velocity
-        getOutofState = Input.GetMouseButtonDown(0);
-        if (getOutofState == true)
+        if (Time.timeScale == 1)
         {
-            owner.SetCurrentlySliding(false);
-            owner.SetStopKineticSlide(false);
+            //Redirecting velocity
+            getOutofState = Input.GetMouseButtonDown(0);
+            if (getOutofState == true)
+            {
+                owner.SetCurrentlySliding(false);
+                owner.SetStopKineticSlide(false);
 
-            getOutofState = false;
+                getOutofState = false;
 
-            input = owner.transform.forward;
-            PhysComp.SetVelocity(input * owner.GetOldVelocity().magnitude);
-            ProperlyExitState();
-            owner.SetOldVelocity(Vector3.zero);
-            owner.Transition<MomentumState>();
+                input = owner.transform.forward;
+                PhysComp.SetVelocity(input * owner.GetOldVelocity().magnitude);
+                ProperlyExitState();
+                owner.SetOldVelocity(Vector3.zero);
+                owner.Transition<MomentumState>();
+            }
         }
 
     }

@@ -8,26 +8,39 @@ public class TransitionToLevelChange : MonoBehaviour
 {
     [SerializeField] private Transform targetLocation;
     [SerializeField] private float speedToTarget;
-    private GameObject player;
-    private Player playerScript;
-    private PhysicsComponent physComp;
     private bool hitTrigger = false;
-    private float step;
-    private float finalTime;
     private UITimer timer;
-    private string name;
+    private string name = "aaa";
+    private Text[] allChildren;
     private Text[] NameText;
     private Text gratsText;
     private int activeText = 0;
+    private bool newHighscore = false;
+
     private GameObject nameParent;
     private GameObject leaderboard;
-    private float horizontalTimer;
-    private float verticalTimer;
-    string st = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ";
-    private List<Scores> highScores;
-    private Text[] allChildren;
     private GameObject canvas;
     private GameObject hide;
+
+
+    // Variables to Neutralize Player Movement
+    private GameObject player;
+    private Player playerScript;
+    private PhysicsComponent physComp;
+
+
+    private float horizontalTimer = 1;
+    private float verticalTimer = 1;
+    private float step;
+    private float finalTime;
+    private int yourScoreIndex = 100;
+    private int yourPlacement;
+
+    private string st = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ";
+
+    private List<Scores> highScores;
+
+
 
     void Awake()
     {
@@ -74,8 +87,8 @@ public class TransitionToLevelChange : MonoBehaviour
     {
         if (hitTrigger)
         {
+           
 
-            
             float input = Input.GetAxisRaw("Horizontal");
             if(horizontalTimer > 0)
             {
@@ -108,6 +121,7 @@ public class TransitionToLevelChange : MonoBehaviour
                 verticalTimer = 0;
             }
             int index = 0;
+
             foreach (Text T in NameText)
             {
                 if(index == activeText)
@@ -132,12 +146,26 @@ public class TransitionToLevelChange : MonoBehaviour
             player.transform.position += new Vector3(player.transform.forward.x * speedToTarget, player.transform.forward.y, player.transform.forward.z * speedToTarget) ;
             physComp.SetDirection(player.transform.forward * step);
             physComp.SetVelocity(player.transform.forward * step);
+            name = "";
+            foreach (Text T in NameText)
+            {
+                
+                name += T.text;
+            }
+            if(newHighscore == true)
+            {
+                allChildren[yourScoreIndex].text = (yourPlacement) + ": " + name + " " + timer.goodLookingTimer() + "New Highscore";
+
+            }
+            else
+            {
+                allChildren[yourScoreIndex].text = (yourPlacement) + ": " + name + " " + timer.goodLookingTimer();
+
+            }
+
             if (Vector3.Distance(player.transform.position, targetLocation.position) < 2f)
             {
-                foreach (Text T in NameText)
-                {
-                    name += T.text;
-                }
+               
                 HighScoreManager._instance.SaveHighScore(name, finalTime);
                 name = "";
                 SceneManager.LoadScene(2);
@@ -192,21 +220,43 @@ public class TransitionToLevelChange : MonoBehaviour
     private void deployLeaderboard()
     {
         int index = 1;
+        int Placement = 1;
         allChildren[index - 1].text = "Current Leaderboard";
-
+        float before = 100;
         foreach (Scores _score in highScores)
         {
-            if (index == 1 && timer.GetTimeAsFloat() == _score.score)
+            if (index > 10)
             {
-                allChildren[index].text = (index) + ": " + _score.name + " " + _score.GetTimer() + " New HighScore";
+                break;
+            }
+
+            if (_score.score > timer.GetTimeAsFloat() && yourScoreIndex == 100)
+            {
+                yourScoreIndex = index;
+                yourPlacement = Placement;
+                if (index == 1)
+                {
+                    newHighscore = true;
+
+                }
+                allChildren[index].text = (Placement) + ": " + name + " " + timer.goodLookingTimer();
+                allChildren[yourScoreIndex].color = Color.yellow;
+
+
 
             }
             else
             {
-                allChildren[index].text = (index) + ": " + _score.name + " " + _score.GetTimer();
+                allChildren[index].text = (Placement) + ": " + _score.name + " " + _score.GetTimer();
 
             }
             index++;
+            if (_score.score != before)
+            {
+                Placement++;
+            }
+            before = _score.score;
+            
         }
 
     }

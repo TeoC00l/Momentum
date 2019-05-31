@@ -18,6 +18,7 @@ public class PhysicsComponent : MonoBehaviour
     private float jumpMagnitude;
     private float staticFrictionCo;
     private float airResistance;
+    private float speedIncrease = 1;
 
     //Methods
     void Awake()
@@ -68,7 +69,7 @@ public class PhysicsComponent : MonoBehaviour
 
         if (hit.collider == null)
         {
-            transform.position += velocity * Time.deltaTime;
+            transform.position += (velocity * speedIncrease)*Time.deltaTime;
         }
     }
 
@@ -197,6 +198,10 @@ public class PhysicsComponent : MonoBehaviour
     public void AddToDirection(Vector3 add)
     {
         direction += add;
+    }
+    public void AddToSpeedIncrease(float add)
+    {
+        speedIncrease += add;
     }
 
 }

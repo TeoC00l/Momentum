@@ -27,14 +27,17 @@ public class MomentumAirbourneState : MomentumState
 
     public override void HandleUpdate()
     {
-        //Checking for conditions to change state
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Time.timeScale == 1)
         {
-            owner.Transition<PrecisionAirbourneState>();
-        }
-        if (Input.GetMouseButtonDown(0) && owner.kineticBatteryCooldownTimer.IsReady())
-        {
-            owner.Transition<KineticBatteryAirbourneState>();
+            //Checking for conditions to change state
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                owner.Transition<PrecisionAirbourneState>();
+            }
+            if (Input.GetMouseButtonDown(0) && owner.kineticBatteryCooldownTimer.IsReady())
+            {
+                owner.Transition<KineticBatteryAirbourneState>();
+            }
         }
 
     }

@@ -29,41 +29,45 @@ public class MomentumState : PlayerBaseState
 
     public override void HandleFixedUpdate()
     {
+        
+            //Checking for conditions to change state
 
-        //Checking for conditions to change state
+            if (!owner.PhysComp.GroundCheck())
+            {
+                owner.Transition<MomentumAirbourneState>();
+            }
 
-        if (!owner.PhysComp.GroundCheck())
-        {
-            owner.Transition<MomentumAirbourneState>();
-        }
-       
-        //Making adjustments to physics
+            //Making adjustments to physics
 
-        owner.AddPhysics();
-        owner.PhysComp.CollisionCalibration();
+            owner.AddPhysics();
+            owner.PhysComp.CollisionCalibration();
+        
     }
 
     public override void HandleUpdate()
     {
-        //Checking for conditions to change state
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Time.timeScale == 1)
         {
-            owner.Transition<PrecisionState>();
-        }
+            //Checking for conditions to change state
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                owner.Transition<PrecisionState>();
+            }
 
-        if (Input.GetMouseButtonDown(0) && owner.kineticBatteryCooldownTimer.IsReady())
-        {
-            owner.Transition<KineticBatteryState>();
-        }
+            if (Input.GetMouseButtonDown(0) && owner.kineticBatteryCooldownTimer.IsReady())
+            {
+                owner.Transition<KineticBatteryState>();
+            }
 
-        if (Input.GetKeyDown("space"))
-        {
-            owner.Transition<JumpState>();
-        }
+            if (Input.GetKeyDown("space"))
+            {
+                owner.Transition<JumpState>();
+            }
 
-        if (owner.dashCooldownTimer.IsReady() && (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)))
-        {
-            owner.Transition<DashState>();
+            if (owner.dashCooldownTimer.IsReady() && (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)))
+            {
+                owner.Transition<DashState>();
+            }
         }
     }
 }

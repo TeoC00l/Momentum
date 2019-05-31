@@ -7,12 +7,9 @@ public class Pickup : MonoBehaviour
     private bool follow = false;
     private GameObject Player;
     private Transform child;
-    private float speed = 7f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]private float speed;
+    private GemSpeedPickUP gemPickup;
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -24,6 +21,7 @@ public class Pickup : MonoBehaviour
             if (Vector3.Distance(child.position, transform.position) < 1f)
             {
                 Player.GetComponent<ParticleSystem>().Play(true);
+                gemPickup.UpdateGems();
                 Destroy(this.gameObject);
             }
         }
@@ -33,10 +31,10 @@ public class Pickup : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            speed = 7f;
             follow = true;
             Player = other.gameObject;
             child = Player.transform.GetChild(0);
+            gemPickup = GameObject.FindWithTag("TextCanvas").GetComponent<GemSpeedPickUP>();
         }
     }
 }
