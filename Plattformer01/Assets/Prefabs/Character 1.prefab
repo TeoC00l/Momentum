@@ -895,6 +895,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d008cf7ed1026dd409c7739589f4450a, type: 2}
   - {fileID: 11400000, guid: d80cad2596e18294ab53196a6272b68b, type: 2}
   - {fileID: 11400000, guid: 6d3e1480456e99d4596f37028fdc15d9, type: 2}
+  - {fileID: 11400000, guid: 19332189605b6f442bfda446f20b1546, type: 2}
   Renderer: {fileID: 0}
   PhysComp: {fileID: 0}
   rigid: {fileID: 0}
@@ -904,8 +905,6 @@ MonoBehaviour:
   RayCaster: {fileID: 0}
   lastDash: {x: 0, y: 0, z: 0}
   dashCooldownTimer: {fileID: 11400000, guid: 98e33c3e28c36c5468189f8bc6520da1, type: 2}
-  dashDurationTimer: {fileID: 11400000, guid: 2695f0a10817c334c838b06b94b9d82a, type: 2}
-  dashDistance: 4200
   kineticTimer: 0
   divideValue: 0
   kineticBatteryCooldownTimer: {fileID: 11400000, guid: ba6dd667adf61774e85551f5839895ca,
@@ -945,10 +944,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8598521227837565002}
     m_Modifications:
-    - target: {fileID: 100008, guid: 3743a3612c965384f91cdb64d93fc26a, type: 3}
-      propertyPath: m_Name
-      value: AnimationChar
-      objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 3743a3612c965384f91cdb64d93fc26a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1004,6 +999,10 @@ PrefabInstance:
     - target: {fileID: 400008, guid: 3743a3612c965384f91cdb64d93fc26a, type: 3}
       propertyPath: m_LocalScale.z
       value: 7.1636267
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 3743a3612c965384f91cdb64d93fc26a, type: 3}
+      propertyPath: m_Name
+      value: AnimationChar
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 3743a3612c965384f91cdb64d93fc26a, type: 3}
       propertyPath: m_Controller

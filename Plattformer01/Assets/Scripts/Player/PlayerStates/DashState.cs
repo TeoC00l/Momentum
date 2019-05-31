@@ -21,7 +21,7 @@ public class DashState : PlayerBaseState
         isExecutingDash = true;
 
         if (Input.GetKey(KeyCode.Q))
-        {            
+        {
             dashDirection = Camera.main.transform.rotation * Vector3.left;
         }
 
@@ -36,14 +36,12 @@ public class DashState : PlayerBaseState
 
     public override void HandleFixedUpdate()
     {
-        if (Time.timeScale == 1)
-        {
-            //executing dash
-            owner.PhysComp.AddVelocity(dashVelocity);
-            owner.AddPhysics();
-            owner.PhysComp.CollisionCalibration();
-            owner.PhysComp.SubtractVelocity(dashVelocity);
-        }
+        //executing dash
+        owner.PhysComp.AddVelocity(dashVelocity);
+        owner.AddPhysics();
+        owner.PhysComp.CollisionCalibration();
+        owner.PhysComp.SubtractVelocity(dashVelocity);
+
     }
 
     public override void HandleUpdate()

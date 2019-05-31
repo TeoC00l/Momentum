@@ -11,7 +11,7 @@ public class KineticBatteryAirbourneState : PlayerBaseState
     [SerializeField] private float gravitationalForce;
     [SerializeField] private float slideDecreaseMovementRate;
     [SerializeField] private float waitBeforeSliding;
- 
+
     public override void Enter()
     {
         base.Enter();
@@ -54,7 +54,8 @@ public class KineticBatteryAirbourneState : PlayerBaseState
             owner.SetCurrentlySliding(true);
 
             owner.Transition<KineticBatteryState>();
-        }else if(owner.GetStopKineticSlide() == true)
+        }
+        else if (owner.GetStopKineticSlide() == true)
         {
             owner.PhysComp.AddGravity();
 
@@ -64,27 +65,24 @@ public class KineticBatteryAirbourneState : PlayerBaseState
     }
     public override void HandleUpdate()
     {
-        if (Time.timeScale == 1)
+        //Redirecting velocity
+        getOutofState = Input.GetMouseButtonUp(0);
+        if (getOutofState == true)
         {
-            //Redirecting velocity
-            getOutofState = Input.GetMouseButtonUp(0);
-            if (getOutofState == true)
-            {
-                owner.SetCurrentlySliding(false);
-                owner.SetStopKineticSlide(false);
+            owner.SetCurrentlySliding(false);
+            owner.SetStopKineticSlide(false);
 
-                getOutofState = false;
+            getOutofState = false;
 
-                input = owner.transform.forward;
+            input = owner.transform.forward;
 
-                PhysComp.SetVelocity(input * owner.GetOldVelocity().magnitude);
-                ProperlyExitState();
-                owner.SetOldVelocity(Vector3.zero);
-                owner.Transition<MomentumState>();
-            }
+            PhysComp.SetVelocity(input * owner.GetOldVelocity().magnitude);
+            ProperlyExitState();
+            owner.SetOldVelocity(Vector3.zero);
+            owner.Transition<MomentumState>();
         }
-
     }
+
     public override void Exit()
     {
         owner.kineticBatteryCooldownTimer.SetTimer();
