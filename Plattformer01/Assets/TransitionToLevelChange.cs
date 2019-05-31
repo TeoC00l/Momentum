@@ -33,7 +33,7 @@ public class TransitionToLevelChange : MonoBehaviour
     private float verticalTimer = 1;
     private float step;
     private float finalTime;
-    private int yourScoreIndex = 100;
+    private int yourScoreIndex = 11;
     private int yourPlacement;
 
     private string st = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ";
@@ -230,7 +230,7 @@ public class TransitionToLevelChange : MonoBehaviour
                 break;
             }
 
-            if (_score.score > timer.GetTimeAsFloat() && yourScoreIndex == 100)
+            if (_score.score >= timer.GetTimeAsFloat() && yourScoreIndex == 11)
             {
                 yourScoreIndex = index;
                 yourPlacement = Placement;
@@ -257,6 +257,14 @@ public class TransitionToLevelChange : MonoBehaviour
             }
             before = _score.score;
             
+        }
+        if (index != 10)
+        {
+            yourScoreIndex = index;
+            yourPlacement = Placement;
+            allChildren[index].text = (Placement) + ": " + name + " " + timer.goodLookingTimer();
+            allChildren[yourScoreIndex].color = Color.yellow;
+
         }
 
     }

@@ -61,21 +61,7 @@ public class KineticBatteryAirbourneState : PlayerBaseState
     }
     public override void HandleUpdate()
     {
-        if (Time.timeScale == 1)
-        {
-            getOutofState = Input.GetMouseButtonDown(0);
-            if (getOutofState == true)
-            {
-                owner.SetCurrentlySliding(false);
-
-                getOutofState = false;
-                input = owner.transform.forward;
-                PhysComp.SetVelocity(input * owner.GetOldVelocity().magnitude);
-                ProperlyExitState();
-                owner.SetOldVelocity(Vector3.zero);
-                owner.Transition<MomentumAirbourneState>();
-            }
-        }
+        
 
     }
     public override void Exit()
