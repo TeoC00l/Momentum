@@ -6,14 +6,17 @@ public class DeathListener : MonoBehaviour
 {
     //Attributes
     private DroneSpawn[] droneSpawn;
+    private DestructibleObject[] destructibleObjects;
 
     //Methods
     void Start()
     {
         droneSpawn = FindObjectsOfType(typeof(DroneSpawn)) as DroneSpawn[];
+        destructibleObjects = FindObjectsOfType(typeof(DestructibleObject)) as DestructibleObject[];
 
         EventSystem.Current.RegisterListener(EVENT_TYPE.PLAYER_DIED, ResetDrones);
         EventSystem.Current.RegisterListener(EVENT_TYPE.PLAYER_DIED, RespawnPlayer);
+        EventSystem.Current.RegisterListener(EVENT_TYPE.PLAYER_DIED, ResetDestructibleObjects);
     }
 
     void RespawnPlayer (EventInfo eventInfo)
@@ -35,9 +38,12 @@ public class DeathListener : MonoBehaviour
         }
     }
 
-    void ResetDestructibleObjects()
+    void ResetDestructibleObjects(EventInfo eventInfo)
     {
-        //TODO
+        foreach (DestructibleObject destructibleObject in destructibleObjects)
+        {
+            destructibleObject.ResetDestructibleObject();
+        }
     }
 
 }

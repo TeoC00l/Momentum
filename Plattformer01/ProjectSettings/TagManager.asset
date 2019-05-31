@@ -14,7 +14,7 @@ TagManager:
   - TextCanvas
   - Leaderboard
   - Hide
-  - Fire
+  - Destructible
   layers:
   - Default
   - TransparentFX
@@ -30,7 +30,7 @@ TagManager:
   - Destructible
   - Enemy
   - PostProcessing 1
-  - DistantRender
+  - 
   - 
   - 
   - 
