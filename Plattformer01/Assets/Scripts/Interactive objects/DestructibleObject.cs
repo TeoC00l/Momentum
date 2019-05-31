@@ -33,38 +33,23 @@ public class DestructibleObject : MonoBehaviour
         {
             if (collidingPhysComp.GetVelocity().magnitude >= destructionVelocity * Time.deltaTime)
             {
-                //Particlescript start
+
                 var obj = Instantiate(explosionEffects, destructibleObject.GetComponent<Transform>().position, Quaternion.identity);
                 obj.AddComponent<ParticleSplash>();
-                //Particlescript stop
 
-                //spawnDebris();
-                Object.Destroy(destructibleObject);
-                //destructibleObject.GetComponent<Renderer>().enabled = false;
+                destructibleObject.SetActive(false);
 
             }
             else
             {
                 destructibleObject.layer = LayerMask.NameToLayer("Scoop");
             }
-        }
-        
+        }       
     }
 
-
-
-    //depreciate this
-    void spawnDebris()
+    public void ResetDestructibleObject()
     {
-        //location of object.
-        Transform spawnPos = destructibleObject.GetComponent<Transform>();
+        destructibleObject.SetActive(true);
 
-        //iterate through debris spawnlist
-        for (int i = 0; i < debris.Count; i++)
-        {
-            var obj = Instantiate(debris[i], destructibleObject.GetComponent<Transform>().position, Quaternion.identity);
-            obj.AddComponent<Debris>(); //attach script to debris after it spawns.
-            //whats happening now is that you should identity it to.
-        }
     }
 }
