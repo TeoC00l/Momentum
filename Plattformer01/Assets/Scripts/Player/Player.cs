@@ -20,8 +20,6 @@ public class Player : StateMachine
     //Dash related attributes
     [SerializeField] private Vector3 lastDash;
     public Timer dashCooldownTimer;
-    public Timer dashDurationTimer;
-    [SerializeField] private float dashDistance;
     private bool isDashing;
     private bool neutralizeInput = false;
 
@@ -54,7 +52,6 @@ public class Player : StateMachine
     {
         base.Update();
         dashCooldownTimer.SubtractTime();
-        dashDurationTimer.SubtractTime();
         kineticBatteryCooldownTimer.SubtractTime();
     }
 

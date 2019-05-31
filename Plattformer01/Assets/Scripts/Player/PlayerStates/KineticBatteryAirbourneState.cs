@@ -16,7 +16,11 @@ public class KineticBatteryAirbourneState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        if(owner.GetOldVelocity() == Vector3.zero)
+
+        PhysComp.SetGravitationalForce(gravitationalForce);
+
+
+        if (owner.GetOldVelocity() == Vector3.zero)
         {
             owner.SetOldVelocity(PhysComp.GetVelocity());
         }
@@ -73,6 +77,8 @@ public class KineticBatteryAirbourneState : PlayerBaseState
                 getOutofState = false;
 
                 input = owner.transform.forward;
+
+                owner.PhysComp.AddGravity();
                 PhysComp.SetVelocity(input * owner.GetOldVelocity().magnitude);
                 ProperlyExitState();
                 owner.SetOldVelocity(Vector3.zero);

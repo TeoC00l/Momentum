@@ -15,5 +15,5 @@ MonoBehaviour:
   material: {fileID: 0}
   PhysComp: {fileID: 0}
   rayCaster: {fileID: 0}
-  dashDistance: 10000
+  dashDistance: 6000
   dashDurationTimer: {fileID: 11400000, guid: 2695f0a10817c334c838b06b94b9d82a, type: 2}
