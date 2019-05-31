@@ -16,6 +16,9 @@ public class UI2_1 : MonoBehaviour
     public Vector2 hotspot = Vector2.zero;
 
     public GameObject boardThruster;
+    [SerializeField] private GameObject board;
+    [SerializeField] private GameObject hip;
+
 
     ////annoying part
     public GameObject booster_on1;
@@ -44,7 +47,7 @@ public class UI2_1 : MonoBehaviour
     public AudioClip precisionSound;
 
     public GameObject playerBoard;
-    
+    private bool keepShifting = true;
 
 
     public bool precisionOn = false;
@@ -86,6 +89,7 @@ public class UI2_1 : MonoBehaviour
     {
         if (player.GetPrecisionActive() == true)
         {
+
             precisionOn = true;
             //plays the precision sound 
             if (!player.GetKineticActive() && precisionOn && !audioPrecision.isPlaying)
@@ -100,9 +104,16 @@ public class UI2_1 : MonoBehaviour
             UIPrecision.SetActive(true);
             UIKinetic.SetActive(false);
             turnOnBooster();
-            if(boardThruster.GetComponent<Transform>().transform.eulerAngles.z < 90)
+            if(boardThruster.transform.eulerAngles.z < 90 && keepShifting == true)
             {
-                boardThruster.GetComponent<Transform>().transform.Rotate(0,0,90* rotationSpeed, Space.Self);
+                Debug.Log("Shift");
+                boardThruster.transform.Rotate(0,0,90* rotationSpeed, Space.Self);
+                keepShifting = false;
+            }
+            else
+            {
+                Debug.Log("DontShift");
+
             }
             particle1.SetActive(false);
             particle2.SetActive(true);
@@ -123,14 +134,14 @@ public class UI2_1 : MonoBehaviour
             //@Mugai
             //kan du fixa så att brädans rotation lerp slerp
             //typ rotate(0,0,angle_now +90)
-            if (boardThruster.GetComponent<Transform>().transform.eulerAngles.z < 181 )
+            if (boardThruster.transform.eulerAngles.z < 181 )
             {
-                boardThruster.GetComponent<Transform>().transform.Rotate(0, 0, 180);
+                boardThruster.transform.transform.Rotate(0, 0, 180);
             }
             particle1.SetActive(true);
             particle2.SetActive(false);
 
-            boardThruster.GetComponent<Transform>().eulerAngles = new Vector3(boardThruster.GetComponent<Transform>().transform.eulerAngles.x, boardThruster.GetComponent<Transform>().transform.eulerAngles.y, 0);
+            boardThruster.transform.eulerAngles = new Vector3(boardThruster.GetComponent<Transform>().transform.eulerAngles.x, boardThruster.GetComponent<Transform>().transform.eulerAngles.y, 0);
         }
         else if (player.GetKineticActive() == true)
         {
@@ -140,7 +151,8 @@ public class UI2_1 : MonoBehaviour
             UIPrecision.SetActive(false);
             UIKinetic.SetActive(true);
             turnOffBooster();
-            boardThruster.GetComponent<Transform>().transform.Rotate(0, 0, 180*Time.deltaTime*3.5f);
+            boardThruster.transform.Rotate(0, 0, 180*Time.deltaTime*3.5f);
+             
             particle1.SetActive(false);
             particle2.SetActive(false);
 
@@ -152,6 +164,7 @@ public class UI2_1 : MonoBehaviour
         //make startup sequence code?
         if(player.GetKineticActive() == false)
         {
+          //  boardThruster.transform.rotation = hip.transform.rotation;
             playerBoardSound.volume = 0.116f;
             audioLow.clip = kineticBat;
             audioLow.Play();

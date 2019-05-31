@@ -49,11 +49,12 @@ public class PlayerAnimator : MonoBehaviour
 
         if (kineticOn)
         {
+            anim.Play("kineticActivate");
             if (Input.GetButtonDown("Fire1"))
             {
                 //anim.SetTrigger("Taunt");
                 kineticOn = false;
-                anim.Play("kineticActivate");
+                //anim.Play("kineticActivate");
                 
             }
         }
