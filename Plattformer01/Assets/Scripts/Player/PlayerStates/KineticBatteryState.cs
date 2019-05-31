@@ -64,7 +64,7 @@ public class KineticBatteryState : PlayerBaseState
         if (Time.timeScale == 1)
         {
             //Redirecting velocity
-            getOutofState = Input.GetMouseButtonDown(0);
+            getOutofState = Input.GetMouseButtonUp(0);
             if (getOutofState == true)
             {
                 owner.SetCurrentlySliding(false);

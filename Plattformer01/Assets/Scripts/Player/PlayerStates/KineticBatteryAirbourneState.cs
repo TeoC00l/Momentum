@@ -4,12 +4,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Player/KineticBatteryAirbourneState")]
 public class KineticBatteryAirbourneState : PlayerBaseState
 {
-    Vector3 input = new Vector3(1, 0, 1);
-
-    bool getOutofState;
-    public float gravitationalForce = 10f;
-
+    private Vector3 input = new Vector3(1, 0, 1);
+    private bool getOutofState;
     private Vector3 zeroExceptForGravity;
+
+    [SerializeField] private float gravitationalForce;
     [SerializeField] private float slideDecreaseMovementRate;
     [SerializeField] private float waitBeforeSliding;
  
@@ -68,7 +67,7 @@ public class KineticBatteryAirbourneState : PlayerBaseState
         if (Time.timeScale == 1)
         {
             //Redirecting velocity
-            getOutofState = Input.GetMouseButtonDown(0);
+            getOutofState = Input.GetMouseButtonUp(0);
             if (getOutofState == true)
             {
                 owner.SetCurrentlySliding(false);
@@ -78,7 +77,6 @@ public class KineticBatteryAirbourneState : PlayerBaseState
 
                 input = owner.transform.forward;
 
-                owner.PhysComp.AddGravity();
                 PhysComp.SetVelocity(input * owner.GetOldVelocity().magnitude);
                 ProperlyExitState();
                 owner.SetOldVelocity(Vector3.zero);
