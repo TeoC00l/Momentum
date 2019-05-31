@@ -8,7 +8,7 @@ public class Speed : MonoBehaviour
     [SerializeField] private Texture2D dialTex;
     [SerializeField] private Texture2D needleTex;
     //Apply the dialPosition
-    [SerializeField] private Transform dialPos;
+    [SerializeField] private RectTransform dialPos;
     //apply the angles of the dial
     [SerializeField] private float stopAngle;
     [SerializeField] private float topSpeedAngle;
@@ -26,8 +26,8 @@ public class Speed : MonoBehaviour
     {
         if (physcomp != null)
         {
-            
-            speed = new Vector3(physcomp.GetVelocity().x,0f, physcomp.GetVelocity().z).magnitude;
+            Vector3 playerSpeed = new Vector3(physcomp.GetVelocity().x, 0f, physcomp.GetVelocity().z);
+            speed = playerSpeed.magnitude;
             GUI.DrawTexture(new Rect(dialPos.position.x, dialPos.position.y, dialTex.width, dialTex.height), dialTex);
             Vector2 centre = new Vector2(dialPos.position.x + dialTex.width / 2, dialPos.position.y + dialTex.height / 2);
             Matrix4x4 savedMatrix = GUI.matrix;

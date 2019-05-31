@@ -168,7 +168,7 @@ public class TransitionToLevelChange : MonoBehaviour
                
                 HighScoreManager._instance.SaveHighScore(name, finalTime);
                 name = "";
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene(0);
             }
             //    Vector3.MoveTowards(player.transform.position, targetLocation.position, step);
 

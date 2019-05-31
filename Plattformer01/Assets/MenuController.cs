@@ -17,7 +17,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Font sciFiFont;
 
     string text = "Add Score";
-    string text2 = "Get Leaderboard";
+    string text2 = "Return";
     string text3 = "Clear Leaderboard";
 
     GUIContent content = new GUIContent();
@@ -89,27 +89,14 @@ public class MenuController : MonoBehaviour
         GUI.skin.button.normal.background = (Texture2D)buttonImageAddScore;
 
         GUI.skin.font = sciFiFont;
-        GUILayout.BeginHorizontal();
-        GUILayout.Label("Name :", style);
-        name = GUILayout.TextField(name);
-        GUILayout.EndHorizontal();
+       
 
-        GUILayout.BeginHorizontal();
-        GUILayout.Label("Time :", style);
-        score = GUILayout.TextField(score);
-        GUILayout.EndHorizontal();
-
-        if (GUI.Button(new Rect(ButtonsXposition, 170, ButtonsWidth, ButtonsHeight), content))
-        {
-            float tempScore = float.Parse(score, CultureInfo.InvariantCulture.NumberFormat);
-
-            HighScoreManager._instance.SaveHighScore(name, tempScore);
-            highscore = HighScoreManager._instance.GetHighScore(sceneName);
-        }
+       
 
         if (GUI.Button(new Rect(ButtonsXposition, 240, ButtonsWidth, ButtonsHeight), content2))
         {
-            highscore = HighScoreManager._instance.GetHighScore(sceneName);
+            SceneManager.LoadScene(0);
+
         }
 
         if (GUI.Button(new Rect(ButtonsXposition, 310, ButtonsWidth, ButtonsHeight), content3))

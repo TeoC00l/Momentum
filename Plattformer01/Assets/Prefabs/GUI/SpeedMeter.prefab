@@ -8,30 +8,35 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 400000}
-  - component: {fileID: 3145581259385626532}
+  - component: {fileID: 586215754297952964}
+  - component: {fileID: 1223736778296094294}
   m_Layer: 0
-  m_Name: Speedo
+  m_Name: SpeedMeter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &400000
-Transform:
+--- !u!224 &586215754297952964
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 170.01762, y: 60.885254, z: 290.086}
+  m_LocalPosition: {x: 0, y: 0, z: 290.086}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3145581259385626532
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 170.01762, y: 60.885254}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1223736778296094294
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,6 +45,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87fccde59146a2247a32755c13ef6ff3, type: 3}
+  m_Script: {fileID: 11500000, guid: 57671b89e5196334189a77c92e5aa06e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialTex: {fileID: 2800000, guid: 4b54d8406990a29488ffa397e64292e5, type: 3}
+  needleTex: {fileID: 2800000, guid: 9076e3d9858ae1a44a1f76c8387b793a, type: 3}
+  dialPos: {fileID: 586215754297952964}
+  stopAngle: 150
+  topSpeedAngle: 390
+  topSpeed: 300
