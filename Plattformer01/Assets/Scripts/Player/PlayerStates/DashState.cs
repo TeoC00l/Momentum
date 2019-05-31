@@ -6,8 +6,8 @@ using UnityEngine;
 public class DashState : PlayerBaseState
 {
     //Attributes
-    private Vector3 dash;
-    private bool executeDash;
+    private Vector3 dashVelocity;
+    private bool isExecutingDash;
 
     public float dashDistance;
     [SerializeField] private Timer dashDurationTimer;
@@ -18,14 +18,14 @@ public class DashState : PlayerBaseState
     {
         if (Input.GetKey(KeyCode.Q))
         {
-            executeDash = true;
-            dash = Camera.main.transform.rotation * Vector3.left;
+            isExecutingDash = true;
+            dashVelocity = Camera.main.transform.rotation * Vector3.left;
         }
 
         if (Input.GetKey(KeyCode.E))
         {
-            executeDash = true;
-            dash = Camera.main.transform.rotation * Vector3.right;
+            isExecutingDash = true;
+            dashVelocity = Camera.main.transform.rotation * Vector3.right;
         }
     }
 
@@ -33,21 +33,21 @@ public class DashState : PlayerBaseState
     {
         if (Time.timeScale == 1)
         {
-            RaycastHit hit = owner.RayCaster.GetCollisionData(dash, owner.PhysComp.GetSkinWidth());
+            RaycastHit hit = owner.RayCaster.GetCollisionData(dashVelocity, owner.PhysComp.GetSkinWidth());
 
             //executing dash
-            if (executeDash == true)
+            if (isExecutingDash == true)
             {
-                executeDash = false;
-                dash *= dashDistance * Time.deltaTime;
+                isExecutingDash = false;
+                dashVelocity *= dashDistance * Time.deltaTime;
 
                 if (hit.collider != null)
                 {
-                    dash = Vector3.zero;
+                    dashVelocity = Vector3.zero;
                     owner.TransitionBack();
                 }
 
-                owner.PhysComp.AddVelocity(dash);
+                owner.PhysComp.AddVelocity(dashVelocity);
                 owner.dashCooldownTimer.SetTimer();
                 dashDurationTimer.SetTimer();
             }
@@ -55,14 +55,14 @@ public class DashState : PlayerBaseState
             //checking for last frame of dash to cancel dash
             if (dashDurationTimer.CheckLastFrame() == true)
             {
-                owner.PhysComp.SubtractVelocity(dash);
+                owner.PhysComp.SubtractVelocity(dashVelocity);
                 owner.TransitionBack();
             }
 
             //checking for collision to cancel dash
             if (hit.collider != null)
             {
-                owner.PhysComp.SubtractVelocity(dash);
+                owner.PhysComp.SubtractVelocity(dashVelocity);
                 owner.TransitionBack();
             }
 

@@ -100,7 +100,6 @@ MonoBehaviour:
   rotationX: 0
   rotationY: 0
   mouseSensitivity: 3
-  cameraOffset: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
   shakeAmount: 0.005
   layerMask:
