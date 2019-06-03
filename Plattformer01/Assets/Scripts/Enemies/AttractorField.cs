@@ -43,6 +43,7 @@ public class AttractorField : MonoBehaviour
         if (other.tag == "Player" && continueGravity == true)
         {
             playerPhysComp.SetVelocity(playerPhysComp.GetVelocity() * 0.8f);
+            
             Attract();
         }
     }
@@ -57,6 +58,10 @@ public class AttractorField : MonoBehaviour
             continueGravity = true;
         }
     }
+    void Update()
+    {
+        transform.Rotate(10f * Time.deltaTime, 5f * Time.deltaTime, 1f * Time.deltaTime);
+    }
     private void Attract()
     {
         //  playerPhysComp.velocity = Vector3.zero;
@@ -69,21 +74,6 @@ public class AttractorField : MonoBehaviour
         //   Camera.main.gameObject.transform.RotateAround(transform.parent.position, transform.parent.up, 300 * Time.smoothDeltaTime);
         
         Debug.DrawRay(character.transform.position, transform.parent.position - character.transform.position);
-    }
-    private void RotateAwayFrom(Vector3 position)
-    {
-        Vector3 facing = character.transform.position - position;
-        if (facing.magnitude < rotationMargin) { return; }
-
-        // Rotate the rotation AWAY from the player...
-        Quaternion awayRotation = Quaternion.LookRotation(facing);
-        Vector3 euler = awayRotation.eulerAngles;
-        euler.y -= 180;
-        awayRotation = Quaternion.Euler(euler);
-
-        // Rotate the game object.
-        character.transform.rotation = Quaternion.Slerp(character.transform.rotation, awayRotation, turnSpeed * Time.deltaTime);
-        character.transform.eulerAngles = new Vector3(0, character.transform.eulerAngles.y, 0);
     }
 }
 

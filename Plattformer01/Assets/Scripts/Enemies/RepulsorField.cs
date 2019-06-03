@@ -27,6 +27,11 @@ public class RepulsorField : MonoBehaviour
         expand = new Vector3(4f, 4f, 4f);
 
     }
+    private void Update()
+    {
+        transform.Rotate(10f * Time.deltaTime, 5f * Time.deltaTime, 1f * Time.deltaTime);
+
+    }
 
     void OnTriggerEnter(Collider other)
     {

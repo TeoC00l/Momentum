@@ -31,8 +31,9 @@ public class Checkpoint : MonoBehaviour
         {
             Destroy(playerHealth.GetCheckPoint().gameObject);
             Destroy(gameObject.GetComponent<BoxCollider>());
-
             playerHealth.SetCheckPoint(this);
+            SaveManager._instance.SaveGame();
+
             Debug.Log("checkpoint reached: " + this.name);
         }
     }

@@ -85,21 +85,26 @@ public class GUI_Modes : MonoBehaviour
             UIKinetic.SetActive(true);
             //turnOffBooster();
         }
-        if (Input.GetKeyDown(KeyCode.Escape) == true)
-        {
-            if(Time.timeScale == 1)
-            {
-                Time.timeScale = 0;
-                player.Transition<PauseState>();
-
-            }
-            else
-            {
-                player.TransitionBack();
-                Time.timeScale = 1;
-
-            }
+        if(Input.GetKeyDown(KeyCode.R) == true){
+            Debug.Log("TRANSITION");
+            SaveManager._instance.TransitionToSavedCheckPoint();
         }
+        //if (Input.GetKeyDown(KeyCode.Escape) == true)
+        //{
+        //    Debug.Log("Pause");
+        //    if(Time.timeScale == 1)
+        //    {
+        //        Time.timeScale = 0;
+        //        player.Transition<PauseState>();
+
+        //    }
+        //    else
+        //    {
+        //        player.TransitionBack();
+        //        Time.timeScale = 1;
+
+        //    }
+        //}
     }
 
 

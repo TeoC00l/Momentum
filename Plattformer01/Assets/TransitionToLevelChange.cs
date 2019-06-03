@@ -66,6 +66,7 @@ public class TransitionToLevelChange : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            SaveManager._instance.SetSaveBool(false);
             hitTrigger = true;
             timer.SetPlayable(false);
             finalTime = timer.GetTimeAsFloat();

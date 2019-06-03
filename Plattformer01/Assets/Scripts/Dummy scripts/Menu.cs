@@ -16,6 +16,7 @@ public class Menu : MonoBehaviour
         quitButton.onClick.AddListener(quitListener);
         playbutton2.onClick.AddListener(playListener2);
         leaderboardButton.onClick.AddListener(Leaderboardtransition);
+        playButton.Select();
     }
 
     void playListener()

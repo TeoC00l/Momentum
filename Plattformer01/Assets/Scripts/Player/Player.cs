@@ -19,14 +19,14 @@ public class Player : StateMachine
 
     //Dash related attributes
     [SerializeField] private Vector3 lastDash;
-    public Timer dashCooldownTimer;
+    [SerializeField] public Timer dashCooldownTimer;
     private bool isDashing;
     private bool neutralizeInput = false;
 
     //Kinetic battery related attributes
-    [SerializeField] public int kineticTimer;
-    [SerializeField] public int divideValue;
-    public Timer kineticBatteryCooldownTimer;
+    public int kineticTimer;
+    public int divideValue;
+    [SerializeField] public Timer kineticBatteryCooldownTimer;
     private bool stopKineticSlide = false;
     private bool currentlySliding = false;
     private Vector3 oldVelocity = Vector3.zero;
@@ -36,14 +36,18 @@ public class Player : StateMachine
     private RaycastHit hit;
     private Vector3 surfaceNormal;
 
+    //GemPrefab
+    [SerializeField] private GameObject gemPrefab;
 
-    // Methods
-    protected override void Awake()
+
+   // Methods
+   protected override void Awake()
     {
         Renderer = GetComponent<MeshRenderer>();
         RayCaster = GetComponent<RayCasterCapsule>();
         PhysComp = GetComponent<PhysicsComponent>();
         rigid = GetComponent<Rigidbody>();
+        SaveManager._instance.SetGem(gemPrefab);
 
         base.Awake();
     }

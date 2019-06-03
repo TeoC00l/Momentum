@@ -12,12 +12,13 @@ public class PauseMenu : MonoBehaviour
 
     void Awake()
     {
-        m_MenuToggle = GetComponent <Toggle> ();
+        m_MenuToggle = GetComponent<Toggle>();
 	}
 
 
     private void MenuOn ()
     {
+        Debug.Log("this is pause");
         m_TimeScaleRef = Time.timeScale;
         Time.timeScale = 0f;
 
@@ -30,6 +31,7 @@ public class PauseMenu : MonoBehaviour
 
     public void MenuOff ()
     {
+        Debug.Log("normal");
         Time.timeScale = m_TimeScaleRef;
         AudioListener.volume = m_VolumeRef;
         m_Paused = false;
@@ -38,6 +40,8 @@ public class PauseMenu : MonoBehaviour
 
     public void OnMenuStatusChange ()
     {
+        Debug.Log("normal1" + m_MenuToggle.isOn + m_Paused);
+
         if (m_MenuToggle.isOn && !m_Paused)
         {
             MenuOn();
@@ -52,11 +56,20 @@ public class PauseMenu : MonoBehaviour
 #if !MOBILE_INPUT
 	void Update()
 	{
-		if(Input.GetKeyUp(KeyCode.Escape))
+		if(Input.GetKeyDown(KeyCode.Escape))
 		{
-		    m_MenuToggle.isOn = !m_MenuToggle.isOn;
+            if(m_Paused == true)
+            {
+                m_MenuToggle.isOn = false;
+                Debug.Log(m_MenuToggle.isOn);
+            }
+            else
+            {
+                m_MenuToggle.isOn = true;
+            }
             Cursor.visible = m_MenuToggle.isOn;//force the cursor visible if anythign had hidden it
-		}
+            OnMenuStatusChange();
+        }
 	}
 #endif
 

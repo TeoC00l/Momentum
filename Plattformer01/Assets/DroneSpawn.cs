@@ -13,7 +13,10 @@ public class DroneSpawn : MonoBehaviour
     //Methods
     void Start()
     {
-        Spawn();
+        if(activeDrone == null)
+        {
+            Spawn();
+        }
     }
 
     public void Respawn()
@@ -25,5 +28,19 @@ public class DroneSpawn : MonoBehaviour
     void Spawn()
     {
         activeDrone = Instantiate(dronePrefab, transform.position, transform.rotation);
+    }
+    public void SpecifikSpawn(Vector3 position,Transform transform)
+    {
+        if(activeDrone != null)
+        {
+            Destroy(activeDrone);
+        }
+        activeDrone = Instantiate(dronePrefab, position, transform.rotation);
+        activeDrone.transform.LookAt(transform);
+
+    }
+    public GameObject GetDrone()
+    {
+        return activeDrone;
     }
 }

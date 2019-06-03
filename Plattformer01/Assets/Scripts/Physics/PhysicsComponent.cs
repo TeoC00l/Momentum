@@ -203,6 +203,14 @@ public class PhysicsComponent : MonoBehaviour
     {
         speedIncrease += add;
     }
+    public void SetSpeedIncrease(float set)
+    {
+        speedIncrease = set;
+    }
+    public float GetSpeedIncrease()
+    {
+        return speedIncrease;
+    }
 
 }
 

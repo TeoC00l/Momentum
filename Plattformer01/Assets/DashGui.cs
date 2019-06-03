@@ -24,7 +24,7 @@ public class DashGui : MonoBehaviour
     void Awake()
     {
         player = GameObject.FindWithTag("Player");  //all players should be called Character
-        dashBar = GameObject.Find("DashBar");
+        dashBar = this.gameObject;
         GuiDashtransform = dashBar.GetComponent<Transform>();
         playerScript = player.GetComponent<Player>();
         //set to 0 at start 
@@ -37,7 +37,7 @@ public class DashGui : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dashTimer.IsReady() == false)
+        if (dashTimer.IsReady() == false && dashDurationTimer.IsReady() == false)
         {
             Debug.Log("ReadyFalse");
             //countdown
