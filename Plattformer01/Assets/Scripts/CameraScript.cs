@@ -52,6 +52,7 @@ public class CameraScript : MonoBehaviour
         AddRotation();
         player.transform.rotation = transform.rotation;
         player.transform.rotation = Quaternion.Euler(0, player.transform.eulerAngles.y, 0);
+        InitiateShake();
     }
 
     void Update()
@@ -59,45 +60,7 @@ public class CameraScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             changeCursorLockMode();
-        }
-
-        if (shakeStart == false)
-        {
-            Vector3 Velocity = new Vector3(physComp.GetVelocity().x, 0f, physComp.GetVelocity().z);
-            ray = Physics.Raycast(player.transform.position, Velocity.normalized, out hit, 3f, layerMask);
-            Debug.DrawRay(player.transform.position,Velocity.normalized, Color.yellow, 3f);
-        }
-
-        if (ray == true)
-        {
-            if (hit.collider.gameObject.tag == "Floor" && hit.collider.gameObject != hitGameObject )
-            {
-                hitGameObject = hit.collider.gameObject;
-                shakeStart = true;
-                
-            }
-        }
-        else if (hitGameObject != null)
-        {
-            hitAgain += Time.deltaTime;
-        }
-        if(hitAgain > 0.1)
-        {
-
-            hitGameObject = null;
-            hitAgain = 0;
-        }
-        if (shakeStart == true)
-        {
-            ShakeCamera();
-            
-        }
-        if (shakeCounter > shakeLength)
-        {
-            shakeStart = false;
-            shakeCounter = 0;
-        }
-
+        }      
     }
 
     public void AddRotation()
@@ -131,6 +94,46 @@ public class CameraScript : MonoBehaviour
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+
+    public void InitiateShake()
+    {
+        if (shakeStart == false)
+        {
+            Vector3 Velocity = new Vector3(physComp.GetVelocity().x, 0f, physComp.GetVelocity().z);
+            ray = Physics.Raycast(player.transform.position, Velocity.normalized, out hit, 3f, layerMask);
+            Debug.DrawRay(player.transform.position, Velocity.normalized, Color.yellow, 3f);
+        }
+
+        if (ray == true)
+        {
+            if (hit.collider.gameObject.tag == "Floor" && hit.collider.gameObject != hitGameObject)
+            {
+                hitGameObject = hit.collider.gameObject;
+                shakeStart = true;
+
+            }
+        }
+        else if (hitGameObject != null)
+        {
+            hitAgain += Time.deltaTime;
+        }
+        if (hitAgain > 0.1)
+        {
+
+            hitGameObject = null;
+            hitAgain = 0;
+        }
+        if (shakeStart == true)
+        {
+            ShakeCamera();
+
+        }
+        if (shakeCounter > shakeLength)
+        {
+            shakeStart = false;
+            shakeCounter = 0;
         }
     }
 
