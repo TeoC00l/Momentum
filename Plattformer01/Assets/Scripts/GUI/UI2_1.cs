@@ -115,14 +115,16 @@ public class UI2_1 : MonoBehaviour
             UIPrecision.SetActive(true);
             UIKinetic.SetActive(false);
             turnOnBooster();
-            if(boardThruster.transform.eulerAngles.z < 90 && keepShifting == true)
+            if(boardThruster.transform.eulerAngles.z < 90 )
             {
                 Debug.Log("Shift");
-                boardThruster.transform.Rotate(0,0,90* rotationSpeed, Space.Self);
-                keepShifting = false;
+                boardThruster.transform.Rotate(0,0,900* rotationSpeed * Time.smoothDeltaTime, Space.Self);
+              //  keepShifting = false;
             }
-            else
+            else if(boardThruster.transform.eulerAngles.z > 90)
             {
+                boardThruster.transform.Rotate(0, 0, -900 * rotationSpeed * Time.smoothDeltaTime, Space.Self);
+
                 Debug.Log("DontShift");
 
             }
@@ -147,7 +149,7 @@ public class UI2_1 : MonoBehaviour
             //typ rotate(0,0,angle_now +90)
             if (boardThruster.transform.eulerAngles.z < 181 )
             {
-                boardThruster.transform.transform.Rotate(0, 0, 180);
+                boardThruster.transform.transform.Rotate(0, 0, 180 * Time.smoothDeltaTime);
             }
             particle1.SetActive(true);
             particle2.SetActive(false);
@@ -162,7 +164,7 @@ public class UI2_1 : MonoBehaviour
             UIPrecision.SetActive(false);
             UIKinetic.SetActive(true);
             turnOffBooster();
-            boardThruster.transform.Rotate(0, 0, 180*Time.deltaTime*3.5f);
+            boardThruster.transform.Rotate(0, 0, 180 *Time.smoothDeltaTime * 3.5f);
              
             particle1.SetActive(false);
             particle2.SetActive(false);

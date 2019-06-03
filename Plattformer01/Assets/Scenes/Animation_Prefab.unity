@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -979,7 +979,6 @@ GameObject:
   - component: {fileID: 185857104}
   - component: {fileID: 185857103}
   - component: {fileID: 185857102}
-  - component: {fileID: 185857105}
   m_Layer: 0
   m_Name: Engine
   m_TagString: Untagged
@@ -1063,19 +1062,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185857100}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &185857105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 185857100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b4b609988f6ee544a5469822b2bccab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 1624142993}
 --- !u!1 &199640581
 GameObject:
   m_ObjectHideFlags: 0
@@ -18338,7 +18324,7 @@ Transform:
   m_GameObject: {fileID: 1724943413}
   m_LocalRotation: {x: 0.2725733, y: 0.6293112, z: -0.27924398, w: 0.6720819}
   m_LocalPosition: {x: 0.051, y: -0.32, z: 0.046}
-  m_LocalScale: {x: 0.17621654, y: 0.1414802, z: 0.13276999}
+  m_LocalScale: {x: 0.17621654, y: 0.14148022, z: 0.13276999}
   m_Children:
   - {fileID: 794465727}
   - {fileID: 1425322098}
@@ -18412,7 +18398,6 @@ GameObject:
   - component: {fileID: 1768265686}
   - component: {fileID: 1768265685}
   - component: {fileID: 1768265684}
-  - component: {fileID: 1768265687}
   m_Layer: 0
   m_Name: board
   m_TagString: Untagged
@@ -18492,19 +18477,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768265682}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1768265687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1768265682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b4b609988f6ee544a5469822b2bccab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 1624142993}
 --- !u!1 &1778819239
 GameObject:
   m_ObjectHideFlags: 0
