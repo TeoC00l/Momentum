@@ -11143,6 +11143,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e855d4344f0b8754ba7a18799bcf1724, type: 2}
+    - target: {fileID: 1697121389727658179, guid: b583ebbf350e09740a48dc8cfd070dd0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b583ebbf350e09740a48dc8cfd070dd0, type: 3}
 --- !u!1 &1230099280
@@ -18076,7 +18081,7 @@ MonoBehaviour:
   collide_wall_clip: {fileID: 8300000, guid: 301f86f61e161c043ac9b6c9242df88c, type: 3}
   rolling_noise: {fileID: 8300000, guid: 4dc670ecbcace5649afe8096f5e49c2e, type: 3}
   bumpfloor: {fileID: 8300000, guid: 2403eda24f23d3a47901c18cab73721e, type: 3}
-  jumpSound: {fileID: 0}
+  jumpSound: {fileID: 8300000, guid: 7ca6bfdc3d4eef24d9dd049eecd745cf, type: 3}
   playerVelocity: 0
 --- !u!1 &1653435598
 GameObject:
