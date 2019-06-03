@@ -21,10 +21,21 @@ public class UI2_1 : MonoBehaviour
 
 
     ////annoying part
+    [Header("On Model")]
     public GameObject booster_on1;
     public GameObject booster_on2;
+    public GameObject booster_on3;
+    public GameObject booster_on4;
+    public GameObject booster_on5;
+    public GameObject booster_on6;
+    [Header("Off Model")]
     public GameObject booster_off1;
     public GameObject booster_off2;
+    public GameObject booster_off3;
+    public GameObject booster_off4;
+    public GameObject booster_off5;
+    public GameObject booster_off6;
+    [Header("particles")]
     public GameObject particle1;
     public GameObject particle2;
 
@@ -185,6 +196,18 @@ public class UI2_1 : MonoBehaviour
         booster_off1.GetComponent<MeshRenderer>().enabled = false;
         booster_on2.GetComponent<MeshRenderer>().enabled = true;
         booster_off2.GetComponent<MeshRenderer>().enabled = false;
+
+        booster_on3.GetComponent<MeshRenderer>().enabled = true;
+        booster_off3.GetComponent<MeshRenderer>().enabled = false;
+
+        booster_on4.GetComponent<MeshRenderer>().enabled = true;
+        booster_off3.GetComponent<MeshRenderer>().enabled = false;
+
+        booster_on5.GetComponent<MeshRenderer>().enabled = true;
+        booster_off3.GetComponent<MeshRenderer>().enabled = false;
+
+        booster_on6.GetComponent<MeshRenderer>().enabled = true;
+        booster_off3.GetComponent<MeshRenderer>().enabled = false;
     }
 
     ////handle engine on or off section
@@ -194,6 +217,18 @@ public class UI2_1 : MonoBehaviour
         booster_off1.GetComponent<MeshRenderer>().enabled = true;
         booster_on2.GetComponent<MeshRenderer>().enabled = false;
         booster_off2.GetComponent<MeshRenderer>().enabled = true;
+
+        booster_on3.GetComponent<MeshRenderer>().enabled = false;
+        booster_off3.GetComponent<MeshRenderer>().enabled = true;
+
+        booster_on4.GetComponent<MeshRenderer>().enabled = false;
+        booster_off4.GetComponent<MeshRenderer>().enabled = true;
+
+        booster_on5.GetComponent<MeshRenderer>().enabled = false;
+        booster_off5.GetComponent<MeshRenderer>().enabled = true;
+
+        booster_on6.GetComponent<MeshRenderer>().enabled = false;
+        booster_off6.GetComponent<MeshRenderer>().enabled = true;
     }
 
     void turnOnBooster()
@@ -202,5 +237,17 @@ public class UI2_1 : MonoBehaviour
         booster_off1.GetComponent<MeshRenderer>().enabled = false;
         booster_on2.GetComponent<MeshRenderer>().enabled = true;
         booster_off2.GetComponent<MeshRenderer>().enabled = false;
+
+        booster_on3.GetComponent<MeshRenderer>().enabled = true;
+        booster_off3.GetComponent<MeshRenderer>().enabled = false;
+
+        booster_on4.GetComponent<MeshRenderer>().enabled = true;
+        booster_off4.GetComponent<MeshRenderer>().enabled = false;
+
+        booster_on5.GetComponent<MeshRenderer>().enabled = true;
+        booster_off5.GetComponent<MeshRenderer>().enabled = false;
+
+        booster_on6.GetComponent<MeshRenderer>().enabled = true;
+        booster_off6.GetComponent<MeshRenderer>().enabled = false;
     }
 }
