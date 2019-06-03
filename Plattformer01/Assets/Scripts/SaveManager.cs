@@ -59,7 +59,7 @@ public class SaveManager : MonoBehaviour
 
     public void SaveGame()
     {
-        Debug.Log("SaveGAme");
+        Debug.Log("SaveGame");
         if(Gems != null)
         {
             Gems.Clear();

@@ -39,13 +39,13 @@ public class DashGui : MonoBehaviour
     {
         if (dashTimer.IsReady() == false && dashDurationTimer.IsReady() == false)
         {
-            Debug.Log("ReadyFalse");
+            //Debug.Log("ReadyFalse");
             //countdown
             if(fullOnce == true)
             {
                 growFactor = startScale / DecreaseThisManyTimes;
                 GuiDashtransform.localScale = new Vector3(0.67f, startScale, 0.78767f);
-                Debug.Log("OriginalScale"+ GuiDashtransform.localScale+ "vs" + new Vector3(GuiDashtransform.localScale.x, startScale, GuiDashtransform.localScale.z) + "growfactor" + growFactor + "dashTimerSetVAlue" + dashTimerSetValue);
+                //Debug.Log("OriginalScale"+ GuiDashtransform.localScale+ "vs" + new Vector3(GuiDashtransform.localScale.x, startScale, GuiDashtransform.localScale.z) + "growfactor" + growFactor + "dashTimerSetVAlue" + dashTimerSetValue);
               //  guiTimer = 0;
                 fullOnce = false;
 
@@ -76,7 +76,7 @@ public class DashGui : MonoBehaviour
 
         //  GuiDashtransform.localScale = new Vector3(rectTransform.localScale.x, 0.62f, 0);
         GuiDashtransform.localScale -= new Vector3(0f, growFactor, 0);
-        Debug.Log(GuiDashtransform.localScale);
+        //Debug.Log(GuiDashtransform.localScale);
 
     }
 }

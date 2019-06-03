@@ -27,7 +27,7 @@ public class KineticBatteryAirbourneState : PlayerBaseState
         if (owner.GetCurrentlySliding() == false)
         {
             owner.SetStopKineticSlide(false);
-            Debug.Log("startSlide");
+            //Debug.Log("startSlide");
             owner.kineticTimer = 1000;
             owner.divideValue = owner.kineticTimer;
             owner.InvokeRepeating("DecreaseVelocity", waitBeforeSliding, slideDecreaseMovementRate);

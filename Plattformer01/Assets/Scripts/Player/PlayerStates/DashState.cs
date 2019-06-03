@@ -51,7 +51,6 @@ public class DashState : PlayerBaseState
         //checking for last frame of dash to cancel dash
         if (dashDurationTimer.IsReady() == true)
         {
-            Debug.Log("poop");
             owner.TransitionBack();
         }
 

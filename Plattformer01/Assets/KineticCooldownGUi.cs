@@ -36,7 +36,7 @@ public class KineticCooldownGUi : MonoBehaviour
     {
         if (kineticTimer.IsReady() == false && playerScript.GetKineticActive() == false)
         {
-            Debug.Log("ReadyFalse");
+            //Debug.Log("ReadyFalse");
             //countdown
             if (fullOnce == true)
             {
@@ -73,7 +73,7 @@ public class KineticCooldownGUi : MonoBehaviour
 
         //  GuiDashtransform.localScale = new Vector3(rectTransform.localScale.x, 0.62f, 0);
         GuiDashtransform.localScale -= new Vector3(growFactor, 0, 0);
-        Debug.Log(GuiDashtransform.localScale);
+        //Debug.Log(GuiDashtransform.localScale);
 
     }
 }
