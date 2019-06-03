@@ -9,14 +9,14 @@ public class Checkpoint : MonoBehaviour
 
     private Health playerHealth;
     private GameObject player;
-    private CameraScript2 mainCamera;
+    private CameraScript mainCamera;
     
     //Methods
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = player.GetComponent<Health>();
-        mainCamera = Camera.main.GetComponent<CameraScript2>();
+        mainCamera = UnityEngine.Camera.main.GetComponent<CameraScript>();
     }
 
     public void SetPlayerPositionHere()

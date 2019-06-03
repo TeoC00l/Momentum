@@ -10,7 +10,7 @@ namespace TMPro.Examples
     {
         private TextMeshPro m_TextMeshPro;
 
-        private Camera m_Camera;
+        private UnityEngine.Camera m_Camera;
 
         private bool m_isHoveringObject;
         private int m_selectedLink = -1;
@@ -20,7 +20,7 @@ namespace TMPro.Examples
         void Awake()
         {
             m_TextMeshPro = gameObject.GetComponent<TextMeshPro>();
-            m_Camera = Camera.main;
+            m_Camera = UnityEngine.Camera.main;
 
             // Force generation of the text object so we have valid data to work with. This is needed since LateUpdate() will be called before the text object has a chance to generated when entering play mode.
             m_TextMeshPro.ForceMeshUpdate();
@@ -31,7 +31,7 @@ namespace TMPro.Examples
         {
             m_isHoveringObject = false;
 
-            if (TMP_TextUtilities.IsIntersectingRectTransform(m_TextMeshPro.rectTransform, Input.mousePosition, Camera.main))
+            if (TMP_TextUtilities.IsIntersectingRectTransform(m_TextMeshPro.rectTransform, Input.mousePosition, UnityEngine.Camera.main))
             {
                 m_isHoveringObject = true;
             }
@@ -39,7 +39,7 @@ namespace TMPro.Examples
             if (m_isHoveringObject)
             {
                 #region Example of Character Selection
-                int charIndex = TMP_TextUtilities.FindIntersectingCharacter(m_TextMeshPro, Input.mousePosition, Camera.main, true);
+                int charIndex = TMP_TextUtilities.FindIntersectingCharacter(m_TextMeshPro, Input.mousePosition, UnityEngine.Camera.main, true);
                 if (charIndex != -1 && charIndex != m_lastCharIndex && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
                 {
                     //Debug.Log("[" + m_TextMeshPro.textInfo.characterInfo[charIndex].character + "] has been selected.");
@@ -107,7 +107,7 @@ namespace TMPro.Examples
 
                 #region Example of Word Selection
                 // Check if Mouse intersects any words and if so assign a random color to that word.
-                int wordIndex = TMP_TextUtilities.FindIntersectingWord(m_TextMeshPro, Input.mousePosition, Camera.main);
+                int wordIndex = TMP_TextUtilities.FindIntersectingWord(m_TextMeshPro, Input.mousePosition, UnityEngine.Camera.main);
                 if (wordIndex != -1 && wordIndex != m_lastWordIndex)
                 {
                     m_lastWordIndex = wordIndex;
@@ -115,7 +115,7 @@ namespace TMPro.Examples
                     TMP_WordInfo wInfo = m_TextMeshPro.textInfo.wordInfo[wordIndex];
 
                     Vector3 wordPOS = m_TextMeshPro.transform.TransformPoint(m_TextMeshPro.textInfo.characterInfo[wInfo.firstCharacterIndex].bottomLeft);
-                    wordPOS = Camera.main.WorldToScreenPoint(wordPOS);
+                    wordPOS = UnityEngine.Camera.main.WorldToScreenPoint(wordPOS);
 
                     //Debug.Log("Mouse Position: " + Input.mousePosition.ToString("f3") + "  Word Position: " + wordPOS.ToString("f3"));
 

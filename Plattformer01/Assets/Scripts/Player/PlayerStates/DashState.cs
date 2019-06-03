@@ -22,12 +22,12 @@ public class DashState : PlayerBaseState
 
         if (Input.GetKey(KeyCode.Q))
         {
-            dashDirection = Camera.main.transform.rotation * Vector3.left;
+            dashDirection = UnityEngine.Camera.main.transform.rotation * Vector3.left;
         }
 
         if (Input.GetKey(KeyCode.E))
         {
-            dashDirection = Camera.main.transform.rotation * Vector3.right;
+            dashDirection = UnityEngine.Camera.main.transform.rotation * Vector3.right;
         }
 
         owner.dashCooldownTimer.SetTimer();

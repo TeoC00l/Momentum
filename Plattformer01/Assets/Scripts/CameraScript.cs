@@ -2,43 +2,58 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraScript2 : MonoBehaviour
+public class CameraScript : MonoBehaviour
 
 {
     //Attributes
-    public float rotationX = 0.0f;
-    public float rotationY = 0.0f;
-    public float mouseSensitivity = 3f;
-    Vector3 cameraPosition = Vector3.zero;
-    Vector3 cameraOffset = Vector3.zero;
+
+        //Basic camera attributes
+    private float rotationX;
+    private float rotationY;
+    private Vector3 cameraPosition;
+    private Vector3 cameraOffset = Vector3.zero;
+    [SerializeField] private float mouseSensitivity;
     [SerializeField] private GameObject player;
-    private bool shakeStart = false;
-    [SerializeField] private float shakeAmount;
-    [SerializeField] private LayerMask layerMask;
+    
+        //Shake effect
+    private bool shakeStart;
     private RaycastHit hit;
     private RaycastHit hit2;
+
+    [SerializeField] private float shakeAmount;
+    [SerializeField] private LayerMask layerMask;
     [SerializeField] private float shakeLength;
-    private float shakeCounter = 0;
-    private bool ray = false;
-    private GameObject hitGameObject = null;
-    private float hitAgain = 0;
+
+    private float shakeCounter;
+    private bool ray;
+    private GameObject hitGameObject;
+    private float hitAgain;
     private PhysicsComponent physComp;
-    private List<MeshRenderer> meshArray = new List<MeshRenderer>();
-    private List<MeshRenderer> newMeshArray = new List<MeshRenderer>();
-    private MeshRenderer specifikMeshRender;
 
     //Methods
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        rotationX = 0.0f;
+        rotationY = 0.0f;
+        cameraPosition = Vector3.zero;
         cameraOffset = transform.position - player.transform.position;
+
+        Cursor.lockState = CursorLockMode.Locked;
         physComp = player.GetComponent<PhysicsComponent>();
+
+        shakeStart = false;
+        shakeCounter = 0;
+        ray = false;
+        hitAgain = 0;
     }
+
     void FixedUpdate()
     {
+        AddRotation();
         player.transform.rotation = transform.rotation;
         player.transform.rotation = Quaternion.Euler(0, player.transform.eulerAngles.y, 0);
     }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -46,14 +61,13 @@ public class CameraScript2 : MonoBehaviour
             changeCursorLockMode();
         }
 
-        AddRotation();
         if (shakeStart == false)
         {
             Vector3 Velocity = new Vector3(physComp.GetVelocity().x, 0f, physComp.GetVelocity().z);
             ray = Physics.Raycast(player.transform.position, Velocity.normalized, out hit, 3f, layerMask);
             Debug.DrawRay(player.transform.position,Velocity.normalized, Color.yellow, 3f);
-
         }
+
         if (ray == true)
         {
             if (hit.collider.gameObject.tag == "Floor" && hit.collider.gameObject != hitGameObject )
@@ -62,7 +76,8 @@ public class CameraScript2 : MonoBehaviour
                 shakeStart = true;
                 
             }
-        }else if (hitGameObject != null)
+        }
+        else if (hitGameObject != null)
         {
             hitAgain += Time.deltaTime;
         }
@@ -93,60 +108,16 @@ public class CameraScript2 : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(rotationX, rotationY, 0);
         cameraPosition = rotation * cameraOffset;
 
-        //   transform.position = player.transform.position + cameraPosition;
-        //   transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 5);
-
         transform.rotation = rotation;
-
         transform.position =  player.transform.position + cameraPosition;
-     //   player.transform.rotation = transform.rotation;
-     //   player.transform.rotation = Quaternion.Euler(0, player.transform.eulerAngles.y, 0);
-
-
-
-        //bool PlayerToCam = Physics.Linecast(player.transform.position, this.gameObject.transform.position,out hit2, layerMask, 0);
-        //Debug.DrawLine(player.transform.position, this.gameObject.transform.position, Color.red, 1);
-        //if (PlayerToCam)
-        //{
-
-        //    specifikMeshRender = hit2.collider.gameObject.GetComponent<MeshRenderer>();
-
-        //    if (specifikMeshRender != null)
-        //    {
-        //        Debug.Log(specifikMeshRender);
-        //        meshArray.Add(specifikMeshRender);
-        //        specifikMeshRender.enabled = false;
-        //    }
-        //}
-        //foreach (MeshRenderer R in meshArray)
-        //{
-        //    if(specifikMeshRender == R)
-        //    {
-        //        newMeshArray.Add(R);
-
-        //    }
-        //    else
-        //    {
-        //        Debug.Log("ReENABLED NOOOOW");
-        //        R.enabled = true;
-
-        //    }
-        //}
-        //meshArray = newMeshArray;
-        //ray = Physics.Linecast(player.transform.position, Camera.main.transform.position, layerMask,0);
-        //if(ray == true)
-        //{
-        //    Debug.Log("hitcamera");
-        //    Camera.main.transform.position = hit.point;
-        //}
-
     }
+
     public void ShakeCamera()
     {
 
             float tempShakeAmount = physComp.GetVelocity().magnitude * shakeAmount;
-            Camera.main.transform.localPosition += new Vector3(Random.insideUnitSphere.x * tempShakeAmount, Random.insideUnitSphere.y * tempShakeAmount + 1.78f, 0f);
-            Camera.main.transform.localPosition -= new Vector3(Random.insideUnitSphere.x * tempShakeAmount, Random.insideUnitSphere.y * tempShakeAmount + 1.78f, 0f);
+        UnityEngine.Camera.main.transform.localPosition += new Vector3(Random.insideUnitSphere.x * tempShakeAmount, Random.insideUnitSphere.y * tempShakeAmount + 1.78f, 0f);
+        UnityEngine.Camera.main.transform.localPosition -= new Vector3(Random.insideUnitSphere.x * tempShakeAmount, Random.insideUnitSphere.y * tempShakeAmount + 1.78f, 0f);
             shakeCounter += Time.deltaTime;
             
     }

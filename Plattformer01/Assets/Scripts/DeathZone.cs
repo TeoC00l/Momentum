@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Abyss2 : MonoBehaviour
+public class DeathZone : MonoBehaviour
 {
     //Attributes
     private GameObject player;

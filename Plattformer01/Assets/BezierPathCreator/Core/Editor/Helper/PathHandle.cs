@@ -111,13 +111,13 @@ namespace PathCreationEditor
                         if (GUIUtility.hotControl == id && Event.current.button == 0)
                         {
                             handleDragMouseEnd += new Vector2(Event.current.delta.x, -Event.current.delta.y);
-                            Vector3 position2 = Camera.current.WorldToScreenPoint(Handles.matrix.MultiplyPoint(handleDragWorldStart))
+                            Vector3 position2 = UnityEngine.Camera.current.WorldToScreenPoint(Handles.matrix.MultiplyPoint(handleDragWorldStart))
                                 + (Vector3)(handleDragMouseEnd - handleDragMouseStart);
                             inputType = HandleInputType.LMBDrag;
                             // Handle can move freely in 3d space
                             if (space == PathSpace.xyz)
                             {
-                                position = Handles.matrix.inverse.MultiplyPoint(Camera.current.ScreenToWorldPoint(position2));
+                                position = Handles.matrix.inverse.MultiplyPoint(UnityEngine.Camera.current.ScreenToWorldPoint(position2));
                             }
                             // Handle is clamped to xy or xz plane
                             else
@@ -150,7 +150,7 @@ namespace PathCreationEditor
 
                     Handles.matrix = Matrix4x4.identity;
                     Vector3 lookForward = Vector3.up;
-                    Camera cam = Camera.current;
+                    UnityEngine.Camera cam = UnityEngine.Camera.current;
                     if (cam != null)
                     {
                         if (cam.orthographic)

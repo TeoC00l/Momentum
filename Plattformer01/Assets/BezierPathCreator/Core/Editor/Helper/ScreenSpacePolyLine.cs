@@ -119,7 +119,7 @@ namespace PathCreationEditor
 
         void ComputeScreenSpace()
         {
-            if (Camera.current.transform.position != prevCamPos || Camera.current.transform.rotation != prevCamRot || Camera.current.orthographic != premCamIsOrtho)
+            if (UnityEngine.Camera.current.transform.position != prevCamPos || UnityEngine.Camera.current.transform.rotation != prevCamRot || UnityEngine.Camera.current.orthographic != premCamIsOrtho)
             {
                 points = new Vector2[verticesWorld.Count];
                 for (int i = 0; i < verticesWorld.Count; i++)
@@ -127,9 +127,9 @@ namespace PathCreationEditor
                     points[i] = HandleUtility.WorldToGUIPoint(verticesWorld[i]);
                 }
 
-                prevCamPos = Camera.current.transform.position;
-                prevCamRot = Camera.current.transform.rotation;
-                premCamIsOrtho = Camera.current.orthographic;
+                prevCamPos = UnityEngine.Camera.current.transform.position;
+                prevCamRot = UnityEngine.Camera.current.transform.rotation;
+                premCamIsOrtho = UnityEngine.Camera.current.orthographic;
             }
         }
 

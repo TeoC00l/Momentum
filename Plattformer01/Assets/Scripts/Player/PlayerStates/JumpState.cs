@@ -10,7 +10,6 @@ public class JumpState : PlayerBaseState
     //Methods
     public override void Enter()
     {
-
     }
 
     public override void HandleFixedUpdate()
@@ -18,5 +17,4 @@ public class JumpState : PlayerBaseState
         owner.PhysComp.Jump();
         owner.TransitionBack();
     }
-
 }

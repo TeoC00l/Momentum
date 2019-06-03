@@ -342,7 +342,7 @@ namespace PathCreationEditor
                     else if (!bezierPath.IsClosed)
                     {
                         // insert new point at same dst from scene camera as the point that comes before it (for a 3d path)
-                        float dstCamToEndpoint = (Camera.current.transform.position - bezierPath[bezierPath.NumPoints - 1]).magnitude;
+                        float dstCamToEndpoint = (UnityEngine.Camera.current.transform.position - bezierPath[bezierPath.NumPoints - 1]).magnitude;
                         Vector3 newPathPoint = MouseUtility.GetMouseWorldPosition(bezierPath.Space, dstCamToEndpoint);
 
                         Undo.RecordObject(creator, "Add segment");

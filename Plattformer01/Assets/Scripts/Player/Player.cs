@@ -67,7 +67,7 @@ public class Player : StateMachine
         float horizontalInput = Input.GetAxisRaw("Horizontal");
 
         Vector3 input = new Vector3(horizontalInput * strafeCoefficient, 0, verticalInput);
-        input = Camera.main.transform.rotation * input.normalized;
+        input = UnityEngine.Camera.main.transform.rotation * input.normalized;
 
         input = Vector3.ProjectOnPlane(input, hit.normal);
         input = input.normalized;
