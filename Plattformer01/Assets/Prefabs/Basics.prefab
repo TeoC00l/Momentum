@@ -399,7 +399,7 @@ GameObject:
   - component: {fileID: 1135275764}
   - component: {fileID: 1135275763}
   m_Layer: 5
-  m_Name: New Sprite
+  m_Name: KineticGuiCooldown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1409,7 +1409,13 @@ PrefabInstance:
       propertyPath: kineticArrow
       value: 
       objectReference: {fileID: 3955841703858325849}
-    m_RemovedComponents: []
+    - target: {fileID: 5167476967016922549, guid: a9a1eee5dad0eaf41aecf99b96ff0e53,
+        type: 3}
+      propertyPath: topSpeed
+      value: 400
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 280409043623529767, guid: a9a1eee5dad0eaf41aecf99b96ff0e53, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a9a1eee5dad0eaf41aecf99b96ff0e53, type: 3}
 --- !u!224 &3955841705300190440 stripped
 RectTransform:

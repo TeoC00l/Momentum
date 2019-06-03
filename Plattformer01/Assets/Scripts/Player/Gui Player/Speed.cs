@@ -27,6 +27,8 @@ public class Speed : MonoBehaviour
         if (physcomp != null)
         {
             Vector3 playerSpeed = new Vector3(physcomp.GetVelocity().x, 0f, physcomp.GetVelocity().z);
+            playerSpeed *= physcomp.GetSpeedIncrease();
+            topSpeed *= physcomp.GetSpeedIncrease();
             speed = playerSpeed.magnitude;
             GUI.DrawTexture(new Rect(dialPos.position.x, dialPos.position.y, dialTex.width, dialTex.height), dialTex);
             Vector2 centre = new Vector2(dialPos.position.x + dialTex.width / 2, dialPos.position.y + dialTex.height / 2);
