@@ -6,15 +6,14 @@ public class BatteryCharge : MonoBehaviour
 {
     private GameObject player; //player
     [SerializeField]private GameObject kineticGraphics; //the grapghics for kinetic battery
+    [SerializeField] private GameObject kineticArrow;
     private GameObject chargeBar; //the chargebar
     private float FullChargeSize = 0.81f; //where the battery tops off
     private float minChargeSize = 0; //where the battery stops
     private float growFactor = 0.1f;
-    private float Timer = 1000; 
     private RectTransform rectTransform;
     private Player playerScript;
     private bool stopCharge;
-    [SerializeField]private GameObject kineticArrow;
 
     //fixTimeText
 
@@ -34,8 +33,6 @@ public class BatteryCharge : MonoBehaviour
     {
         if (playerScript.GetKineticActive())
         {
-        //    CancelInvoke("DecreaseBar");
-            //countdown
             kineticArrow.SetActive(true);
             if (FullChargeSize > rectTransform.localScale.x && stopCharge == false)
             {
@@ -59,9 +56,6 @@ public class BatteryCharge : MonoBehaviour
         else
         {
             kineticArrow.SetActive(false);
-
-         //   CancelInvoke("IncreaseBar");
-            // rectTransform.localScale = new Vector2(0f, 0f);
             if (minChargeSize < rectTransform.localScale.x && stopCharge == true)
             {
                 stopCharge = true;

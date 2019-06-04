@@ -150,7 +150,7 @@ public class UI2_1 : MonoBehaviour
             UIPrecision.SetActive(false);
             UIKinetic.SetActive(true);
             turnOffBooster();
-            boardThruster.transform.Rotate(0, 0, 180 *Time.smoothDeltaTime * 3.5f);
+            boardThruster.transform.Rotate(0, 0, 360 *Time.smoothDeltaTime * 3.5f);
              
             particle1.SetActive(false);
             particle2.SetActive(false);
