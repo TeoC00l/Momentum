@@ -18,8 +18,6 @@ public class CameraScript : MonoBehaviour
         //Shake effect
     private bool shakeStart;
     private RaycastHit hit;
-    private RaycastHit hit2;
-
     [SerializeField] private float shakeAmount;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float shakeLength;
@@ -91,11 +89,11 @@ public class CameraScript : MonoBehaviour
     {
         if (Cursor.lockState == CursorLockMode.Confined)
         {
-        Cursor.lockState = CursorLockMode.Locked;
+           Cursor.lockState = CursorLockMode.Locked;
         }
         else
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.Confined;
         }
     }
 
@@ -121,7 +119,7 @@ public class CameraScript : MonoBehaviour
         {
             hitAgain += Time.deltaTime;
         }
-        if (hitAgain > 0.1)
+        if (hitAgain > 0.05)
         {
 
             hitGameObject = null;

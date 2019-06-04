@@ -24,7 +24,6 @@ public class RepulsorField : MonoBehaviour
         playerPhysComp = character.GetComponent<PhysicsComponent>();
         forceFieldMesh = GetComponent<MeshRenderer>();
         repulsor = transform.parent.GetComponent<RepulsorAttractor>();
-        expand = new Vector3(4f, 4f, 4f);
 
     }
     private void Update()
