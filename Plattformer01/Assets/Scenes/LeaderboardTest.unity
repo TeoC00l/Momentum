@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -427,12 +427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f8187a5966b3046be23d600da1eb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Scene2:
-    m_Handle: 1
-  m_Scene3:
-    m_Handle: 2
   buttonImageAddScore: {fileID: 2800000, guid: b2eab1893e7e4de46939652907115d5b, type: 3}
-  sciFiFont: {fileID: 12800000, guid: 625f2a18a16faa1449a5aa1172403fda, type: 3}
+  sciFiFont: {fileID: 12800000, guid: a4bf3bd7628e33047939e9084bf67a40, type: 3}
   ButtonsWidth: 220
   ButtonsHeight: 70
   ButtonsXposition: 1100

@@ -9,7 +9,11 @@ public class Pickup : MonoBehaviour
     private Transform child;
     [SerializeField]private float speed;
     private GemSpeedPickUP gemPickup;
+    private void Awake()
+    {
+        gemPickup = GameObject.FindWithTag("TextCanvas").GetComponent<GemSpeedPickUP>();
 
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -18,11 +22,12 @@ public class Pickup : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, speed * Time.smoothDeltaTime);
             speed += 0.2f;
-            if (Vector3.Distance(child.position, transform.position) < 1f)
+            if (Vector3.Distance(child.position, transform.position) < 0.1f)
             {
                 Player.GetComponent<ParticleSystem>().Play(true);
+                Debug.Log("hit pickup");
                 gemPickup.UpdateGems();
-                Destroy(this.gameObject);
+                this.gameObject.SetActive(false);
             }
         }
         
@@ -34,7 +39,6 @@ public class Pickup : MonoBehaviour
             follow = true;
             Player = other.gameObject;
             child = Player.transform.GetChild(0);
-            gemPickup = GameObject.FindWithTag("TextCanvas").GetComponent<GemSpeedPickUP>();
         }
     }
 }
