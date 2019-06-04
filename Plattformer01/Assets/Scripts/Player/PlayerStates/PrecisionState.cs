@@ -41,17 +41,17 @@ public class PrecisionState : PlayerBaseState
     public override void HandleUpdate()
     {
         //Checking for conditions to change state
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetAxisRaw("Joystick L trigger") == 0)
         {
             owner.Transition<MomentumState>();
         }
 
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") || Input.GetKeyDown("joystick button 0"))
         {
             owner.Transition<JumpState>();
         }
 
-        if (owner.dashCooldownTimer.IsReady() && (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)))
+        if (owner.dashCooldownTimer.IsReady() && (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)) || Input.GetKeyDown("joystick button 4") || Input.GetKeyDown("joystick button 5"))
         {
             owner.Transition<DashState>();
         }

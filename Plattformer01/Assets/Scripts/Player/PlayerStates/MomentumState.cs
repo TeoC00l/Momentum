@@ -47,22 +47,22 @@ public class MomentumState : PlayerBaseState
     public override void HandleUpdate()
     {
         //Checking for conditions to change state
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetAxisRaw("Joystick L trigger") > 0)
         {
             owner.Transition<PrecisionState>();
         }
 
-        if (Input.GetMouseButtonDown(0) && owner.kineticBatteryCooldownTimer.IsReady())
+        if (Input.GetMouseButtonDown(0) || (Input.GetAxisRaw("Joystick R trigger") > 0) && owner.kineticBatteryCooldownTimer.IsReady())
         {
             owner.Transition<KineticBatteryState>();
         }
 
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") || Input.GetKeyDown("joystick button 0"))
         {
             owner.Transition<JumpState>();
         }
 
-        if (owner.dashCooldownTimer.IsReady() && (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)))
+        if (owner.dashCooldownTimer.IsReady() && (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)) || Input.GetKeyDown("joystick button 4") || Input.GetKeyDown("joystick button 5"))
         {
             owner.Transition<DashState>();
         }
