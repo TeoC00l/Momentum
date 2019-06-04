@@ -6,17 +6,12 @@ public class CameraScript : MonoBehaviour
 
 {
     //Attributes
-
-        //Basic camera attributes
-    private float rotationX;
-    private float rotationY;
     private Vector3 cameraPosition;
     private Vector3 cameraOffset = Vector3.zero;
-    [SerializeField] private float mouseSensitivity;
-    [SerializeField] private float xboxMouseSensitivity;
+    private ControllerInput controllerInput;
     [SerializeField] private GameObject player;
-    
-        //Shake effect
+
+    //Shake effect attributes
     private bool shakeStart;
     private RaycastHit hit;
     [SerializeField] private float shakeAmount;
@@ -32,13 +27,13 @@ public class CameraScript : MonoBehaviour
     //Methods
     void Start()
     {
-        rotationX = 0.0f;
-        rotationY = 0.0f;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        controllerInput = GameObject.FindObjectOfType<ControllerInput>() as ControllerInput;
+        physComp = player.GetComponent<PhysicsComponent>();
+
         cameraPosition = Vector3.zero;
         cameraOffset = transform.position - player.transform.position;
-
-        Cursor.lockState = CursorLockMode.Locked;
-        physComp = player.GetComponent<PhysicsComponent>();
 
         shakeStart = false;
         shakeCounter = 0;
@@ -47,7 +42,7 @@ public class CameraScript : MonoBehaviour
     }
 
     void FixedUpdate()
-    {        
+    {
         InitiateShake();
     }
 
@@ -59,42 +54,36 @@ public class CameraScript : MonoBehaviour
         }
 
         AddRotation();
-
     }
 
     public void AddRotation()
     {
-        rotationY += Input.GetAxisRaw("Joystick X") * xboxMouseSensitivity;
-        rotationX -= Input.GetAxisRaw("Joystick Y") * xboxMouseSensitivity;
-        rotationY += Input.GetAxisRaw("Horizontal") * mouseSensitivity;
+        float rotationY = controllerInput.GetRotationY();
+        float rotationX = controllerInput.GetRotationX();
 
-        rotationY += Input.GetAxisRaw("Mouse X") * mouseSensitivity;
-        rotationX -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
         rotationX = Mathf.Clamp(rotationX, -90f, 90f);
         Quaternion rotation = Quaternion.Euler(rotationX, rotationY, 0);
         cameraPosition = rotation * cameraOffset;
 
         transform.rotation = rotation;
-        transform.position =  player.transform.position + cameraPosition;
+        transform.position = player.transform.position + cameraPosition;
         player.transform.rotation = transform.rotation;
         player.transform.rotation = Quaternion.Euler(0, player.transform.eulerAngles.y, 0);
     }
 
     public void ShakeCamera()
     {
-
-            float tempShakeAmount = physComp.GetVelocity().magnitude * shakeAmount;
+        float tempShakeAmount = physComp.GetVelocity().magnitude * shakeAmount;
         UnityEngine.Camera.main.transform.localPosition += new Vector3(Random.insideUnitSphere.x * tempShakeAmount, Random.insideUnitSphere.y * tempShakeAmount + 1.78f, 0f);
         UnityEngine.Camera.main.transform.localPosition -= new Vector3(Random.insideUnitSphere.x * tempShakeAmount, Random.insideUnitSphere.y * tempShakeAmount + 1.78f, 0f);
-            shakeCounter += Time.deltaTime;
-            
+        shakeCounter += Time.deltaTime;
     }
 
     public void changeCursorLockMode()
     {
         if (Cursor.lockState == CursorLockMode.Confined)
         {
-           Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.Locked;
         }
         else
         {
@@ -151,10 +140,6 @@ public class CameraScript : MonoBehaviour
     public bool getShakeStart()
     {
         return shakeStart;
-    }
-    public void SetYAxisRotation(float rotationY)
-    {
-        this.rotationY = rotationY;
     }
 }
 

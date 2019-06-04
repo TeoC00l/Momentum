@@ -8,8 +8,9 @@ public class PlayerBaseState : State
     //Attributes
     [SerializeField] protected Material material;
 
-    [SerializeField] protected PhysicsComponent PhysComp;
-    [SerializeField] protected RayCasterCapsule rayCaster;
+    protected PhysicsComponent PhysComp;
+    protected RayCasterCapsule rayCaster;
+    protected ControllerInput controllerInput;
     protected Player owner;
     
 
@@ -18,7 +19,7 @@ public class PlayerBaseState : State
     {
         PhysComp = owner.PhysComp;
         owner.Renderer.material = material;
-
+        controllerInput = GameObject.FindObjectOfType<ControllerInput>() as ControllerInput;
     }
 
     public override void Initialize(StateMachine owner)

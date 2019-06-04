@@ -9,20 +9,20 @@ public class Checkpoint : MonoBehaviour
 
     private Health playerHealth;
     private GameObject player;
-    private CameraScript mainCamera;
+    private ControllerInput controllerInput;
     
     //Methods
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = player.GetComponent<Health>();
-        mainCamera = UnityEngine.Camera.main.GetComponent<CameraScript>();
+        controllerInput = GameObject.FindObjectOfType<ControllerInput>() as ControllerInput;
     }
 
     public void SetPlayerPositionHere()
     {
         player.transform.position = gameObject.transform.position;
-        mainCamera.SetYAxisRotation(playerYAxisRotation);
+        controllerInput.SetRotationY(playerYAxisRotation);
     }
 
     void OnTriggerEnter(Collider other)

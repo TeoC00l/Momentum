@@ -19,16 +19,16 @@ public class DashState : PlayerBaseState
     {
         dashVelocity = Vector3.zero;
         isExecutingDash = true;
-
-        if (Input.GetKey(KeyCode.Q) || Input.GetKeyDown("joystick button 4"))
+        if (controllerInput.GetDashingLeftOrRight() == -1)
         {
             dashDirection = UnityEngine.Camera.main.transform.rotation * Vector3.left;
         }
 
-        if (Input.GetKey(KeyCode.E)|| Input.GetKeyDown("joystick button 5"))
+        if (controllerInput.GetDashingLeftOrRight() == 1)
         {
             dashDirection = UnityEngine.Camera.main.transform.rotation * Vector3.right;
         }
+        controllerInput.resetDash();
 
         owner.dashCooldownTimer.SetTimer();
         dashDurationTimer.SetTimer();
@@ -41,7 +41,6 @@ public class DashState : PlayerBaseState
         owner.AddPhysics();
         owner.PhysComp.CollisionCalibration();
         owner.PhysComp.SubtractVelocity(dashVelocity);
-
     }
 
     public override void HandleUpdate()

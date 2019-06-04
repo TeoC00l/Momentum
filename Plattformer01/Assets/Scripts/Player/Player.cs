@@ -9,11 +9,11 @@ public class Player : StateMachine
     [HideInInspector] public RayCasterCapsule RayCaster;
     [HideInInspector] public MeshRenderer Renderer;
 
-    [SerializeField] private float mouseSensitivity;
-    [SerializeField] private float strafeCoefficient;
+    [SerializeField] private float strafeMultiplier;
     [SerializeField] private float kineticBatterySlidePower0Max1Min;
 
     private Checkpoint checkPoint;
+    private float skinWidth;
 
     //Dash related attributes
     public Timer dashCooldownTimer;
@@ -27,12 +27,8 @@ public class Player : StateMachine
     private bool stopKineticSlide;
     private bool currentlySliding;
     private Vector3 oldVelocity = Vector3.zero;
+    private ControllerInput controllerInput;
     public Timer kineticBatteryCooldownTimer;
-
-    //Rotation To surface (TEST)
-    private Vector3 forwardRelativeToSurfaceNormal;
-    private RaycastHit hit;
-    private Vector3 surfaceNormal;
 
     //GemPrefab
     [SerializeField] private GameObject gemPrefab;
@@ -43,10 +39,15 @@ public class Player : StateMachine
         RayCaster = GetComponent<RayCasterCapsule>();
         PhysComp = GetComponent<PhysicsComponent>();
         Renderer = GetComponent<MeshRenderer>();
+        controllerInput = GameObject.FindObjectOfType<ControllerInput>() as ControllerInput;
         SaveManager._instance.SetGem(gemPrefab);
+
+        skinWidth = PhysComp.GetSkinWidth();
 
         stopKineticSlide = false;
         currentlySliding = false;
+
+
         base.Awake();
     }
 
@@ -58,13 +59,12 @@ public class Player : StateMachine
     }
 
     public Vector3 ProcessInput()
-    {
-        float skinWidth = PhysComp.GetSkinWidth();
+    {       
         RaycastHit hit = RayCaster.GetCollisionData(Vector3.down, skinWidth * 2);
-        float verticalInput = Input.GetAxisRaw("Vertical");
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = controllerInput.GetVerticalInput();
+        float horizontalInput = controllerInput.GetHorizontalInput();
 
-        Vector3 input = new Vector3(horizontalInput * strafeCoefficient, 0, verticalInput);
+        Vector3 input = new Vector3(horizontalInput * strafeMultiplier, 0, verticalInput);
         input = UnityEngine.Camera.main.transform.rotation * input.normalized;
 
         input = Vector3.ProjectOnPlane(input, hit.normal);
@@ -97,9 +97,7 @@ public class Player : StateMachine
                 SetStopKineticSlide(true);
                 SetCurrentlySliding(true);
                 kineticTimer = 0;
-             //   PhysComp.SetVelocity(Vector3.zero);
                 CancelInvoke("DecreaseVelocity");
-
             }
         }
     }
@@ -146,9 +144,9 @@ public class Player : StateMachine
             return false;
         }
     }
-    public void SetStrafeCoefficient(float strafeCoefficient)
+    public void SetStrafeMultiplier(float strafeCoefficient)
     {
-        this.strafeCoefficient = strafeCoefficient;
+        this.strafeMultiplier = strafeCoefficient;
     }
     public void SetNeutralizeInput(bool set)
     {

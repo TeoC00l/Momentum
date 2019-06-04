@@ -26,13 +26,12 @@ public class MomentumAirbourneState : MomentumState
 
     public override void HandleUpdate()
     {
-
-        //Checking for conditions to change state
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetAxisRaw("Joystick L trigger") > 0)
+        if (controllerInput.GetIsPrecisionModeActive())
         {
             owner.Transition<PrecisionAirbourneState>();
         }
-        if (Input.GetMouseButtonDown(0) || Input.GetAxisRaw("Joystick R trigger") > 0 && owner.kineticBatteryCooldownTimer.IsReady())
+
+        if (controllerInput.GetIsKineticBatteryActive() && owner.kineticBatteryCooldownTimer.IsReady())
         {
             owner.Transition<KineticBatteryAirbourneState>();
         }

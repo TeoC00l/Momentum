@@ -23,7 +23,7 @@ public class MomentumState : PlayerBaseState
         PhysComp.SetJumpMagnitude(jumpMagnitude);
         PhysComp.SetStaticFrictionCo(staticFrictionCo);
         PhysComp.SetAirResistance(airResistance);
-        owner.SetStrafeCoefficient(strafeCoefficient);
+        owner.SetStrafeMultiplier(strafeCoefficient);
 
     }
 
@@ -31,14 +31,12 @@ public class MomentumState : PlayerBaseState
     {
 
         //Checking for conditions to change state
-
         if (!owner.PhysComp.GroundCheck())
         {
             owner.Transition<MomentumAirbourneState>();
         }
 
         //Making adjustments to physics
-
         owner.AddPhysics();
         owner.PhysComp.CollisionCalibration();
 
@@ -47,24 +45,24 @@ public class MomentumState : PlayerBaseState
     public override void HandleUpdate()
     {
         //Checking for conditions to change state
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetAxisRaw("Joystick L trigger") > 0)
+        if (controllerInput.GetIsPrecisionModeActive())
         {
-            owner.Transition<PrecisionState>();
+            owner.Transition<MomentumState>();
         }
 
-        if (Input.GetMouseButtonDown(0) || (Input.GetAxisRaw("Joystick R trigger") > 0) && owner.kineticBatteryCooldownTimer.IsReady())
-        {
-            owner.Transition<KineticBatteryState>();
-        }
-
-        if (Input.GetKeyDown("space") || Input.GetKeyDown("joystick button 0"))
+        if (controllerInput.GetIsJumping())
         {
             owner.Transition<JumpState>();
         }
 
-        if (owner.dashCooldownTimer.IsReady() && (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)) || Input.GetKeyDown("joystick button 4") || Input.GetKeyDown("joystick button 5"))
+        if (owner.dashCooldownTimer.IsReady() && (controllerInput.GetIsDashingLeft() || controllerInput.GetIsDashingRight()))
         {
             owner.Transition<DashState>();
+        }
+
+        if (controllerInput.GetIsKineticBatteryActive() && owner.kineticBatteryCooldownTimer.IsReady())
+        {
+            owner.Transition<KineticBatteryState>();
         }
     }
 }
