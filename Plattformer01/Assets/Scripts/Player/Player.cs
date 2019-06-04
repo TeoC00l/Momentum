@@ -5,9 +5,8 @@ using UnityEngine;
 public class Player : StateMachine
 {
     //Attributes
-    [HideInInspector] public MeshRenderer Renderer;
     [HideInInspector] public PhysicsComponent PhysComp;
-    [HideInInspector] public Rigidbody rigid;
+    [HideInInspector] public RayCasterCapsule RayCaster;
 
     [SerializeField] private float mouseSensitivity;
     [SerializeField] private float strafeCoefficient;
@@ -15,21 +14,19 @@ public class Player : StateMachine
 
     private Checkpoint checkPoint;
 
-    public RayCasterCapsule RayCaster;
-
     //Dash related attributes
+    public Timer dashCooldownTimer;
+
     [SerializeField] private Vector3 lastDash;
-    [SerializeField] public Timer dashCooldownTimer;
-    private bool isDashing;
     private bool neutralizeInput = false;
 
     //Kinetic battery related attributes
     public int kineticTimer;
     public int divideValue;
-    [SerializeField] public Timer kineticBatteryCooldownTimer;
-    private bool stopKineticSlide = false;
-    private bool currentlySliding = false;
+    private bool stopKineticSlide;
+    private bool currentlySliding;
     private Vector3 oldVelocity = Vector3.zero;
+    public Timer kineticBatteryCooldownTimer;
 
     //Rotation To surface (TEST)
     private Vector3 forwardRelativeToSurfaceNormal;
@@ -39,16 +36,15 @@ public class Player : StateMachine
     //GemPrefab
     [SerializeField] private GameObject gemPrefab;
 
-
    // Methods
    protected override void Awake()
     {
-        Renderer = GetComponent<MeshRenderer>();
         RayCaster = GetComponent<RayCasterCapsule>();
         PhysComp = GetComponent<PhysicsComponent>();
-        rigid = GetComponent<Rigidbody>();
         SaveManager._instance.SetGem(gemPrefab);
 
+        stopKineticSlide = false;
+        currentlySliding = false;
         base.Awake();
     }
 

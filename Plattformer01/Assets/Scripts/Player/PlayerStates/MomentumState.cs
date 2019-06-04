@@ -6,11 +6,11 @@ using UnityEngine;
 public class MomentumState : PlayerBaseState
 {
     //Attributes
-    public float acceleration = 1f;
-    public float gravitationalForce = 1f;
-    public float jumpMagnitude = 20.0f;
-    public float staticFrictionCo = 0.7f;
-    public float airResistance = 0.7f;
+    public float acceleration;
+    public float gravitationalForce;
+    public float jumpMagnitude;
+    public float staticFrictionCo;
+    public float airResistance;
     public float strafeCoefficient;
 
 

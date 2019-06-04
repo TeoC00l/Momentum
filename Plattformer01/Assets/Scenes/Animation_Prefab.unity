@@ -979,7 +979,6 @@ GameObject:
   - component: {fileID: 185857104}
   - component: {fileID: 185857103}
   - component: {fileID: 185857102}
-  - component: {fileID: 185857105}
   m_Layer: 0
   m_Name: Engine
   m_TagString: Untagged
@@ -1063,19 +1062,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185857100}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &185857105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 185857100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b4b609988f6ee544a5469822b2bccab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 1624142993}
 --- !u!1 &199640581
 GameObject:
   m_ObjectHideFlags: 0
@@ -2384,7 +2370,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 7a2e495856b4e94439f28155ad11287d, type: 2}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: f541cf7f7d0ea534ea3abb153663898f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18338,7 +18324,7 @@ Transform:
   m_GameObject: {fileID: 1724943413}
   m_LocalRotation: {x: 0.2725733, y: 0.6293112, z: -0.27924398, w: 0.6720819}
   m_LocalPosition: {x: 0.051, y: -0.32, z: 0.046}
-  m_LocalScale: {x: 0.17621654, y: 0.1414802, z: 0.13276999}
+  m_LocalScale: {x: 0.17621654, y: 0.14148022, z: 0.13276999}
   m_Children:
   - {fileID: 794465727}
   - {fileID: 1425322098}
@@ -18412,7 +18398,6 @@ GameObject:
   - component: {fileID: 1768265686}
   - component: {fileID: 1768265685}
   - component: {fileID: 1768265684}
-  - component: {fileID: 1768265687}
   m_Layer: 0
   m_Name: board
   m_TagString: Untagged
@@ -18492,19 +18477,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768265682}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1768265687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1768265682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b4b609988f6ee544a5469822b2bccab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 1624142993}
 --- !u!1 &1778819239
 GameObject:
   m_ObjectHideFlags: 0
@@ -20683,11 +20655,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 51668594}
     m_Modifications:
-    - target: {fileID: 3227494591155485908, guid: 232f031d3232f3848ab61afddcecff04,
-        type: 3}
-      propertyPath: m_Name
-      value: Gem (Black)
-      objectReference: {fileID: 0}
     - target: {fileID: 3227494591155839220, guid: 232f031d3232f3848ab61afddcecff04,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -20742,6 +20709,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227494591155485908, guid: 232f031d3232f3848ab61afddcecff04,
+        type: 3}
+      propertyPath: m_Name
+      value: Gem (Black)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 232f031d3232f3848ab61afddcecff04, type: 3}
@@ -21097,18 +21069,20 @@ MonoBehaviour:
   boardThruster: {fileID: 1724943413}
   board: {fileID: 1768265682}
   hip: {fileID: 0}
-  booster_on1: {fileID: 886177603}
-  booster_on2: {fileID: 1818306628}
-  booster_on3: {fileID: 33427778}
-  booster_on4: {fileID: 451965087}
-  booster_on5: {fileID: 412379769}
-  booster_on6: {fileID: 1177110319}
-  booster_off1: {fileID: 1334962829}
-  booster_off2: {fileID: 1082522467}
-  booster_off3: {fileID: 1914020369}
-  booster_off4: {fileID: 80625139}
-  booster_off5: {fileID: 1381618341}
-  booster_off6: {fileID: 1230099280}
+  allboosters_on:
+  - {fileID: 886177603}
+  - {fileID: 1818306628}
+  - {fileID: 33427778}
+  - {fileID: 451965087}
+  - {fileID: 412379769}
+  - {fileID: 1177110319}
+  allboosters_off:
+  - {fileID: 1334962829}
+  - {fileID: 1082522467}
+  - {fileID: 1914020369}
+  - {fileID: 80625139}
+  - {fileID: 1381618341}
+  - {fileID: 1230099280}
   particle1: {fileID: 437666177}
   particle2: {fileID: 1362821002}
   ninetyAngle: 90
