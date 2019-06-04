@@ -21,6 +21,7 @@ public class GemSpeedPickUP : MonoBehaviour
     {
         pickUpAmount += addThisMuchSpeedInProcentForEachGem;
         pickUpText.text = "+" + pickUpAmount + "%";
+        Debug.Log(pickUpAmount);
         physComp.AddToSpeedIncrease(addThisMuchSpeedInProcentForEachGem / 100);
     }
     public void SetPickUpAmount(float set)

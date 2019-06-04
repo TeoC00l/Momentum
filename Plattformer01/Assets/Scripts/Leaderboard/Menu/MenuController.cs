@@ -106,9 +106,10 @@ public class MenuController : MonoBehaviour
         }
 
         GUILayout.Space(60);
+        GUILayout.FlexibleSpace();
 
         GUILayout.BeginHorizontal();
-        GUILayout.Label("Name", style, GUILayout.Width(Screen.width / 2));
+        GUILayout.Label("             Name", style, GUILayout.Width(Screen.width / 2));
         GUILayout.Label("Time", style, GUILayout.Width(Screen.width / 2));
         GUILayout.EndHorizontal();
 
@@ -117,7 +118,7 @@ public class MenuController : MonoBehaviour
         foreach (Scores _score in highscore)
         {
             GUILayout.BeginHorizontal();
-            GUILayout.Label(_score.name, style, GUILayout.Width(Screen.width / 2));
+            GUILayout.Label( "             "+ _score.name, style, GUILayout.Width(Screen.width / 2));
             
           
 
