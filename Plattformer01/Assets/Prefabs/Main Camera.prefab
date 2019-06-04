@@ -97,8 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 110118a20026c714da6d09c74e8ec074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationX: 0
-  rotationY: 0
   mouseSensitivity: 3
   player: {fileID: 0}
   shakeAmount: 0.005
