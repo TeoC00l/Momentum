@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class AttractorField : MonoBehaviour
 {
-    [SerializeField] private float gravityPullForce = .78f;
-
-
+    
 
     private PhysicsComponent playerPhysComp;
     private GameObject character;
     private Vector3 oldVelocity;
-    private bool continueGravity = true;
     private float m_GravityRadius = 1f;
-    private float rotationMargin = -1f;
-    private float turnSpeed = 25;
 
     void Awake()
     {
@@ -23,6 +18,8 @@ public class AttractorField : MonoBehaviour
         playerPhysComp = character.GetComponent<PhysicsComponent>();
 
     }
+
+    //Slow Player Down When Entering field
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -30,23 +27,20 @@ public class AttractorField : MonoBehaviour
             oldVelocity = playerPhysComp.GetVelocity();
             playerPhysComp.SetVelocity(playerPhysComp.GetVelocity() / 10);
             playerPhysComp.SetDirection(Vector3.zero);
-            //   InvokeRepeating("Attract", 0, 0.1f);
-            if (Vector3.Distance(transform.parent.position, other.transform.position) < 0.4f)
-            {
-                Debug.Log("PlayerHitAttractor");
-                //   continueGravity = false;
-            }
+           
         }
     }
+    //Keep Player Stuck in field
     void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player" && continueGravity == true)
+        if (other.tag == "Player")
         {
             playerPhysComp.SetVelocity(playerPhysComp.GetVelocity() * 0.8f);
             
             Attract();
         }
     }
+    //Shoot Player Away When Exiting
     void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
@@ -55,23 +49,23 @@ public class AttractorField : MonoBehaviour
             playerPhysComp.SetVelocity(dir * playerPhysComp.GetVelocity().magnitude);
             playerPhysComp.SetVelocity(oldVelocity);
             CancelInvoke("Attract");
-            continueGravity = true;
         }
     }
+
+    //Rotate Field for cool Effect
     void Update()
     {
         transform.Rotate(10f * Time.deltaTime, 5f * Time.deltaTime, 1f * Time.deltaTime);
     }
+
+    //Keep Player Stuck in field
     private void Attract()
     {
-        //  playerPhysComp.velocity = Vector3.zero;
         float gravityIntensity = Vector3.Distance(transform.parent.position, character.transform.position) / m_GravityRadius;
-        //   RotateAwayFrom(transform.parent.position);
-        //   character.transform.rotation = Quaternion.Euler(transform.parent.position.x - character.transform.position.x, transform.parent.position.y - character.transform.position.y, transform.parent.position.z - character.transform.position.z);
+     
         playerPhysComp.AddToVelocity((transform.parent.position - character.transform.position) * Time.smoothDeltaTime);
         playerPhysComp.AddToDirection((transform.parent.position - character.transform.position));
         character.transform.RotateAround(transform.parent.position, transform.parent.up, 300*Time.smoothDeltaTime);
-        //   Camera.main.gameObject.transform.RotateAround(transform.parent.position, transform.parent.up, 300 * Time.smoothDeltaTime);
         
         Debug.DrawRay(character.transform.position, transform.parent.position - character.transform.position);
     }

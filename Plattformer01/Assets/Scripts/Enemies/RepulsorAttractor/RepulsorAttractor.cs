@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Repulsor : StateMachine
+public class RepulsorAttractor : StateMachine
 {
     //Attributes
     [SerializeField] public Timer repulsorCooldownTimer;

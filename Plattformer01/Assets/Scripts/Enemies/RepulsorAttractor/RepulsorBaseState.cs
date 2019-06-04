@@ -5,7 +5,7 @@ using UnityEngine;
 public class RepulsorBaseState : State
 {
 
-    protected Repulsor owner;
+    protected RepulsorAttractor owner;
     //Attributes
 
 
@@ -13,6 +13,6 @@ public class RepulsorBaseState : State
 
     public override void Initialize(StateMachine owner)
     {
-        this.owner = (Repulsor)owner;
+        this.owner = (RepulsorAttractor)owner;
     }
 }

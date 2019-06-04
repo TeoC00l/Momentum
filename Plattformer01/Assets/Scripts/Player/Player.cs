@@ -7,6 +7,7 @@ public class Player : StateMachine
     //Attributes
     [HideInInspector] public PhysicsComponent PhysComp;
     [HideInInspector] public RayCasterCapsule RayCaster;
+    [HideInInspector] public MeshRenderer Renderer;
 
     [SerializeField] private float mouseSensitivity;
     [SerializeField] private float strafeCoefficient;
@@ -41,6 +42,7 @@ public class Player : StateMachine
     {
         RayCaster = GetComponent<RayCasterCapsule>();
         PhysComp = GetComponent<PhysicsComponent>();
+        Renderer = GetComponent<MeshRenderer>();
         SaveManager._instance.SetGem(gemPrefab);
 
         stopKineticSlide = false;

@@ -7,9 +7,11 @@ public class PlayerBaseState : State
 {
     //Attributes
     [SerializeField] protected Material material;
+
     [SerializeField] protected PhysicsComponent PhysComp;
     [SerializeField] protected RayCasterCapsule rayCaster;
     protected Player owner;
+    
 
     //Methods
     public override void Enter()

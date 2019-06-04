@@ -12,7 +12,7 @@ public class UITimer : MonoBehaviour
 
     void Update () {
 
- 	if(playing == true){
+ 	    if(playing == true){
   
 	  Timer += Time.deltaTime;
 	  minutes = Mathf.Floor(Timer / 60F);
@@ -23,7 +23,7 @@ public class UITimer : MonoBehaviour
 
     }
 
-  }
+    }
     public void SetPlayable(bool set)
     {
         this.playing = set;

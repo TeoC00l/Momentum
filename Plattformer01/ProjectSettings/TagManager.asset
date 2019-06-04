@@ -17,6 +17,8 @@ TagManager:
   - Destructible
   - DroneSpawn
   - GemParent
+  - Fire
+  - PickUp
   layers:
   - Default
   - TransparentFX

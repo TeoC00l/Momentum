@@ -5,12 +5,12 @@ using UnityEngine;
 public class BatteryCharge : MonoBehaviour
 {
     private GameObject player; //player
-    public GameObject kineticGraphics; //the grapghics for kinetic battery
+    [SerializeField]private GameObject kineticGraphics; //the grapghics for kinetic battery
     private GameObject chargeBar; //the chargebar
     private float FullChargeSize = 0.81f; //where the battery tops off
     private float minChargeSize = 0; //where the battery stops
     private float growFactor = 0.1f;
-    private float Timer = 1000; //this is the current cooldown of kinetic battery
+    private float Timer = 1000; 
     private RectTransform rectTransform;
     private Player playerScript;
     private bool stopCharge;

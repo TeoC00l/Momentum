@@ -12,7 +12,7 @@ public class RepulsorField : MonoBehaviour
     private PhysicsComponent playerPhysComp;
     private MeshRenderer forceFieldMesh;
     private GameObject character;
-    private Repulsor repulsor;
+    private RepulsorAttractor repulsor;
     private Vector3 oldScale;
     private Vector3 expand;
     private bool bouncing;
@@ -23,7 +23,7 @@ public class RepulsorField : MonoBehaviour
         character = GameObject.FindWithTag("Player");
         playerPhysComp = character.GetComponent<PhysicsComponent>();
         forceFieldMesh = GetComponent<MeshRenderer>();
-        repulsor = transform.parent.GetComponent<Repulsor>();
+        repulsor = transform.parent.GetComponent<RepulsorAttractor>();
         expand = new Vector3(4f, 4f, 4f);
 
     }
@@ -76,7 +76,7 @@ public class RepulsorField : MonoBehaviour
     {
         CancelInvoke("BouncyRepulors");
         bouncing = false; 
-        repulsor.Transition<RepulsorActiveState>();      
+        repulsor.Transition<RepulsorAttractorActiveState>();      
     }
 
 }
