@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Drone2 : StateMachine
+public class Drone : StateMachine
 {
     //Attributes
     [HideInInspector] public MeshRenderer Renderer;

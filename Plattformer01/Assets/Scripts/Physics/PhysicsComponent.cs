@@ -28,14 +28,14 @@ public class PhysicsComponent : MonoBehaviour
 
     public void AddForces()
     {      
-        velocity = Calculations2.CalculateAcceleration(velocity, direction, acceleration);
+        velocity = Calculations.CalculateAcceleration(velocity, direction, acceleration);
         AddGravity();
-        velocity = Calculations2.AddAirResistance(velocity, airResistance);
+        velocity = Calculations.AddAirResistance(velocity, airResistance);
     }
 
     public void AddGravity()
     {
-        Vector3 gravity = Calculations2.CalculateGravity(gravitationalForce);
+        Vector3 gravity = Calculations.CalculateGravity(gravitationalForce);
         velocity += gravity;
     }
 
@@ -43,7 +43,7 @@ public class PhysicsComponent : MonoBehaviour
     {
         Vector3 normalForce = Vector3.zero;
         RaycastHit hit = rayCaster.GetCollisionData(velocity, 0);
-        normalForce = Calculations2.CalculateNormalForce(velocity, hit);
+        normalForce = Calculations.CalculateNormalForce(velocity, hit);
         return normalForce;
     }
 
@@ -65,7 +65,7 @@ public class PhysicsComponent : MonoBehaviour
         }
         while (hit.collider != null && noOfCycles < 10000);
 
-        velocity = Calculations2.CalculateFriction(velocity, totalNormalForce, staticFrictionCo);
+        velocity = Calculations.CalculateFriction(velocity, totalNormalForce, staticFrictionCo);
 
         if (hit.collider == null)
         {
@@ -90,7 +90,7 @@ public class PhysicsComponent : MonoBehaviour
     public void Jump()
     {
         {
-            velocity = Calculations2.CalculateJump(velocity, jumpMagnitude);
+            velocity = Calculations.CalculateJump(velocity, jumpMagnitude);
         }
     }
 

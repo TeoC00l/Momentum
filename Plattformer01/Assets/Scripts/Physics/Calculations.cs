@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class Calculations2
+public static class Calculations
 {
     public static Vector3 CalculateAcceleration(Vector3 velocity, Vector3 direction, float acceleration)
     {

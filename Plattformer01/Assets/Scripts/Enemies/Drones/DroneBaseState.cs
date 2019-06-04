@@ -6,7 +6,7 @@ using UnityEngine;
 public class DroneBaseState : State
 {
     //Attributes
-    protected Drone2 owner;
+    protected Drone owner;
 
     //Methods
     public override void Enter()
@@ -15,7 +15,7 @@ public class DroneBaseState : State
 
     public override void Initialize(StateMachine owner)
     {
-        this.owner = (Drone2)owner;
+        this.owner = (Drone)owner;
     }
 
     protected bool CanSeePlayer()
