@@ -20,12 +20,12 @@ public class DashState : PlayerBaseState
         dashVelocity = Vector3.zero;
         isExecutingDash = true;
 
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q) || Input.GetKeyDown("joystick button 4"))
         {
             dashDirection = UnityEngine.Camera.main.transform.rotation * Vector3.left;
         }
 
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.E)|| Input.GetKeyDown("joystick button 5"))
         {
             dashDirection = UnityEngine.Camera.main.transform.rotation * Vector3.right;
         }

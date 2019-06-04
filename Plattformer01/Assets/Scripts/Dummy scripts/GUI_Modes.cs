@@ -93,7 +93,7 @@ public class GUI_Modes : MonoBehaviour
             Debug.Log("TRANSITION");
             SaveManager._instance.TransitionToSavedCheckPoint();
         }
-        if (Input.GetKeyDown(KeyCode.Escape) == true || canvas.GetComponent<PauseMenuScreen>().GetChange() == true || canvas2.GetComponent<PauseMenuScreen>().GetChange() == true)
+        if (Input.GetKeyDown(KeyCode.Escape) == true || canvas.GetComponent<PauseMenuScreen>().GetChange() == true || canvas2.GetComponent<PauseMenuScreen>().GetChange() == true || Input.GetKeyDown("joystick button 7"))
         {
             Debug.Log("Pause");
             if (Time.timeScale == 1)

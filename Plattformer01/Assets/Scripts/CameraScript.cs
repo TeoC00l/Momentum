@@ -13,6 +13,7 @@ public class CameraScript : MonoBehaviour
     private Vector3 cameraPosition;
     private Vector3 cameraOffset = Vector3.zero;
     [SerializeField] private float mouseSensitivity;
+    [SerializeField] private float xboxMouseSensitivity;
     [SerializeField] private GameObject player;
     
         //Shake effect
@@ -63,6 +64,10 @@ public class CameraScript : MonoBehaviour
 
     public void AddRotation()
     {
+        rotationY += Input.GetAxisRaw("Joystick X") * xboxMouseSensitivity;
+        rotationX -= Input.GetAxisRaw("Joystick Y") * xboxMouseSensitivity;
+        rotationY += Input.GetAxisRaw("Horizontal") * mouseSensitivity;
+
         rotationY += Input.GetAxisRaw("Mouse X") * mouseSensitivity;
         rotationX -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
         rotationX = Mathf.Clamp(rotationX, -90f, 90f);

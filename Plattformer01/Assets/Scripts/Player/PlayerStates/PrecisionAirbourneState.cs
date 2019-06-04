@@ -27,7 +27,7 @@ public class PrecisionAirbourneState : PrecisionState
     public override void HandleUpdate()
     {
         //Checking for conditions to change state
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetAxisRaw("Joystick L trigger") == 0)
         {
             owner.Transition<MomentumAirbourneState>();
         }
