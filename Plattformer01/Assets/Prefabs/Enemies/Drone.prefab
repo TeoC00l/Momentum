@@ -109,7 +109,8 @@ AudioSource:
   m_GameObject: {fileID: 3739384116607261116}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243116014836747156, guid: 614e6d4978a292e4ea0a6e1d9b486144,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 2d55f98c2df5c1d4896d56203ac84bbd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.667
@@ -318,6 +319,8 @@ MonoBehaviour:
     m_Bits: 1024
   player: {fileID: 0}
   detectionDistance: 200
+  GUIToggleDistance: 200
+  GUI: {fileID: 0}
 --- !u!195 &4929650151860492417
 NavMeshAgent:
   m_ObjectHideFlags: 0

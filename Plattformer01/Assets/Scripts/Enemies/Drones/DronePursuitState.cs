@@ -13,6 +13,7 @@ public class DronePursuitState : DroneBaseState
 
     public override void HandleFixedUpdate()
     {
+       // ScanForToggleGUI();
         owner.navMeshAgent.SetDestination(owner.player.transform.position);
     }
 }

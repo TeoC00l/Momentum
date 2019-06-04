@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 2381133173742795625}
   - component: {fileID: 1317369229426953179}
   m_Layer: 0
-  m_Name: Repuslor
+  m_Name: Repulsor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -399,7 +399,8 @@ AudioSource:
   m_GameObject: {fileID: 4974960291012373723}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243116014836747156, guid: 614e6d4978a292e4ea0a6e1d9b486144,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 9bde069f6afba29408c7ce2f613d4b9a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.99
