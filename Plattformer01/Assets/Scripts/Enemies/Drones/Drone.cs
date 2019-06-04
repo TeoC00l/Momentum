@@ -13,7 +13,6 @@ public class Drone : StateMachine
     public Player player;
     public float detectionDistance;
     public float GUIToggleDistance;
-    public GameObject GUI;
 
     private Health playerHealth;
 

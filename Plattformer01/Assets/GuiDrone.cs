@@ -5,39 +5,52 @@ using UnityEngine.UI;
 
 public class GuiDrone : MonoBehaviour
 {
-    private DroneSpawn[] droneSpawn;
+    private Drone[] drones;
     private GameObject player;
     private Image image;
     [SerializeField]private float GUIToggleDistance;
     [SerializeField]private LayerMask visionMask;
     [SerializeField] private GameObject Gui;
-
-
+    private bool breakLoop = false;
 
     // Start is called before the first frame update
     void Awake()
     {
-        droneSpawn = FindObjectsOfType(typeof(DroneSpawn)) as DroneSpawn[];
+        drones = FindObjectsOfType(typeof(Drone)) as Drone[];
         player = GameObject.FindWithTag("Player");
         Image image = GetComponent<Image>();
-          Debug.Log("we fine");
         
         Gui.SetActive(false);
         
 
     }
-    private void Update()
+    private void FixedUpdate()
     {
-        if(droneSpawn.Length == 0)
+        if(drones.Length == 0)
         {
-            droneSpawn = FindObjectsOfType(typeof(DroneSpawn)) as DroneSpawn[];
+            drones = FindObjectsOfType(typeof(Drone)) as Drone[];
         }
-        foreach (DroneSpawn D in droneSpawn)
-        {
-            
-                Look(D.GetDrone());
+        Gui.SetActive(false);
 
-            
+        foreach (Drone D in drones)
+        {
+            if(D == null)
+            {
+                Debug.Log("ima do it");
+                drones = FindObjectsOfType(typeof(Drone)) as Drone[];
+                break;
+            }
+            if (D.GetCurrentState().name == "Drone Pursuit State(Clone)")
+            {
+                Look(D.gameObject);
+                if(breakLoop == true)
+                {
+                    breakLoop = false;
+                    break;
+                }
+            }
+
+
         }
     }
     private void Look(GameObject lookAt)
@@ -47,9 +60,12 @@ public class GuiDrone : MonoBehaviour
 
         if (Mathf.Abs(angle) < 90)
         {
+
             if (ScanForPlayer(GUIToggleDistance, lookAt) == true)
             {
+
                 Gui.SetActive(true);
+                breakLoop = true;
             }
 
         }
