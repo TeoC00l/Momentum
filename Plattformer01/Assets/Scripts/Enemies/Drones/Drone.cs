@@ -12,15 +12,20 @@ public class Drone : StateMachine
     public LayerMask visionMask;
     public Player player;
     public float detectionDistance;
+    public float GUIToggleDistance;
+    public GameObject GUI;
 
     private Health playerHealth;
 
     //Methods
     protected override void Awake()
     {
+   //     GUI = GameObject.FindGameObjectWithTag("DroneGUI");
         player = FindObjectOfType(typeof(Player)) as Player;
         navMeshAgent = GetComponent<NavMeshAgent>();
         playerHealth = player.GetComponent<Health>();
+   //     ToggleGUI(false);
+
         base.Awake();
     }
 
@@ -32,5 +37,10 @@ public class Drone : StateMachine
 
             playerHealth.Die();
         }
+    }
+
+    public void ToggleGUI(bool isActive)
+    {
+     //   GUI.SetActive(isActive);      
     }
 }

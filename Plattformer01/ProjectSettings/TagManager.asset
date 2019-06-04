@@ -19,6 +19,7 @@ TagManager:
   - GemParent
   - Fire
   - PickUp
+  - DroneGUI
   layers:
   - Default
   - TransparentFX

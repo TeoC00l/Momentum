@@ -318,6 +318,8 @@ MonoBehaviour:
     m_Bits: 1024
   player: {fileID: 0}
   detectionDistance: 200
+  GUIToggleDistance: 200
+  GUI: {fileID: 0}
 --- !u!195 &4929650151860492417
 NavMeshAgent:
   m_ObjectHideFlags: 0
