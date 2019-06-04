@@ -48,10 +48,7 @@ public class CameraScript : MonoBehaviour
     }
 
     void FixedUpdate()
-    {
-        AddRotation();
-        player.transform.rotation = transform.rotation;
-        player.transform.rotation = Quaternion.Euler(0, player.transform.eulerAngles.y, 0);
+    {        
         InitiateShake();
     }
 
@@ -60,7 +57,10 @@ public class CameraScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             changeCursorLockMode();
-        }      
+        }
+
+        AddRotation();
+
     }
 
     public void AddRotation()
@@ -73,6 +73,8 @@ public class CameraScript : MonoBehaviour
 
         transform.rotation = rotation;
         transform.position =  player.transform.position + cameraPosition;
+        player.transform.rotation = transform.rotation;
+        player.transform.rotation = Quaternion.Euler(0, player.transform.eulerAngles.y, 0);
     }
 
     public void ShakeCamera()

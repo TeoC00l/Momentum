@@ -11,7 +11,7 @@ public class UI2_1 : MonoBehaviour
     private Player player;
 
     //Location for the cursor
-    public Texture2D cursorTexture;
+    public Texture2D cursorTexture; //cursor is needed?
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotspot = Vector2.zero;
 
@@ -22,19 +22,12 @@ public class UI2_1 : MonoBehaviour
 
     ////annoying part
     [Header("On Model")]
-    public GameObject booster_on1;
-    public GameObject booster_on2;
-    public GameObject booster_on3;
-    public GameObject booster_on4;
-    public GameObject booster_on5;
-    public GameObject booster_on6;
+    public GameObject[] allboosters_on;
+
     [Header("Off Model")]
-    public GameObject booster_off1;
-    public GameObject booster_off2;
-    public GameObject booster_off3;
-    public GameObject booster_off4;
-    public GameObject booster_off5;
-    public GameObject booster_off6;
+    public GameObject[] allboosters_off;
+
+
     [Header("particles")]
     public GameObject particle1;
     public GameObject particle2;
@@ -59,8 +52,6 @@ public class UI2_1 : MonoBehaviour
 
     public GameObject playerBoard;
     private bool keepShifting = true;
-
-
     public bool precisionOn = false;
     
     void Start()
@@ -80,7 +71,6 @@ public class UI2_1 : MonoBehaviour
 
         //initialize engines
         initializeEngines();
-
         particle1 = GameObject.Find("BoardParticleBoost_off");
         particle2 = GameObject.Find("BoardParticleBoost_on");
 
@@ -119,7 +109,6 @@ public class UI2_1 : MonoBehaviour
             {
                 Debug.Log("Shift");
                 boardThruster.transform.Rotate(0,0,900* rotationSpeed * Time.smoothDeltaTime, Space.Self);
-              //  keepShifting = false;
             }
             else if(boardThruster.transform.eulerAngles.z > 90)
             {
@@ -144,9 +133,6 @@ public class UI2_1 : MonoBehaviour
             UIKinetic.SetActive(false);
             turnOnBooster();
 
-            //@Mugai
-            //kan du fixa så att brädans rotation lerp slerp
-            //typ rotate(0,0,angle_now +90)
             if (boardThruster.transform.eulerAngles.z < 181 )
             {
                 boardThruster.transform.transform.Rotate(0, 0, 180 * Time.smoothDeltaTime);
@@ -173,8 +159,7 @@ public class UI2_1 : MonoBehaviour
             audioSecondary.Play();
         }
 
-        //for the audio. this causes a bug which plays it at the beginning of each level. rip.
-        //make startup sequence code?
+        //try to fix code which plays the sound when game starts
         if(player.GetKineticActive() == false)
         {
           //  boardThruster.transform.rotation = hip.transform.rotation;
@@ -193,63 +178,45 @@ public class UI2_1 : MonoBehaviour
     //engine Initializer
     void initializeEngines()
     {
-        //booster on off. använd lerpfärg här efter kanske om vi har tid.
-        booster_on1.GetComponent<MeshRenderer>().enabled = true;
-        booster_off1.GetComponent<MeshRenderer>().enabled = false;
-        booster_on2.GetComponent<MeshRenderer>().enabled = true;
-        booster_off2.GetComponent<MeshRenderer>().enabled = false;
-
-        booster_on3.GetComponent<MeshRenderer>().enabled = true;
-        booster_off3.GetComponent<MeshRenderer>().enabled = false;
-
-        booster_on4.GetComponent<MeshRenderer>().enabled = true;
-        booster_off3.GetComponent<MeshRenderer>().enabled = false;
-
-        booster_on5.GetComponent<MeshRenderer>().enabled = true;
-        booster_off3.GetComponent<MeshRenderer>().enabled = false;
-
-        booster_on6.GetComponent<MeshRenderer>().enabled = true;
-        booster_off3.GetComponent<MeshRenderer>().enabled = false;
+        turnOnBooster();
     }
+
 
     ////handle engine on or off section
     void turnOffBooster()
     {
-        booster_on1.GetComponent<MeshRenderer>().enabled = false;
-        booster_off1.GetComponent<MeshRenderer>().enabled = true;
-        booster_on2.GetComponent<MeshRenderer>().enabled = false;
-        booster_off2.GetComponent<MeshRenderer>().enabled = true;
+        //disable all on boosters
+        for (int i = 0; i < allboosters_on.Length; i++)
+        {
+            allboosters_on[i].GetComponent<MeshRenderer>().enabled = false;
 
-        booster_on3.GetComponent<MeshRenderer>().enabled = false;
-        booster_off3.GetComponent<MeshRenderer>().enabled = true;
+        }
 
-        booster_on4.GetComponent<MeshRenderer>().enabled = false;
-        booster_off4.GetComponent<MeshRenderer>().enabled = true;
-
-        booster_on5.GetComponent<MeshRenderer>().enabled = false;
-        booster_off5.GetComponent<MeshRenderer>().enabled = true;
-
-        booster_on6.GetComponent<MeshRenderer>().enabled = false;
-        booster_off6.GetComponent<MeshRenderer>().enabled = true;
+        //enable all off boosters
+        for (int b = 0; b < allboosters_off.Length; b++)
+        {
+            allboosters_off[b].GetComponent<MeshRenderer>().enabled = true;
+        }
     }
+
 
     void turnOnBooster()
     {
-       booster_on1.GetComponent<MeshRenderer>().enabled = true;
-        booster_off1.GetComponent<MeshRenderer>().enabled = false;
-        booster_on2.GetComponent<MeshRenderer>().enabled = true;
-        booster_off2.GetComponent<MeshRenderer>().enabled = false;
 
-        booster_on3.GetComponent<MeshRenderer>().enabled = true;
-        booster_off3.GetComponent<MeshRenderer>().enabled = false;
+            //enable all on boosters
+            for (int i = 0; i < allboosters_on.Length; i++)
+            {
+                allboosters_on[i].GetComponent<MeshRenderer>().enabled = true;
+            }
 
-        booster_on4.GetComponent<MeshRenderer>().enabled = true;
-        booster_off4.GetComponent<MeshRenderer>().enabled = false;
+            //disable all off boosters
+            for (int b = 0; b < allboosters_off.Length; b++)
+            {
+                allboosters_off[b].GetComponent<MeshRenderer>().enabled = false;
+            }
+        
 
-        booster_on5.GetComponent<MeshRenderer>().enabled = true;
-        booster_off5.GetComponent<MeshRenderer>().enabled = false;
 
-        booster_on6.GetComponent<MeshRenderer>().enabled = true;
-        booster_off6.GetComponent<MeshRenderer>().enabled = false;
+        
     }
 }

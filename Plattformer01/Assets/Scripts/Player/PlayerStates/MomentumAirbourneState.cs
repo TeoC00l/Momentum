@@ -24,7 +24,6 @@ public class MomentumAirbourneState : MomentumState
         owner.PhysComp.CollisionCalibration();
     }
 
-
     public override void HandleUpdate()
     {
 

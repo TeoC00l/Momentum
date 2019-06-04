@@ -10,7 +10,7 @@ public class SoundPitcher : MonoBehaviour {
     public GameObject player;
 
 
-	private Rigidbody rb; // delete
+	//private Rigidbody rb; // delete
 	private int count;
 
     private AudioSource[] sources;
@@ -49,7 +49,7 @@ public class SoundPitcher : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
 
         sources = GetComponents<AudioSource>();
         source1 = sources[0];
@@ -88,13 +88,13 @@ public class SoundPitcher : MonoBehaviour {
         }
 
         //additional abilities
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)) // not needed at the moment
         {
             source2.volume = Random.Range(volLow, volHigh);
             source2.volume = Random.Range(pitchLow2, pitchHigh2);
 
             Vector3 jump = new Vector3(Input.GetAxis("Horizontal"), 30, Input.GetAxis("Vertical"));
-            rb.AddForce(jump * speed);
+            //rb.AddForce(jump * speed);
             clipIndex2 = Random.Range(1, jumpNoises.Length);
             AudioClip clip2 = jumpNoises[clipIndex2];
             source2.PlayOneShot(jumpNoises[clipIndex2]);
@@ -111,11 +111,9 @@ public class SoundPitcher : MonoBehaviour {
 	void FixedUpdate(){
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
-		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
-		rb.AddForce (movement * speed);
-        playerVelocity = GetComponent<Rigidbody>().velocity.magnitude;
-
-
+		//Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
+		//rb.AddForce (movement * speed);
+        //playerVelocity = GetComponent<Rigidbody>().velocity.magnitude;
 	}
 
 
