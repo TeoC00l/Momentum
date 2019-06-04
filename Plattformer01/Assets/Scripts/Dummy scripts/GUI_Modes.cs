@@ -15,6 +15,10 @@ public class GUI_Modes : MonoBehaviour
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotspot = Vector2.zero;
 
+    [SerializeField] private GameObject canvas;
+    [SerializeField] private GameObject canvas2;
+
+
     //public GameObject boardThruster;
 
 
@@ -27,7 +31,7 @@ public class GUI_Modes : MonoBehaviour
 
     //public float ninetyAngle = 90f;
     //public float rotationSpeed = 2f;
-    
+
 
     void Start()
     {
@@ -89,26 +93,58 @@ public class GUI_Modes : MonoBehaviour
             Debug.Log("TRANSITION");
             SaveManager._instance.TransitionToSavedCheckPoint();
         }
-        //if (Input.GetKeyDown(KeyCode.Escape) == true)
-        //{
-        //    Debug.Log("Pause");
-        //    if(Time.timeScale == 1)
-        //    {
-        //        Time.timeScale = 0;
-        //        player.Transition<PauseState>();
+        if (Input.GetKeyDown(KeyCode.Escape) == true || canvas.GetComponent<PauseMenuScreen>().GetChange() == true || canvas2.GetComponent<PauseMenuScreen>().GetChange() == true)
+        {
+            Debug.Log("Pause");
+            if (Time.timeScale == 1)
+            {
+                SetCanvas(true);
+                Time.timeScale = 0;
+                player.Transition<PauseState>();
 
-        //    }
-        //    else
-        //    {
-        //        player.TransitionBack();
-        //        Time.timeScale = 1;
+            }
+            else
+            {
+                player.TransitionBack();
+                Time.timeScale = 1;
+                SetCanvas(false);
 
-        //    }
-        //}
+
+
+
+            }
+            canvas.GetComponent<PauseMenuScreen>().SetChange(false);
+            canvas2.GetComponent<PauseMenuScreen>().SetChange(false);
+
+        }
+    }
+    public void SetCanvas(bool set)
+    {
+        if(SaveManager._instance.GetSaveBool() == true)
+        {
+            canvas2.SetActive(set);
+            if (set == true)
+            {
+                canvas2.GetComponent<PauseMenuScreen>().SelectButton();
+
+            }
+
+        }
+        else
+        {
+            canvas.SetActive(set);
+            if(set == true)
+            {
+                canvas.GetComponent<PauseMenuScreen>().SelectButton();
+
+            }
+
+        }
+
     }
 
 
-    
+
     ////engine Functions
     //void shiftNinety()
     //{

@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
 
-    [SerializeField] private Button playButton, quitButton, playbutton2, leaderboardButton;
+    [SerializeField] private Button playButton, quitButton, playbutton2, leaderboardButton, CheckpointButton;
+    [SerializeField] private GameObject checkpoint;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,16 @@ public class Menu : MonoBehaviour
         quitButton.onClick.AddListener(quitListener);
         playbutton2.onClick.AddListener(playListener2);
         leaderboardButton.onClick.AddListener(Leaderboardtransition);
+        if(SaveManager._instance.GetSaveBool() == true)
+        {
+            CheckpointButton.onClick.AddListener(RestartFromCheckpoint);
+            checkpoint.SetActive(true);
+        }
+        else
+        {
+            checkpoint.SetActive(false);
+
+        }
         playButton.Select();
     }
 
@@ -37,6 +48,12 @@ public class Menu : MonoBehaviour
     void quitListener()
     {
         Application.Quit();
+    }
+    void RestartFromCheckpoint()
+    {
+        SceneManager.LoadScene(SaveManager._instance.GetScene().name);
+
+        SaveManager._instance.TransitionToSavedCheckPoint();
     }
 
 }

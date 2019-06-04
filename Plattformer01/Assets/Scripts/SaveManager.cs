@@ -179,6 +179,10 @@ public class SaveManager : MonoBehaviour
     {
         gem = set;
     }
+    public Scene GetScene()
+    {
+        return m_Scene;
+    }
 
     // Update is called once per frame
     void Update()

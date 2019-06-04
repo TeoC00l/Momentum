@@ -137,7 +137,7 @@ public class TransitionToLevelChange : MonoBehaviour
                 }
                 else
                 {
-                    T.color = Color.black;
+                    T.color = Color.blue;
 
                 }
                 index++;
@@ -155,7 +155,7 @@ public class TransitionToLevelChange : MonoBehaviour
             }
             if(newHighscore == true)
             {
-                allChildren[yourScoreIndex].text = (yourPlacement) + ": " + name + " " + timer.goodLookingTimer() + "New Highscore";
+                allChildren[yourScoreIndex].text = (yourPlacement) + ": " + name + " " + timer.goodLookingTimer() + " New Highscore";
 
             }
             else
@@ -259,7 +259,7 @@ public class TransitionToLevelChange : MonoBehaviour
             before = _score.score;
             
         }
-        if (index != 10)
+        if (index > 10)
         {
             yourScoreIndex = index;
             yourPlacement = Placement;
