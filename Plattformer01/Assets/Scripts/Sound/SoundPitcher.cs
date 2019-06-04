@@ -119,7 +119,7 @@ public class SoundPitcher : MonoBehaviour {
 
 	void OnTriggerEnter( Collider other ){
 		
-		if ( other.gameObject.CompareTag ("Pick Up") ){
+		if ( other.gameObject.CompareTag ("PickUp") ){
 			other.gameObject.SetActive (false);
 			count++;
             clipIndex = Random.Range(0,pickup_sound.Length);
