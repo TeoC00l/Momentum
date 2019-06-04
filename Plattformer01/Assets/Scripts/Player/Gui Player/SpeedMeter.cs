@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpeedMeter : MonoBehaviour
 {
@@ -16,9 +17,13 @@ public class SpeedMeter : MonoBehaviour
     [SerializeField] private float topSpeed;
     private float speed;
     private PhysicsComponent physcomp;
+    [SerializeField] private Text speedText;
+    private float speedTextValue;
+
     private void Awake()
     {
         physcomp = GameObject.FindWithTag("Player").GetComponent<PhysicsComponent>();
+        
         
     }
 
@@ -27,6 +32,9 @@ public class SpeedMeter : MonoBehaviour
         if (physcomp != null)
         {
             Vector3 playerSpeed = new Vector3(physcomp.GetVelocity().x, 0f, physcomp.GetVelocity().z);
+            speedTextValue = Mathf.FloorToInt(playerSpeed.magnitude);
+
+            speedText.text = "" + speedTextValue;
             playerSpeed *= physcomp.GetSpeedIncrease();
             topSpeed *= physcomp.GetSpeedIncrease();
             speed = playerSpeed.magnitude;

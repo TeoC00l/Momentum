@@ -64,7 +64,7 @@ public class BatteryCharge : MonoBehaviour
             else
             {
                 stopCharge = false;
-               rectTransform.localScale = new Vector3(minChargeSize, 0.62f, 0);
+               rectTransform.localScale = new Vector3(minChargeSize, 0f, 0);
 
                 CancelInvoke("DecreaseBar");
 

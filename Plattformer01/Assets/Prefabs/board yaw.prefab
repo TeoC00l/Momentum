@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7069183631463928969}
   - component: {fileID: 7069183631463928982}
   - component: {fileID: 7069183631463928983}
-  - component: {fileID: 7069183631463928968}
   m_Layer: 0
   m_Name: Engine
   m_TagString: Untagged
@@ -94,19 +93,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7069183631463928968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7069183631463928981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b4b609988f6ee544a5469822b2bccab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 7069183632317254650}
 --- !u!1 &7069183631541537971
 GameObject:
   m_ObjectHideFlags: 0
@@ -10200,7 +10186,6 @@ GameObject:
   - component: {fileID: 7069183633103238927}
   - component: {fileID: 7069183633103238924}
   - component: {fileID: 7069183633103238925}
-  - component: {fileID: 7069183633103238926}
   m_Layer: 0
   m_Name: board
   m_TagString: Untagged
@@ -10281,19 +10266,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7069183633103238926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7069183633103238923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b4b609988f6ee544a5469822b2bccab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 7069183632317254650}
 --- !u!1 &7069183633262378802
 GameObject:
   m_ObjectHideFlags: 0

@@ -220,6 +220,7 @@ public class TransitionToLevelChange : MonoBehaviour
     }
     private void deployLeaderboard()
     {
+        bool scoreAdded = false;
         int index = 1;
         int Placement = 1;
         allChildren[index - 1].text = "Current Leaderboard";
@@ -233,6 +234,7 @@ public class TransitionToLevelChange : MonoBehaviour
 
             if (_score.score >= timer.GetTimeAsFloat())
             {
+                scoreAdded = true;
                 yourScoreIndex = index;
                 yourPlacement = Placement;
                 if (index == 1)
@@ -243,14 +245,18 @@ public class TransitionToLevelChange : MonoBehaviour
                 allChildren[index].text = (Placement) + ": " + name + " " + timer.goodLookingTimer();
                 allChildren[yourScoreIndex].color = Color.yellow;
 
-
+                index++;
+                if (timer.GetTimer() != before)
+                {
+                    Placement++;
+                }
+                before = timer.GetTimeAsFloat();
 
             }
-            else
-            {
-                allChildren[index].text = (Placement) + ": " + _score.name + " " + _score.GetTimer();
 
-            }
+            allChildren[index].text = (Placement) + ": " + _score.name + " " + _score.GetTimer();
+
+            
             index++;
             if (_score.score != before)
             {
@@ -270,8 +276,7 @@ public class TransitionToLevelChange : MonoBehaviour
             }
             allChildren[index].text = (Placement) + ": " + name + " " + timer.goodLookingTimer();
             allChildren[yourScoreIndex].color = Color.yellow;
-        }
-        if (index > 10)
+        }else if (scoreAdded == false)
         {
             yourScoreIndex = index;
             yourPlacement = Placement;
