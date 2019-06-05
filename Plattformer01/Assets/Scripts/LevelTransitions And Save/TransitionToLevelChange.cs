@@ -84,6 +84,8 @@ public class TransitionToLevelChange : MonoBehaviour
 
         }
     }
+
+    // Update Leaderboard at the end of the level
     void FixedUpdate()
     {
         if (hitTrigger)
@@ -176,6 +178,7 @@ public class TransitionToLevelChange : MonoBehaviour
         }
         
     }
+    // Go through a-z when reaching end of game and writing in name
     private void GoThroughAlphabet(int input)
     {
         int index = 0;
@@ -218,6 +221,7 @@ public class TransitionToLevelChange : MonoBehaviour
             return 0;
         }
     }
+    // Get the current Score too display leaderboard
     private void deployLeaderboard()
     {
         bool scoreAdded = false;

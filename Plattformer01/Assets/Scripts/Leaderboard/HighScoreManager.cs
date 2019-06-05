@@ -3,15 +3,6 @@
  using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
- /// <summary>
- /// High score manager.
- /// Local highScore manager for LeaderboardLength number of entries
- /// 
- /// this is a singleton class.  to access these functions, use HighScoreManager._instance object.
- /// eg: HighScoreManager._instance.SaveHighScore("meh",1232);
- /// No need to attach this to any game object, thought it would create errors attaching.
- /// </summary>
-
 public class HighScoreManager : MonoBehaviour
 {
     private Scene m_Scene;
