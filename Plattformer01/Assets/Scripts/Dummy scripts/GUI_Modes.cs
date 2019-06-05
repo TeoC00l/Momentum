@@ -89,16 +89,14 @@ public class GUI_Modes : MonoBehaviour
             UIKinetic.SetActive(true);
             //turnOffBooster();
         }
-        if(Input.GetKeyDown(KeyCode.R) == true){
-            Debug.Log("TRANSITION");
-            SaveManager._instance.TransitionToSavedCheckPoint();
-        }
         if (Input.GetKeyDown(KeyCode.Escape) == true || canvas.GetComponent<PauseMenuScreen>().GetChange() == true || canvas2.GetComponent<PauseMenuScreen>().GetChange() == true || Input.GetKeyDown("joystick button 7"))
         {
             Debug.Log("Pause");
             if (Time.timeScale == 1)
             {
+
                 SetCanvas(true);
+                canvas.GetComponent<PauseMenuScreen>().SelectButton();
                 Time.timeScale = 0;
                 player.Transition<PauseState>();
 
@@ -125,6 +123,7 @@ public class GUI_Modes : MonoBehaviour
             canvas2.SetActive(set);
             if (set == true)
             {
+                Debug.Log("select button");
                 canvas2.GetComponent<PauseMenuScreen>().SelectButton();
 
             }
