@@ -56,7 +56,7 @@ public class SaveManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
     
-
+    // Save game when hitting checkopints
     public void SaveGame()
     {
         Debug.Log("SaveGame");
@@ -114,7 +114,7 @@ public class SaveManager : MonoBehaviour
 
 
     }
-
+    // restart from saved checkpoint
     public void TransitionToSavedCheckPoint()
     {
         Debug.Log("hittransition" + activeSave);
@@ -182,11 +182,5 @@ public class SaveManager : MonoBehaviour
     public Scene GetScene()
     {
         return m_Scene;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

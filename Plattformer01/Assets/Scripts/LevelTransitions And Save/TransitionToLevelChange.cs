@@ -91,7 +91,7 @@ public class TransitionToLevelChange : MonoBehaviour
         if (hitTrigger)
         {
            
-
+            // Choose which letter should be active between the 3 when picking name
             float input = Input.GetAxisRaw("Horizontal");
             if(horizontalTimer > 0)
             {
@@ -115,6 +115,7 @@ public class TransitionToLevelChange : MonoBehaviour
                 }
                
             }
+            // Choose specifick character for letter from the alphabet
             if (verticalTimer > 0)
             {
                 verticalTimer -= Time.deltaTime;
@@ -145,10 +146,13 @@ public class TransitionToLevelChange : MonoBehaviour
                 index++;
             }
 
+            //force to player go to end location
             player.transform.LookAt(targetLocation);
             player.transform.position += new Vector3(player.transform.forward.x * speedToTarget, player.transform.forward.y, player.transform.forward.z * speedToTarget) ;
             physComp.SetDirection(player.transform.forward * step);
             physComp.SetVelocity(player.transform.forward * step);
+
+            // Update players choosen name
             name = "";
             foreach (Text T in NameText)
             {
@@ -166,6 +170,7 @@ public class TransitionToLevelChange : MonoBehaviour
 
             }
 
+            //if at end location or input is enter save the name and score and end level
             if (Vector3.Distance(player.transform.position, targetLocation.position) < 2f || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                
@@ -173,7 +178,6 @@ public class TransitionToLevelChange : MonoBehaviour
                 name = "";
                 SceneManager.LoadScene(0);
             }
-            //    Vector3.MoveTowards(player.transform.position, targetLocation.position, step);
 
         }
         
