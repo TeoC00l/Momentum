@@ -19,16 +19,15 @@ public class DashState : PlayerBaseState
     {
         dashVelocity = Vector3.zero;
         isExecutingDash = true;
-        if (controllerInput.GetDashingLeftOrRight() == -1)
+
+        if (owner.controllerInput.GetIsDashingLeft())
         {
             dashDirection = UnityEngine.Camera.main.transform.rotation * Vector3.left;
         }
-
-        if (controllerInput.GetDashingLeftOrRight() == 1)
+        else     
         {
             dashDirection = UnityEngine.Camera.main.transform.rotation * Vector3.right;
         }
-        controllerInput.resetDash();
 
         owner.dashCooldownTimer.SetTimer();
         dashDurationTimer.SetTimer();

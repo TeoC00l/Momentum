@@ -27,7 +27,7 @@ public class PrecisionAirbourneState : PrecisionState
     public override void HandleUpdate()
     {
         //Checking for conditions to change state
-        if (controllerInput.GetIsKineticBatteryActive() == false)
+        if (owner.controllerInput.GetIsPrecisionModeActive() == false)
         {
             owner.Transition<MomentumAirbourneState>();
         }

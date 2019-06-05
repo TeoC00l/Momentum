@@ -21,22 +21,21 @@ public class GuiDrone : MonoBehaviour
         Image image = GetComponent<Image>();
         
         Gui.SetActive(false);
-        
-
     }
+
     private void FixedUpdate()
     {
         if(drones.Length == 0)
         {
             drones = FindObjectsOfType(typeof(Drone)) as Drone[];
         }
+
         Gui.SetActive(false);
 
         foreach (Drone D in drones)
         {
             if(D == null)
             {
-                Debug.Log("ima do it");
                 drones = FindObjectsOfType(typeof(Drone)) as Drone[];
                 break;
             }
@@ -49,10 +48,9 @@ public class GuiDrone : MonoBehaviour
                     break;
                 }
             }
-
-
         }
     }
+
     private void Look(GameObject lookAt)
     {
         Vector3 directionToTarget = player.transform.position - lookAt.transform.position;
@@ -60,10 +58,8 @@ public class GuiDrone : MonoBehaviour
 
         if (Mathf.Abs(angle) < 90)
         {
-
             if (ScanForPlayer(GUIToggleDistance, lookAt) == true)
             {
-
                 Gui.SetActive(true);
                 breakLoop = true;
             }
@@ -71,10 +67,7 @@ public class GuiDrone : MonoBehaviour
         }
         else
         {
-
             Gui.SetActive(false);
-
-
         }
     }
     private bool ScanForPlayer(float scanDistance, GameObject lookAt)

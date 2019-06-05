@@ -67,7 +67,7 @@ public class PauseMenu : MonoBehaviour
             {
                 m_MenuToggle.isOn = true;
             }
-            Cursor.visible = m_MenuToggle.isOn;//force the cursor visible if anythign had hidden it
+            //.visible = m_MenuToggle.isOn;//force the cursor visible if anythign had hidden it
             OnMenuStatusChange();
         }
 	}

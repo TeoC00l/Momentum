@@ -8,6 +8,8 @@ public class Player : StateMachine
     [HideInInspector] public PhysicsComponent PhysComp;
     [HideInInspector] public RayCasterCapsule RayCaster;
     [HideInInspector] public MeshRenderer Renderer;
+    [HideInInspector] public ControllerInput controllerInput;
+
 
     [SerializeField] private float strafeMultiplier;
     [SerializeField] private float kineticBatterySlidePower0Max1Min;
@@ -17,8 +19,7 @@ public class Player : StateMachine
 
     //Dash related attributes
     public Timer dashCooldownTimer;
-
-    [SerializeField] private Vector3 lastDash;
+    public Vector3 lastDash;
     private bool neutralizeInput = false;
 
     //Kinetic battery related attributes
@@ -27,7 +28,6 @@ public class Player : StateMachine
     private bool stopKineticSlide;
     private bool currentlySliding;
     private Vector3 oldVelocity = Vector3.zero;
-    private ControllerInput controllerInput;
     public Timer kineticBatteryCooldownTimer;
 
     //GemPrefab

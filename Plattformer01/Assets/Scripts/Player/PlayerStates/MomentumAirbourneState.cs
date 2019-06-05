@@ -26,12 +26,12 @@ public class MomentumAirbourneState : MomentumState
 
     public override void HandleUpdate()
     {
-        if (controllerInput.GetIsPrecisionModeActive())
+        if (owner.controllerInput.GetIsPrecisionModeActive())
         {
             owner.Transition<PrecisionAirbourneState>();
         }
 
-        if (controllerInput.GetIsKineticBatteryActive() && owner.kineticBatteryCooldownTimer.IsReady())
+        if (owner.controllerInput.GetIsKineticBatteryActive() && owner.kineticBatteryCooldownTimer.IsReady())
         {
             owner.Transition<KineticBatteryAirbourneState>();
         }

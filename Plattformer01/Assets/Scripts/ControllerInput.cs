@@ -22,7 +22,6 @@ public class ControllerInput : MonoBehaviour
 
     private bool isXboxController;
     private bool isKineticBatteryAcquired;
-    private float dashLeftOrRight;
 
     void Awake()
     {
@@ -36,6 +35,7 @@ public class ControllerInput : MonoBehaviour
         {
             isKineticBatteryAcquired = false;
         }
+
         isDashingRight = false;
         isDashingLeft = false;
     }
@@ -69,10 +69,6 @@ public class ControllerInput : MonoBehaviour
         isJumping = Input.GetKeyDown("joystick button 0");
         isDashingLeft = Input.GetKeyDown("joystick button 4");
         isDashingRight = Input.GetKeyDown("joystick button 5");
-        if (dashLeftOrRight == 0)
-        {
-            dashset();
-        }
         isKineticBatteryActive = isKineticBatteryAcquired && (Input.GetAxisRaw("Joystick R trigger") > 0);
         isPrecisionModeActive = Input.GetAxisRaw("Joystick L trigger") > 0;
     }
@@ -86,14 +82,10 @@ public class ControllerInput : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
         isJumping = Input.GetKeyDown(KeyCode.Space);
-        isDashingLeft = Input.GetKey(KeyCode.Q);
-        isDashingRight = Input.GetKey(KeyCode.E);
-        if(dashLeftOrRight == 0)
-        {
-            dashset();
-        }
+        isDashingLeft = Input.GetKeyDown(KeyCode.Q);
+        isDashingRight = Input.GetKeyDown(KeyCode.E);     
         isKineticBatteryActive = isKineticBatteryAcquired && Input.GetMouseButton(0);
-        isPrecisionModeActive = Input.GetKeyDown(KeyCode.LeftShift);
+        isPrecisionModeActive = Input.GetKey(KeyCode.LeftShift);
     }
 
     public void changeController()
@@ -124,22 +116,4 @@ public class ControllerInput : MonoBehaviour
     public void SetIsKineticBatteryAcquired(bool isKineticBatteryAcquired) { this.isKineticBatteryAcquired = isKineticBatteryAcquired; }
     public void SetIsXboxController (bool isXboxController) { this.isXboxController = isXboxController; }
     public void SetRotationY(float rotationY) { this.rotationY = rotationY; }
-    public float GetDashingLeftOrRight() { return dashLeftOrRight; }
-
-    public void dashset()
-    {
-        if (isDashingLeft)
-        {
-            dashLeftOrRight = -1;
-        }
-        else if (isDashingRight)
-        {
-            dashLeftOrRight = 1;
-
-        }
-    }
-    public void resetDash()
-    {
-        dashLeftOrRight = 0;
-    }
 }

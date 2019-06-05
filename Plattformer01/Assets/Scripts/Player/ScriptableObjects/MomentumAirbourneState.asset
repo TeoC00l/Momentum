@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: MomentumAirbourneState
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: f629c6e43dba4bf38cb74d8860150664, type: 2}
-  PhysComp: {fileID: 0}
-  rayCaster: {fileID: 0}
   acceleration: 75
   gravitationalForce: 60
   jumpMagnitude: 2000
-  staticFrictionCo: 0.3
+  staticFrictionCo: 0.4
   airResistance: 0.9
-  strafeCoefficient: 0.6
+  strafeCoefficient: 0.8

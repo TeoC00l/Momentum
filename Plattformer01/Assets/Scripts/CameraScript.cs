@@ -48,11 +48,7 @@ public class CameraScript : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            changeCursorLockMode();
-        }
-
+        changeCursorLockMode();
         AddRotation();
     }
 
@@ -81,13 +77,14 @@ public class CameraScript : MonoBehaviour
 
     public void changeCursorLockMode()
     {
-        if (Cursor.lockState == CursorLockMode.Confined)
+        if (Cursor.lockState != CursorLockMode.Locked)
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
-        else
+
+        if (Cursor.visible)
         {
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
         }
     }
 

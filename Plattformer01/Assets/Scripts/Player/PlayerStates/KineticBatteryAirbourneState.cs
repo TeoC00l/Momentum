@@ -66,7 +66,7 @@ public class KineticBatteryAirbourneState : PlayerBaseState
     public override void HandleUpdate()
     {
         //Redirecting velocity
-        getOutofState = controllerInput.GetIsKineticBatteryActive() == false;
+        getOutofState = owner.controllerInput.GetIsKineticBatteryActive() == false;
         if (getOutofState == true)
         {
             owner.SetCurrentlySliding(false);

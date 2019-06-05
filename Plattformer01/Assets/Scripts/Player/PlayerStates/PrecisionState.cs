@@ -41,17 +41,17 @@ public class PrecisionState : PlayerBaseState
     public override void HandleUpdate()
     {
         //Checking for conditions to change state
-        if (!controllerInput.GetIsPrecisionModeActive())
+        if (!owner.controllerInput.GetIsPrecisionModeActive())
         {
             owner.Transition<MomentumState>();
         }
 
-        if (controllerInput.GetIsJumping())
+        if (owner.controllerInput.GetIsJumping())
         {
             owner.Transition<JumpState>();
         }
 
-        if (owner.dashCooldownTimer.IsReady() && controllerInput.GetIsDashingLeft() || controllerInput.GetIsDashingRight())
+        if (owner.dashCooldownTimer.IsReady() && owner.controllerInput.GetIsDashingLeft() || owner.controllerInput.GetIsDashingRight())
         {
             owner.Transition<DashState>();
         }
