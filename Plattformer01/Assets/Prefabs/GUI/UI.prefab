@@ -1,23 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &8744364732458959514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3311000177928821502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57671b89e5196334189a77c92e5aa06e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialTex: {fileID: 2800000, guid: 4b54d8406990a29488ffa397e64292e5, type: 3}
-  needleTex: {fileID: 2800000, guid: 9076e3d9858ae1a44a1f76c8387b793a, type: 3}
-  dialPos: {fileID: 0}
-  stopAngle: 150
-  topSpeedAngle: 390
-  topSpeed: 300
 --- !u!1 &7696203068214920599
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +491,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7872984402598020009}
     m_Modifications:
+    - target: {fileID: 586215754297952964, guid: ed3c0ddd014f79842ad26292b941f3df,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 586215754297952964, guid: ed3c0ddd014f79842ad26292b941f3df,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 586215754297952964, guid: ed3c0ddd014f79842ad26292b941f3df,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 586215754297952964, guid: ed3c0ddd014f79842ad26292b941f3df,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 586215754297952964, guid: ed3c0ddd014f79842ad26292b941f3df,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 290.086
+      objectReference: {fileID: 0}
+    - target: {fileID: 586215754297952964, guid: ed3c0ddd014f79842ad26292b941f3df,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 170.01758
+      objectReference: {fileID: 0}
+    - target: {fileID: 586215754297952964, guid: ed3c0ddd014f79842ad26292b941f3df,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 60.885254
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: ed3c0ddd014f79842ad26292b941f3df, type: 3}
       propertyPath: m_Name
       value: SpeedMeter
@@ -561,20 +578,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 586215754297952964, guid: ed3c0ddd014f79842ad26292b941f3df,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3145581259385626532, guid: ed3c0ddd014f79842ad26292b941f3df, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ed3c0ddd014f79842ad26292b941f3df, type: 3}
---- !u!1 &3311000177928821502 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: ed3c0ddd014f79842ad26292b941f3df,
-    type: 3}
-  m_PrefabInstance: {fileID: 3311000177928723550}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2725136279298152090 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 586215754297952964, guid: ed3c0ddd014f79842ad26292b941f3df,

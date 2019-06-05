@@ -164,7 +164,7 @@ public class TransitionToLevelChange : MonoBehaviour
 
             }
 
-            if (Vector3.Distance(player.transform.position, targetLocation.position) < 2f)
+            if (Vector3.Distance(player.transform.position, targetLocation.position) < 2f || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                
                 HighScoreManager._instance.SaveHighScore(name, finalTime);

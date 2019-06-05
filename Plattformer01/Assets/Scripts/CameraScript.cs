@@ -49,7 +49,10 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
         changeCursorLockMode();
-        AddRotation();
+        if(Time.timeScale == 1)
+        {
+            AddRotation();
+        }
     }
 
     public void AddRotation()

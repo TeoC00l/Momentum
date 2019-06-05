@@ -7,7 +7,6 @@ public class GuiDrone : MonoBehaviour
 {
     private Drone[] drones;
     private GameObject player;
-    private Image image;
     [SerializeField]private float GUIToggleDistance;
     [SerializeField]private LayerMask visionMask;
     [SerializeField] private GameObject Gui;
@@ -18,7 +17,6 @@ public class GuiDrone : MonoBehaviour
     {
         drones = FindObjectsOfType(typeof(Drone)) as Drone[];
         player = GameObject.FindWithTag("Player");
-        Image image = GetComponent<Image>();
         
         Gui.SetActive(false);
     }
