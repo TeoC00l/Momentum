@@ -137,6 +137,8 @@ public class GUI_Modes : MonoBehaviour
 
             if (set == true)
             {
+                Debug.Log("select button");
+
                 canvas.GetComponent<PauseMenuScreen>().SelectButton();
 
             }

@@ -48,11 +48,12 @@ public class CameraScript : MonoBehaviour
             AddRotation();
         }
         InitiateShake();
+
     }
 
     void Update()
     {
-
+       
         changeCursorLockMode();
        
 

@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_SelectOnUp: {fileID: 1618321275}
     m_SelectOnDown: {fileID: 1876680272}
     m_SelectOnLeft: {fileID: 0}
@@ -601,7 +601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_SelectOnUp: {fileID: 1876680272}
     m_SelectOnDown: {fileID: 14760584}
     m_SelectOnLeft: {fileID: 0}
@@ -719,7 +719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_SelectOnUp: {fileID: 14760584}
     m_SelectOnDown: {fileID: 1618321275}
     m_SelectOnLeft: {fileID: 0}
@@ -1189,7 +1189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_SelectOnUp: {fileID: 2934406402619206402}
     m_SelectOnDown: {fileID: 697044682664210192}
     m_SelectOnLeft: {fileID: 0}
@@ -1436,7 +1436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_SelectOnUp: {fileID: 3599315643638821652}
     m_SelectOnDown: {fileID: 3487881292527124485}
     m_SelectOnLeft: {fileID: 0}
@@ -1554,7 +1554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_SelectOnUp: {fileID: 697044682664210192}
     m_SelectOnDown: {fileID: 2934406402619206402}
     m_SelectOnLeft: {fileID: 0}
@@ -1942,7 +1942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_SelectOnUp: {fileID: 3487881292527124485}
     m_SelectOnDown: {fileID: 3599315643638821652}
     m_SelectOnLeft: {fileID: 0}
@@ -2765,6 +2765,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: -164.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6029998915119365258, guid: a9a1eee5dad0eaf41aecf99b96ff0e53,
+        type: 3}
+      propertyPath: cursorMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6029998915119365258, guid: a9a1eee5dad0eaf41aecf99b96ff0e53,
         type: 3}
