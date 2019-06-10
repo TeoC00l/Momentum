@@ -46,7 +46,7 @@ public class GUI_Modes : MonoBehaviour
         UIKinetic.SetActive(false);
 
         //assign mouse
-        Cursor.SetCursor(cursorTexture, hotspot, cursorMode);
+       //Cursor.SetCursor(cursorTexture, hotspot, cursorMode);
 
         //initialize engines
         //initializeEngines();
@@ -121,10 +121,12 @@ public class GUI_Modes : MonoBehaviour
         if(SaveManager._instance.GetSaveBool() == true)
         {
             canvas2.SetActive(set);
+
             if (set == true)
             {
                 Debug.Log("select button");
                 canvas2.GetComponent<PauseMenuScreen>().SelectButton();
+
 
             }
 
@@ -132,7 +134,8 @@ public class GUI_Modes : MonoBehaviour
         else
         {
             canvas.SetActive(set);
-            if(set == true)
+
+            if (set == true)
             {
                 canvas.GetComponent<PauseMenuScreen>().SelectButton();
 

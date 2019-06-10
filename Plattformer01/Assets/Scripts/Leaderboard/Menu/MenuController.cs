@@ -106,7 +106,6 @@ public class MenuController : MonoBehaviour
         }
 
         GUILayout.Space(60);
-        GUILayout.FlexibleSpace();
 
         GUILayout.BeginHorizontal();
         GUILayout.Label("             Name", style, GUILayout.Width(Screen.width / 2));

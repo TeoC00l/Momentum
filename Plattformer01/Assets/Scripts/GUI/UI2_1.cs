@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class UI2_1 : MonoBehaviour
 {
+
+    //Main Author: Yukun
     private GameObject UIPrecision;
     private GameObject UIMomentum;
     private GameObject UIKinetic;

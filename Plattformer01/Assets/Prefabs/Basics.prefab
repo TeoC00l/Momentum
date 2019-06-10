@@ -2558,6 +2558,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 4733824639214665786}
+    - target: {fileID: 819451180575006839, guid: 04c19a69f5984284b9d361cca0503e55,
+        type: 3}
+      propertyPath: shakeAmount
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04c19a69f5984284b9d361cca0503e55, type: 3}
 --- !u!4 &4448078223415269265 stripped
@@ -2965,6 +2970,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4560675781600889944, guid: d322ac9cc58f0f144823b344cb86bc03,
         type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 176.09961
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560675781600889944, guid: d322ac9cc58f0f144823b344cb86bc03,
+        type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -37
       objectReference: {fileID: 0}
@@ -2979,6 +2989,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 12800000, guid: 0695ae1e9c364d54192db0d0b7b619d6,
         type: 3}
+    - target: {fileID: 1186121770, guid: d322ac9cc58f0f144823b344cb86bc03, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 33.100098
+      objectReference: {fileID: 0}
+    - target: {fileID: 2143734789, guid: d322ac9cc58f0f144823b344cb86bc03, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.6999512
+      objectReference: {fileID: 0}
     - target: {fileID: 1051566325, guid: d322ac9cc58f0f144823b344cb86bc03, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -59.80005
@@ -3002,7 +3020,7 @@ PrefabInstance:
     - target: {fileID: 2747525459025403608, guid: d322ac9cc58f0f144823b344cb86bc03,
         type: 3}
       propertyPath: m_Text
-      value: ' Press Enter To submit'
+      value: ' Press R To submit'
       objectReference: {fileID: 0}
     - target: {fileID: 6248870983809607740, guid: d322ac9cc58f0f144823b344cb86bc03,
         type: 3}

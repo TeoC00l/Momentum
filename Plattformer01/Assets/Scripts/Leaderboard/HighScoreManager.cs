@@ -2,11 +2,12 @@
  using System.Collections;
  using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class HighScoreManager : MonoBehaviour
 {
     private Scene m_Scene;
-    private string sceneName;
+    private string sceneName2;
     private static HighScoreManager m_instance;
     private const int LeaderboardLength = 10;
 
@@ -37,16 +38,16 @@ public class HighScoreManager : MonoBehaviour
     public void SaveHighScore(string name, float score)
     {
         m_Scene = SceneManager.GetActiveScene();
-        sceneName = m_Scene.name;
-        List<Scores> HighScores = GetHighScore(sceneName);
+        sceneName2 = m_Scene.name;
+        List<Scores> HighScores = GetHighScore(sceneName2);
 
 
         int i = 1;
-        while (i <= LeaderboardLength && PlayerPrefs.HasKey(sceneName + i + "score"))
+        while (i <= LeaderboardLength && PlayerPrefs.HasKey(sceneName2 + i + "score"))
         {
             Scores temp = new Scores();
-            temp.score = PlayerPrefs.GetFloat(sceneName + i + "score");
-            temp.name = PlayerPrefs.GetString(sceneName + i + "name");
+            temp.score = PlayerPrefs.GetFloat(sceneName2 + i + "score");
+            temp.name = PlayerPrefs.GetString(sceneName2 + i + "name");
             HighScores.Add(temp);
             i++;
         }
@@ -83,8 +84,8 @@ public class HighScoreManager : MonoBehaviour
         i = 1;
         while (i <= LeaderboardLength && i <= HighScores.Count)
         {
-            PlayerPrefs.SetString(sceneName + i + "name", HighScores[i - 1].name);
-            PlayerPrefs.SetFloat(sceneName + i + "score", HighScores[i - 1].score);
+            PlayerPrefs.SetString(sceneName2 + i + "name", HighScores[i - 1].name);
+            PlayerPrefs.SetFloat(sceneName2 + i + "score", HighScores[i - 1].score);
             i++;
         }
 
@@ -98,15 +99,38 @@ public class HighScoreManager : MonoBehaviour
         int i = 1;
         while (i <= LeaderboardLength && PlayerPrefs.HasKey(sceneName + i + "score"))
         {
+            
+            
             Scores temp = new Scores();
             temp.score = PlayerPrefs.GetFloat(sceneName + i + "score");
             temp.name = PlayerPrefs.GetString(sceneName + i + "name");
+
+
             HighScores.Add(temp);
             i++;
         }
-
+        HighScores = insertionSort(HighScores, HighScores.Count);
+        HighScores = RemoveDuplicates(HighScores);
         return HighScores;
     }
+    private List<Scores> insertionSort( List<Scores> arr, int length)
+    {
+        int i, j;
+        Scores key;
+        for (i = 1; i < length; i++)
+        {
+            j = i;
+            while (j > 0 && arr[j - 1].score > arr[j].score)
+            {
+                key = arr[j];
+                arr[j] = arr[j - 1];
+                arr[j - 1] = key;
+                j--;
+            }
+        }
+        return arr;
+    }
+
 
     public void ClearLeaderBoard(string sceneName)
     {
@@ -123,6 +147,28 @@ public class HighScoreManager : MonoBehaviour
     void OnApplicationQuit()
     {
         PlayerPrefs.Save();
+    }
+    public List<Scores> RemoveDuplicates(List<Scores> listPoints)
+    {
+        List<Scores> result = new List<Scores>();
+
+        for (int i = 0; i < listPoints.Count; i++)
+        {
+            bool contains = false;
+            foreach (Scores _score in result)
+            {
+                if (listPoints[i].name == _score.name)
+                {
+                    contains = true;
+                }
+            }
+            if (contains == false)
+            {
+                result.Add(listPoints[i]);
+            }
+        }
+
+        return result;
     }
 }
 

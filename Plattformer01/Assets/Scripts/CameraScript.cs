@@ -43,16 +43,19 @@ public class CameraScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (Time.timeScale == 1)
+        {
+            AddRotation();
+        }
         InitiateShake();
     }
 
     void Update()
     {
-        changeCursorLockMode();
-        if(Time.timeScale == 1)
-        {
-            AddRotation();
-        }
+
+     //   changeCursorLockMode();
+       
+
     }
 
     public void AddRotation()
@@ -73,6 +76,8 @@ public class CameraScript : MonoBehaviour
     public void ShakeCamera()
     {
         float tempShakeAmount = physComp.GetVelocity().magnitude * shakeAmount;
+
+
         UnityEngine.Camera.main.transform.localPosition += new Vector3(Random.insideUnitSphere.x * tempShakeAmount, Random.insideUnitSphere.y * tempShakeAmount + 1.78f, 0f);
         UnityEngine.Camera.main.transform.localPosition -= new Vector3(Random.insideUnitSphere.x * tempShakeAmount, Random.insideUnitSphere.y * tempShakeAmount + 1.78f, 0f);
         shakeCounter += Time.deltaTime;
@@ -93,22 +98,25 @@ public class CameraScript : MonoBehaviour
 
     public void InitiateShake()
     {
+        //checkforhit
+
         if (shakeStart == false)
         {
             Vector3 Velocity = new Vector3(physComp.GetVelocity().x, 0f, physComp.GetVelocity().z);
             ray = Physics.Raycast(player.transform.position, Velocity.normalized, out hit, 3f, layerMask);
             Debug.DrawRay(player.transform.position, Velocity.normalized, Color.yellow, 3f);
-        }
-
-        if (ray == true)
-        {
-            if (hit.collider.gameObject.tag == "Floor" && hit.collider.gameObject != hitGameObject)
+            if (ray == true)
             {
-                hitGameObject = hit.collider.gameObject;
-                shakeStart = true;
+                if (hit.collider.gameObject.tag == "Floor" && hit.collider.gameObject != hitGameObject)
+                {
 
+                    hitGameObject = hit.collider.gameObject;
+                    shakeStart = true;
+
+                }
             }
         }
+        //check so we dont hit the same object we already hit
         else if (hitGameObject != null)
         {
             hitAgain += Time.deltaTime;
@@ -119,11 +127,13 @@ public class CameraScript : MonoBehaviour
             hitGameObject = null;
             hitAgain = 0;
         }
+        //Shake Camera
         if (shakeStart == true)
         {
             ShakeCamera();
 
         }
+        //Stop after shakelength
         if (shakeCounter > shakeLength)
         {
             shakeStart = false;

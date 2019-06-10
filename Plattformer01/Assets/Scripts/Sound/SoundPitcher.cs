@@ -4,6 +4,8 @@ using System.Collections;
 
 public class SoundPitcher : MonoBehaviour {
 
+    //Main Author: Yukun
+
     [Header("Basics")]
     public float speed;
 
@@ -96,10 +98,14 @@ public class SoundPitcher : MonoBehaviour {
             Vector3 jump = new Vector3(Input.GetAxis("Horizontal"), 30, Input.GetAxis("Vertical"));
             //rb.AddForce(jump * speed);
             clipIndex2 = Random.Range(1, jumpNoises.Length);
-            AudioClip clip2 = jumpNoises[clipIndex2];
-            source2.PlayOneShot(jumpNoises[clipIndex2]);
-            jumpNoises[clipIndex2] = jumpNoises[0];
-            jumpNoises[0] = clip2;
+            if(clipIndex2 > -1 && clipIndex2 <= jumpNoises.Length)
+            {
+                AudioClip clip2 = jumpNoises[clipIndex2];
+                source2.PlayOneShot(jumpNoises[clipIndex2]);
+                jumpNoises[clipIndex2] = jumpNoises[0];
+                jumpNoises[0] = clip2;
+            }
+           
         }
 
 

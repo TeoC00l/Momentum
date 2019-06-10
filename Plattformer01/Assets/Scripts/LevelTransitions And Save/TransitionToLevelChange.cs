@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Linq;
 
 public class TransitionToLevelChange : MonoBehaviour
 {
@@ -40,7 +41,7 @@ public class TransitionToLevelChange : MonoBehaviour
 
     private List<Scores> highScores;
 
-
+    private bool Saving = false;
 
     void Awake()
     {
@@ -75,13 +76,10 @@ public class TransitionToLevelChange : MonoBehaviour
             gratsText.text = timer.goodLookingTimer();
             Scene m_Scene = SceneManager.GetActiveScene();
             highScores = HighScoreManager._instance.GetHighScore(m_Scene.name);
-            //  player.transform.LookAt(targetLocation);
             playerScript.SetNeutralizeInput(true);
             allChildren = leaderboard.GetComponentsInChildren<Text>();
 
             deployLeaderboard();
-
-
         }
     }
 
@@ -90,62 +88,12 @@ public class TransitionToLevelChange : MonoBehaviour
     {
         if (hitTrigger)
         {
-           
             // Choose which letter should be active between the 3 when picking name
-            float input = Input.GetAxisRaw("Horizontal");
-            if(horizontalTimer > 0)
-            {
-                horizontalTimer -= Time.deltaTime;
-            }
-            else
-            {
-                horizontalTimer = 0;
-            }
-            if (input != null && horizontalTimer == 0)
-            {
-                horizontalTimer = 0.1f;
-                activeText += -fixInput(input);
-                if (activeText < 0)
-                {
-                    activeText = (NameText.Length - 1);
-                }
-                else if (activeText > (NameText.Length - 1))
-                {
-                    activeText = 0;
-                }
-               
-            }
+            ChooseBetweenThreeLetters();
+
             // Choose specifick character for letter from the alphabet
-            if (verticalTimer > 0)
-            {
-                verticalTimer -= Time.deltaTime;
-            }
-            else
-            {
-                verticalTimer = 0;
-            }
-            int index = 0;
-
-            foreach (Text T in NameText)
-            {
-                if(index == activeText)
-                {
-                    T.color = Color.yellow;
-                    if (Input.GetAxisRaw("Vertical") != 0 && verticalTimer == 0)
-                    {
-                        verticalTimer = 0.1f;
-                        GoThroughAlphabet(fixInput(Input.GetAxisRaw("Vertical")));
-                    }
-                    
-                }
-                else
-                {
-                    T.color = Color.blue;
-
-                }
-                index++;
-            }
-
+            ChooseASpecifickLetterForTheOneSelected();
+    
             //force to player go to end location
             player.transform.LookAt(targetLocation);
             player.transform.position += new Vector3(player.transform.forward.x * speedToTarget, player.transform.forward.y, player.transform.forward.z * speedToTarget) ;
@@ -171,9 +119,9 @@ public class TransitionToLevelChange : MonoBehaviour
             }
 
             //if at end location or input is enter save the name and score and end level
-            if (Vector3.Distance(player.transform.position, targetLocation.position) < 2f || Input.GetKeyDown(KeyCode.KeypadEnter))
+            if (Vector3.Distance(player.transform.position, targetLocation.position) < 2f && Saving == false || Input.GetKeyDown(KeyCode.R) && Saving == false)
             {
-               
+                Saving = true;
                 HighScoreManager._instance.SaveHighScore(name, finalTime);
                 name = "";
                 SceneManager.LoadScene(0);
@@ -240,7 +188,7 @@ public class TransitionToLevelChange : MonoBehaviour
                 break;
             }
 
-            if (_score.score >= timer.GetTimeAsFloat())
+            if (_score.score >= timer.GetTimeAsFloat() && yourScoreIndex == 11)
             {
                 scoreAdded = true;
                 yourScoreIndex = index;
@@ -250,21 +198,22 @@ public class TransitionToLevelChange : MonoBehaviour
                     newHighscore = true;
 
                 }
-                allChildren[index].text = (Placement) + ": " + name + " " + timer.goodLookingTimer();
                 allChildren[yourScoreIndex].color = Color.yellow;
-
+                Debug.Log("Score" + yourScoreIndex + "Placement" + yourPlacement + "Name" + " CurrentScore" + timer.GetTimeAsFloat());
                 index++;
                 if (timer.GetTimer() != before)
                 {
                     Placement++;
                 }
                 before = timer.GetTimeAsFloat();
-
+                
             }
 
             allChildren[index].text = (Placement) + ": " + _score.name + " " + _score.GetTimer();
+            Debug.Log("Score" + index + "Placement" + Placement + "Name" + _score.name +  "Timer " + _score.GetTimer());
 
             
+
             index++;
             if (_score.score != before)
             {
@@ -294,4 +243,63 @@ public class TransitionToLevelChange : MonoBehaviour
         }
 
     }
+    private void ChooseBetweenThreeLetters()
+    {
+        float input = Input.GetAxisRaw("Horizontal");
+        if (horizontalTimer > 0)
+        {
+            horizontalTimer -= Time.deltaTime;
+        }
+        else
+        {
+            horizontalTimer = 0;
+        }
+        if (input != null && horizontalTimer == 0)
+        {
+            horizontalTimer = 0.1f;
+            activeText += -fixInput(input);
+            if (activeText < 0)
+            {
+                activeText = (NameText.Length - 1);
+            }
+            else if (activeText > (NameText.Length - 1))
+            {
+                activeText = 0;
+            }
+
+        }
+    }
+    private void ChooseASpecifickLetterForTheOneSelected()
+    {
+        if (verticalTimer > 0)
+        {
+            verticalTimer -= Time.deltaTime;
+        }
+        else
+        {
+            verticalTimer = 0;
+        }
+        int index = 0;
+
+        foreach (Text T in NameText)
+        {
+            if (index == activeText)
+            {
+                T.color = Color.yellow;
+                if (Input.GetAxisRaw("Vertical") != 0 && verticalTimer == 0)
+                {
+                    verticalTimer = 0.1f;
+                    GoThroughAlphabet(fixInput(Input.GetAxisRaw("Vertical")));
+                }
+
+            }
+            else
+            {
+                T.color = Color.blue;
+
+            }
+            index++;
+        }
+    }
+
 }
