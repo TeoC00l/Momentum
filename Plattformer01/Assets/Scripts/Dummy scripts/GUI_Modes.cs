@@ -46,7 +46,7 @@ public class GUI_Modes : MonoBehaviour
         UIKinetic.SetActive(false);
 
         //assign mouse
-       //Cursor.SetCursor(cursorTexture, hotspot, cursorMode);
+       Cursor.SetCursor(cursorTexture, hotspot, cursorMode);
 
         //initialize engines
         //initializeEngines();

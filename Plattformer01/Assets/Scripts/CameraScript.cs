@@ -53,7 +53,7 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
 
-     //   changeCursorLockMode();
+        changeCursorLockMode();
        
 
     }
