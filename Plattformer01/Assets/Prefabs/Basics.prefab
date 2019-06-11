@@ -2638,17 +2638,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2125694878669176131, guid: 39c5a735a2cbbdc4da3e9acf5dfbf1e5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2125694878669176131, guid: 39c5a735a2cbbdc4da3e9acf5dfbf1e5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.83
+      objectReference: {fileID: 0}
     - target: {fileID: 8598521227837564997, guid: 39c5a735a2cbbdc4da3e9acf5dfbf1e5,
         type: 3}
       propertyPath: gemPrefab
       value: 
       objectReference: {fileID: 9033403449150995837, guid: a08c9673238e1ae4bbc4cf7068946d97,
         type: 3}
-    - target: {fileID: 437666177, guid: 39c5a735a2cbbdc4da3e9acf5dfbf1e5, type: 3}
+    - target: {fileID: 1362821002, guid: 39c5a735a2cbbdc4da3e9acf5dfbf1e5, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1362821002, guid: 39c5a735a2cbbdc4da3e9acf5dfbf1e5, type: 3}
+    - target: {fileID: 437666177, guid: 39c5a735a2cbbdc4da3e9acf5dfbf1e5, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2836,6 +2846,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5679881790512128914}
     m_Modifications:
+    - target: {fileID: 6248870983401641798, guid: d322ac9cc58f0f144823b344cb86bc03,
+        type: 3}
+      propertyPath: m_Name
+      value: TextCanvas
+      objectReference: {fileID: 0}
     - target: {fileID: 6248870983401641793, guid: d322ac9cc58f0f144823b344cb86bc03,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2940,11 +2955,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6248870983401641798, guid: d322ac9cc58f0f144823b344cb86bc03,
-        type: 3}
-      propertyPath: m_Name
-      value: TextCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 9114203047219891384, guid: d322ac9cc58f0f144823b344cb86bc03,
         type: 3}
