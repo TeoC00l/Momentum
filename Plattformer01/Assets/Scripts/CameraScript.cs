@@ -43,17 +43,17 @@ public class CameraScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Time.timeScale == 1)
-        {
-            AddRotation();
-        }
-        InitiateShake();
+       
 
     }
 
     void Update()
     {
-       
+        if (Time.timeScale == 1)
+        {
+            AddRotation();
+        }
+        InitiateShake();
         changeCursorLockMode();
        
 
