@@ -15,9 +15,6 @@ public class PauseMenuScreen : MonoBehaviour
     //Methods
     void Start()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-
         RestartButton.onClick.AddListener(Restart);
 
         quitButton.onClick.AddListener(QuitListener);
