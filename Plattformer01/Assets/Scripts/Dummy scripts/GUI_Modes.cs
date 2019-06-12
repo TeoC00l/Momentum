@@ -14,7 +14,7 @@ public class GUI_Modes : MonoBehaviour
     private Vector2 hotspot = Vector2.zero;
 
     [SerializeField] private GameObject canvas;
-    [SerializeField] private GameObject canvas2;
+    private PauseMenuScreen pauseScreen;
 
     void Start()
     {
@@ -23,7 +23,7 @@ public class GUI_Modes : MonoBehaviour
         UIMomentum = GameObject.Find("UIMomentum");
         UIKinetic = GameObject.Find("UIKinetic");
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
-
+        pauseScreen = canvas.GetComponent<PauseMenuScreen>();
         //put the GUI's in default orders.
         UIMomentum.SetActive(false);
         UIKinetic.SetActive(false);
@@ -54,61 +54,30 @@ public class GUI_Modes : MonoBehaviour
             UIKinetic.SetActive(true);
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) == true || canvas.GetComponent<PauseMenuScreen>().GetChange() == true || canvas2.GetComponent<PauseMenuScreen>().GetChange() == true || Input.GetKeyDown("joystick button 7"))
+        if (Input.GetKeyDown(KeyCode.Escape) == true ||  Input.GetKeyDown("joystick button 7"))
         {
             Debug.Log("Pause");
             if (Time.timeScale == 1)
             {
 
-                SetCanvas(true);
-                canvas.GetComponent<PauseMenuScreen>().SelectButton();
-                Time.timeScale = 0;
+                canvas.SetActive(true);
+                pauseScreen.SelectButton();
                 player.Transition<PauseState>();
+
+                Time.timeScale = 0;
 
             }
             else if(Time.timeScale == 0)
             {
                 player.TransitionBack();
                 Time.timeScale = 1;
-                SetCanvas(false);
-
-
-
-
+                canvas.SetActive(false);
+                
             }
-            canvas.GetComponent<PauseMenuScreen>().SetChange(false);
-            canvas2.GetComponent<PauseMenuScreen>().SetChange(false);
+            // canvas.GetComponent<PauseMenuScreen>().SetChange(false);
+            pauseScreen.SetChange(false);
 
         }
     }
-    public void SetCanvas(bool set)
-    {
-        if(SaveManager._instance.GetSaveBool() == true)
-        {
-            canvas2.SetActive(set);
-
-            if (set == true)
-            {
-                Debug.Log("select button");
-                canvas2.GetComponent<PauseMenuScreen>().SelectButton();
-
-
-            }
-
-        }
-        else
-        {
-            canvas.SetActive(set);
-
-            if (set == true)
-            {
-                Debug.Log("select button");
-
-                canvas.GetComponent<PauseMenuScreen>().SelectButton();
-
-            }
-
-        }
-
-    }
+    
 }

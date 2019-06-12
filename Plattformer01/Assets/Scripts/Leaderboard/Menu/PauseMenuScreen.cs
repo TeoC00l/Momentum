@@ -82,16 +82,16 @@ public class PauseMenuScreen : MonoBehaviour
         if (SaveManager._instance.GetSaveBool() == true)
         {
             RestartFromCheckpointButton.gameObject.SetActive(true);
-
             RestartFromCheckpointButton.onClick.AddListener(RestartFromCheckpoint);
 
         }
-        else
+        else if (SaveManager._instance.GetSaveBool() == false)
         {
             RestartFromCheckpointButton.onClick.RemoveListener(RestartFromCheckpoint);
             RestartFromCheckpointButton.gameObject.SetActive(false);
 
         }
+
         RestartButton.Select();
         activeButton = 0;
 
@@ -109,7 +109,7 @@ public class PauseMenuScreen : MonoBehaviour
 
 
             }
-            Buttons[activeButton].Select();
+            buttons[activeButton].Select();
 
         }
 
@@ -121,7 +121,7 @@ public class PauseMenuScreen : MonoBehaviour
                 activeButton = 0;
 
             }
-            Buttons[activeButton].Select();
+            buttons[activeButton].Select();
 
         }
 
