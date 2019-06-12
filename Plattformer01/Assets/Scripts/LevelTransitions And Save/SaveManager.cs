@@ -27,7 +27,6 @@ public class SaveManager : MonoBehaviour
     private GameObject gem;
     private float savedPickUpAmount;
     private float timer;
-    private GemSpeedPickUP gemPickup;
 
 
 
@@ -104,8 +103,6 @@ public class SaveManager : MonoBehaviour
         m_Scene = SceneManager.GetActiveScene();
         gemSpeedIncrease = player.GetComponent<PhysicsComponent>().GetSpeedIncrease();
         canvas = GameObject.FindWithTag("TextCanvas");
-        gemPickup = canvas.GetComponent<GemSpeedPickUP>();
-        savedPickUpAmount = gemPickup.GetPickUpAmount();
 
         timer = canvas.GetComponent<UITimer>().GetTimer();
 
@@ -134,8 +131,6 @@ public class SaveManager : MonoBehaviour
             player.GetComponent<PhysicsComponent>().SetSpeedIncrease(gemSpeedIncrease);
             Debug.Log(player.GetComponent<PhysicsComponent>().GetSpeedIncrease() + gemSpeedIncrease);
             canvas = GameObject.FindWithTag("TextCanvas");
-            gemPickup = canvas.GetComponent<GemSpeedPickUP>();
-            gemPickup.SetPickUpAmount(savedPickUpAmount);
             canvas.transform.GetChild(2).GetComponent<Text>().text = "+" + ((gemSpeedIncrease - 1) * 100) + "%";
             canvas.GetComponent<UITimer>().SetTimer(timer);
             droneSpawnParent = GameObject.FindWithTag("DroneSpawn");

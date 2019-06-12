@@ -125,12 +125,12 @@ public class SoundPitcher : MonoBehaviour {
 
 	void OnTriggerEnter( Collider other ){
 		
-		if ( other.gameObject.CompareTag ("PickUp") ){
-			other.gameObject.SetActive (false);
-			count++;
-            clipIndex = Random.Range(0,pickup_sound.Length);
-            source1.PlayOneShot(pickup_sound[clipIndex]);
-		}
+		//if ( other.gameObject.CompareTag ("PickUp") ){
+		//	other.gameObject.SetActive (false);
+		//	count++;
+  //          clipIndex = Random.Range(0,pickup_sound.Length);
+  //          source1.PlayOneShot(pickup_sound[clipIndex]);
+		//}
 
         if (other.gameObject.CompareTag("Wall"))
         {

@@ -8,11 +8,15 @@ public class Pickup : MonoBehaviour
     private GameObject Player;
     private Transform child;
     [SerializeField]private float speed;
-    private GemSpeedPickUP gemPickup;
+    [Range(0.001f, 1f)]
+    [SerializeField]
+    private float addThisMuchSpeedInProcentForEachGem;
+
+    private PhysicsComponent physcomp;
     private void Awake()
     {
-        gemPickup = GameObject.FindWithTag("TextCanvas").GetComponent<GemSpeedPickUP>();
 
+        
     }
 
     // Update is called once per frame
@@ -21,12 +25,12 @@ public class Pickup : MonoBehaviour
         if(follow == true)
         {
             transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, speed * Time.smoothDeltaTime);
-            speed += 0.2f;
-            if (Vector3.Distance(child.position, transform.position) < 0.1f)
+            speed += 1f;
+            if (Vector3.Distance(child.position, transform.position) < 0.8f)
             {
                 Player.GetComponent<ParticleSystem>().Play(true);
                 Debug.Log("hit pickup");
-                gemPickup.UpdateGems();
+                physcomp.AddToSpeedIncrease(addThisMuchSpeedInProcentForEachGem / 100);
                 this.gameObject.SetActive(false);
             }
         }
@@ -39,6 +43,8 @@ public class Pickup : MonoBehaviour
             follow = true;
             Player = other.gameObject;
             child = Player.transform.GetChild(0);
+            physcomp = Player.GetComponent<PhysicsComponent>();
+
         }
     }
 }

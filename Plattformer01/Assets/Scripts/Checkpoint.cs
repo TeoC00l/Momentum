@@ -23,7 +23,7 @@ public class Checkpoint : MonoBehaviour
     void Start()
     {
         textCanvas = GameObject.FindGameObjectWithTag("TextCanvas");
-        checkpointText = textCanvas.transform.GetChild(5).GetComponent<Text>();
+        checkpointText = textCanvas.transform.GetChild(4).GetComponent<Text>();
         canFade = true;
         alphaColor = checkpointText.color;
         originalColor = checkpointText.color;
