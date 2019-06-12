@@ -27,9 +27,9 @@ public class SoundPitcher : MonoBehaviour {
     public AudioClip[] jumpNoises;
     public int clipIndex2;
     private float volLow = 0.1f;
-    private float volHigh = 1.0f;
+    private float volHigh = 0.5f;
     private float pitchLow2 = 0.5f;
-    private float pitchHigh2 = 1.5f;
+    private float pitchHigh2 = 1.0f;
 
 
     [Header("Other Sounds")]
@@ -43,9 +43,9 @@ public class SoundPitcher : MonoBehaviour {
     public float playerVelocity;
     private int clipIndex;
     private float volumeLowRange = 0.33f;
-    private float volHighRange = 1.0f;
+    private float volHighRange = 0.5f;
     private float lowPitchRange = 0.1f;
-    private float highPitchRange = 1.0f;
+    private float highPitchRange = 0.5f;
 
 
 	// Use this for initialization
@@ -72,7 +72,7 @@ public class SoundPitcher : MonoBehaviour {
         playerVelocity = player.GetComponent<PhysicsComponent>().GetVelocity().magnitude;
 
         //determines volume based on speed.
-        source2.volume = playerVelocity / 200;
+        source2.volume =  1;
         source2.pitch = playerVelocity / 50;
         if (playerVelocity < 0.3f)
         {
