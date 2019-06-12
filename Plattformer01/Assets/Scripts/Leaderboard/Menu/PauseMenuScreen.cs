@@ -8,8 +8,8 @@ public class PauseMenuScreen : MonoBehaviour
 {
     //Attributes
     [SerializeField] private Button RestartButton, quitButton, MainMenuButton, RestartFromCheckpointButton;
-    private bool ChangePause;
-    private List<Button> Buttons = new List<Button>();
+    private bool changePause;
+    private List<Button> buttons = new List<Button>();
     private int activeButton = 0;
 
     //Methods
@@ -20,7 +20,7 @@ public class PauseMenuScreen : MonoBehaviour
 
         RestartButton.onClick.AddListener(Restart);
 
-        quitButton.onClick.AddListener(quitListener);
+        quitButton.onClick.AddListener(QuitListener);
         MainMenuButton.onClick.AddListener(MainMenu);
         if (RestartFromCheckpointButton != null)
         {
@@ -32,12 +32,12 @@ public class PauseMenuScreen : MonoBehaviour
     void Awake()
     {
 
-        Buttons.Add(RestartButton);
-        Buttons.Add(MainMenuButton);
-        Buttons.Add(quitButton);
+        buttons.Add(RestartButton);
+        buttons.Add(MainMenuButton);
+        buttons.Add(quitButton);
         if (RestartFromCheckpointButton != null)
         {
-            Buttons.Add(RestartFromCheckpointButton);
+            buttons.Add(RestartFromCheckpointButton);
         }
 
     }
@@ -49,10 +49,8 @@ public class PauseMenuScreen : MonoBehaviour
         SetChange(true);
 
     }
-    void quitListener()
+    void QuitListener()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         Application.Quit();
     }
     void MainMenu()
@@ -61,16 +59,19 @@ public class PauseMenuScreen : MonoBehaviour
     }
     void RestartFromCheckpoint()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         SaveManager._instance.TransitionToSavedCheckPoint();
         SetChange(true);
     }
     public void SetChange(bool set)
     {
-        this.ChangePause = set;
+        this.changePause = set;
     }
     public bool GetChange()
     {
-        return ChangePause;
+        return changePause;
     }
     public void SelectButton()
     {
@@ -87,7 +88,7 @@ public class PauseMenuScreen : MonoBehaviour
             activeButton--;
             if (activeButton < 0)
             {
-                activeButton = (Buttons.Count - 1);
+                activeButton = (buttons.Count - 1);
 
             }
         }
@@ -95,13 +96,13 @@ public class PauseMenuScreen : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.S))
         {
             activeButton++;
-            if (activeButton > (Buttons.Count - 1))
+            if (activeButton > (buttons.Count - 1))
             {
                 activeButton = 0;
             }
         }
 
-        Buttons[activeButton].Select();
+        buttons[activeButton].Select();
 
 
     }
