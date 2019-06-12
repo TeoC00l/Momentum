@@ -54,7 +54,7 @@ public class GUI_Modes : MonoBehaviour
             UIKinetic.SetActive(true);
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) == true ||  Input.GetKeyDown("joystick button 7"))
+        if (Input.GetKeyDown(KeyCode.Escape) == true  || pauseScreen.GetChange() == true || Input.GetKeyDown("joystick button 7"))
         {
             Debug.Log("Pause");
             if (Time.timeScale == 1)

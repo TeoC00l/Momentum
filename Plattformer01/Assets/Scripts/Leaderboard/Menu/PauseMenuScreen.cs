@@ -47,8 +47,8 @@ public class PauseMenuScreen : MonoBehaviour
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         SaveManager._instance.SetSaveBool(false);
+
         SetChange(true);
-        Time.timeScale = 1;
 
 
     }
@@ -70,8 +70,8 @@ public class PauseMenuScreen : MonoBehaviour
         Cursor.visible = false;
 
         SaveManager._instance.TransitionToSavedCheckPoint();
+
         SetChange(true);
-        Time.timeScale = 1;
 
     }
     public void SetChange(bool set)
