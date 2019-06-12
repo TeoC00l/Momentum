@@ -5,32 +5,38 @@ using UnityEngine;
 public class RepulsorAttractor : StateMachine
 {
     //Attributes
-    [SerializeField] public Timer repulsorCooldownTimer;
+    public Timer repulsorCooldownTimer;
     [SerializeField] private Vector3 increaseSizeOfForceFieldEachSecond;
     [SerializeField] private Vector3 MaxSizeOfForceField;
     [SerializeField] private Vector3 MinSizeOfForceField;
     private MeshRenderer[] Renderer;
 
 
+    //Methods
     protected override void Awake()
     {
         Renderer = GetComponentsInChildren<MeshRenderer>();
         base.Awake();
     }
+
     public void ChangeSizeOfForceField()
     {
-       // Debug.Log("Increase" + increaseSizeOfForceFieldEachSecond + GetCurrentState());
         if (GetComponentInChildren<SphereCollider>().enabled == false)
         {
             GetComponentInChildren<SphereCollider>().enabled = true;
         }
+
         Vector3 parentScale = transform.localScale;
+
         foreach (MeshRenderer R in Renderer)
         {
             R.transform.localScale += increaseSizeOfForceFieldEachSecond;
         }
+
         transform.localScale = parentScale;
     }
+
+    //GETTERS/SETTERS
     public Vector3 GetMinSizeOfForceField()
     {
         return MinSizeOfForceField;

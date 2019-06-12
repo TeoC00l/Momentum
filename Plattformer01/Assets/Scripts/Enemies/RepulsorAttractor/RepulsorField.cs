@@ -18,6 +18,7 @@ public class RepulsorField : MonoBehaviour
     private bool bouncing;
     private float timesTooExpand = 0;
 
+    //Methods
     public void Awake()
     {
         character = GameObject.FindWithTag("Player");
@@ -58,6 +59,7 @@ public class RepulsorField : MonoBehaviour
             bouncing = true;
         }
     }
+
     public void BouncyRepulors()
     {
 
@@ -71,11 +73,11 @@ public class RepulsorField : MonoBehaviour
             StopBounce();
         }
     }
+
     public void StopBounce()
     {
         CancelInvoke("BouncyRepulors");
         bouncing = false; 
         repulsor.Transition<RepulsorAttractorActiveState>();      
     }
-
 }

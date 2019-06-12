@@ -27,7 +27,7 @@ public class CameraScript : MonoBehaviour
     //Methods
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        changeCursorLockMode();
 
         controllerInput = GameObject.FindObjectOfType<ControllerInput>() as ControllerInput;
         physComp = player.GetComponent<PhysicsComponent>();
@@ -41,12 +41,6 @@ public class CameraScript : MonoBehaviour
         hitAgain = 0;
     }
 
-    void FixedUpdate()
-    {
-       
-
-    }
-
     void Update()
     {
         if (Time.timeScale == 1)
@@ -54,9 +48,6 @@ public class CameraScript : MonoBehaviour
             AddRotation();
         }
         InitiateShake();
-        changeCursorLockMode();
-       
-
     }
 
     public void AddRotation()
@@ -100,7 +91,6 @@ public class CameraScript : MonoBehaviour
     public void InitiateShake()
     {
         //checkforhit
-
         if (shakeStart == false)
         {
             Vector3 Velocity = new Vector3(physComp.GetVelocity().x, 0f, physComp.GetVelocity().z);

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class AttractorField : MonoBehaviour
 {
-    
-
+    //Attributes
     private PhysicsComponent playerPhysComp;
     private GameObject character;
     private Vector3 oldVelocity;
     private float m_GravityRadius = 1f;
 
+    //Methods
     void Awake()
     {
         character = GameObject.FindWithTag("Player");
@@ -26,10 +26,10 @@ public class AttractorField : MonoBehaviour
         {
             oldVelocity = playerPhysComp.GetVelocity();
             playerPhysComp.SetVelocity(playerPhysComp.GetVelocity() / 10);
-            playerPhysComp.SetDirection(Vector3.zero);
-           
+            playerPhysComp.SetDirection(Vector3.zero);        
         }
     }
+
     //Keep Player Stuck in field
     void OnTriggerStay(Collider other)
     {
@@ -40,6 +40,7 @@ public class AttractorField : MonoBehaviour
             Attract();
         }
     }
+
     //Shoot Player Away When Exiting
     void OnTriggerExit(Collider other)
     {
