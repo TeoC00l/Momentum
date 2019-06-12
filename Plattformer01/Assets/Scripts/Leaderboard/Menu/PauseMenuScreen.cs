@@ -109,7 +109,7 @@ public class PauseMenuScreen : MonoBehaviour
 
 
             }
-            Buttons[activeButton].Select();
+            buttons[activeButton].Select();
 
         }
 
@@ -121,7 +121,7 @@ public class PauseMenuScreen : MonoBehaviour
                 activeButton = 0;
 
             }
-            Buttons[activeButton].Select();
+            buttons[activeButton].Select();
 
         }
 
