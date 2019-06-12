@@ -6,15 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuScreen : MonoBehaviour
 {
+    //Attributes
     [SerializeField] private Button RestartButton, quitButton, MainMenuButton, RestartFromCheckpointButton;
     private bool ChangePause;
     private List<Button> Buttons = new List<Button>();
-    int activeButton = 0;
-    // Start is called before the first frame update
+    private int activeButton = 0;
+
+    //Methods
     void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         RestartButton.onClick.AddListener(Restart);
-       
+
         quitButton.onClick.AddListener(quitListener);
         MainMenuButton.onClick.AddListener(MainMenu);
         if (RestartFromCheckpointButton != null)
@@ -22,9 +27,8 @@ public class PauseMenuScreen : MonoBehaviour
             RestartFromCheckpointButton.onClick.AddListener(RestartFromCheckpoint);
         }
         RestartButton.Select();
-
-
     }
+
     void Awake()
     {
 
@@ -47,6 +51,8 @@ public class PauseMenuScreen : MonoBehaviour
     }
     void quitListener()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         Application.Quit();
     }
     void MainMenu()
@@ -66,16 +72,16 @@ public class PauseMenuScreen : MonoBehaviour
     {
         return ChangePause;
     }
-    public void SelectButton(){
+    public void SelectButton()
+    {
         Debug.Log("SELECTED");
         RestartButton.Select();
         activeButton = 0;
-      //  ActiveButton = RestartButton;
     }
-// Update is called once per frame
-void Update()
+
+    void Update()
     {
-       
+
         if (Input.GetKeyDown(KeyCode.W))
         {
             activeButton--;
@@ -85,6 +91,7 @@ void Update()
 
             }
         }
+
         else if (Input.GetKeyDown(KeyCode.S))
         {
             activeButton++;

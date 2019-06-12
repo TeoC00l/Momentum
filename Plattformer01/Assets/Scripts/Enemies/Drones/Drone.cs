@@ -19,11 +19,9 @@ public class Drone : StateMachine
     //Methods
     protected override void Awake()
     {
-   //     GUI = GameObject.FindGameObjectWithTag("DroneGUI");
         player = FindObjectOfType(typeof(Player)) as Player;
         navMeshAgent = GetComponent<NavMeshAgent>();
         playerHealth = player.GetComponent<Health>();
-   //     ToggleGUI(false);
 
         base.Awake();
     }
@@ -36,10 +34,5 @@ public class Drone : StateMachine
 
             playerHealth.Die();
         }
-    }
-
-    public void ToggleGUI(bool isActive)
-    {
-     //   GUI.SetActive(isActive);      
     }
 }

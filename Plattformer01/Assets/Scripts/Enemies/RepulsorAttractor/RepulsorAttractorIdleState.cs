@@ -5,11 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "RepulsorAttractor/IdleState")]
 public class RepulsorAttractorIdleState : RepulsorBaseState
 {
+    //Attributes
     [SerializeField] private float waitBeforeDescreasing = 0.2f;
     [SerializeField] private float decreaseSizeOfForceFieldSpeed = 0.1f;
+
+    //Methods
     public override void Enter()
     {
-
         owner.SetIncreaseSizeOfForceFIeldEachSecond(new Vector3(-Mathf.Abs(owner.GetIncreaseSizeOfForceFieldEachSecond().x), -Mathf.Abs(owner.GetIncreaseSizeOfForceFieldEachSecond().y), -Mathf.Abs(owner.GetIncreaseSizeOfForceFieldEachSecond().z)));
         owner.InvokeRepeating("ChangeSizeOfForceField", waitBeforeDescreasing, decreaseSizeOfForceFieldSpeed);
     }

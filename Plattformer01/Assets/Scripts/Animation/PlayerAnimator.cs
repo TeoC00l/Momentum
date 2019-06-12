@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Main Author: Yukun
+
 public class PlayerAnimator : MonoBehaviour
 {
     public GameObject player;

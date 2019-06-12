@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class RepulsorBaseState : State
 {
-
-    protected RepulsorAttractor owner;
     //Attributes
-
+    protected RepulsorAttractor owner;
 
     //Methods
-
     public override void Initialize(StateMachine owner)
     {
         this.owner = (RepulsorAttractor)owner;
