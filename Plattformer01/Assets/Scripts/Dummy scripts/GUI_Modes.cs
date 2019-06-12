@@ -101,7 +101,7 @@ public class GUI_Modes : MonoBehaviour
                 player.Transition<PauseState>();
 
             }
-            else
+            else if(Time.timeScale == 0)
             {
                 player.TransitionBack();
                 Time.timeScale = 1;

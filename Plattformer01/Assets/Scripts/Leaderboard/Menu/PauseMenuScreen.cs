@@ -47,10 +47,13 @@ public class PauseMenuScreen : MonoBehaviour
     }
     void quitListener()
     {
+        Time.timeScale = 1;
+
         Application.Quit();
     }
     void MainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
     void RestartFromCheckpoint()
@@ -68,12 +71,26 @@ public class PauseMenuScreen : MonoBehaviour
     }
     public void SelectButton(){
         Debug.Log("SELECTED");
+        if (SaveManager._instance.GetSaveBool() == true)
+        {
+            RestartFromCheckpointButton.gameObject.SetActive(true);
+
+            RestartFromCheckpointButton.onClick.AddListener(RestartFromCheckpoint);
+
+        }
+        else
+        {
+            RestartFromCheckpointButton.onClick.RemoveListener(RestartFromCheckpoint);
+            RestartFromCheckpointButton.gameObject.SetActive(false);
+
+        }
         RestartButton.Select();
         activeButton = 0;
+        
+       
       //  ActiveButton = RestartButton;
     }
-// Update is called once per frame
-void Update()
+    void Update()
     {
        
         if (Input.GetKeyDown(KeyCode.W))
@@ -83,7 +100,10 @@ void Update()
             {
                 activeButton = (Buttons.Count - 1);
 
+
             }
+            Buttons[activeButton].Select();
+
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
@@ -91,10 +111,12 @@ void Update()
             if (activeButton > (Buttons.Count - 1))
             {
                 activeButton = 0;
+
             }
+            Buttons[activeButton].Select();
+
         }
 
-        Buttons[activeButton].Select();
 
 
     }
