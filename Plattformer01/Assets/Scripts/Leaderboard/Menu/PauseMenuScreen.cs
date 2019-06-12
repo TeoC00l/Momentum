@@ -26,7 +26,7 @@ public class PauseMenuScreen : MonoBehaviour
         {
             RestartFromCheckpointButton.onClick.AddListener(RestartFromCheckpoint);
         }
-        RestartButton.Select();
+     //   RestartButton.Select();
     }
 
     void Awake()
@@ -44,9 +44,12 @@ public class PauseMenuScreen : MonoBehaviour
 
     void Restart()
     {
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         SaveManager._instance.SetSaveBool(false);
         SetChange(true);
+        Time.timeScale = 1;
+
 
     }
     void QuitListener()
@@ -62,11 +65,14 @@ public class PauseMenuScreen : MonoBehaviour
     }
     void RestartFromCheckpoint()
     {
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
         SaveManager._instance.TransitionToSavedCheckPoint();
         SetChange(true);
+        Time.timeScale = 1;
+
     }
     public void SetChange(bool set)
     {
@@ -93,6 +99,7 @@ public class PauseMenuScreen : MonoBehaviour
         }
 
         RestartButton.Select();
+        RestartButton.OnSelect(null);
         activeButton = 0;
 
     }
@@ -102,6 +109,8 @@ public class PauseMenuScreen : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W))
         {
+            buttons[activeButton].OnDeselect(null);
+
             activeButton--;
             if (activeButton < 0)
             {
@@ -110,11 +119,13 @@ public class PauseMenuScreen : MonoBehaviour
 
             }
             buttons[activeButton].Select();
+            buttons[activeButton].OnSelect(null);
 
         }
 
         else if (Input.GetKeyDown(KeyCode.S))
         {
+            buttons[activeButton].OnDeselect(null);
             activeButton++;
             if (activeButton > (buttons.Count - 1))
             {
@@ -122,6 +133,7 @@ public class PauseMenuScreen : MonoBehaviour
 
             }
             buttons[activeButton].Select();
+            buttons[activeButton].OnSelect(null);
 
         }
 
