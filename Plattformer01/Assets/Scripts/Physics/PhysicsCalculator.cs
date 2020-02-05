@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class Calculations2
+public static class PhysicsCalculator
 {
-    public static Vector3 CalculateAcceleration(Vector3 velocity, Vector3 direction, float acceleration)
+    private const float DYNAMIC_FRICTION_MODIFIER = 0.65f;
+
+    public static Vector3 ApplyAcceleration(Vector3 velocity, Vector3 direction, float acceleration)
     {
         velocity += (direction * acceleration * Time.deltaTime);
 
@@ -18,11 +20,11 @@ public static class Calculations2
         return velocity;
     }
 
-    public static Vector3 CalculateFriction(Vector3 velocity, Vector3 normalForce, float staticFrictionCo)
+    public static Vector3 CalculateFriction(Vector3 velocity, Vector3 normalForce, float staticFrictionMultiplier)
     {
-        float dynamicFrictionCo = staticFrictionCo *0.65f;
-        float staticFriction = normalForce.magnitude * staticFrictionCo;
-        float frictionMagnitude = normalForce.magnitude * dynamicFrictionCo;
+        float dynamicFrictionMultiplier = staticFrictionMultiplier * DYNAMIC_FRICTION_MODIFIER;
+        float staticFriction = normalForce.magnitude * staticFrictionMultiplier;
+        float frictionMagnitude = normalForce.magnitude * dynamicFrictionMultiplier;
 
         if (velocity.magnitude < staticFriction)
         {

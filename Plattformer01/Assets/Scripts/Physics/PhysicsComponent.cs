@@ -10,7 +10,7 @@ public class PhysicsComponent : MonoBehaviour
     [HideInInspector] public Vector3 direction = Vector3.zero;
     [HideInInspector] public RayCasterCapsule rayCaster;
 
-    [HideInInspector]public float skinWidth;
+    [HideInInspector] public float skinWidth;
     [HideInInspector] public float acceleration;
     [HideInInspector] public float gravitationalForce;
     [HideInInspector] public float JumpMagnitude;
@@ -26,19 +26,19 @@ public class PhysicsComponent : MonoBehaviour
     public void AddForces()
     {
         //Calculate velocity, add gravity
-        Vector3 gravity = Calculations2.CalculateGravity(gravitationalForce);
-        velocity = Calculations2.CalculateAcceleration(velocity, direction, acceleration);
+        Vector3 gravity = PhysicsCalculator.CalculateGravity(gravitationalForce);
+        velocity = PhysicsCalculator.ApplyAcceleration(velocity, direction, acceleration);
         velocity += gravity;
 
         //Add Air resistance
-        velocity = Calculations2.AddAirResistance(velocity, airResistance);
+        velocity = PhysicsCalculator.AddAirResistance(velocity, airResistance);
     }
 
     public Vector3 MeasureNormalForce()
     {
         Vector3 normalForce = Vector3.zero;
         RaycastHit hit = rayCaster.GetCollisionData(velocity, 0);
-        normalForce = Calculations2.CalculateNormalForce(velocity, hit);
+        normalForce = PhysicsCalculator.CalculateNormalForce(velocity, hit);
         return normalForce;
 
     }
@@ -64,7 +64,7 @@ public class PhysicsComponent : MonoBehaviour
         }
         while (hit.collider != null && noOfCycles < 1000);
 
-        velocity = Calculations2.CalculateFriction(velocity, totalNormalForce, staticFrictionCo);
+        velocity = PhysicsCalculator.CalculateFriction(velocity, totalNormalForce, staticFrictionCo);
 
         if (hit.collider == null)
         {
@@ -88,7 +88,7 @@ public class PhysicsComponent : MonoBehaviour
     public void Jump()
     {
         {
-            velocity = Calculations2.CalculateJump(velocity, JumpMagnitude);
+            velocity = PhysicsCalculator.CalculateJump(velocity, JumpMagnitude);
         }
     }
 
