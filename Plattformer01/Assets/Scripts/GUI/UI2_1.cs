@@ -90,7 +90,7 @@ public class UI2_1 : MonoBehaviour
 
     void Update()
     {
-        if (player.GetPrecisionActive() == true)
+        if (player.IsPrecisionStateActive() == true)
         {
 
             precisionOn = true;
@@ -123,7 +123,7 @@ public class UI2_1 : MonoBehaviour
             particle2.SetActive(true);
 
         }
-        else if (player.GetMomentumActive() == true)
+        else if (player.IsMomentumStateActive() == true)
         {
 
             //activate below script if you want the sound to stop play as soon as momentum is on

@@ -19,7 +19,7 @@ public class RespawnState : PlayerBaseState
     public override void HandleFixedUpdate()
     {
         owner.PhysComp.AddForces();
-        owner.PhysComp.CollisionCalibration();
+        //owner.PhysComp.AddNormalForces();
     }
 
     public override void HandleUpdate()

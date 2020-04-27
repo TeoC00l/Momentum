@@ -35,7 +35,7 @@ public class PrecisionState : PlayerBaseState
 
         //Making adjustments to physics
         owner.AddPhysics();
-        owner.PhysComp.CollisionCalibration();
+        //owner.PhysComp.AddNormalForces();
     }
 
     public override void HandleUpdate()

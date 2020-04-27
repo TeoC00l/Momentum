@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Player : StateMachine
 {
-    //Attributes
+//ATTRIBUTES
     [HideInInspector] public PhysicsComponent PhysComp;
     [HideInInspector] public RayCasterCapsule RayCaster;
     [HideInInspector] public MeshRenderer Renderer;
     [HideInInspector] public ControllerInput controllerInput;
-
 
     [SerializeField] private float strafeMultiplier;
     [SerializeField] private float kineticBatterySlidePower0Max1Min;
@@ -17,12 +16,12 @@ public class Player : StateMachine
     private Checkpoint checkPoint;
     private float skinWidth;
 
-    //Dash related attributes
+    //dash related attributes
     public Timer dashCooldownTimer;
     public Vector3 lastDash;
     private bool neutralizeInput = false;
 
-    //Kinetic battery related attributes
+    //kinetic battery related attributes
     public int kineticTimer;
     public int divideValue;
     private bool stopKineticSlide;
@@ -33,7 +32,7 @@ public class Player : StateMachine
     //GemPrefab
     [SerializeField] private GameObject gemPrefab;
 
-   // Methods
+//METHODS
    protected override void Awake()
     {
         RayCaster = GetComponent<RayCasterCapsule>();
@@ -122,7 +121,7 @@ public class Player : StateMachine
             return false;
         }
     }
-    public bool GetMomentumActive()
+    public bool IsMomentumStateActive()
     {
         if (GetCurrentStateType() == typeof(MomentumState) || GetCurrentStateType() == typeof(MomentumAirbourneState))
         {
@@ -133,7 +132,7 @@ public class Player : StateMachine
             return false;
         }
     }
-    public bool GetPrecisionActive()
+    public bool IsPrecisionStateActive()
     {
         if (GetCurrentStateType() == typeof(PrecisionState) || GetCurrentStateType() == typeof(PrecisionAirbourneState))
         {

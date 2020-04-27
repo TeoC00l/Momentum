@@ -64,7 +64,7 @@ public class AttractorField : MonoBehaviour
     {
         float gravityIntensity = Vector3.Distance(transform.parent.position, character.transform.position) / m_GravityRadius;
      
-        playerPhysComp.AddToVelocity((transform.parent.position - character.transform.position) * Time.smoothDeltaTime);
+        playerPhysComp.AddVelocity((transform.parent.position - character.transform.position) * Time.smoothDeltaTime);
         playerPhysComp.AddToDirection((transform.parent.position - character.transform.position));
         character.transform.RotateAround(transform.parent.position, transform.parent.up, 300*Time.smoothDeltaTime);
         

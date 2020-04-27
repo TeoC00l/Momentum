@@ -35,13 +35,13 @@ public class GUI_Modes : MonoBehaviour
 
     void Update()
     {
-        if (player.GetPrecisionActive() == true)
+        if (player.IsPrecisionStateActive() == true)
         {
             UIMomentum.SetActive(false);
             UIPrecision.SetActive(true);
             UIKinetic.SetActive(false);
         }
-        else if (player.GetMomentumActive() == true)
+        else if (player.IsMomentumStateActive() == true)
         {
             UIMomentum.SetActive(true);
             UIPrecision.SetActive(false);

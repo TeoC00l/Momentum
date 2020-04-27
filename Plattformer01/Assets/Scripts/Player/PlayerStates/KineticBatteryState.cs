@@ -37,7 +37,7 @@ public class KineticBatteryState : PlayerBaseState
         if (owner.GetStopKineticSlide() == false)
         {
             owner.PhysComp.AddForces();
-            owner.PhysComp.CollisionCalibration();
+            //owner.PhysComp.AddNormalForces();
         }
         if (PhysComp.GetVelocity() == Vector3.zero && owner.GetStopKineticSlide() == false)
         {
@@ -91,7 +91,7 @@ public class KineticBatteryState : PlayerBaseState
         owner.CancelInvoke("DecreaseVelocity");
         owner.kineticTimer = 0;
         owner.AddPhysics();
-        owner.PhysComp.CollisionCalibration();
+        //owner.PhysComp.AddNormalForces();
     }
    
 

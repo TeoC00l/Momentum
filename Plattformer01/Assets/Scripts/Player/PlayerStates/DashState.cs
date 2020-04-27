@@ -38,7 +38,7 @@ public class DashState : PlayerBaseState
         //executing dash
         owner.PhysComp.AddVelocity(dashVelocity);
         owner.AddPhysics();
-        owner.PhysComp.CollisionCalibration();
+        //owner.PhysComp.AddNormalForces();
         owner.PhysComp.SubtractVelocity(dashVelocity);
     }
 

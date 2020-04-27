@@ -9,13 +9,13 @@ public class FixAnimationMove : MonoBehaviour
     [SerializeField] private GameObject player;
     void Start()
     {
-        animationOffset = transform.position - player.transform.position;
+        //animationOffset = transform.position - player.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = player.transform.position;
+        //transform.position = player.transform.position;
         transform.rotation = player.transform.rotation;
     }
 }

@@ -60,7 +60,7 @@ public class KineticBatteryAirbourneState : PlayerBaseState
             owner.PhysComp.AddGravity();
 
         }
-        owner.PhysComp.CollisionCalibration();
+        //owner.PhysComp.AddNormalForces();
 
     }
     public override void HandleUpdate()
@@ -92,7 +92,7 @@ public class KineticBatteryAirbourneState : PlayerBaseState
         owner.CancelInvoke("DecreaseVelocity");
         owner.kineticTimer = 0;
         owner.AddPhysics();
-        owner.PhysComp.CollisionCalibration();
+        //owner.PhysComp.AddNormalForces();
     }
 }
 
