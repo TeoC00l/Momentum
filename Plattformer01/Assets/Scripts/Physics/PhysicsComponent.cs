@@ -37,7 +37,7 @@ public class PhysicsComponent : MonoBehaviour
         velocity = PhysicsCalculations.AddAirResistance(velocity, airResistance);
         if (AddNormalForces())
         {
-            Reposition();
+            MovePosition();
         }
     }
 
@@ -79,7 +79,7 @@ public class PhysicsComponent : MonoBehaviour
         }
     }
 
-    private void Reposition()
+    private void MovePosition()
     {
         transform.position += (velocity * accelerationMultiplier) * Time.deltaTime;
     }

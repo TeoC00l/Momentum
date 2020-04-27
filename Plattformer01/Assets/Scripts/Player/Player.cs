@@ -46,7 +46,6 @@ public class Player : StateMachine
         stopKineticSlide = false;
         currentlySliding = false;
 
-
         base.Awake();
     }
 
