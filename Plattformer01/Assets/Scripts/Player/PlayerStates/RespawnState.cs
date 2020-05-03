@@ -12,13 +12,13 @@ public class RespawnState : PlayerBaseState
     public override void Enter()
     {
         RespawnStateExitTimer.SetTimer();
-        owner.PhysComp.SetVelocity(Vector3.zero);
-        owner.PhysComp.SetDirection(Vector3.zero);
+        owner.physicsComponent.SetVelocity(Vector3.zero);
+        owner.physicsComponent.SetDirection(Vector3.zero);
     }
 
     public override void HandleFixedUpdate()
     {
-        owner.PhysComp.AddForces();
+        owner.physicsComponent.AddForces();
         //owner.PhysComp.AddNormalForces();
     }
 

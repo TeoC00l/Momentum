@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : StateMachine
 {
 //ATTRIBUTES
-    [HideInInspector] public PhysicsComponent PhysComp;
+    [HideInInspector] public PhysicsComponent physicsComponent;
     [HideInInspector] public RayCasterCapsule RayCaster;
     [HideInInspector] public MeshRenderer Renderer;
     [HideInInspector] public ControllerInput controllerInput;
@@ -36,12 +36,12 @@ public class Player : StateMachine
    protected override void Awake()
     {
         RayCaster = GetComponent<RayCasterCapsule>();
-        PhysComp = GetComponent<PhysicsComponent>();
+        physicsComponent = GetComponent<PhysicsComponent>();
         Renderer = GetComponent<MeshRenderer>();
         controllerInput = GameObject.FindObjectOfType<ControllerInput>() as ControllerInput;
         SaveManager._instance.SetGem(gemPrefab);
 
-        skinWidth = PhysComp.GetSkinWidth();
+        skinWidth = physicsComponent.GetSkinWidth();
 
         stopKineticSlide = false;
         currentlySliding = false;
@@ -75,21 +75,21 @@ public class Player : StateMachine
     {
         if (neutralizeInput == false)
         {
-            PhysComp.SetDirection(ProcessInput());
+            physicsComponent.SetDirection(ProcessInput());
         }
-        PhysComp.AddForces();
+        physicsComponent.AddForces();
     }
 
     public void DecreaseVelocity()
     {
         if (kineticTimer > 0)
         {
-            PhysComp.SetDirection(Vector3.zero);
-            Vector3 NewVelocity = PhysComp.GetVelocity() - oldVelocity / oldVelocity.magnitude * kineticBatterySlidePower0Max1Min;
-            PhysComp.SetVelocity(NewVelocity);
+            physicsComponent.SetDirection(Vector3.zero);
+            Vector3 NewVelocity = physicsComponent.GetVelocity() - oldVelocity / oldVelocity.magnitude * kineticBatterySlidePower0Max1Min;
+            physicsComponent.SetVelocity(NewVelocity);
             kineticTimer -= 1;
 
-            if (PhysComp.GetVelocity().magnitude < 0.2f && GetStopKineticSlide() == false || kineticTimer == -1000 && GetStopKineticSlide() == false || Mathf.Sign(PhysComp.GetVelocity().x) != Mathf.Sign(oldVelocity.x) && Mathf.Sign(PhysComp.GetVelocity().z) != Mathf.Sign(oldVelocity.z))
+            if (physicsComponent.GetVelocity().magnitude < 0.2f && GetStopKineticSlide() == false || kineticTimer == -1000 && GetStopKineticSlide() == false || Mathf.Sign(physicsComponent.GetVelocity().x) != Mathf.Sign(oldVelocity.x) && Mathf.Sign(physicsComponent.GetVelocity().z) != Mathf.Sign(oldVelocity.z))
             {
                 Debug.Log("SET ZERO");
                 SetStopKineticSlide(true);

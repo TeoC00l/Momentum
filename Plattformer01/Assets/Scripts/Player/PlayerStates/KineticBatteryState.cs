@@ -5,20 +5,20 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Player/KineticBatteryState")]
 public class KineticBatteryState : PlayerBaseState
 {
-    //Attributes
+//ATTRIBUTES
     Vector3 input = new Vector3(1,0,1);
-
-    
+ 
     bool getOutofState;
     [SerializeField]private float slideDecreaseMovementRate;
     [SerializeField]private float waitBeforeSliding;
-    //Methods
+
+//METHODS
     public override void Enter()
     {
         base.Enter();
         if (owner.GetOldVelocity() == Vector3.zero)
         {
-            owner.SetOldVelocity(PhysComp.GetVelocity());
+            owner.SetOldVelocity(physicsComponent.GetVelocity());
 
         }
 
@@ -36,12 +36,11 @@ public class KineticBatteryState : PlayerBaseState
     {
         if (owner.GetStopKineticSlide() == false)
         {
-            owner.PhysComp.AddForces();
-            //owner.PhysComp.AddNormalForces();
+            owner.physicsComponent.AddForces();
         }
-        if (PhysComp.GetVelocity() == Vector3.zero && owner.GetStopKineticSlide() == false)
+        if (physicsComponent.GetVelocity() == Vector3.zero && owner.GetStopKineticSlide() == false)
         {
-            PhysComp.SetVelocity(Vector3.zero);
+            physicsComponent.SetVelocity(Vector3.zero);
             owner.SetStopKineticSlide(true);
             owner.CancelInvoke("DecreaseVelocity");
         }
@@ -50,7 +49,7 @@ public class KineticBatteryState : PlayerBaseState
         {
             owner.CancelInvoke("DecreaseVelocity");
         }
-        if (owner.PhysComp.GroundCheck() == false)
+        if (owner.physicsComponent.GroundCheck() == false)
         {
             owner.SetCurrentlySliding(true);
 
@@ -72,8 +71,8 @@ public class KineticBatteryState : PlayerBaseState
 
                 getOutofState = false;
 
-                input = owner.transform.forward;
-                PhysComp.SetVelocity(input * owner.GetOldVelocity().magnitude);
+                Vector3 input = owner.transform.forward;
+                physicsComponent.SetVelocity(input * owner.GetOldVelocity().magnitude);
                 ProperlyExitState();
                 owner.SetOldVelocity(Vector3.zero);
                 owner.Transition<MomentumState>();

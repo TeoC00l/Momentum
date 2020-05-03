@@ -24,18 +24,18 @@ public class PrecisionState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        PhysComp.SetAcceleration(acceleration);
-        PhysComp.SetGravitationalForce(gravitationalForce);
-        PhysComp.SetJumpMagnitude(jumpMagnitude);
-        PhysComp.SetStaticFrictionCo(frictionCoefficient);
-        PhysComp.SetAirResistance(airResistance);
+        physicsComponent.SetAcceleration(acceleration);
+        physicsComponent.SetGravitationalForce(gravitationalForce);
+        physicsComponent.SetJumpMagnitude(jumpMagnitude);
+        physicsComponent.SetStaticFrictionCo(frictionCoefficient);
+        physicsComponent.SetAirResistance(airResistance);
         owner.SetStrafeMultiplier(strafeCoefficient);
     }
 
     public override void HandleFixedUpdate()
     {
         //Checking for conditions to change state
-        if (owner.PhysComp.GroundCheck() == false)
+        if (owner.physicsComponent.GroundCheck() == false)
         {
             owner.Transition<PrecisionAirbourneState>();
         }

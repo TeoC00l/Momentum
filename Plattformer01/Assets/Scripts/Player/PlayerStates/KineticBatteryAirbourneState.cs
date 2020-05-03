@@ -16,12 +16,12 @@ public class KineticBatteryAirbourneState : PlayerBaseState
     {
         base.Enter();
 
-        PhysComp.SetGravitationalForce(gravitationalForce);
+        physicsComponent.SetGravitationalForce(gravitationalForce);
 
 
         if (owner.GetOldVelocity() == Vector3.zero)
         {
-            owner.SetOldVelocity(PhysComp.GetVelocity());
+            owner.SetOldVelocity(physicsComponent.GetVelocity());
         }
 
         if (owner.GetCurrentlySliding() == false)
@@ -40,16 +40,16 @@ public class KineticBatteryAirbourneState : PlayerBaseState
 
         if (owner.GetStopKineticSlide() == false)
         {
-            owner.PhysComp.AddForces();
+            owner.physicsComponent.AddForces();
         }
 
-        if (PhysComp.GetVelocity() == Vector3.zero && owner.GetStopKineticSlide() == false)
+        if (physicsComponent.GetVelocity() == Vector3.zero && owner.GetStopKineticSlide() == false)
         {
-            PhysComp.SetVelocity(Vector3.zero);
+            physicsComponent.SetVelocity(Vector3.zero);
             owner.SetStopKineticSlide(true);
             owner.CancelInvoke("DecreaseVelocity");
         }
-        if (owner.PhysComp.GroundCheck() == true)
+        if (owner.physicsComponent.GroundCheck() == true)
         {
             owner.SetCurrentlySliding(true);
 
@@ -57,7 +57,7 @@ public class KineticBatteryAirbourneState : PlayerBaseState
         }
         else if (owner.GetStopKineticSlide() == true)
         {
-            owner.PhysComp.AddGravity();
+            owner.physicsComponent.AddGravity();
 
         }
         //owner.PhysComp.AddNormalForces();
@@ -76,7 +76,7 @@ public class KineticBatteryAirbourneState : PlayerBaseState
 
             input = owner.transform.forward;
 
-            PhysComp.SetVelocity(input * owner.GetOldVelocity().magnitude);
+            physicsComponent.SetVelocity(input * owner.GetOldVelocity().magnitude);
             ProperlyExitState();
             owner.SetOldVelocity(Vector3.zero);
             owner.Transition<MomentumState>();

@@ -14,7 +14,7 @@ public class MomentumAirbourneState : MomentumState
     public override void HandleFixedUpdate()
     {
         //Checking for conditions to change state
-        if (owner.PhysComp.GroundCheck() == true)
+        if (owner.physicsComponent.GroundCheck() == true)
         {
             owner.Transition<MomentumState>();
         }

@@ -36,10 +36,10 @@ public class DashState : PlayerBaseState
     public override void HandleFixedUpdate()
     {
         //executing dash
-        owner.PhysComp.AddVelocity(dashVelocity);
+        owner.physicsComponent.AddVelocity(dashVelocity);
         owner.AddPhysics();
         //owner.PhysComp.AddNormalForces();
-        owner.PhysComp.SubtractVelocity(dashVelocity);
+        owner.physicsComponent.SubtractVelocity(dashVelocity);
     }
 
     public override void HandleUpdate()
@@ -60,7 +60,7 @@ public class DashState : PlayerBaseState
             dashVelocity = dashDirection * dashDistance * Time.deltaTime;
         }
 
-        RaycastHit hit = owner.RayCaster.GetCollisionData(dashVelocity, owner.PhysComp.GetSkinWidth());
+        RaycastHit hit = owner.RayCaster.GetCollisionData(dashVelocity, owner.physicsComponent.GetSkinWidth());
 
         if (hit.collider != null)
         {

@@ -14,7 +14,7 @@ public class JumpState : PlayerBaseState
 
     public override void HandleFixedUpdate()
     {
-        owner.PhysComp.Jump();
+        owner.physicsComponent.Jump();
         owner.TransitionBack();
     }
 }
