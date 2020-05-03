@@ -6,18 +6,17 @@ using UnityEngine;
 public class PlayerBaseState : State
 {
     //Attributes
-    [SerializeField] protected Material material;
 
-    protected PhysicsComponent PhysComp;
+    protected PhysicsComponent PhysicsComponent;
     protected RayCasterCapsule rayCaster;
     protected Player owner;
-    
+    protected int kineticTimer;
 
     //Methods
     public override void Enter()
     {
-        PhysComp = owner.PhysComp;
-        owner.Renderer.material = material;
+        kineticTimer = owner.kineticTimer;
+        PhysicsComponent = owner.PhysComp;
     }
 
     public override void Initialize(StateMachine owner)

@@ -12,8 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a1ffd1d3c3c5f42a41efcd287ee52a, type: 3}
   m_Name: KineticBatteryState
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 59c2ba900df577648b535cbe99fbd2a6, type: 2}
-  PhysComp: {fileID: 0}
-  rayCaster: {fileID: 0}
-  slideDecreaseMovementRate: 0.008
-  waitBeforeSliding: 0
+  slideDecreaseVelocityInterval: 0.008
+  kineticBatteryCooldown: 1000

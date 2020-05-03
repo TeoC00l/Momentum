@@ -6,44 +6,44 @@ using UnityEngine;
 public class MomentumState : PlayerBaseState
 {
     //Attributes
-    public float acceleration;
-    public float gravitationalForce;
-    public float jumpMagnitude;
-    public float staticFrictionCo;
-    public float airResistance;
-    public float strafeCoefficient;
+    [Header("STATE ATTRIBUTES")]
+    [SerializeField]protected float acceleration;
+    [SerializeField] protected float gravitationalForce;
 
+    [SerializeField] protected float jumpMagnitude;
+    [Header("0 = no friction/ resistance  1 = maximum")]
+    [Range(0.0f, 1.0f)]
+    [SerializeField] protected float frictionCoefficient;
+    [Range(0.0f, 1.0f)]
+    [SerializeField] protected float airResistance;
+    [Header("0 = can't strafe  1 = maximum strafe magnitude")]
+    [Range(0.0f, 1.0f)]
+    [SerializeField] protected float strafeCoefficient;
 
     //Methods
     public override void Enter()
     {
         base.Enter();
-        PhysComp.SetAcceleration(acceleration);
-        PhysComp.SetGravitationalForce(gravitationalForce);
-        PhysComp.SetJumpMagnitude(jumpMagnitude);
-        PhysComp.SetStaticFrictionCo(staticFrictionCo);
-        PhysComp.SetAirResistance(airResistance);
+        PhysicsComponent.SetAcceleration(acceleration);
+        PhysicsComponent.SetGravitationalForce(gravitationalForce);
+        PhysicsComponent.SetJumpMagnitude(jumpMagnitude);
+        PhysicsComponent.SetStaticFrictionCo(frictionCoefficient);
+        PhysicsComponent.SetAirResistance(airResistance);
         owner.SetStrafeMultiplier(strafeCoefficient);
-
     }
 
     public override void HandleFixedUpdate()
     {
-
-        //Checking for conditions to change state
         if (!owner.PhysComp.GroundCheck())
         {
             owner.Transition<MomentumAirbourneState>();
         }
 
-        //Making adjustments to physics
         owner.AddPhysics();
-        //owner.PhysComp.AddNormalForces();
     }
 
     public override void HandleUpdate()
     {
-        //Checking for conditions to change state
         if (owner.controllerInput.GetIsPrecisionModeActive())
         {
             owner.Transition<PrecisionState>();
