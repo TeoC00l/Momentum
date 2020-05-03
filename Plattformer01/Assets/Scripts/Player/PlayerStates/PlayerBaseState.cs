@@ -7,16 +7,14 @@ public class PlayerBaseState : State
 {
     //Attributes
 
-    protected PhysicsComponent PhysicsComponent;
+    protected PhysicsComponent PhysComp;
     protected RayCasterCapsule rayCaster;
     protected Player owner;
-    protected int kineticTimer;
 
     //Methods
     public override void Enter()
     {
-        kineticTimer = owner.kineticTimer;
-        PhysicsComponent = owner.PhysComp;
+        PhysComp = owner.PhysComp;
     }
 
     public override void Initialize(StateMachine owner)

@@ -24,11 +24,11 @@ public class PrecisionState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        PhysicsComponent.SetAcceleration(acceleration);
-        PhysicsComponent.SetGravitationalForce(gravitationalForce);
-        PhysicsComponent.SetJumpMagnitude(jumpMagnitude);
-        PhysicsComponent.SetStaticFrictionCo(frictionCoefficient);
-        PhysicsComponent.SetAirResistance(airResistance);
+        PhysComp.SetAcceleration(acceleration);
+        PhysComp.SetGravitationalForce(gravitationalForce);
+        PhysComp.SetJumpMagnitude(jumpMagnitude);
+        PhysComp.SetStaticFrictionCo(frictionCoefficient);
+        PhysComp.SetAirResistance(airResistance);
         owner.SetStrafeMultiplier(strafeCoefficient);
     }
 
