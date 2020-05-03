@@ -15,6 +15,6 @@ MonoBehaviour:
   acceleration: 75
   gravitationalForce: 50
   jumpMagnitude: 2000
-  frictionCoefficient: 0.4
+  frictionCoefficient: 0.5
   airResistance: 0.9
   strafeCoefficient: 0.8
