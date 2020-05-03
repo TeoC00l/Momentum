@@ -85,7 +85,7 @@ public class Player : StateMachine
         if (kineticTimer > 0)
         {
             physicsComponent.SetDirection(Vector3.zero);
-            Vector3 NewVelocity = physicsComponent.GetVelocity() - oldVelocity / oldVelocity.magnitude * kineticBatterySlidePower0Max1Min;
+            Vector3 NewVelocity = physicsComponent.GetVelocity() - oldVelocity.normalized * kineticBatterySlidePower0Max1Min;
             physicsComponent.SetVelocity(NewVelocity);
             kineticTimer -= 1;
 

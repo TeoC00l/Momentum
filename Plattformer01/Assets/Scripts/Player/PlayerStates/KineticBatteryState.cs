@@ -28,12 +28,14 @@ public class KineticBatteryState : PlayerBaseState
             Debug.Log("startSlide");
             owner.kineticTimer = 1000;
             owner.divideValue = owner.kineticTimer;
-            owner.InvokeRepeating("DecreaseVelocity", waitBeforeSliding, slideDecreaseMovementRate);
+            //owner.InvokeRepeating("DecreaseVelocity", waitBeforeSliding, Time.deltaTime);
         }
     }
 
     public override void HandleFixedUpdate()
     {
+        owner.DecreaseVelocity();
+
         if (owner.GetStopKineticSlide() == false)
         {
             owner.physicsComponent.AddForces();
