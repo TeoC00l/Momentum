@@ -9,9 +9,9 @@ public class Player : StateMachine
     [HideInInspector] public RayCasterCapsule RayCaster;
     [HideInInspector] public MeshRenderer Renderer;
     [HideInInspector] public ControllerInput controllerInput;
-
-    [SerializeField] private float strafeMultiplier;
-    [SerializeField] private float kineticBatterySlidePower0Max1Min;
+    [Range(0.0f, 1.0f)]
+    [SerializeField] private float  strafeMultiplier;
+    [SerializeField] private float kineticBatterySlideMagnitude;
 
     private Checkpoint checkPoint;
     private float skinWidth;
@@ -80,32 +80,58 @@ public class Player : StateMachine
         PhysComp.AddForces();
     }
 
+    int called = 1;
+
     public void DecreaseVelocity()
     {
+        Debug.Log("call " + called);
+        called++;
         if (kineticTimer > 0)
         {
             PhysComp.SetDirection(Vector3.zero);
-            Vector3 NewVelocity = PhysComp.GetVelocity() - oldVelocity / oldVelocity.magnitude * kineticBatterySlidePower0Max1Min;
+            Vector3 NewVelocity = PhysComp.GetVelocity() - oldVelocity / oldVelocity.magnitude * kineticBatterySlideMagnitude; PhysComp.SetVelocity(NewVelocity);
+            //Vector3 NewVelocity = PhysComp.GetVelocity() - oldVelocity.normalized * kineticBatterySlideMagnitude;
             PhysComp.SetVelocity(NewVelocity);
             kineticTimer -= 1;
+        }
 
-            if (PhysComp.GetVelocity().magnitude < 0.2f && GetStopKineticSlide() == false || kineticTimer == -1000 && GetStopKineticSlide() == false || Mathf.Sign(PhysComp.GetVelocity().x) != Mathf.Sign(oldVelocity.x) && Mathf.Sign(PhysComp.GetVelocity().z) != Mathf.Sign(oldVelocity.z))
-            {
-                Debug.Log("SET ZERO");
-                SetStopKineticSlide(true);
-                SetCurrentlySliding(true);
-                kineticTimer = 0;
-                CancelInvoke("DecreaseVelocity");
-            }
+        if (PhysComp.GetVelocity().magnitude < 0.2f && GetStopKineticSlide() == false || kineticTimer == -1000 && GetStopKineticSlide() == false || Mathf.Sign(PhysComp.GetVelocity().x) != Mathf.Sign(oldVelocity.x) && Mathf.Sign(PhysComp.GetVelocity().z) != Mathf.Sign(oldVelocity.z))
+        {
+            Debug.Log("SET ZERO");
+            SetStopKineticSlide(true);
+            SetCurrentlySliding(true);
+            kineticTimer = 0;
+            CancelInvoke("DecreaseVelocity");
         }
     }
 
-    //GETTERS AND SETTERS
-    public Vector3 GetOldVelocity()
+    private void ReleaseKineticBattery()
+    {
+        SetStopKineticSlide(true);
+        SetCurrentlySliding(true);
+        kineticTimer = 0;
+        CancelInvoke("DecreaseVelocity");
+    }
+
+    
+    private bool hasStoppedSliding()
+    {
+        if (PhysComp.GetVelocity().magnitude < 0.2f && GetStopKineticSlide() == false || kineticTimer == -1000 && GetStopKineticSlide() == false || Mathf.Sign(PhysComp.GetVelocity().x) != Mathf.Sign(oldVelocity.x) && Mathf.Sign(PhysComp.GetVelocity().z) != Mathf.Sign(oldVelocity.z))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+//GETTERS AND SETTERS
+    public Vector3 GetCachedVelocity()
     {
         return oldVelocity;
     }
-    public void SetOldVelocity(Vector3 set)
+    public void SetCachedVelocity(Vector3 set)
     {
         this.oldVelocity = set;
     }

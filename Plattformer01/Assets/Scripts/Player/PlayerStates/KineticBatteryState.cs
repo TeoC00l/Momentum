@@ -1,34 +1,35 @@
-﻿using System.Collections;
+﻿//Author: Teodor Tysklind
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Player/KineticBatteryState")]
 public class KineticBatteryState : PlayerBaseState
 {
-    //Attributes
-    Vector3 input = new Vector3(1,0,1);
+//ATTRIBUTES
+    private bool exitingState;
 
-    
-    bool getOutofState;
-    [SerializeField]private float slideDecreaseMovementRate;
-    [SerializeField]private float waitBeforeSliding;
-    //Methods
+    [Header("Slow down the kinetic slide every X seconds")]
+    [SerializeField]private float slideDecreaseVelocityInterval;
+
+    [Header("Cooldown for using kinetic battery")]
+    [SerializeField]private int kineticBatteryCooldown;
+
+//METHODS
     public override void Enter()
     {
         base.Enter();
-        if (owner.GetOldVelocity() == Vector3.zero)
-        {
-            owner.SetOldVelocity(PhysComp.GetVelocity());
 
+        if (owner.GetCachedVelocity() == Vector3.zero)
+        {
+            owner.SetCachedVelocity(PhysicsComponent.GetVelocity());
         }
 
         if (owner.GetCurrentlySliding() == false)
         {
             owner.SetStopKineticSlide(false);
-            Debug.Log("startSlide");
-            owner.kineticTimer = 1000;
-            owner.divideValue = owner.kineticTimer;
-            owner.InvokeRepeating("DecreaseVelocity", waitBeforeSliding, slideDecreaseMovementRate);
+            kineticTimer = kineticBatteryCooldown;
+            owner.InvokeRepeating("DecreaseVelocity", 0, slideDecreaseVelocityInterval);
         }
     }
 
@@ -37,11 +38,11 @@ public class KineticBatteryState : PlayerBaseState
         if (owner.GetStopKineticSlide() == false)
         {
             owner.PhysComp.AddForces();
-            //owner.PhysComp.AddNormalForces();
         }
-        if (PhysComp.GetVelocity() == Vector3.zero && owner.GetStopKineticSlide() == false)
+
+        if (PhysicsComponent.GetVelocity() == Vector3.zero && owner.GetStopKineticSlide() == false)
         {
-            PhysComp.SetVelocity(Vector3.zero);
+            PhysicsComponent.SetVelocity(Vector3.zero);
             owner.SetStopKineticSlide(true);
             owner.CancelInvoke("DecreaseVelocity");
         }
@@ -50,10 +51,10 @@ public class KineticBatteryState : PlayerBaseState
         {
             owner.CancelInvoke("DecreaseVelocity");
         }
+
         if (owner.PhysComp.GroundCheck() == false)
         {
             owner.SetCurrentlySliding(true);
-
             owner.Transition<KineticBatteryAirbourneState>();
         }
        
@@ -64,18 +65,18 @@ public class KineticBatteryState : PlayerBaseState
         if (Time.timeScale == 1)
         {
             //Redirecting velocity
-            getOutofState = owner.controllerInput.GetIsKineticBatteryActive() == false;
-            if (getOutofState == true)
+            exitingState = owner.controllerInput.GetIsKineticBatteryActive() == false;
+            if (exitingState == true)
             {
                 owner.SetCurrentlySliding(false);
                 owner.SetStopKineticSlide(false);
 
-                getOutofState = false;
+                exitingState = false;
 
-                input = owner.transform.forward;
-                PhysComp.SetVelocity(input * owner.GetOldVelocity().magnitude);
+                Vector3 input = owner.transform.forward;
+                PhysicsComponent.SetVelocity(input * owner.GetCachedVelocity().magnitude);
                 ProperlyExitState();
-                owner.SetOldVelocity(Vector3.zero);
+                owner.SetCachedVelocity(Vector3.zero);
                 owner.Transition<MomentumState>();
             }
         }
@@ -86,12 +87,12 @@ public class KineticBatteryState : PlayerBaseState
     {
         owner.kineticBatteryCooldownTimer.SetTimer();
     }
+
     private void ProperlyExitState()
     {
         owner.CancelInvoke("DecreaseVelocity");
         owner.kineticTimer = 0;
         owner.AddPhysics();
-        //owner.PhysComp.AddNormalForces();
     }
    
 

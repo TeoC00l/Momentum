@@ -16,12 +16,12 @@ public class KineticBatteryAirbourneState : PlayerBaseState
     {
         base.Enter();
 
-        PhysComp.SetGravitationalForce(gravitationalForce);
+        PhysicsComponent.SetGravitationalForce(gravitationalForce);
 
 
-        if (owner.GetOldVelocity() == Vector3.zero)
+        if (owner.GetCachedVelocity() == Vector3.zero)
         {
-            owner.SetOldVelocity(PhysComp.GetVelocity());
+            owner.SetCachedVelocity(PhysicsComponent.GetVelocity());
         }
 
         if (owner.GetCurrentlySliding() == false)
@@ -43,9 +43,9 @@ public class KineticBatteryAirbourneState : PlayerBaseState
             owner.PhysComp.AddForces();
         }
 
-        if (PhysComp.GetVelocity() == Vector3.zero && owner.GetStopKineticSlide() == false)
+        if (PhysicsComponent.GetVelocity() == Vector3.zero && owner.GetStopKineticSlide() == false)
         {
-            PhysComp.SetVelocity(Vector3.zero);
+            PhysicsComponent.SetVelocity(Vector3.zero);
             owner.SetStopKineticSlide(true);
             owner.CancelInvoke("DecreaseVelocity");
         }
@@ -76,9 +76,9 @@ public class KineticBatteryAirbourneState : PlayerBaseState
 
             input = owner.transform.forward;
 
-            PhysComp.SetVelocity(input * owner.GetOldVelocity().magnitude);
+            PhysicsComponent.SetVelocity(input * owner.GetCachedVelocity().magnitude);
             ProperlyExitState();
-            owner.SetOldVelocity(Vector3.zero);
+            owner.SetCachedVelocity(Vector3.zero);
             owner.Transition<MomentumState>();
         }
     }
