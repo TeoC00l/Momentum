@@ -37,7 +37,7 @@ public class KineticBatteryAirbourneState : PlayerBaseState
 
     public override void HandleFixedUpdate()
     {
-        owner.DecreaseVelocity();
+        owner.KineticSlide();
 
         if (owner.GetStopKineticSlide() == false)
         {
@@ -48,7 +48,6 @@ public class KineticBatteryAirbourneState : PlayerBaseState
         {
             physicsComponent.SetVelocity(Vector3.zero);
             owner.SetStopKineticSlide(true);
-            owner.CancelInvoke("DecreaseVelocity");
         }
         if (owner.physicsComponent.GroundCheck() == true)
         {
@@ -61,8 +60,6 @@ public class KineticBatteryAirbourneState : PlayerBaseState
             owner.physicsComponent.AddGravity();
 
         }
-        //owner.PhysComp.AddNormalForces();
-
     }
     public override void HandleUpdate()
     {
@@ -93,7 +90,6 @@ public class KineticBatteryAirbourneState : PlayerBaseState
         owner.CancelInvoke("DecreaseVelocity");
         owner.kineticTimer = 0;
         owner.AddPhysics();
-        //owner.PhysComp.AddNormalForces();
     }
 }
 

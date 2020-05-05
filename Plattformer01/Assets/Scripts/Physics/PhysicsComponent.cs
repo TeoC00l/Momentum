@@ -10,31 +10,32 @@ public class PhysicsComponent : MonoBehaviour
 
     private Vector3 velocity;
     private Vector3 direction;
-    private RayCasterCapsule rayCaster;
 
-    private float accelerationSpeed;
-    private float gravitationalForce;
-    private float jumpMagnitude;
-    private float staticFrictionMultiplier;
-    private float airResistance;
-    private float accelerationMultiplier;
+    [SerializeField] private RayCasterCapsule rayCaster;
+
+    [SerializeField] private float accelerationSpeed;
+    [SerializeField] private float gravitationalForce;
+    [SerializeField] private float jumpMagnitude;
+    [Range(0.0f, 1.0f)]
+    [SerializeField] private float FrictionCoefficient;
+    [Range(0.0f, 1.0f)]
+    [SerializeField] private float airResistanceCoefficient;
     [SerializeField] private float skinWidth;
     [SerializeField] private float groundCheckDistance;
 
-//METHODS 
+    //METHODS 
     void Awake()
     {
         velocity = Vector3.zero;
         direction = Vector3.zero;
         rayCaster = GetComponent<RayCasterCapsule>();
-        accelerationMultiplier = 1;
     }
 
     public void AddForces()
     {      
         velocity = PhysicsCalculations.CalculateAccelerationMagnitude(velocity, direction, accelerationSpeed);
         AddGravity();
-        velocity = PhysicsCalculations.AddAirResistance(velocity, airResistance);
+        velocity = PhysicsCalculations.AddAirResistance(velocity, airResistanceCoefficient);
         if (AddNormalForces())
         {
             MovePosition();
@@ -81,12 +82,12 @@ public class PhysicsComponent : MonoBehaviour
 
     private void MovePosition()
     {
-        transform.position += (velocity * accelerationMultiplier) * Time.deltaTime;
+        transform.position += velocity * Time.deltaTime;
     }
 
     private void AddFriction(Vector3 normalForce)
     {
-        velocity = PhysicsCalculations.CalculateFriction(velocity, normalForce, staticFrictionMultiplier);
+        velocity = PhysicsCalculations.CalculateFriction(velocity, normalForce, FrictionCoefficient);
     }
 
     private Vector3 MeasureNormalForce()
@@ -157,11 +158,11 @@ public class PhysicsComponent : MonoBehaviour
     }
     public void SetStaticFrictionCo(float staticFrictionCo)
     {
-        this.staticFrictionMultiplier = staticFrictionCo;
+        this.FrictionCoefficient = staticFrictionCo;
     }
     public void SetAirResistance(float airResistance)
     {
-        this.airResistance = airResistance;
+        this.airResistanceCoefficient = airResistance;
     }
     public float GetSkinWidth()
     {
@@ -171,6 +172,8 @@ public class PhysicsComponent : MonoBehaviour
     {
         direction += add;
     }
+
+    private float accelerationMultiplier;
     public void AddToSpeedIncrease(float add)
     {
         accelerationMultiplier += add;

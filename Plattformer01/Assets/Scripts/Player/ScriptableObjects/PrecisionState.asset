@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0f174546c51eb647a4b75f9aa7f82f7, type: 3}
   m_Name: PrecisionState
   m_EditorClassIdentifier: 
-  acceleration: 65
+  acceleration: 75
   gravitationalForce: 60
   jumpMagnitude: 2000
   frictionCoefficient: 0.6
-  airResistance: 0.5
+  airResistance: 0.6
   strafeCoefficient: 1

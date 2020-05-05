@@ -34,7 +34,7 @@ public class KineticBatteryState : PlayerBaseState
 
     public override void HandleFixedUpdate()
     {
-        owner.DecreaseVelocity();
+        owner.KineticSlide();
 
         if (owner.GetStopKineticSlide() == false)
         {
